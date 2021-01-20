@@ -1,0 +1,76 @@
+<!-- BLOCO USADO PARA MOSTRAR POPUP DE FATURA faturaFechada USADA QUANDO O USUARIO TROCA O MES DO EXTRATO DO CARTAO -->
+<%
+	var cartao  = model.cartao;
+	var extrato = model.extrato;
+	var dataObj = stringDateToJsonObject(extrato.dataVencimento.replace('/', '').replace('/', ''));
+	var paramsFuncionalidadeCache = BradescoCartoesMobile.controllers.getParamsFuncionalidades(cartao);
+	var funcionalidade = AWBE.sessionStorage.getItem(BradescoCartoesMobile.controllers.getFuncionalidadeKey(paramsFuncionalidadeCache));
+%>
+
+<% if ((extrato.codigoRetorno == "00" || extrato.codigoRetorno == "0") && (extrato.valorTotal != "0.00" && extrato.sinalExtrato != "-")) { %>
+<div class="fatura-fechou" <%=( extrato.statusAberto !='A' && cartao.titularAdicional=='T' ) ? 'class="ui-box-arrow-top"' : '' %>>
+	<% if (extrato.statusAberto != 'A' && cartao.titularAdicional == 'T') { %>
+				<span class="btn-fechar-fatura" onclick="javascript:closePopUP()"></span>
+				<input type="hidden" name="cartaoFaturaFechou" id="cartaoFaturaFechou" value="<%=cartao.numeroCartao%>"></input>
+				<input type="hidden" name="dataFaturaFechou" id="dataFaturaFechou" value="<%=dataObj.dataYYYYMMDD%>"></input>
+				<div class="fatura-fechou">
+					<p class="titulo-fechou">A fatura deste cart&atilde;o fechou!</p>
+					<div class="ui-grid-a">
+						<div class="ui-block-a extrato-status-fechado">
+							<dl>
+								<dd>Total a pagar:</dd>
+								<dt>R$ <%=extrato.sinalExtrato%><%=currency(extrato.valorTotal, false)%></dt>
+								<% if (cartao.formaPagamento != 'D') { %>
+									<dd>Vencimento: <span><%=extrato.dataVencimento%></span></dd>
+								<% } %>
+							</dl>
+						</div>
+						<div class="ui-block-b extrato-status-valor">
+							<% if (cartao.formaPagamento != 'D') { %>
+								<dl>
+									<dd>Pagamento m&iacute;nimo:</dd>
+									<dt>R$ <%=currency(extrato.valorPagamentoMinimo, false)%></dt>
+								</dl>
+							<% } else { %>
+								<dl>
+									<dd>Vencimento:</dd>
+									<dt><%=extrato.dataVencimento%></dt>
+								</dl>
+							<% } %>
+						</div>
+					</div>
+				</div>
+				<!-- Verifica forma de pagamento (debito automatico/boleto) -->
+				<!-- botao codigo para pagamento/debito automatico -->
+				<div class="ui-grid-a margin-top-07em">
+					<div class="ui-block-a" style="display: flex;">
+						<% if (cartao.formaPagamento == 'D') { %>
+							<span class="debitoauto"></span>
+							<label class="debitoauto">D&eacute;bito autom&aacute;tico agendado</label>
+							<% } else { %>
+							<% if ((funcionalidade.pagamento) && (extrato.fatura != undefined && extrato.fatura.length > 0) && (extrato.fatura[0].codigoRetorno == 'M0000' || extrato.fatura[0].codigoRetorno == '00' || extrato.fatura[0].codigoRetorno == '0')) { %>
+								<form id="formCodigoPagamentoHomeLogada" action="#barcode">
+									<input type="hidden" name="codigoBarras" id="codigoBarras" data-awbe-bind="codigoBarras" value="<%= (extrato.fatura && extrato.fatura.length > 0) ? extrato.fatura[0].codigoBarras : '' %>"></input>
+									<input type="hidden" name="codigoTexto" id="codigoTexto" data-awbe-bind="codigoTexto" value="<%= ((extrato.fatura && extrato.fatura.length > 0) && (extrato.fatura[0].linhaDigitavel != null)) ? extrato.fatura[0].linhaDigitavel.trim().replace(/[^\d]+/g,'') : '' %>"></input>
+									<input type="hidden" name="back" id="back" data-awbe-bind="back" value="homeLogada"></input>
+									<div class="ui-btn-arrow-blue3-arrow"></div>
+									<div class="ui-btn-arrow-blue3">
+										<a href="#pagamento" class="ui-bts ui-bts-blue-left ui-link" style="font-size: 0.6em;">C&oacute;digo pagamento</a>
+									</div>
+								</form>
+							<% } %>
+						<% } %>
+					</div>
+					<% if (funcionalidade.extrato) { %>
+						<div class="ui-block-b">
+							<div class="ui-btn-arrow-blue2-arrow"></div>
+							<div class="ui-btn-arrow-blue2">
+								<a href="#extrato/dataVencimento=<%=(cartao.bradescard ? '0' : cartao.dataUltVcto)%>" class="ui-bts ui-bts-blue-right ui-link" style="font-size: 0.6em;">Ver extrato</a>
+							</div>
+						</div>
+					<% } %>
+				</div>
+				<% } %>
+		</div>
+	<% } %>
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/home/faturaFechada.js"></script>

@@ -1,0 +1,21 @@
+<div data-role="collapsible" data-iconpos="true" data-inset="false" id="titular-collapsible">
+	<h4>
+	  <span class="colapsible-icon"></span>
+	  <label class="colapsible-text">Titular</label>
+	</h4>
+	<!--BLOCO INFORMACOES DE LIMITE -->
+	<div id="titularTarget"></div>
+</div>
+
+<div data-role="collapsible" data-iconpos="true" data-inset="false" id="adicionais-collapsible" style="display:none">
+	<h4>
+	  <span class="colapsible-icon"></span>
+	  <label class="colapsible-text">Adicionais</label>
+	</h4>
+	<!--BLOCO INFORMACOES DE LIMITE -->
+	<div id="adicionaisTarget">
+	  <div class="ui-noload"></div>
+	</div>
+</div>
+
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/senhaCartao/senhaCartaoVisualizacao.js" ></script>

@@ -1,0 +1,63 @@
+.saiba-mais-qrcode {
+    height: 23px;
+    display: block;
+    position: relative;
+}
+.content-carroussel p span {
+    padding-top: .3rem;
+}
+#confirmacaoQrCodeHabilitado [data-device="iOS"] {
+    overflow: auto;
+    padding: 0;
+}
+
+#confirmacaoQrCodeHabilitado [data-device="iOS"] a.botao-modal-002 {
+    width: 50%;
+    box-sizing: border-box;
+    padding: 1rem 0;
+    float: left;
+}
+.ui-popup > div.align-botoes[data-device="iOS"] > a {
+    width: 49%;
+    float: left;
+    padding: 1em 0 !important;
+}
+.ui-popup > div.align-botoes[data-device="iOS"] {
+    overflow: auto;
+    padding: 0;
+}
+
+#saiba-mais .saiba-mais-qrcode-j5{
+    height: 23px;
+}
+
+.texto-forma-pagamento{
+    text-align: left;
+}
+
+.texto-forma-pagamento-j5 {
+    padding: 1em;
+}
+
+.alinhar-texto-th-J5 {
+    padding: 1em;
+}
+
+.texto-estabelecimento{
+    text-align: left;
+}
+
+.texto-estabelecimento-j5 {
+    padding: 1em;
+}
+
+#saiba-mais .largura-480-px {
+    width: 23px;
+}
+
+.icon-21:after {
+    content: "";
+    display: block;
+    padding: .65em;
+    background-size: contain;
+}

@@ -1,0 +1,108 @@
+<div data-awbe-component="awbe-include" data-awbe-component-params="cabecalhoVoltarPagina"></div>
+<div data-awbe-component="awbe-include" data-awbe-component-params="menuOpcoesDeslogado"></div>
+
+<div class="ui-content dispositivo-seguranca" data-role="content">
+
+	<div class="divAlertas">
+		<hr/>
+		<!-- Mensagem de alerta ao usuario -->
+		<div class="icon-20" style="margin-top: 0em;"></div>
+		<p class="txt-075em fnt-book color-gray-darker margin-left-35em" style="height: 2em; margin-top: 1.5em;">C&oacute;digo informado &eacute; inv&aacute;lido.</p>
+		<hr/>
+	</div>
+
+	<p style="margin-bottom: 0;" class="fnt-book txt-1em color-gray-darker">Ag&ecirc;ncia: <span class="fnt-bold"><%=[params.agencia]%></span><br/></>Conta: <span class="fnt-bold"><%=[params.conta]%></span></p>
+	
+</div>
+
+<div id="dispSegurancaEditarDadosBancarios">
+	<input type="hidden" value="<%=params.cpf%>" data-awbe-bind="cpf"/>
+	<input type="hidden" value="<%=params.contaEDigito%>" data-awbe-bind="contaEDigito"/>
+	<input type="hidden" value="<%=params.agencia%>" data-awbe-bind="agencia"/>
+	<input type="hidden" value="<%=model.titularidade%>" data-awbe-bind="titularidade"/>
+	<input type="hidden" value="<%=params.perfilCliente%>" data-awbe-bind="perfilCliente"/>
+	<input type="hidden" value="<%=params.processadoraCartao%>" id="processadoraCartao" data-awbe-bind="processadoraCartao"/>
+	<input type="hidden" value="dadosContato" data-awbe-bind="view"/>
+	<input type="hidden" value="<%=model.celula%>" data-awbe-bind="celula"/>
+</div>
+
+<script>
+    window.injecaoActionName = '#dispositivoSegurancaValidationDadosBancarios';
+    window.injecaoTargetElement = 'dispSegurancaEditarDadosBancarios';
+</script>
+
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/smic/injecaoDispSeguranca.js"></script>
+
+<div data-awbe-component="popup"
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="infoAtualizada">
+	<p class="texto-modal-normal" >Pronto. Suas informa&ccedil;&otilde;es foram atualizadas.</p>
+	<div class="align-botoes">
+		<a href="#perfilEditar" data-rel="back" class="botao-modal-002">OK</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup"
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="infoNAtualizada">
+	<p class="texto-modal-normal" >Campo(s) de entrada inconsistente(s).</p>
+	<div class="align-botoes">
+		<a href="#perfilEditar" data-rel="back" class="botao-modal-002">OK</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="dispositivoIncorreto">
+	<p class="titulo-modal">A chave informada n&atilde;o &eacute; v&aacute;lida</p>
+	<p class="texto-modal-normal">Voc&ecirc; tem mais <span class="texto-negrito-modal" id="tent"></span>.</p>
+	<div class="align-botoes txt-caixaalta-android">	
+		<a href="#" data-rel="back" class="botao-modal-002 txt-semCapitalize-iOS">Tentar novamente</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="dispositivoIncorreto2">
+	<p class="titulo-modal">A chave informada n&atilde;o &eacute; v&aacute;lida</p>
+	<p class="texto-modal-normal">A chave ser&aacute; desativada na pr&oacute;xima tentativa incorreta.</span></p>
+	<div class="align-botoes txt-caixaalta-android">	
+		<a href="#" data-rel="back" class="botao-modal-002 txt-semCapitalize-iOS">Tentar novamente</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="dispositivoBloqueado">
+	<p class="titulo-modal">Chave de Segurança desativada</p>
+	<p class="texto-modal-normal">Para reativ&aacute;-la procure sua ag&ecirc;ncia ou contate o Fone F&aacute;cil Bradesco para outras informa&ccedil;&otilde;es.</p>
+	<div class="align-botoes">	
+		<a href="#meusCartoes" data-rel="back" class="botao-modal-002">FECHAR</a>
+	</div>
+</div>
+
+<!-- POPUP DE MENSAGEM GENERICA -->
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="popup-generico">
+	<p class="titulo-modal" id="titulo-modal-personalizado"></p>
+	<p class="texto-modal-normal" id="mensagem-personalizada"></p>
+ 		<div class="align-botoes">	
+ 			<a href="#" data-rel="back"  class="botao-modal-002">FECHAR</a>
+ 		</div>
+</div>
+
+
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/cartoes/cadastro/dispositivoSegurancaEditar.js"></script>

@@ -1,0 +1,31 @@
+<div id="taxas-collapsible" data-role="collapsible" data-iconpos="false" data-inset="false">
+    <h4>
+        <span class="colapsible-icon"></span>
+        <label class="colapsible-text">Taxas mensais</label>
+    </h4>
+    <table class="ui-table-taxas">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Atual</th>
+                <th style="text-align: right;">M&aacute;x. para o <br /> pr&oacute;ximo per&iacute;odo</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% $.each(model.taxas, function(index, item){ %>
+            <tr>
+                <th><%=item.descricao%></th>
+                <th class="align-valor"><%=item.valorAtual%> %</th>
+                <th class="align-valor"><%=item.valorMaximo%> %</th>
+            </tr>
+            <% }) %>
+        </tbody>
+    </table>
+    <div class="extrato-line">
+        <label class="extrato-taxas-label">
+            Custo Efetivo Total (CET), para o rotativo
+            <%=currency(model.cetAnual, false)%>% ao ano.<br />
+            V&aacute;lido para o vencimento desta fatura.
+        </label>
+    </div>
+</div>

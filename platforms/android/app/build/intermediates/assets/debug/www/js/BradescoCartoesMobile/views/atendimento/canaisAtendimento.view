@@ -1,0 +1,61 @@
+<div data-awbe-component="awbe-include" data-awbe-component-params="cabecalho"></div>
+<div data-awbe-component="awbe-include" data-awbe-component-params="menuOpcoesDeslogado"></div>
+
+<div class="page canaisatend ui-content" data-role="content">
+	<h2>CENTRAL DE ATENDIMENTO</h2>
+	<div>
+		<p>Para transa&ccedil;&otilde;es, consultas e contrata&ccedil;&otilde;es:</p>
+	</div>
+
+	<div class="ui-grid-a">
+		<div class="ui-block-a two-line-atendimento">
+			Capitais e regi&otilde;es<br />metropolitanas
+		</div>
+		<div class="ui-block-b floating-box">
+			<div class="icon-83"></div>
+			<div class="telefonebox">
+				<a href="tel:40020022" class="telefonelink">&nbsp;4002 0022</a>
+			</div>
+		</div>
+	</div>
+
+	<div class="ui-grid-a">
+		<div class="ui-block-a single-line-atendimento">Outras
+			localidades</div>
+		<div class="ui-block-b floating-box">
+			<div class="icon-83"></div>
+			<div class="telefonebox">
+				<a class="telefonelink">&nbsp;0800
+					570 0022</a>
+			</div>
+		</div>
+	</div>
+
+	<hr>
+
+	<div class="ui-grid-solo">
+		<div class="ui-block-a">
+			<span class="sac">SAC</span> <br>
+			<span class="sac" style="white-space: normal;">Servi&ccedil;o
+				de atendimento ao Consumidor</span>
+		</div>
+	</div>
+
+	<div>
+		<p>Para reclama&ccedil;&otilde;es, d&uacute;vidas e cancelamentos:</p>
+	</div>
+
+	<div class="ui-grid-a">
+		<div class="ui-block-a two-line-atendimento">
+			24h por dia,<br />7 dias por semana
+		</div>
+
+		<div class="ui-block-b floating-box">
+			<div class="icon-83"></div>
+			<div class="telefonebox">
+				<a class="telefonelink">&nbsp;0800
+					727 9988</a>
+			</div>
+		</div>
+	</div>
+</div>

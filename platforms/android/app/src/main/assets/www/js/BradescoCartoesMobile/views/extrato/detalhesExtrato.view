@@ -1,0 +1,127 @@
+<div id="ovelayPopup"></div>
+<section class="detalhes-extrato" id='fatura'>
+    <article class="ui-grid-a">
+        <article class="ui-block-a">
+            <p class="fnt-medium txt-1em color-gray-darker margin-top-13em">Escolha o m&ecirc;s</p>
+        </article>
+        <article class="ui-block-b container-mes">
+            <select class="needsclick mes" id="mes" data-native-menu="true" data-icon="false">
+                <%  for(var i in model.optionList){ 
+                    var option = model.optionList[i];    
+                %>
+                <option data-mes="<%=option.mes%>" value="<%=option.value%>" <%= option.selected %>>
+                    <%=option.description%>
+                </option>
+                <%  } %>
+            </select>
+            <form id="formMes" actionfn="BradescoCartoesMobile.components.ExtratoComponents.detalhesExtrato">
+                <%  for(var key in model.formMesParams){  %>
+                <input type="hidden" name="<%= key %>" data-awbe-bind="<%= key %>" value="<%=model.formMesParams[key]%>" />
+                <%  } %>
+            </form>
+        </article>
+    </article>
+    <article class="card">
+        <div class="ui-grid-a">
+            <div class="ui-block-a">
+                <span class="text-red font-075 text-uppercase">
+                    <b>Fatura <%= model.statusAberto == "A" ? "Atual" : "Fechada"%></b>
+                </span>
+            </div>
+            <div class="ui-block-b font-08 vencimento text-right">
+                <span>Vencimento <b><%= model.dataVencimento %></b></span>
+            </div>
+        </div>
+        <div class="ui-grid-a pt-05">
+            <div class="ui-block-a">
+                <span>Total</span>
+            </div>
+            <div class="ui-block-b text-right">
+                <span>R$ <%=currency(model.valorTotal, false)%></span>
+            </div>
+        </div>
+        <% if(!_.isEmpty(model.cardBtnList)){ %>
+        <article class="buttons-container">
+            <% $.each(model.cardBtnList, function(i, button){ %>
+            <button class="<%= button.classe %>"><%= button.descricao %></button>
+            <% }) %>
+        </article>
+        <% } %>
+    </article>
+</section>
+<div>
+    <div id="lancamentos-collapsible" data-role="collapsible" data-collapsed="true" data-iconpos="false" data-inset="false">
+        <h4>
+            <span class="colapsible-icon"></span>
+            <label class="colapsible-text">Lan&ccedil;amentos</label>
+        </h4>
+        <section data-target="lancamentos"></section>
+    </div>
+    
+    <section data-target="resumo"></section>
+    <section data-target="taxas"></section>
+    <section data-target="grafico" style="opacity: 0;"></section>
+</div>
+
+<div class="ui-content-maisopcoes">
+    <div>
+        <p class="maisopcoes-title">Outras op&ccedil;&otilde;es </p>
+    </div>
+
+    <% if (model.isParcelasFuturasAtivo){ %>
+    <div>
+        <p class="colapsible-text">
+            <a href="#parcelasFuturas" class="color-gray-darker text-decoration-none">
+                Confira as parcelas futuras
+                <span class="directaction-icon-extrato"></span>
+            </a>
+        </p>
+    </div>
+    <% } %>
+
+    <div>
+        <form class="enviarLancamentosForm" action="#extratoEnviarEmail">
+            <input type="hidden" data-awbe-bind="mes" name="mes">
+        </form>
+        <p class="colapsible-text">
+            <a class="enviarLancamentos sendEmailLancamentos color-gray-darker" data-action="lancamentos">
+                Enviar lan&ccedil;amentos por e-mail
+                <span class="directaction-icon-extrato"></span>
+            </a>
+        </p>
+    </div>
+    <div>
+        <%
+            var taxasCartao = {
+                taxas : model.taxas,
+                cetAnual : model.cetAnual
+            };
+    
+            AWBE.sessionStorage.setItem('taxasCartao', taxasCartao);
+            var isCartaoBradescard = AWBE.sessionStorage.getItem("meusCartoesAtual").bradescard;
+            var taxasURL = isCartaoBradescard ? "#taxaseTarifas" : "#taxasTarifasFidelity";
+        %>
+        <p class="taxasTarifas colapsible-text">
+            <a href="<%=taxasURL%>" class="text-decoration-none color-gray-darker" data-action="taxas" onclick="$(window).scrollTop(0)">
+                Taxas e tarifas
+            <span class="directaction-icon-extrato"></span></a>
+        </p>
+    </div>
+    <div>
+        <p class="colapsible-text">
+            <a href="#cotacaoDolar" class="color-gray-darker" style="text-decoration: none;">
+                Cota&ccedil;&atilde;o do d&oacute;lar
+                <span class="directaction-icon-extrato"></span></a>
+        </p>
+    </div>
+
+    <!-- volta ao topo -->
+    <div class="voltar-topo" onclick="$(window).scrollTop(0)">
+        <i class="ui-block-a icone-voltar-topo"></i>
+        <span class="ui-block-b label-voltar-topo">Voltar ao topo</span>
+    </div>
+</div>
+
+
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/extrato/extrato.js"></script>
+<link rel="stylesheet" type="text/css" href="js/BradescoCartoesMobile/views/extrato/extrato.css" />

@@ -1,0 +1,19 @@
+<section>
+    <article class="error-container">
+        <header>
+            <h2>
+                <%= model.title %>
+            </h2>
+            <p>
+                <%= model.description %>
+            </p>
+            </div>
+            <div class="alert-info">
+                <span class="icon-icons_atencao"></span>
+                <p>
+                    <%= model.message %>
+                </p>
+            </div>
+    </article>
+</section>
+<link rel="stylesheet" type="text/css" href="js/BradescoCartoesMobile/views/pagamento/pagamento.css" />

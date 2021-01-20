@@ -1,0 +1,55 @@
+.lblDescDebitoAutomatico {
+    font-family: NewJuneBook;
+    color: #666666;
+    font-size: 0.8rem;
+}
+
+.fatura-fechou span {
+    color: #d72a3c; 
+    font-size: 14px; 
+    font-weight: bold;
+    
+}
+
+.fatura-fechou .grey {
+    color: #666;
+    padding-left: 1em;
+    font-family: NewJuneBold;
+    font-weight: 100;
+}
+
+.faturaContent {
+    margin: 0 -1rem;
+    background: white;
+    padding-top: 0.8em;
+    padding-bottom: 0.8em;
+    display: none;
+}
+
+span.span-msg-pagamento {
+    font-family: NewJuneBook;
+    font-size: .85em;;
+    color: #666666;
+}
+
+.div-msg-pagamento {
+    padding-top: .5em;
+}
+
+.btn-parcelar-fatura {
+    color: #0071e5 !important;
+    font-weight: normal;
+    font-family: NewJuneBook;
+    background-color: white !important;
+    box-shadow: none;
+    text-shadow: none;
+}
+
+.btn-pagar-fatura {
+    color: white !important;
+    background-color: #0057b1 !important;
+    font-weight: normal;
+    font-family: NewJuneBook;
+    box-shadow: none;
+    text-shadow: none !important;
+}

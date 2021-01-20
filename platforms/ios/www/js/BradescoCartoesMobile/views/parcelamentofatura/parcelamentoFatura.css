@@ -1,0 +1,612 @@
+* {
+    font-family: NewJuneBook;
+    font-size: 1em;
+}
+
+.container_valorentrada {
+    background-color: #f3f6fb;
+}
+
+header h2 {
+    font-weight: bold;
+    font-size: 1em;
+    margin-bottom: 20px;
+}
+
+h3 {
+    font-weight: normal;
+}
+
+span.tooltip {
+    position: absolute;
+    background: #656565;
+    color: #fff;
+    font-size: .8em;
+    font-weight: normal;
+    border-radius: 10px;
+    z-index: 999;
+    padding: 5px 14px;
+}
+
+span.tooltip:before {
+    content: " ";
+    position: absolute;
+    top: -9px;
+    left: calc(50% - 10px);
+    right: 0;
+    width: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid #656565;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.tutorial #container_parcelas {
+    opacity: .5;
+}
+
+#descricao_erro {
+    margin-top: 1em;
+}
+
+.error #descricao_erro {
+    display: block;
+}
+
+.error.red #descricao_erro,
+.error.red div.ui-input-text>input[name=valorAdesao] {
+    color: #dd5967 !important;
+    margin-top: 0.5em;
+}
+
+.form-group {
+    position: relative;
+}
+
+#container_parcelas {
+    transition: all 2s;
+}
+
+#resumo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #777778;
+    padding: 15px 15px;
+    background: #e7eaef;
+    border-bottom: 2px solid #e0e0e4;
+}
+
+#resumo .item_resumo {
+    flex-grow: 1;
+    text-align: center;
+    font-weight: bold;
+}
+
+#resumo .item_resumo b {
+    font-family: NewJuneBold;
+    font-weight: 500;
+}
+
+#resumo .item_resumo * {
+    font-size: 1em;
+}
+
+#resumo .item_resumo span>span {
+    display: block;
+    font-weight: normal;
+}
+
+.quantidade-parcelas {
+    display: flex;
+    margin-bottom: .75rem;
+}
+
+.quantidade-parcelas>div {
+    width: 20%;
+}
+
+.quantidade-parcelas>div.container-atualizar {
+    width: 110px;
+    margin-left: 1rem;
+    margin-bottom: 0;
+    margin-top: auto;
+}
+
+.quantidade-parcelas>div.container-atualizar button,
+.quantidade-parcelas>div.container-atualizar button:hover {
+    font-family: NewJuneBook;
+    font-weight: normal;
+    color: #0071e5;
+    max-width: 135px;
+    margin: 0;
+}
+
+.quantidade-parcelas>div.container-atualizar button:disabled {
+    opacity: .4;
+}
+
+[data-device=Android] input[type="tel"] {
+    padding-bottom: 0;
+    height: 1.7em;
+    min-height: unset;
+}
+
+.form-valor-entrada input[type=tel] {
+    font-size: 1.5em !important;
+    font-family: NewJuneBook;
+    margin-top: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.form-valor-entrada input[type=tel]:not([data-device="iOS"] input) {
+    padding-left: 0;
+}
+
+#qtd_parcelas {
+    color: #60605f;
+    background-color: #e7eaef;
+    text-align: center;
+    padding: 20px 0;
+    margin: 0 -1rem;
+    font-size: 1.5em;
+}
+
+.container_valorentrada small:last-child {
+    float: right;
+}
+
+#container_parcelas ul {
+    padding: 0;
+    margin: 0 -1rem;
+    margin-top: 1rem;
+}
+
+#container_parcelas ul>li {
+    color: #60605f;
+    padding: 1rem;
+    list-style: none;
+    font-size: 1.2em;
+    position: relative;
+    background: #f3f6fb;
+    border-top: 2px solid #dedee2;
+    font-weight: 500;
+    font-family: NewJuneMedium;
+}
+
+#container_parcelas ul>li.selected {
+    background: #ffffff;
+}
+
+#container_parcelas ul>li:last-child {
+    border-bottom: 2px solid #dedee2;
+}
+
+#container_parcelas ul>li:after {
+    margin: 0.2em 0;
+    content: " ";
+    position: absolute;
+    padding: 10px;
+    right: 1rem;
+    transform: rotate(90deg);
+    background-size: contain;
+    background-image: url(../../../../css/icons/icon-28.svg);
+    background-position: 0 0;
+}
+
+#container_parcelas ul>li.opcao-escolhida {
+    background-color: #ffffff;
+}
+
+.container_error.hide {
+    height: 0;
+    opacity: 0;
+    overflow: hidden;
+}
+
+.container_error {
+    transition: opacity .3s ease-in;
+    opacity: 1;
+    visibility: visible;
+    text-align: center;
+    position: relative;
+    margin: 0 -1rem;
+}
+
+.content-error {
+    padding-bottom: 3rem;
+}
+
+.content-error>p:last-child {
+    margin: 1.5rem 0;
+}
+
+.content-error .text-error {
+    font-size: .8em;
+}
+
+.content-error a.submitBtn {
+    border: 1px solid #ccc;
+    padding: .5rem .75rem;
+    border-radius: 5px;
+    font-weight: normal;
+}
+
+#reload {
+    padding: 5px 10px;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+}
+
+.resumo-container button.buttonCustomizado,
+.resumo-container button.buttonCustomizado:hover {
+    float: right;
+    border: none;
+    box-shadow: none;
+    font-weight: normal !important;
+    width: 50% !important;
+    color: #fff;
+    font-family: NewJuneBook;
+}
+
+.icon-icons_atencao {
+    height: 3rem;
+    display: block;
+    margin-top: 2rem;
+}
+
+.icon-icons_atencao:before {
+    content: "";
+    border: none;
+    padding: 1.3em;
+    background-image: url("../../../../css/icons/icon-20.svg");
+    background-repeat: no-repeat;
+    background-color: transparent !important;
+    background-size: contain;
+    background-position: center;
+    position: absolute;
+    left: 0;
+    right: 0;
+}
+
+table.resumo-contrato {
+    margin-bottom: 1rem;
+    margin-top: 0.5rem;
+    border-top: 0.1rem solid #ccc;
+    border-bottom: 0.1rem solid #ccc;
+}
+
+table.resumo-contrato tr {
+    padding: 1.5rem 0;
+}
+
+table.resumo-contrato td {
+    padding: .3rem 0;
+}
+
+table.resumo-contrato td:last-child {
+    text-align: right;
+}
+
+table.resumo-contrato tr:last-child {
+    border-top: 0.1rem solid #ccc;
+}
+
+table.resumo-contrato tr:last-child td {
+    padding: 0.5rem 0;
+}
+
+table.resumo-contrato tr:first-child td {
+    padding-top: 1rem;
+}
+
+table.resumo-contrato tr:nth-last-child(2) td {
+    padding-bottom: 0.5rem;
+}
+
+table.resumo-contrato tr:nth-last-child(2) .iof-bradescard {
+    padding-right: 1rem;
+    text-align: left;
+}
+
+table.resumo-contrato tr:last-child td:last-child {
+    font-weight: bold;
+}
+
+.ui-btn-arrow-blue {
+    color: #fff;
+    font-family: NewJuneBook;
+}
+
+#formDispositivoSeguranca {
+    position: relative;
+}
+
+.icon-alterar-app {
+    background-image: url("../../../../css/icons/icon-174.svg");
+    float: right;
+    width: 0.9em;
+    height: 0.9em;
+    margin-left: 0.5em;
+}
+
+.text-alterar-app {
+    float: right;
+    font-size: 0.8em;
+}
+
+.div-alterar-app {
+    float: right;
+    font-family: 'NewJuneBook';
+}
+
+.divCapturarChave-parcelamento {
+    position: relative;
+    display: block;
+    float: left;
+}
+
+.icon-obterChave-parcelamento {
+    background: url("../../../../css/icons/icon-173.svg") no-repeat center;
+    margin-right: .5rem;
+    padding: 1rem;
+}
+
+.btnIntegrador {
+    top: 0;
+    right: 1em;
+    margin-top: 0.3em;
+}
+
+.text-capturar-chave-parcelamento {
+    font-size: 14px;
+    font-family: NewJuneSemibold;
+    font-weight: normal !important;
+    color: #2165A1 !important;
+}
+
+a.text-capturar-chave-parcelamento:active,
+a.text-capturar-chave-parcelamento:hover {
+    color: #2165A1;
+}
+
+.container-capturar {
+    padding-right: 2rem;
+    display: flex;
+}
+
+.div-content {
+    font-family: NewJuneBook;
+    font-weight: normal;
+    color: #636363;
+}
+
+#divBotaoConfirmaDispositivo {
+    float: right;
+}
+
+#container_parcelas p {
+    color: #0071e5;
+}
+
+.container_valorentrada p,
+.container_valorentrada h3,
+.container_valorentrada label {
+    margin: 0.3rem 0;
+}
+
+.form-valor-entrada .small-font {
+    font-size: 0.9em;
+}
+
+.form-valor-entrada>div>p {
+    margin-bottom: .3rem;
+}
+
+.form-valor-entrada.error div.red input,
+.error .red #descricao_erro,
+.quantidade-parcelas.red+span {
+    color: #d51e31;
+    border-color: #d51e31 !important;
+}
+
+.quantidade-parcelas.red+span {
+    opacity: 1;
+    transition: opacity ease-in .3s;
+}
+
+.quantidade-parcelas+span {
+    opacity: 0;
+}
+
+.container-spacing {
+    margin-top: 2rem;
+}
+
+div#dispositivoSegurancaTarget>div>input.input-pass-seis {
+    width: 100%;
+}
+
+.lblDescPagamento {
+    color: #666666;
+}
+
+.dadosGeraisCartoes>div:first-of-type {
+    padding-bottom: 0.7em;
+}
+
+[data-device=iOS]>a.uppercase {
+    text-transform: uppercase !important;
+}
+
+.resumo-container .contratarParcelamento {
+    padding: .7em 0;
+    box-shadow: none;
+    background: #0057b1;
+    font-family: NewJuneBook;
+    text-transform: none;
+    font-size: 1em;
+    text-shadow: none;
+}
+
+.resumo-container .contratarParcelamento a {
+    font-weight: normal;
+    color: #fff;
+    
+}
+
+.resumo-container .alterarParcelamento {
+    padding: .7em 0;
+    box-shadow: none;
+    background: #fff;
+    font-family: NewJuneBook;
+    text-transform: none;
+    font-size: 1em;
+    text-shadow: none;
+}
+
+.resumo-container .alterarParcelamento a {
+    font-weight: normal;
+}
+
+.underline {
+    text-decoration: underline;
+}
+
+.dataHoraParcelamento {
+    margin-bottom: 1.35em;
+    border-bottom: 3px solid #ccc;
+}
+
+.popup-link {
+    font-family: RobotoRegular;
+}
+
+.resumo-contrato td,
+.dadosGeraisCartoes label {
+    font-size: .7em;
+}
+
+#botaoCapturarChave .btn-capturar-chave {
+    font-size: 1em;
+    line-height: 1.15em;
+    font-weight: bold;
+}
+
+#escolhaUmaOpcao {
+    margin-top: 1em;
+}
+
+#escolhaUmaOpcao.hide {
+    height: 0;
+    opacity: 0;
+    overflow: hidden;
+}
+
+@media only screen and (max-device-width : 667px) {
+    .resumo-container .contratarParcelamento a {
+        font-size: .9em;
+    }
+}
+
+.flex-container-header {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    color: #60605f;
+    margin-bottom: 0.3rem;
+}
+
+.flex-container-header h2 {
+    padding: 0;
+}
+
+.flex-container-header div {
+    margin-bottom: .5rem;
+}
+
+.flex-container-header p {
+    padding: 0 1rem;
+    color: #2165A1;
+    font-size: small;
+    text-align: center;
+    text-shadow: none;
+    font-family: NewJuneBold;
+}
+
+.sub-header {
+    font-family: NewJuneMedium;
+    font-size: small;
+}
+
+.entrada-val {
+    font-size: xx-large;
+}
+
+.ui-content .dadosGeraisCartoes {
+    border-top: 0.1em solid #ccc;
+    padding-top: 0.5rem;
+}
+
+.container-corona {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #2165A1;
+    padding: 0.5rem 0.6rem;
+    font-family: NewJuneBook;
+}
+
+.container-corona p {
+    color: #fff;
+    text-shadow: none;
+    font-size: small;
+    font-family: NewJuneBook;
+    padding: 0 0.5rem 0 0;
+}
+
+.primeira-parcela-bradescard {
+    font-size: 1.5em;
+}
+
+.btn-outras-opcoes {
+    color: #0071e5 !important;
+    font-weight: normal;
+    font-family: NewJuneBook;
+    background-color: white !important;
+    box-shadow: none;
+    text-shadow: none;
+}
+
+.btn-contratar {
+    color: white !important;
+    background-color: #0057b1 !important;
+    font-weight: normal;
+    font-family: NewJuneBook;
+    box-shadow: none;
+    text-shadow: none !important;
+}
+
+.display-none {
+    display: none;
+}
+
+.invisible-space {
+    width: 0.5rem;
+}
+
+#sucessoContratacaoParcelamentoDebito [data-device=Android].popup-title,
+#sucessoContratacaoParcelamentoBoleto [data-device=Android].popup-title,
+#sucessoContratacaoParcelamentoP2 [data-device=Android].popup-title {
+    font-family: RobotoBold;
+}
+
+#sucessoContratacaoParcelamentoDebito [data-device=Android].popup-txt,
+#sucessoContratacaoParcelamentoBoleto [data-device=Android].popup-txt,
+#sucessoContratacaoParcelamentoP2 [data-device=Android].popup-txt {
+    font-family: RobotoRegular;
+}

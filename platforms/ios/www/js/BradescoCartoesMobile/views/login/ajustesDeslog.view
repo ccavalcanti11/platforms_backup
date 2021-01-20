@@ -1,0 +1,255 @@
+<%
+  BradescoCartoesMobile.resetConfigValues = function() {
+    AWBE.localStorage.setItem('serverIndex', 0);
+    AWBE.localStorage.setItem('loginUnico', 'S');
+    AWBE.localStorage.setItem('staIndex', 5);
+    AWBE.localStorage.setItem('habilitaValidaEmail', 'N');
+    AWBE.localStorage.setItem('habilitaMaquinaEstado', 'N');
+    AWBE.localStorage.setItem('habilitaValidaCodigoEmailSMS', 'N');
+    AWBE.localStorage.setItem('SIMULAR_STATUS_PARCELAMENTO', 'DESABILITADO');
+    AWBE.localStorage.setItem('simulaContaCorrenteCancelada', 'N');
+    AWBE.localStorage.setItem('smicServerIndex', 2);
+    location.href = '#ajustesDeslog';
+  }
+
+  if (!AWBE.localStorage.getItem('serverIndex')) {
+    BradescoCartoesMobile.resetConfigValues();
+  }
+%>
+
+<div data-awbe-component="awbe-include" data-awbe-component-params="cabecalho"></div>
+<div data-awbe-component="awbe-include" data-awbe-component-params="menuOpcoesDeslogado"></div>
+
+<div class="ui-content ajustes content-margin" data-role="content">
+	<hr />
+	<p class="fnt-book txt-1em color-gray-darker">Vers&atilde;o do aplicativo: <span
+			class="fnt-bold"><%=AWBE.versaoApp%></span></p>
+	<% var hashPush = BradescoCartoesMobile.components.Push && BradescoCartoesMobile.components.Push.currentHash; %>
+	<p class="fnt-book txt-1em color-gray-darker">Hash para envio push: <span style="font-size: 0.49em;" class="fnt-bold"><%= hashPush || "Nenhum" %></span></p>
+
+	<% var uuid = AWBE.localStorage.getItem('uuid'); %>
+	<p class="fnt-book txt-1em color-gray-darker">UUID: <span style="font-size: 0.49em;" class="fnt-bold"><%= uuid %></span></p>
+
+  <hr />
+  <div>
+		<div class="ui-btn-blue" onclick="BradescoCartoesMobile.resetConfigValues();">
+			<a>Redefinir ajustes</a>
+		</div>
+  </div>
+  <hr/>
+
+	<p class="fnt-book txt-1em color-gray-darker">Selecionar Servidor:</p>
+	<select class="needsclick" id="server" data-native-menu="true" data-icon="false">
+		<% if (AWBE.ServerList && AWBE.ServerList.length > 0) { %>
+		<%_.forEach(AWBE.ServerList, function(item, i) {
+					var selected;
+					if (AWBE.Properties.selectedServer.id === item.id) {
+						selected = 'selected="selected"';
+					} else {
+						selected = '';
+					}
+					%>
+		<option value="<%=item.id%>" <%= selected %>>
+			<%=item.id + " - " + item.address%>
+		</option>
+		<% }) %>
+		<% } %>
+	</select>
+	<br />
+	<hr />
+	<p class="fnt-book txt-1em color-gray-darker">Login &Uacute;nico:</p>
+	<select class="needsclick" id="loginUnico" data-native-menu="true" data-icon="false">
+		<%
+			function isLoginUnico() {
+				var loginUnico = AWBE.localStorage.getItem("loginUnico");
+				return !loginUnico || "S" === loginUnico;
+			}
+
+			var selectedS = '';
+			var selectedN = '';
+			
+			if (isLoginUnico()) {
+				selectedS = 'selected="selected"';
+			} else {
+				selectedN = 'selected="selected"';
+			}
+		%>
+		<option value="S" <%=selectedS%>>Sim</option>
+		<option value="N" <%=selectedN%>>N&atilde;o</option>
+	</select>
+	<br />
+	<hr />
+	<p class="fnt-book txt-1em color-gray-darker">QR Code Demo</p>
+	<a href="#qrcode" onclick="mnu.doAction()" class="icon-listview-ajustes">QRCode Demo</a>
+
+	<br />
+	<hr />
+	<p class="fnt-book txt-1em color-gray-darker">Stone Age:</p>
+	<select class="needsclick" id="stoneAge" data-native-menu="true" data-icon="false">
+
+
+		<% 
+		 if (AWBE.sta && AWBE.sta.length > 0) { %>
+		<%_.forEach(AWBE.sta, function(item, i) {
+					var selected;
+					if (AWBE.Properties.selectedSta.id  === item.id) {
+						selected = 'selected="selected"';
+					} else {
+						selected = '';
+					}
+					%>
+		<option value="<%=item.id%>" <%= selected %>>
+			<%=item.id + " - " + item.url%>
+		</option>
+		<% }) %>
+		<% } %>
+	</select>
+
+	<br />
+	<hr />
+	<p class="fnt-book txt-1em color-gray-darker">Valida&ccedil;&atilde;o de e-mail j&aacute; cadastrado:</p>
+	<select class="needsclick" id="habilitaValidaEmailID" data-native-menu="true" data-icon="false">
+		<%
+			function habilitaValidaEmail() {
+				var habilitaValidaEmail = AWBE.localStorage.getItem("habilitaValidaEmail");
+				return !habilitaValidaEmail || "S" === habilitaValidaEmail;
+			}
+
+			var hab = '';
+			var des = '';
+			
+			if (habilitaValidaEmail()) {
+				hab = 'selected="selected"';
+			} else {
+				des = 'selected="selected"';
+			}
+		%>
+		<option value="S" <%=hab%>>Habilitado</option>
+		<option value="N" <%=des%>>Desabilitado</option>
+	</select>
+
+
+	<br />
+	<hr />
+	<p class="fnt-book txt-1em color-gray-darker">M&aacute;quina de estados:</p>
+	<select class="needsclick" id="habilitaMaquinaEstadoID" data-native-menu="true" data-icon="false">
+		<%
+			function habilitaMaquinaEstado() {
+				var habilitaMaquinaEstado = AWBE.localStorage.getItem("habilitaMaquinaEstado");
+				return !habilitaMaquinaEstado || "S" === habilitaMaquinaEstado;
+			}
+
+			var hab = '';
+			var des = '';
+			
+			if (habilitaMaquinaEstado()) {
+				hab = 'selected="selected"';
+			} else {
+				des = 'selected="selected"';
+			}
+		%>
+		<option value="S" <%=hab%>>Habilitado</option>
+		<option value="N" <%=des%>>Desabilitado</option>
+	</select>
+
+	<br />
+	<hr />
+	<p class="fnt-book txt-1em color-gray-darker">Valida&ccedil;&atilde;o de c&oacute;digos de email e SMS:</p>
+	<select class="needsclick" id="habilitaValidaCodigoEmailSMSID" data-native-menu="true" data-icon="false">
+		<%
+			function habilitaValidaCodigoEmailSMS() {
+				var habilitaValidaCodigoEmailSMS = AWBE.localStorage.getItem("habilitaValidaCodigoEmailSMS");
+				return !habilitaValidaCodigoEmailSMS || "S" === habilitaValidaCodigoEmailSMS;
+			}
+
+			var hab = '';
+			var des = '';
+			
+			if (habilitaValidaCodigoEmailSMS()) {
+				hab = 'selected="selected"';
+			} else {
+				des = 'selected="selected"';
+			}
+		%>
+		<option value="S" <%=hab%>>Habilitado</option>
+		<option value="N" <%=des%>>Desabilitado</option>
+	</select>
+
+	<br />
+	<hr />
+	<p class="fnt-book txt-1em color-gray-darker">Fluxo pagamento QR Code</p>
+
+	<div>
+		<div class="ui-btn-blue">
+			<a id='qrCodeBtn'>QR Code</a>
+		</div>
+	</div>
+	<p class="fnt-book txt-1em color-gray-darker">Simular status parcelamento</p>
+	<select class="needsclick parcelamento" data-native-menu="true" data-icon="false">
+		<%
+			$(document).on("change","select.parcelamento", function(){
+				AWBE.localStorage.setItem("SIMULAR_STATUS_PARCELAMENTO", this.value);
+			});
+			var option = AWBE.localStorage.getItem("SIMULAR_STATUS_PARCELAMENTO");
+			var ativo = option == "A" ? "selected=selected" : "";
+			var pendente = option == "P" ? "selected=selected" : "";
+			%>
+		<option value="DESABILITADO">Desabilitado</option>
+		<option value="A" <%=ativo%>>Parcelamento Ativo</option>
+		<option value="P" <%=pendente%>>Parcelamento Pendente</option>
+	</select>
+	
+	<p class="fnt-book txt-1em color-gray-darker">Simular que a Conta Corrente foi cancelada:</p>
+	<select class="needsclick" id="simulaContaCorrenteCanceladaID" data-native-menu="true" data-icon="false">
+		<%
+			function simulaContaCorrenteCancelada() {
+				var simulaContaCorrenteCancelada = AWBE.localStorage.getItem("simulaContaCorrenteCancelada");
+				return !simulaContaCorrenteCancelada || "S" === simulaContaCorrenteCancelada;
+			}
+
+			var hab = '';
+			var des = '';
+			
+			if (simulaContaCorrenteCancelada()) {
+				hab = 'selected="selected"';
+			} else {
+				des = 'selected="selected"';
+			}
+		%>
+		<option value="S" <%=hab%>>Sim</option>
+		<option value="N" <%=des%>>N&atilde;o</option>
+	</select>
+	<hr />
+	<p class="fnt-book txt-1em color-gray-darker">Selecionar Servidor SMIC:</p>
+	<select class="needsclick" id="smicServer" data-native-menu="true" data-icon="false">
+		<%
+		if (AWBE.SmicServerList && AWBE.SmicServerList.length > 0) { %>
+		<%_.forEach(AWBE.SmicServerList, function(item, i) {
+			var selected;
+			if (AWBE.Properties.selectedSmicServer.id === item.id) {
+				selected = 'selected="selected"';
+			} else {
+				selected = '';
+			}
+		%>
+		<option value="<%=item.id%>" <%= selected %>>
+			<%=item.id + " - " + item.address%>
+		</option>
+		<% }) %>
+		<% } %>
+	</select>
+	<section>
+		<% 
+		var cpf = AWBE.localStorage.getItem("CPF_P2")
+		var mensagem = cpf ? "CPF mockado ".concat(cpf) : "Nenhum cpf cadastrado" 
+		%>
+		<span>Mock parcelamento P2</span>
+		<div>
+			<small id='msg_mock_p2'><%= mensagem%></small>
+			<button id='mockP2Bradescard' class='btn'>Inserir/Remover</button>
+		</div>
+	</section>
+
+</div>
+
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/login/ajustesDeslog.js"></script>

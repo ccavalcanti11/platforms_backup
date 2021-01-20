@@ -1,0 +1,31 @@
+<div data-awbe-component="popup" data-awbe-component-option-theme="a" data-awbe-component-option-theme-modal="b"
+    data-awbe-component-option-modal="true" data-awbe-component-popup-id="modalParcelamentoCorona">
+    <p class="titulo-modal"></p>
+    <p class="texto-modal-normal invoice-amount"></p>
+    <p class="texto-modal-normal installment-amount"></p>
+    <p class="texto-modal-normal grace-period-text"></p>
+    <div class="align-botoes-2 txt-caixaalta txt-semCapitalize-iOS">
+        <a href="#" data-rel="back" class="botao-modal-002 installment-no" data-value='btn-no' onclick="redirectClick(event)">N&atilde;o</a>
+        <a class="botao-modal-002 installment-yes" data-value='btn-yes' onclick="redirectClick(event)">Sim</a>
+    </div>
+</div>
+
+<script>
+  function redirectClick(event){
+    var value = event.target.dataset.value;
+    BradescoCartoesMobile.ParcelamentoFatura.bradescard.populaAppsFlyerGa(value).then(function(){
+      if (value === 'btn-no') return BradescoCartoesMobile.ParcelamentoFatura.bradescard.setChoiceSession();
+      if (value === 'btn-yes') return BradescoCartoesMobile.ParcelamentoFatura.bradescard.prepareSuccessInstallmentModal();
+    });
+  }
+</script>
+
+<style>
+  #modalParcelamentoCorona .invoice-amount {
+    margin-bottom: 2em;
+  }
+
+  #modalParcelamentoCorona .installment-amount {
+    margin-bottom: 2em;
+  }
+</style>

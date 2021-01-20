@@ -1,0 +1,24 @@
+<style>
+<% 
+    var deviceModel = window.device.model;
+
+    if (deviceModel) {%>
+        <% if(deviceModel.contains('Moto G (5)')){ %>
+            .boxNotificacoes .linkNotificacoesJ5 {
+                margin-top: 0;
+            }
+        <%}%>
+
+    <%}%>
+
+    .flex-center-evenly {
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+    }
+
+    .flex-center-evenly .mascaraFaturaCartaoNumero {
+        margin: 0;
+    }
+
+</style>

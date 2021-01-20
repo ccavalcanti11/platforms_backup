@@ -1,0 +1,34 @@
+<% var cartao  = model.cartao; %>
+<div id="fatura" class="ui-box-arrow-top">
+	<span class="btn-fechar-fatura" onclick="fecharCard()"></span>
+	<div class="fatura-fechou">
+		<p class="titulo-fechou">A fatura deste cart&atilde;o fechou!</p>
+		<div class="ui-grid-a">
+			<dl class="ui-block-a">
+				<dt>Total a pagar:</dt>
+				<dd>R$
+					<%=model.extrato.sinalExtrato%>
+						<%=currency(model.extrato.valorTotal)%>
+				</dd>
+				<dt>Parcele em <%=model.simulacao.qtdParcelas%>x de R$ <%=currency(model.simulacao.valorAdesao)%></dt>
+			</dl>
+		</div>
+	</div>
+	<!-- Verifica forma de pagamento (debito automatico/boleto) -->
+	<!-- Botao codigo para pagamento/debito automatico 					-->
+	<div class="ui-grid-a margin-top-07em">
+		<div class="ui-block-a">
+			<div class="ui-btn-arrow-blue3-arrow"></div>
+			<div class="ui-btn-arrow-blue3">
+				<a href="#extrato/dataVencimento=<%=(cartao.bradescard ? '0' : cartao.dataUltVcto)%>" class="ui-bts ui-bts-blue-left">Ver extrato</a>
+			</div>
+		</div>
+		<div class="ui-block-b">
+			<div class="ui-btn-arrow-blue2-arrow"></div>
+			<div class="ui-btn-arrow-blue2">
+				<a href="#parcelamento" class="ui-bts ui-bts-blue-right ui-link">Parcelar fatura</a>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/cardPromocional/cardParcelamento.js"></script>

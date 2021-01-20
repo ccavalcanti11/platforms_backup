@@ -1,0 +1,70 @@
+<div id="header-end-session" data-role="header" data-position="fixed" data-tap-toggle="false">
+    <!-- <button id="btnLeftPanel" data-role="button" class="btn-back"></button> -->
+    <% if(params.resumo.motivo == ""){ %>
+    <a id="btnLeftPanel" href="#cartoesAdicionais" class="btn-back"></a>
+    <%}else{%>
+    <a id="btnLeftPanel" href="#cancelarCartaoAdicional" class="btn-back"></a>
+    <%}%>
+    <h1>
+        <%=AWBE.localStorage.getItem('title')%>
+    </h1>
+</div>
+
+<section class="resumo-cancelamento-adicional">
+    <header>
+        <h2>RESUMO</h2>
+    </header>
+    <section>
+        <small class="fnt-book txt-9em color-gray-darker">Cart&atilde;o adicional:</small>
+        <span class="fnt-book txt-9em color-gray-darker">
+            <%=params.resumo.produto%></span>
+        <small class="fnt-book txt-9em color-gray-darker">N&uacute;mero do cart&atilde;o:</small>
+        <span class="fnt-book txt-9em color-gray-darker">
+            <%=params.resumo.numeroCartaoMascarado%></span>
+        <small class="fnt-book txt-9em color-gray-darker">Nome impresso no cart&atilde;o:</small>
+        <span class="fnt-book txt-9em color-gray-darker">
+            <%=params.resumo.nomeEmbosso%></span>
+        <small class="fnt-book txt-9em color-gray-darker">CPF:</small>
+        <span class="fnt-book txt-9em color-gray-darker">
+            <%=params.resumo.cpf%></span>
+        <% if(params.resumo.motivo != ""){ %>
+        <small class="fnt-book txt-9em color-gray-darker">Motivo:</small>
+        <span class="fnt-book txt-9em color-gray-darker">
+            <%=params.resumo.motivo%></span>
+        <%}%>
+        <small class="fnt-book txt-9em color-gray-darker">Data de cancelamento:</small>
+        <span class="fnt-book txt-9em color-gray-darker">
+            <%=params.resumo.dataCancelamento%></span>
+    </section>
+</section>
+
+<div id="desabilitarAdicionais"></div>
+
+<script>
+    window.injecaoActionName = '#dispositivoDesabilitarCartoesAdicionais';
+    window.injecaoTargetElement = 'desabilitarAdicionais';
+</script>
+
+<div data-awbe-component="popup" data-awbe-component-option-theme="a" data-awbe-component-option-theme-modal="b"
+    data-awbe-component-option-modal="true" data-awbe-component-popup-id="sucessoCancelarCartaoAdicional">
+    <p class="titulo-modal">Cancelamento realizado com sucesso</p>
+    <p class="texto-modal-normal">O cart&atilde;o adicional n&atilde;o poder&aacute; mais ser utilizado.<br><br>
+        Os lan&ccedil;amentos realizados com este cart&atilde;o ainda estar&atilde;o no extrato do cart&atilde;o do
+        titular.</p>
+    <div class="align-botoes txt-caixaalta">
+        <a href="#cartoesAdicionais" data-rel="back" class="botao-modal-002" onclick="location.href='#cartoesAdicionais';EventAppsFlyerGA('CancCartaoAdicional_Sucesso')">OK</a>
+    </div>
+</div>
+
+<div data-awbe-component="popup" data-awbe-component-option-theme="a" data-awbe-component-option-theme-modal="b"
+    data-awbe-component-option-modal="true" data-awbe-component-popup-id="erroCancelarCartaoAdicional">
+    <p>Ocorreu um erro ao realizar o cancelamento</p>
+    <div class="align-botoes align-botoes-popup txt-caixaalta">
+        <a href="#" data-rel="back" onclick="location.href='#cartoesAdicionais'" class="botao-modal-002" title="clique para prosseguir o cancelamento">OK</a>
+    </div>
+</div>
+
+<link rel="stylesheet" type="text/css" href="css/paginas/cartoesAdicionais.css" />
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/dispositivoSeguranca/dispositivoSegurancaView.js"></script>
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/cartoesAdicionais/cartoesAdicionais.js"></script>
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/smic/injecaoDispSeguranca.js"></script>

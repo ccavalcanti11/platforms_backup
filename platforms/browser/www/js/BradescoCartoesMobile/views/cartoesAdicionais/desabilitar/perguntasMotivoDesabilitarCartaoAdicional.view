@@ -1,0 +1,21 @@
+<div id="header-end-session" data-role="header" data-position="fixed" data-tap-toggle="false">
+	<a id="btnLeftPanel" href="#cartoesAdicionais" class="btn-back"></a>
+	<h1><%=AWBE.localStorage.getItem('title')%></h1>
+</div>
+
+<div class="ui-content faturadigital" data-role="content">
+	<h2 class="txt-caixaalta fnt-medium-bold">Qual o motivo?</h2>
+	<div class="margin-top-15em">
+		<ul data-role="listview">
+			<% _.each(params.listaMotivosDesabilitacao, function(motivo){ %>
+				<li data-icon="false">
+					<a onclick="setTimeout(function(){AWBE.Analytics.eventClick('checarMotivo');location.href='#listarRespostasCartoesAdicionais/motivoId=<%=motivo.codigo%>';},200);" 
+					style="font-weight:bold; font-family: NewJuneBook; word-break: break-word;">
+						<%=motivo.motivo%>
+					</a>
+					<a onclick="setTimeout(function(){AWBE.Analytics.eventClick('checarMotivo');location.href='#listarRespostasCartoesAdicionais/motivoId=<%=motivo.codigo%>';},200);" class="icon-listview-faturadigitalmotivos"></a>
+				</li>
+			<% }) %>
+			</ul>
+	</div>
+</div>

@@ -1,0 +1,49 @@
+<div data-awbe-component="awbe-include" data-awbe-component-params="cabecalhoVoltarPagina"></div>
+
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/cartoesAdicionais/sliderCartoesAdicionais.js"></script>
+<script>
+	
+	function continuarResumo(){
+		$('form').submit();
+	};
+	
+</script>
+
+<div class="ui-content" data-role="content">
+	<h2>ESCOLHA O LIMITE</h2>
+
+	<div class="text-cartao-adicional-limite color-gray-darker">
+		<span>O valor escolhido ser&aacute; compartilhado com o titular.</span>
+	</div>
+
+	<div class="cartao-adicional-bg-limite">
+		<span class="textSaibaMaisCVWebCard color-gray-darker" >R$</span>
+		<span id="valorSelecionado" class="textSaibaMaisCVWebCard color-gray-darker" ></span>
+	</div>
+
+	<div class="cartao-adicional-slider-limite">
+		<input id="valorLimiteNovoAdicional" type="range" data-highlight="true" onChange="atualizaAlteracaoLimite()">
+		<span class="cartao-adicional-valor-min-left" id="rangeLimiteMinimo"></span>
+		<span class="cartao-adicional-valor-min-right" id="rangeLimiteMaximo"></span>
+	</div> 
+
+	<form action="#resumoSolicitarCartoes">
+		<div class="ui-grid-a " id="divbotaoAdicionarCartoes" style="margin-top: 1em">
+			<div class="ui-block-a" style="float: right">
+				<div class="ui-btn-arrow-blue-arrow " id="botaoContinuarAddCartoesArrow"></div>
+				<div class="ui-btn-arrow-blue ui-btn-arrow-blue-width89" id="botaoContinuarAddCartoes">
+			    	<a id="continuarResumoCartoes" onclick="continuarResumo(); EventAppsFlyerGA('SolicCartaoAdicional_Limite')">Continuar</a>
+			    </div>
+			</div>
+			<div class="ui-block-b"></div>
+		</div>
+	</form>
+</div>
+
+<div data-awbe-component="popup" data-awbe-component-option-theme="a" data-awbe-component-option-theme-modal="b" data-awbe-component-option-modal="true" data-awbe-component-popup-id="popupErroConexao">
+<p class="titulo-modal">Erro de conex&atilde;o</p>
+<p class="texto-modal-normal">Sem conex&atilde;o. Verifique a rede e tente novamente.</p>
+<div class="align-botoes txt-caixaalta">
+<a class="botao-modal-002" data-rel="back" href="#">Fechar</a>
+</div>
+</div>

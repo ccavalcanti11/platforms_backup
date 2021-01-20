@@ -1,0 +1,13 @@
+<div class="personalizarnotificacoes">
+  <div class="titlenotificacoes">
+    <div class="fnt-medium txt-1em divtitle">Vencimento da Fatura</div>
+    <div class="smalltxt color-gray-darker" style="margin-top: 1em;">Ao habilitar ser&aacute; criado um lembrete do dia de vencimento do cart&atilde;o no calend&aacute;rio do seu celular.</div>
+  </div>
+  <div class="switchVencimentoFatura" style="margin-bottom: 0em !important;">
+    <input type="checkbox" data-role="flipswitch" id="faturaDigitalDiaVencimentoFlipswitch" data-on-text="" data-off-text="" />
+  </div>
+  <form action="#notificacoesHabilitarVencimentoFatura" id="formNotificacoesHabilitarVencimentoFatura"></form>
+  <form action="#notificacoesDesabilitarVencimentoFatura" id="formNotificacoesDesabilitarVencimentoFatura"></form>
+</div>
+
+<link rel="stylesheet" type="text/css" href="js/BradescoCartoesMobile/views/notificacoes/notificacoes.css">

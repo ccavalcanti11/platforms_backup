@@ -1,0 +1,108 @@
+<div id="header-hide-arrow" data-role="header" data-position="fixed"
+	data-tap-toggle="false">
+	<a id="btnLeftPanel" href="#" class="btn-back"></a>
+	<h1>Bloqueio de cart&atilde;o</h1>
+</div>
+
+<% 
+	var user = AWBE.sessionStorage.getItem('user');
+	if(AWBE.localStorage.getItem('isNCLegado_' + user.cpf) == "true"){ %>
+	<div data-awbe-component="awbe-include" data-awbe-component-params="menuOpcoesLogadoNCLegado"></div>
+<% }else{ %>
+	<div data-awbe-component="awbe-include" data-awbe-component-params="menuOpcoesLogado"></div>
+<% }%>
+
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/bloqueioCartao/bloqueioCartao.js"></script>
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/bloqueioCartao/cartaoBloqueado.js"></script>
+<%
+	var TarifaReemissao = model.TarifaReemissao;
+	var cartao = AWBE.sessionStorage.getItem('meusCartoesAtual');
+%>
+
+<div class="ui-content" data-role="content" style="font-family: NewJuneBook">
+
+	<div id="bloqueado-NB2K" style="display: block;">
+			<h2>Cart&atilde;o bloqueado</h2>
+			<p>Seu cart&atilde;o com final <%= ('0000' + cartao.parcialCartao).slice(-4) %> foi bloqueado. Voc&ecirc; receber&aacute; um novo cart&atilde;o no endere&ccedil;o de correspond&ecirc;ncia cadastrado.</p>
+	</div>
+
+	<div id="bloqueado-NaoReemitir" style="display: block;">
+			<h2>Cart&atilde;o bloqueado</h2>
+			<p>Seu cart&atilde;o com final <%= ('0000' + cartao.parcialCartao).slice(-4) %> foi bloqueado. Para solicitar um novo cart&atilde;o, entre em contato com a <a href="dcdcartoes://atendimento" class="fnt-book txt-1em color-gray-darker" style="text-decoration: underline;">Central de Atendimento</a>.</p>
+	</div>
+			
+		<div id="bloqueado-CB2K" style="display: block;">
+			<h2>Cart&atilde;o bloqueado</h2>
+			<p>Seu cart&atilde;o com final <%= ('0000' + cartao.parcialCartao).slice(-4) %> foi bloqueado. Voc&ecirc; receber&aacute; um novo cart&atilde;o no endere&ccedil;o de correspond&ecirc;ncia cadastrado.</p>
+			<hr><br>
+			<div>
+			<a href="#alteracaoEnderecoBloqueioCartao" class="color-gray-darker" style="text-decoration: none; font-weight:normal;">Ver endere&ccedil;o cadastrado
+			<span class="directaction-icon"></span></a>
+			</div>
+			<br>
+			<hr>
+		</div>
+		
+		<div id="bloqueado-NBradReemitir" style="display: block;">
+			<h2>Cart&atilde;o bloqueado</h2>
+			<p>Seu cart&atilde;o com final <%= ('0000' + cartao.parcialCartao).slice(-4) %> foi bloqueado. Para solicitar um novo cart&atilde;o, entre em contato com a <a href="dcdcartoes://atendimento" class="fnt-book txt-1em color-gray-darker" style="text-decoration: underline;">Central de Atendimento</a></p>
+	</div>
+		
+	<div id="bloqueado-CBradReemitir" style="display: block;">
+			<h2>Cart&atilde;o bloqueado</h2>
+			<p>Seu cart&atilde;o com final <%= ('0000' + cartao.parcialCartao).slice(-4) %> foi bloqueado. Voc&ecirc; receber&aacute; um novo cart&atilde;o no endere&ccedil;o de correspond&ecirc;ncia cadastrado.</p>
+			<hr><br>
+			<div>
+			<a href="#alteracaoEnderecoBloqueioCartao" class="color-gray-darker" style="text-decoration: none; font-weight:normal;">Ver endere&ccedil;o cadastrado
+			<span class="directaction-icon"></span></a>
+			</div>
+			<br>
+			<hr>
+		</div>
+	<div id="bloqueado-NaoPossivelReemitir">
+		<h2>Cart&atilde;o bloqueado</h2>
+		<p>Seu cart&atilde;o com final <%= ('0000' + cartao.parcialCartao).slice(-4) %> foi bloqueado. N&atilde;o foi poss&iacute;vel realizar o envio de um novo cart&atilde;o. </p>
+		<p>Favor entrar em contato com a <a href="dcdcartoes://atendimento" class="fnt-book txt-1em color-gray-darker" style="text-decoration: underline;">Central de Atendimento</a>.</p>
+	</div>
+
+</div>
+
+	
+<div data-awbe-component="popup"
+	 data-awbe-component-option-theme="a"
+	 data-awbe-component-option-theme-modal="b"
+	 data-awbe-component-option-modal="true"
+	 data-awbe-component-popup-id="reemisaoCartao">
+		<p class="titulo-modal">Seu cart&atilde;o foi bloqueado com sucesso.</p>
+		<p class="texto-modal-normal">Deseja reemitir um novo?</p>
+ 		<div class="align-botoes">
+ 			<a onclick="rota()" data-rel="back" style = "float: center" class="botao-modal-002">N&atilde;o, obrigado</a>
+ 			<a href="#reemitirCartao" onclick="reemitir()" data-rel="back" class="botao-modal-003">Solicitar</a>
+ 		</div>
+</div>
+
+<!-- 2714 TH - Adicionado popup para retorno M0077 mapResponse  -->
+<div data-awbe-component="popup"
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="bloqueadoReemitir0077">
+	<p class="titulo-modal">Aten&ccedil;&atilde;o</p>
+	<p class="texto-modal-normal">Identificamos que seu cart&atilde;o j&aacute; foi reemitido anteriormente.</p>
+	<div class="align-botoes">
+		<a href="rota()" data-rel="back" class="botao-modal-002">FECHAR</a>
+	</div>
+</div>
+
+<!-- 2714 TH - Adicionado popup para retorno M0075 mapResponse  -->
+<div data-awbe-component="popup"
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="bloqueadoReemitir0075">
+	<p class="titulo-modal">Aten&ccedil;&atilde;o</p>
+	<p class="texto-modal-normal">N&atilde;o foi poss&iacute;vel realizar a reemiss&atilde;o do seu cart&atilde;o.</p>
+	<div class="align-botoes">
+		<a href="rota()" data-rel="back" class="botao-modal-002">FECHAR</a>
+	</div>
+</div>

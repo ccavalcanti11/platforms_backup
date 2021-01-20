@@ -1,0 +1,69 @@
+<div class="personalizarnotificacoes">
+  <form action="#notificacoesHabilitarVencimentoFatura" id="formNotificacoesHabilitarVencimentoFatura"></form>
+  <form action="#notificacoesDesabilitarVencimentoFatura" id="formNotificacoesDesabilitarVencimentoFatura"></form>
+  <div class="titlenotificacoes">
+    <div class="switchVencimentoFatura">
+      <input type="checkbox" data-role="flipswitch" id="faturaDigitalDiaVencimentoFlipswitch" data-on-text="" data-off-text="" />
+    </div>
+    <div class="fnt-medium txt-1em divtitle">Vencimento da Fatura</div>
+    <div class="smalltxt color-gray-darker" style="margin-top: 1em;">Ao habilitar ser&aacute; criado um lembrete do dia de vencimento do cart&atilde;o no calend&aacute;rio do seu celular.</div>
+  </div>
+</div>
+
+<!-- POP UP DESMARCAR NOTIFICA��O DO VENCIMENTO DA FATURA -->
+<div data-awbe-component="popup" data-awbe-component-option-theme="a" data-awbe-component-option-theme-modal="b" data-awbe-component-option-modal="true" data-awbe-component-popup-id="desativarNotificacaoFaturaDigitalDiaVencimento">
+  <p class="texto-modal-normal">Tem certeza que deseja</br>
+      desmarcar a data de</br>
+      vencimento desse cartão</br>
+      em seu calendário?</br>
+  </p>
+  <div class="align-botoes-2 txt-caixaalta">
+    <a onclick="cancelarAcaoDesabilitarDiaVencimentoFatura()" class="botao-modal-002" data-rel="back">Não</a>
+	<a onclick="notificacaoDesativarVencimentoFatura()" class="botao-modal-003" data-rel="back">Sim</a>
+  </div>
+</div>
+
+<!-- POP UP SEM CALENDARIO NATIVO -->
+<div data-awbe-component="popup" data-awbe-component-option-theme="a" data-awbe-component-option-theme-modal="b" data-awbe-component-option-modal="true" data-awbe-component-popup-id="CalendarioNativoNaoEncontrado">
+  </br>
+  <p class="texto-modal-normal">O App não encontrou nenhum</br>
+      calendário ativo em seu</br>
+      aparelho. Ativo ou baixe um</br>
+      calendário e tente novamente.</br>
+  </p>
+  </br>
+  <div class="align-botoes txt-caixaalta">
+    <a class="botao-modal-002" data-rel="back">Ok</a>
+  </div>
+</div>
+
+<!-- POP UP ERRO AO HABILITAR A NOTIFICAÇÃO DIA DO VENCIMENTO -->
+<div data-awbe-component="popup" data-awbe-component-option-theme="a" data-awbe-component-option-theme-modal="b" data-awbe-component-option-modal="true" data-awbe-component-popup-id=habilitarNotificacaoIndisponivel>
+  <p class="texto-modal-normal">N&atilde;o foi poss&iacute;vel habilitar a Notifica&ccedil;&atilde;o. Por favor, tente novamente.</p>
+  <div class="align-botoes">
+    <a onclick="erroHabilitarDiaVencimentoFatura()" class="botao-modal-002" data-rel="back">FECHAR</a>
+  </div>
+</div>
+
+<!-- POP UP ERRO AO DESABILITAR A NOTIFICAÇÃO DIA DO VENCIMENTO -->
+<div data-awbe-component="popup" data-awbe-component-option-theme="a" data-awbe-component-option-theme-modal="b" data-awbe-component-option-modal="true" data-awbe-component-popup-id=desabilitarNotificacaoIndisponivel>
+  <p class="texto-modal-normal">N&atilde;o foi poss&iacute;vel desabilitar a Notifica&ccedil;&atilde;o. Por favor, tente novamente.</p>
+  <div class="align-botoes">
+    <a onclick="cancelarAcaoDesabilitarDiaVencimentoFatura()" class="botao-modal-002" data-rel="back">FECHAR</a>
+  </div>
+</div>
+
+<!-- POP UP ACESSO AO CALENDARIO DO CELULAR -->
+<div data-awbe-component="popup" data-awbe-component-option-theme="a" data-awbe-component-option-theme-modal="b" data-awbe-component-option-modal="true" data-awbe-component-popup-id="acessoCalendarioCelular">
+  <div style="text-align: left;">
+    <p class="texto-modal-normal">Para utilizar a funcionalidade </br>
+      de Notificações, habilite a permissão de acesso ao calendário para Bradesco Cartões em Ajustes do seu celular.</p>
+  </div>
+  <div class="align-botoes txt-caixaalta">
+    <a onclick="popupActionCalendarioAjustes()" class="botao-modal-002" data-rel="back">Ajustes</a>
+    <a onclick="popupActionCalendarioAgoraNao()" class="botao-modal-003" data-rel="back">Agora Não</a>
+  </div>
+</div>
+
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/notificacoes/notificacoes.js"></script>
+<link rel="stylesheet" type="text/css" href="js/BradescoCartoesMobile/views/notificacoes/notificacoes.css">

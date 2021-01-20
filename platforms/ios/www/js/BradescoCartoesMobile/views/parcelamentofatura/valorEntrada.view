@@ -1,0 +1,110 @@
+<div data-awbe-component="awbe-include" data-awbe-component-params="cabecalhoVoltarPagina"></div>
+<div data-awbe-component="awbe-include" data-awbe-component-params="menuOpcoesLogado"></div>
+
+<article data-device="<%= AWBE.device.platform %>" class="container_valorentrada">
+    <section id="resumo">
+        <div class="item_resumo">
+            <span>
+                <b>Fatura</b>
+                <span>
+                    <%= params.valorTotalReais %>
+                </span>
+            </span>
+        </div>
+        <div class="item_resumo">
+            <span>=</span>
+        </div>
+        <div class="item_resumo">
+            <span>
+                <b>Entrada</b>
+                <span id="valor_entrada">
+                    <%= params.valorEntradaReais %>
+                </span>
+            </span>
+        </div>
+        <div class="item_resumo">
+            <span>+</span>
+        </div>
+        <div class="item_resumo">
+            <span>
+                <b>Financiado</b>
+                <span id="valor_parcela">
+                    <%= params.valorFinanciamentoReais %>
+                </span>
+            </span>
+        </div>
+    </section>
+    <section class="ui-content">
+        <header>
+            <h3>Escolha um valor de entrada</h3>
+        </header>
+
+        <form class="form-valor-entrada">
+            <input type="hidden" data-awbe-bind="numeroCartao" name="numeroCartao" value="<%= params.numeroCartao %>">
+            <input type="hidden" data-awbe-bind="numeroContaCartao" name="numeroContaCartao"
+                value="<%= params.numeroContaCartao %>">
+            <input type="hidden" data-awbe-bind="statusSimulacao" name="statusSimulacao"
+                value="<%= params.statusSimulacao %>">
+            <input type="hidden" data-awbe-bind="valorTotal" name="valorTotal" value="<%= params.valorTotal %>">
+            <input type="hidden" name="valorEntrada" value="<%= params.valorEntrada %>">
+            <input type="hidden" name="valorMinimo" value="<%= params.valorMinimo %>">
+            <input type="hidden" name="valorMaximo" value="<%= params.valorMaximo %>">
+            <input type="hidden" name="valorMinimoParc" value="<%= params.valorMinimoParc %>">
+            <input type="hidden" name="valorMaximoParc" value="<%= params.valorMaximoParc %>">
+            <p class="small-font">
+                Mínimo de
+                <%= params.valorMinimoReais %>
+            </p>
+            <div class="valor-adesao-content">
+                <input type="tel" name="valorAdesaoInpt">
+                <span id="descricao_erro"></span>
+            </div>
+            <div class="container-spacing">
+                <h3>
+                    Escolha a quantidade de parcelas
+                </h3>
+                <label class="small-font" for="numeroParcelas">
+                    De <%= params.valorMinimoParc %> at&eacute; <%= params.valorMaximoParc %>
+                </label>
+                <div class="quantidade-parcelas">
+                    <div>
+                        <input type="tel" name="numeroParcelas" maxlength="2" value="<%= params.numeroParcelas %>">
+                    </div>
+                    <div class="container-atualizar">
+                        <button type="submit" class="submitBtn botaoAtualizarParcelas">Atualizar</button>
+                    </div>
+                </div>
+                <span>Quantidade de parcelas indispon&iacute;vel</span>
+            </div>
+
+        </form>
+
+        <section id="container_parcelas">
+            <input type="hidden" name="qtdMaxParcelas" value="<%= params.qtdMaxParcelas %>">
+            <input type="hidden" name="qtdMinParcelas" value="<%= params.qtdMinParcelas %>">
+            <p id="escolhaUmaOpcao">
+                Escolha uma op&ccedil;&atilde;o
+            </p>
+
+            <ul></ul>
+
+            <form action="#resumoContratoParcelamentoFatura" class="resumoContrato">
+                <input type="hidden" name="valorAdesao" data-awbe-bind="valorAdesao">
+            </form>
+        </section>
+
+        <section class="container_error hide">
+            <div class="content-error">
+                <hr class="line-divisor">
+                <i class="icon-icons_atencao"></i>
+                <p class="text-error">Erro ao carregar <br>os valores</p>
+                <p class="text-center"><a class="submitBtn">Tentar novamente</a></p>
+            </div>
+        </section>
+
+    </section>
+</article>
+
+<link rel="stylesheet" type="text/css"
+    href="js/BradescoCartoesMobile/views/parcelamentofatura/parcelamentoFatura.css" />
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/parcelamentofatura/valorEntrada.js"></script>

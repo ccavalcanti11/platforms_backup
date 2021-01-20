@@ -1,0 +1,112 @@
+<div data-awbe-component="awbe-include" data-awbe-component-params="cabecalhoVoltarPagina"></div>
+<%
+var recuperacaoSenha = AWBE.sessionStorage.getItem('recuperacaoSenha');
+if (typeof recuperacaoSenha == 'undefined') {
+	recuperacaoSenha = false;
+}
+var iosDeviceModel = '';
+if(AWBE.device.platform.toUpperCase() === 'IOS'){
+	iosDeviceModel = iosUtils.getIphone(iosUtils.getDeviceModel());
+}
+%>
+<div class="page ui-content" data-role="content">
+	<div class="divAlertas">
+		<hr class="hr-margin-error">
+		<%
+		if (iosDeviceModel == 'IPHONE8PLUS')   { %>
+			<div class="icon-20" style="margin-top:-0.3em;"></div>
+		<% } else { %>
+			<div class="icon-20"></div>
+		<% } %> 
+		<p class="txt-08em fnt-book color-gray-lighter margin-left-28em">As senhas devem ser iguais nos 2 campos.</p>
+		<hr class="hr-margin-error">
+ 	</div>
+ 	<p class="fnt-book txt-12em color-gray-darker">Finalize criando uma nova senha para o aplicativo.</p>
+ 	<p class="fnt-book txt-1em color-gray-darker"><b>Dica:</b> crie uma senha diferente do cart&atilde;o.</p>
+	
+	<p class="fnt-book txt-1em color-gray-darker margin-top-2em" style="margin-bottom: 0em !important;;">Senha</p>
+	<p class="fnt-book txt-075em color-gray-darker" style="margin-top: 0em !important;">De 4 n&uacute;meros</p>
+	<div class="ui-grid-b">
+		<div class="ui-block-a">
+			<input type="tel" class="input-password-numeric input-pass" pattern="[0-9]*" inputmode="numeric" name="novaSenha" id="novaSenha" data-awbe-bind="novaSenha" data-awbe-for="confirmacaoRedefinicao" data-awbe-validation="validarCodigo" value="<%=params.novaSenha%>" autocomplete="off" maxlength="4" oncopy="return false" oncut="return false" onpaste="return false"/>
+		</div>
+		<div class="ui-block-b"></div>
+		<div class="ui-block-c"></div>
+	</div>
+	
+	<p class="fnt-book txt-1em color-gray-darker">Confirme a senha</p>
+	<div class="ui-grid-b margin-bottom-17">
+		<div class="ui-block-a">
+			<input type="tel" class="input-password-numeric input-pass" pattern="[0-9]*" inputmode="numeric" name="confirmarNovaSenha" id="confirmarNovaSenha" data-awbe-bind="confirmarNovaSenha" data-awbe-for="confirmacaoRedefinicao" data-awbe-validation="validarCodigo" value="<%=params.confirmarNovaSenha%>" autocomplete="off" maxlength="4" oncopy="return false" oncut="return false" onpaste="return false"/>
+		</div>
+		<div class="ui-block-b"></div>
+		<div class="ui-block-c"></div>
+	</div>
+	<div class="ui-grid-a enable-buttom disabledButton" id="divContinuarDisable">
+		<div class="ui-block-a" style="float:right">
+			<div class="ui-btn-arrow-blue-arrow"></div>
+			<div class="ui-btn-arrow-blue" style="float:right">
+    			<a id="btnAtualizarSenhaDisable">Confirmar</a>
+    		</div>
+	    	<div class="ui-block-b"></div>
+		</div>
+	</div>
+	<div class="ui-grid-a enable-buttom" id="divContinuarEnable">
+		<div class="ui-block-a" style="float:right">
+			<div class="ui-btn-arrow-blue-arrow"></div>
+			<div class="ui-btn-arrow-blue" style="float:right">
+    			<a id="btnAtualizarSenhaEnable" onclick="validaDados()">Confirmar</a>
+    		</div>
+	    	<div class="ui-block-b"></div>
+		</div>
+	</div>
+</div>
+
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="dadosAlterado">
+	<p id="msg_alerta" class="texto-modal-normal">Pronto! <br> Sua nova senha foi cadastrada com sucesso.</p>
+	<div class="align-botoes">	
+		<a href="<%= recuperacaoSenha ? '#homeLogada' : '#perfilEditar' %>" data-rel="back" class="botao-modal-002" id="btnOkSenhaRedefinida">OK</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="dadosAlteradoRecuperarSenha">
+	<p id="msg_alerta" class="texto-modal-normal">Senha criada com sucesso!</p>
+	<div class="align-botoes">	
+		<a href="#" data-rel="back" class="botao-modal-002" id="btnOkSenhaRedefinida">OK</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup"
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="cadastroFinalizado">
+	<p  class="titulo-modal">Cadastro finalizado</p>
+	<p class="texto-modal-normal">Todas as funcionalidades est&atilde;o dispon&iacute;veis para voc&ecirc;.</p>
+	<p class="texto-modal-normal">Para sua seguran&ccedil;a, a partir de agora, utilize a senha criada para acessar o aplicativo.</p>
+	<div class="align-botoes">
+		<a data-rel="back" class="botao-modal-002" id="btnOkCadastroFinalizado">OK</a>
+	</div>
+</div>
+
+
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="alertaInformacao">
+	<p class="texto-modal-normal" id="alerta-mensagem"></p>
+	<div class="align-botoes">	
+		<a href="#" data-rel="back" class="botao-modal-002" id="hrefAlerInfo" onclick="limparCampos()">Fechar</a>
+	</div>
+</div>
+
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/perfil/redefinicaoSenhaEditar.js"></script>

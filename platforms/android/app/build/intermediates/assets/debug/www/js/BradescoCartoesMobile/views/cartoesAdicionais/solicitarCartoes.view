@@ -1,0 +1,216 @@
+<div data-awbe-component="awbe-include" data-awbe-component-params="cabecalhoVoltarPagina"></div>
+
+
+<div style="display:flex" class="fundo-mini-cartao-adicional">
+		<div class="div-cartao-mini-cartao-adicional">
+			<img id="imgMiniCartaoAtual" style="max-width: 100%; position: relative">
+		</div>
+		<div class="div-texto-mini-cartao-adicional">					
+				<p class="text-topo-cartao-adicional" id="nomeProdutoCartao"></p>				
+				<p class="text-topo-cartao-adicional-texto">Anuidade: <span class="text-topo-cartao-adicional" id="valorAnuidadeCartao"></span></p>				
+				<p class="text-topo-cartao-adicional-texto" id="infoDescontoAnuidadeCartao"></p>
+			
+		</div>
+</div>
+<div class="ui-content" data-role="content">
+	<form action="#nomeImpressoSolicitarCartoes">
+		<input type="hidden" value="opcaoCadastro" data-awbe-bind="view"/>
+		<h2 style="margin-bottom: 0em;">DADOS DO ADICIONAL</h2>
+		<div class="divAlertas">
+			<hr class="hr-margin-error"  style="margin-top: 0em !important">
+			<div class="icon-20"></div>
+			<p id ="alertaTexto" class="txt-08em fnt-book color-gray-lighter margin-left-28em"></p>
+			<hr class="hr-margin-error">
+	 	</div>
+	    <p class="fnt-book color-gray-darker txt-1em margin-top-1em">Nome completo</p>
+		<input class="inputPlaceholder" type="text" data-awbe-bind="nomeAdicional" id="nomeAdicional" 
+		autocorrect = "off" autocomplete = "off" spellcheck = "false" autocapitalize="off"
+		maxlength="40" name="nomeAdicional" onclick="removeFixedHeader(event);" onchange="validaCamposPreenchidos()" oncopy="return false" oncut="return false" onpaste="return false"/>
+		<p class="fnt-book color-gray-darker txt-1em margin-top-1em">CPF</p>
+		<!-- removido id 'cpf' desse componente, deve ser verificado se algum controler inspeciona esse nome de id -->
+	 	<input id="cpf" onclick="removeFixedHeader(event);" onchange="validaCamposPreenchidos()" data-awbe-component="cpf" data-awbe-bind="cpf" name="cpf" placeholder="Somente n&uacute;meros"/> 	
+
+	
+        <p class="fnt-book color-gray-darker txt-1em margin-top-1em">Data de nascimento</p>
+      
+       <div class="ui-grid-a">
+       	<div class="ui-block-a" style="width:60%">
+			<input class="cartao-adicional-data long-date" onclick="removeFixedHeader(event);" onchange="validaCamposPreenchidos()" type="tel" id="dataNascimentoAdicional" data-awbe-bind="dataNascimentoAdicional" placeholder="dd/mm/aaaa" inputmode="numeric" pattern="[0-9]*" />
+		</div>
+		</div>	           
+
+		<br>
+	
+ 		<div class="ui-grid-a" style="margin-bottom: 5%">
+ 			<p class="fnt-book color-gray-darker txt-1em" style="margin-bottom: 0px">Sexo</p>
+ 			<div class="ui-block-a" style="margin-left: -0.5em; margin-top: 0.3em; width: 42%">
+				<input type="radio" name="sexoCartaoAdc" id="masculino" value="masculino" data-awbe-bind="sexoCartaoAdc" onclick="validaCamposPreenchidos();removeFixedHeader(event);">
+			    <label class="radioButtonLabel ui-label" for="masculino">Masculino</label>
+			</div>
+			 <div class="ui-block-b" style="margin-top: 0.3em;">
+			    <input type="radio" name="sexoCartaoAdc" id="feminino" value="Feminino" data-awbe-bind="sexoCartaoAdc" onclick="validaCamposPreenchidos();removeFixedHeader(event);">
+			    <label class="radioButtonLabel ui-label" for="feminino">Feminino</label>
+			</div>
+		</div>
+
+		<div class="ui-grid-a ui-disabled divBtnAdicionarCartoes" id="divbotaoAdicionarCartoes">
+			<div class="ui-block-a" style="float: right">
+				<div class="ui-btn-arrow-blue-arrow " id="botaoContinuarAddCartoesArrow"></div>
+				<div class="ui-btn-arrow-blue" id="botaoContinuarAddCartoes" style="width:89%">
+			    	<a id="inputAdicionarCartoes" onclick="validaCampos(); EventAppsFlyerGA('SolicCartaoAdicional_Dados')">Continuar</a>
+			    </div>
+			</div>
+			<div class="ui-block-b"></div>
+		</div>
+	</form>
+
+
+
+</div>
+
+<div data-awbe-component="popup" 
+ 	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="dataInvalidaPopUp">
+	<p class="titulo-modal">Data de nascimento inv&aacute;lida</p>
+	<p class="texto-modal-normal">Verifique a data informada e digite novamente</p>
+	<div class="align-botoes txt-caixaalta">	
+		<a href="#" data-rel="back" class="botao-modal-002">Fechar</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup" 
+ 	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="cpfInvalido">
+	<p class="titulo-modal">CPF inv&aacute;lido</p>
+	<p class="texto-modal-normal">O n&uacute;mero informado n&atilde;o &eacute; reconhecido.</p>
+	<div class="align-botoes txt-caixaalta">	
+		<a href="#" data-rel="back" class="botao-modal-002">Fechar</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup" 
+ 	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="cpfTitularUtilizado">
+	<p class="titulo-modal">CPF inv&aacute;lido</p>
+	<p class="texto-modal-normal">O n&uacute;mero informado pertence ao titular do cart&atilde;o.</p>
+	<div class="align-botoes txt-caixaalta">	
+		<a href="#" data-rel="back" class="botao-modal-002">Fechar</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup" 
+ 	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="cpfRepetidoAdicional">
+	<p class="titulo-modal">CPF inv&aacute;lido</p>
+	<p class="texto-modal-normal">J&aacute; existe um cart&atilde;o adicional para o CPF informado.</p>
+	<div class="align-botoes txt-caixaalta">	
+		<a href="#" data-rel="back" class="botao-modal-002">Fechar</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup" 
+ 	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="cpfProblemaRccp">
+	<p class="titulo-modal">CPF inv&aacute;lido</p>
+	<p class="texto-modal-normal">No momento n&atilde;o &eacute; poss&iacute;vel solicitar um adicional com este CPF.</p>
+	<p class="texto-modal-normal">Para mais informa&ccedil;&otilde;s ligue na Central de Atendimento.</p>
+	<div class="align-botoes txt-caixaalta">	
+		<a href="#" data-rel="back" class="botao-modal-002">Fechar</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup" 
+ 	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="dadosIncorretos">
+	<p class="titulo-modal">Dados incorretos</p>
+	<p class="texto-modal-normal">Os campos destacados apresentam algum erro. Verifique e tente novamente.</p>
+	<div class="align-botoes txt-caixaalta">	
+		<a href="#" data-rel="back" class="botao-modal-002">Fechar</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup" 
+ 	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="dtNascInvalido">
+	<p class="titulo-modal">Data de nascimento inv&aacute;lida</p>
+	<p class="texto-modal-normal">É permitido solicitar apenas para maiores de 16 anos. Verifique a data informada e digite novamente.</p>
+	<div class="align-botoes txt-caixaalta">	
+		<a href="#" data-rel="back" class="botao-modal-002">Fechar</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup" 
+ 	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="nomeInvalido">
+	<p class="titulo-modal">Nome inv&aacute;lido</p>
+	<p class="texto-modal-normal">Parece que h&aacute; um erro no nome utilizado. Verifique a digita&ccedil;&atilde;o e tente novamente. Se por engano estamos bloqueando, por favor, ligue na Central de Atendimento para corre&ccedil;&atilde;o</p>
+	<div class="align-botoes txt-caixaalta">	
+		<a href="#" data-rel="back" class="botao-modal-002">Fechar</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup" data-awbe-component-option-theme="a"
+    data-awbe-component-option-theme-modal="b"
+    data-awbe-component-option-modal="true"
+    data-awbe-component-popup-id="badWordsPopUp">
+    <p class="titulo-modal">Nome inv&aacute;lido</p>
+    <p class="texto-modal-normal">Parece que h&aacute; um erro no nome utilizado. Verifique a digita&ccedil;&atilde;o e tente novamente.</p>
+    <p class="texto-modal-normal">Se por engano estamos bloqueando, por favor, ligue na Central de Atendimento para corre&ccedil;&atilde;o.</p>
+    <div class="align-botoes txt-caixaalta">
+        <a href="" data-rel="back" class="botao-modal-002">Fechar</a>
+    </div>
+</div>
+
+<div data-awbe-component="popup" data-awbe-component-option-theme="a"
+    data-awbe-component-option-theme-modal="b"
+    data-awbe-component-option-modal="true"
+    data-awbe-component-popup-id="nomeIncompletoPopup">
+    <p class="titulo-modal">Nome incompleto</p>
+    <p class="texto-modal-normal">Digite o nome do adicional conforme est&aacute; no RG ou CPF.</p>
+    
+    <div class="align-botoes txt-caixaalta">
+        <a href="" data-rel="back" class="botao-modal-002">Fechar</a>
+    </div>
+</div>
+
+<div data-awbe-component="popup" 
+            data-awbe-component-option-theme="a"
+            data-awbe-component-option-theme-modal="b"
+            data-awbe-component-option-modal="true"
+            data-awbe-component-popup-id="servicoIndisponivel">
+    <p class="titulo-modal"></p>
+    <p class="texto-modal-normal">Servi&ccedil;o Indispon&iacute;vel</p>
+    <div class="align-botoes txt-caixaalta">    
+        <a href="#" data-rel="back" class="botao-modal-002">Fechar</a>
+    </div>
+</div>
+
+<div data-awbe-component="popup" data-awbe-component-option-theme="a"
+    data-awbe-component-option-theme-modal="b"
+    data-awbe-component-option-modal="true"
+    data-awbe-component-popup-id="consultaNFinalizadaRCCP">
+    <p class="titulo-modal">N&atilde;o foi poss&iacute;vel concluir a solicita&ccedil;&atilde;o</p>
+    <p class="texto-modal-normal">Tente novamente mais tarde.</p>
+    <div class="align-botoes txt-caixaalta">
+        <a href="#cartoesAdicionais" data-rel="back" class="botao-modal-002">Fechar</a>
+    </div>
+</div>
+
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/cartoesAdicionais/cartoesAdicionais.js"></script>
+<script type="text/javascript" src="js/util/KeyboardIOS.js" />

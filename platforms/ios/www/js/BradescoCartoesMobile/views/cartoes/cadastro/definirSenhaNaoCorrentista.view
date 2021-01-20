@@ -1,0 +1,300 @@
+<%
+	var tempConta = AWBE.sessionStorage.getItem('tempConta');
+	//CHAMADA PARA A MAQUINA DE ESTADOS
+	setTimeout(BradescoCartoesMobile.components.atualizaMaquinaEstado(
+		""+tempConta.cpf, 															//CPF
+		BradescoCartoesMobile.components.passoMaquinaEstado.PERFIL_SIMPLIFICADO,	//PASSO
+		BradescoCartoesMobile.components.tipoCadastro.SIMPLIFICADO,				//TIPO CADASTRO
+		false,																	//IDENTIFICADOR LEGADO
+		BradescoCartoesMobile.components.etapaMaquinaEstado.CRIACAO_SENHA,		//CODIGO ETAPA
+		BradescoCartoesMobile.components.resultadoMaquinaEstado.PENDENTE			//RESULTADO PROCESSAMENTO
+	),500);
+	if(AWBE.localStorage.getItem('progressoCadastro_'+tempConta.cpf) < 90){
+    	AWBE.localStorage.setItem('progressoCadastro_'+tempConta.cpf, "90");
+    }
+	//FIM CHAMADA PARA A MAQUINA DE ESTADOS
+
+	var viewBack;
+	if (AWBE.Controller.lastView == 'perfil/perfilEditar'){
+		viewBack = '#perfilEditar';
+	} else {
+		viewBack = '#enviarCodigoAtivacaoSMS';
+	}
+
+%>
+<div data-awbe-component="awbe-include" data-awbe-component-params="cabecalhoVoltarPagina"></div>
+
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/cartoes/cadastro/definirSenhaNaoCorrentista.js"></script>
+
+<div id="dados-contato" class="page dados-contato cadastro ui-content" data-role="content">
+	<form id="form">
+		<input type="hidden" value="personalizarCartoes" data-awbe-bind="view"/>
+		<input type="hidden" value="<%=model.tipo%>" id="isCorrentista"/>
+
+		<h2 class="fnt-no-wrap">NOVA SENHA DE ACESSO</h2>
+
+		<!-- Mensagem de erro após validação -->
+		<div class="divAlertas">
+			<hr class="hr-margin-error">
+			<table class="ui-table-generico-semBorder">
+				<tr>
+					<th class="col-12 icon-20-table"></th>
+					<th class="col-88 fnt-book color-gray-lighter txt-08em">Senhas incorretas. Digite novamente.</th>
+				</tr>
+			</table>
+			<hr class="hr-margin-error">
+		</div>
+
+		<div>
+			<p class="txt-11em fnt-book color-gray-darker">Finalize o cadastro criando uma nova senha para o aplicativo.</p>
+		</div>
+
+		<div class="ui-grid-a">
+			<div class="ui-block-a iconNovaSenha" style="width: 2em;">
+				<label class="forms" id="align-senha">Senha</label>
+			</div>
+			<div class="ui-block-b" style="margin-left: 1em; width: 12em;">
+				<a class="icon-21-centralizado " onclick="AWBE.util.openPopup('criarSenha')" style="margin-top: auto;"></a>
+			</div>
+		</div>
+		<p class="fnt-book txt-075em color-gray-darker" style="margin-top: -0.5em !important;">De 4 n&uacute;meros</p>
+		<div style="width: 40% !important">
+			<input type="tel" class="inputDadosCorrentista input-password-numeric input-pass" data-awbe-for="dadosContatoValidation" name="senhaAcesso" id="senha-acesso" data-awbe-bind="senhaAcesso" maxlength="4" oncopy="return false" oncut="return false" onpaste="return false"/>
+		</div>
+
+		<label class="forms">Confirme a senha</label>
+		<div style="width: 40% !important">
+			<input type="tel" class="input-password-numeric inputDadosCorrentista input-pass"  data-awbe-for="dadosContatoValidation" name="senhaConfirma" id="senha-confirma" data-awbe-bind="senhaConfirma" maxlength="4" oncopy="return false" oncut="return false" onpaste="return false"/>
+		</div>
+	</form>
+	<div class="ui-grid-a" style="margin-top: 2em !important;">
+		<div class="ui-block-a" style="float: right; padding-right: 7px;">
+			<div class="disabledButton" id="botao-submit-contato">
+				<div class="ui-btn-arrow-blue-arrow"></div>
+				<div class="ui-btn-arrow-blue" style="width:93%; padding: .59em 0em .59em 1em;">
+			    	<a id="botaoSubmit">Concluir</a>
+			    </div>
+			</div>
+		</div>
+		<div class="ui-block-b"></div>
+	</div>
+</div>
+
+
+<div data-awbe-component="awbe-include" data-awbe-component-params="dialogErroCadastro"></div>
+
+<div data-awbe-component="popup"
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="alertaInformacao">
+	<p class="texto-modal-normal" id="alerta-mensagem"></p>
+	<div class="align-botoes">
+		<a href="#" data-rel="back" class="botao-modal-002" id="hrefAlerInfo">Fechar</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup"
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="cadastroAtualizado">
+	<p  class="titulo-modal">Cadastro finalizado</p>
+	<p class="texto-modal-normal">Todas as funcionalidades est&atilde;o dispon&iacute;veis para voc&ecirc;.</p>
+	<p class="texto-modal-normal">Para sua seguran&ccedil;a, a partir de agora, utilize a senha criada para acessar o aplicativo.</p>
+	<div class="align-botoes">
+		<a href="#" data-rel="back" class="botao-modal-002" id="btnOkCadastroFinalizado">OK</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup"
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="criarSenha">
+	<p  class="titulo-modal">Porque criar uma senha</p>
+	<p class="texto-modal-normal">Criar uma nova senha tornar&aacute; o acesso aos dados do seu cart&atilde;o mais seguro.</p>
+    <p class="texto-modal-normal">Al&eacute;m disso ser&aacute; poss&iacute;vel recuperar e criar uma nova senha direto pelo aplicativo.</p>
+	<div class="align-botoes">
+		<a data-rel="back" class="botao-modal-002 txt-caixaalta">Fechar</a>
+	</div>
+</div>
+
+<!-- POPUP DE MENSAGEM GENERICA -->
+ <div data-awbe-component="popup"
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="popup-generico">
+	<p class="titulo-modal" id="titulo-modal-personalizado"></p>
+	<p class="texto-modal-normal" id="mensagem-personalizada"></p>
+ 		<div class="align-botoes">
+ 			<a href="#" data-rel="back"  class="botao-modal-002">Fechar</a>
+ 		</div>
+</div>
+<div data-awbe-component="popup"
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="erroListarCartao">
+	<p  class="titulo-modal"></p>
+	<p class="texto-modal-normal">'Problema ao listar cart&otilde;es eleg&iacute;veis'</p>
+	<div class="align-botoes">
+		<a href="#meusCartoes" class="botao-modal-002">Fechar</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup"
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="alertaEmail">
+	<p  class="titulo-modal">E-mail Incompleto</p>
+	<p class="texto-modal-normal">O endere&ccedil;o de e-mail precisa ter um &ldquo;nome&rdquo;, um &ldquo;@&rdquo; e um complemento, por exemplo <span>&ldquo;cliente@email.com.br&rdquo;</span>.</p>
+	<div class="align-botoes">
+		<a href="#" data-rel="back" class="botao-modal-002">Fechar</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup"
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="ConfirmacaoEmail">
+	<p  class="titulo-modal">E-mails Incorretos</p>
+	<p class="texto-modal-normal">Os e-mails informados est&atilde;o diferentes. Digite novamente.</p>
+	<div class="align-botoes">
+		<a href="#" data-rel="back" class="botao-modal-002">Fechar</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup"
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="loginDesabilitado">
+	<p class="texto-modal-normal">O acesso ao aplicativo est&aacute; temporariamente indispon&iacute;vel.<br>Tente mais tarde.</p>
+	<div class="align-botoes">
+		<a href="#meusCartoes" data-rel="back" class="botao-modal-002">OK</a>
+	</div>
+</div>
+
+<!-- POPUPs para o ID Virtual -->
+<div data-awbe-component="popup"
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="vinculoMenor24horas"
+	id="vinculoMenor24horas">
+	<p class="titulo-modal">V&iacute;nculo n&atilde;o realizado.</p>
+	<p class="texto-modal-normal">J&aacute; existe um dispositivo vinculado ao seu CPF. Tente novamente ap&oacute;s 24 horas do cadastro anterior.</p>
+	<div class="align-botoes">
+		<a onclick='$("#vinculoMenor24horas").unbind("touchmove");$("#vinculoMenor24horas-screen").unbind("touchmove");' href="#meusCartoes" id ="ok" data-rel='back' class="botao-modal-002">OK</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup"
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="vinculoNovoAparelho"
+	id="vinculoNovoAparelho">
+	<p class="titulo-modal">Este CPF j&aacute; est&aacute; vinculado a outro celular.</p>
+	<p class="texto-modal-normal">Para cadastrar este celular como seu aparelho de acesso clique em vincular e fa&#231;a novo v&iacute;nculo.</p>
+	<div class="align-botoes-2">
+		<a onclick='$("#vinculoNovoAparelho").unbind("touchmove");$("#vinculoNovoAparelho-screen").unbind("touchmove");' id="btnCancelarIDV01" data-rel='back' class="botao-modal-002">Cancelar</a>
+		<a onclick='$("#vinculoNovoAparelho").unbind("touchmove");$("#vinculoNovoAparelho-screen").unbind("touchmove");' id="btnVincularIDV01" data-rel='back' class="botao-modal-003">Vincular</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup"
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="vinculoReativarAparelho"
+	id="vinculoReativarAparelho">
+	<p class="titulo-modal">Este celular esteve vinculado ao seu CPF.</p>
+	<p class="texto-modal-normal">Para reativar este celular como seu aparelho de acesso clique em vincular e fa&#231;a novo v&iacute;nculo.</p>
+	<div class="align-botoes-2">
+		<a onclick='$("#vinculoReativarAparelho").unbind("touchmove");$("#vinculoReativarAparelho-screen").unbind("touchmove");' id="btnCancelarIDV02" data-rel='back' class="botao-modal-002">Cancelar</a>
+		<a onclick='$("#vinculoReativarAparelho").unbind("touchmove");$("#vinculoReativarAparelho-screen").unbind("touchmove");' id="btnVincularIDV02" data-rel='back' class="botao-modal-003">Vincular</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup"
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="vinculoNovoAparelhoNaoRealizado"
+	id="vinculoNovoAparelhoNaoRealizado">
+	<p class="titulo-modal">V&iacute;nculo n&atilde;o realizado.</p>
+	<p class="texto-modal-normal">Seu cadastro continua ativo no outro aparelho.</p>
+	<div class="align-botoes">
+		<a onclick='$("#vinculoNovoAparelhoNaoRealizado").unbind("touchmove");$("#vinculoNovoAparelhoNaoRealizado-screen").unbind("touchmove");' href="#meusCartoes" data-rel='back' id="ok" class="botao-modal-002">OK</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup"
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="vinculoComSucesso"
+	id="vinculoComSucesso">
+	<p class="titulo-modal"></p>
+	<p class="texto-modal-normal">Pronto! V&iacute;nculo realizado com sucesso.</p>
+	<div class="align-botoes">
+		<a onclick='$("#vinculoComSucesso").unbind("touchmove");$("#vinculoComSucesso-screen").unbind("touchmove");' data-rel="back" id="btnOK" class="botao-modal-002">OK</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup"
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="popupAtualizarVersaoApp">
+	<p class="titulo-modal" id="titulo-modal-personalizado"></p>
+	<p class="texto-modal-normal">
+		Para continuar acessando o Aplicativo Bradesco Cartoes e necessario utilizar
+		a versao atualizada. Va ate a loja e atualize seu aplicativo.
+	</p>
+	<div class="align-botoes">
+		<a href="#login" class="botao-modal-002">OK</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup"
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="alertaNumeroDDD">
+	<p  class="titulo-modal"></p>
+	<p class="texto-modal-normal">Insira um DDD e n&uacute;mero de telefone v&aacute;lido.</p>
+	<div class="align-botoes">
+		<a href="#" data-rel="back" class="botao-modal-002">Fechar</a>
+	</div>
+</div>
+
+
+<div data-awbe-component="popup"
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="popuSenhasDiferentes">
+	<p  class="titulo-modal">Senhas incorretas</p>
+	<p class="texto-modal-normal">Os n&uacute;meros informados est&atilde;o diferentes. Digite novamente.</p>
+	<div class="align-botoes">
+		<a href="#" data-rel="back" class="botao-modal-002">Fechar</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup"
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="popupSenhasDiferentes">
+	<p  class="titulo-modal">Senhas incorretas</p>
+	<p class="texto-modal-normal">Os n&uacute;meros informados est&atilde;o diferentes. Digite novamente.</p>
+	<div class="align-botoes">
+		<a href="#" data-rel="back" class="botao-modal-002">Fechar</a>
+	</div>
+</div>

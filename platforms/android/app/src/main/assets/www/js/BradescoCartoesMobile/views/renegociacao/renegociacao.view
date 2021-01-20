@@ -1,0 +1,21 @@
+<div data-awbe-component="awbe-include" data-awbe-component-params="menuOpcoesLogado"></div>
+<div data-awbe-component="awbe-include" data-awbe-component-params="cabecalho"></div>
+<section>
+    <article>
+        <header>
+            <p>
+                <%= model.firstDescription %>
+            </p>
+            <p>
+                <%= model.secondDescription %>
+            </p>
+            <div>
+                <button>
+                    <a onclick="redirectRenegociacao()">
+                        <%= model.buttomTitle %>
+                    </a>
+                </button>
+            </div>
+    </article>
+</section>
+<link rel="stylesheet" type="text/css" href="js/BradescoCartoesMobile/views/renegociacao/renegociacao.css" />

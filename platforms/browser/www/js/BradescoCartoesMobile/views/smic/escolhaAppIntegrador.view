@@ -1,0 +1,33 @@
+<div data-awbe-component="popup"
+    data-awbe-component-option-theme-modal="b"
+    data-awbe-component-option-modal="true"
+    data-awbe-component-option-theme="a"
+    data-awbe-component-popup-id="escolhaAppIntegrador">
+
+    <p class="titulo-modal">Escolha o aplicativo com a chave</p>
+
+    <div class="itemAppsInstalados-img" id="appsSmicBradesco" onclick="BradescoCartoesMobile.components.selecionaAppSmic('Classic')">
+        <div class="icon-bradesco-img icon-bradesco-appsSmic"></div>
+        <div class="icon-bradesco-text"> Bradesco </div>
+        <div id="appBradescoSelecionado" class="selecao-smic"></div>
+    </div>
+    <div class="itemAppsInstalados-img" id="appsSmicExclusive" onclick="BradescoCartoesMobile.components.selecionaAppSmic('Exclusive')">
+        <div class="icon-bradesco-exclusive-img icon-bradesco-appsSmic"></div>
+        <div class="icon-bradesco-text"> Bradesco Exclusive</div>
+        <div id="appExclusiveSelecionado" class="selecao-smic"></div>
+    </div>
+    <div class="itemAppsInstalados-img" id="appsSmicPrime" onclick="BradescoCartoesMobile.components.selecionaAppSmic('Prime')">
+        <div class="icon-bradesco-prime-img icon-bradesco-appsSmic"></div>
+        <div class="icon-bradesco-text"> Bradesco Prime</div>
+        <div id="appPrimeSelecionado" class="selecao-smic"></div>
+    </div>
+    <div class="itemAppsInstalados-img" id="appsSmicPrivate" onclick="BradescoCartoesMobile.components.selecionaAppSmic('Private')">
+        <div class="icon-bradesco-private-img icon-bradesco-appsSmic"></div>
+        <div class="icon-bradesco-text"> Bradesco Private</div>
+        <div id="appPrivateSelecionado" class="selecao-smic"></div>
+    </div>
+
+    <div class="align-botoes" style="margin-top:0px">
+        <a href="" data-rel="back" class="botao-modal-002">Cancelar</a>
+    </div>
+</div>

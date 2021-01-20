@@ -1,0 +1,51 @@
+<div id="header-end-session" data-role="header" data-position="fixed" data-tap-toggle="false">
+	<!-- <button id="btnLeftPanel" data-role="button" class="btn-back"></button> -->
+	<div data-awbe-component="awbe-include" data-awbe-component-params="cabecalhoVoltarPagina"></div> 
+	<h1><%=AWBE.localStorage.getItem('title')%></h1>
+</div>
+
+
+<div class="ui-content faturadigital" data-role="content" style="padding-bottom: 0;">
+	<%
+
+	var user = AWBE.sessionStorage.getItem('user');
+
+	if (user.perfil == "C") {
+	%>
+		<p>Digite a chave informada no seu dispositivo de segurança.</p>
+	<%
+	}else{
+	%>
+		<p>Digite a senha solicitada.</p>
+	<%
+	}
+	%>
+
+</div>
+
+<div id="desabilitarFaturaDispSeguranca"></div>
+
+<script>
+	window.injecaoActionName = '#dispositivoDesabilitarFaturaDigital';
+	window.injecaoTargetElement = 'desabilitarFaturaDispSeguranca';
+</script>
+
+<div data-awbe-component="popup" data-awbe-component-option-theme="a" data-awbe-component-option-theme-modal="b" data-awbe-component-option-modal="true" data-awbe-component-popup-id="falhaDesabilitarFaturaDigital">
+	<p class="texto-modal-normal">N&atilde;o foi poss&iacute;vel desabilitar a Fatura Digital. Por favor, tente novamente.</p>
+	<div class="align-botoes">
+		<a href="#homeLogada" data-rel="back" class="botao-modal-002">OK</a>
+	</div>
+</div>
+<div data-awbe-component="popup" data-awbe-component-option-theme="a" data-awbe-component-option-theme-modal="b" data-awbe-component-option-modal="true" data-awbe-component-popup-id="falhaHabilitarFaturaDigitalCentralRelacionamento">
+	<p class="texto-modal-normal">N&atilde;o foi poss&iacute;vel desabilitar a Fatura Digital. Por favor, entre em contato com a Central de Atendimento para atualizar seus dados cadastrais.</p>
+	<div class="align-botoes">
+		<a href="#homeFaturaDigital" data-rel="back" class="botao-modal-002">OK</a>
+		</div>
+</div>
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/dispositivoSeguranca/dispositivoSegurancaView.js"></script>
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/faturaDigital/desabilitar/desabilitarFaturaDigital.js"></script>
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/smic/injecaoDispSeguranca.js"></script>
+
+<script>
+	$(".icon-21" ).hide();
+</script>

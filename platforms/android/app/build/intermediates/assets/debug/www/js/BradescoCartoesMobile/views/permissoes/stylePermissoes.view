@@ -1,0 +1,417 @@
+<style>
+    <%
+        
+        var platform = window.device.platform.toUpperCase();
+        var deviceModel = iosUtils.getIphone(iosUtils.getDeviceModel());
+        
+        if (window.innerWidth == 360) {%>
+            .smalltxt.color-gray-darker{
+            	width:70%
+            }
+        <%}%>
+
+        .flex-permissoes {
+            display: flex;
+            align-items: end;
+            justify-content: space-between;
+        }
+
+        .permissoes-content {
+            margin-top: -2%;
+        }
+
+        .permissoes-icon-break {
+            position: relative;
+            display: inline-block;
+            padding-right: 2em;
+        }
+
+        .permissoes-info-icon{
+            right: 0;
+            width: 1.1em;
+            top: 0.2em;
+            position: relative;
+        }
+
+        .margin-top-1em {
+            margin-top: 1em;
+        }
+
+        .txt-titulo-limite {
+            text-transform: initial;
+            color: #666666 !important;
+            font-size: 1em !important;
+        }
+
+        .fnt-medium {
+            font-family: NewJuneMedium;
+            font-weight: normal !important;
+        }
+
+        .fnt-medium-bold {
+            font-family: NewJuneMedium;
+            font-weight: bold;
+        }
+
+        .fnt-bold {
+            font-family: NewJuneBold;
+        }
+
+        .fnt-book {
+            font-family: NewJuneBook;
+            font-weight: normal !important;
+        }
+
+        .fnt-book-small {
+            font-family: NewJuneBook;
+            font-size: small;
+        }
+
+        .container-card-meta-premiada {
+            z-index: 999999;
+            position: fixed;
+            height: 100%;
+            width: 100%;
+        }
+
+        .container-img-card {
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-position: top;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-color: #c9def1;
+            text-shadow: none;
+        }
+
+        .container-img-card img {
+            margin: 0 !important;
+            width: 100%;
+            height: 100%;
+        }
+
+        .btnFecharMetaPremiada {
+            width: 10%;
+            height: fit-content;
+            margin: 1em 1em 0 0;
+            align-self: flex-end;
+            height: 7%;
+        }
+
+        .container-txt-meta {
+            text-align: center;
+            height: 64%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: center;
+            text-shadow: none;
+        }
+
+        .btn-sim-meta-premiada {
+            height: fit-content;
+            width: fit-content;
+            align-self: center;
+            margin-top: 2em;
+        }
+
+        .desc-meta-premiada {
+            line-height: 2em;
+            margin-top: 1em;
+            font-size: small;
+            font-weight: bold !important;
+        }
+
+        .pad-left-right {
+            padding-left: 2em;
+            padding-right: 2em;
+        }
+
+        .acao-title{
+            font-family: NewJuneBook;
+        }
+
+        .card-title {
+            font-size: larger;
+        }
+
+        .txt-participe {
+            font-size: small;
+        }
+
+        .flex-center-column {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+
+        .btn-nao-meta-premiada {
+            align-self: center;
+            margin-top: 2em;
+            cursor: pointer;
+            font-size: smaller;
+            font-weight: bold;
+            font-family: NewJuneBook;
+            text-shadow: none;
+        }
+
+        /* footer */
+        .container-footer-meta-premiada {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            padding: 0.8em 0em;
+            background-color: #FFFFFF !important;
+            z-index: 0;
+        }
+
+        .btn-meta-atualizada {
+            color: #FFFFFF !important;
+            font-weight: bold !important;
+            font-size: 0.8em;
+            font-family: NewJuneBook !important;
+        }
+
+        .permissoes-content .decoration {
+            text-decoration: none;
+        }
+
+        #footerMetaPremiada {
+            z-index: 997;
+        }
+
+        .flip-switch-permissoes .ui-flipswitch {
+            margin: -.4em 0 0 0;
+        }
+
+        .flex-between-baseline {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+        }
+
+        .permissoes-content .aum-lim-txt {
+            width: 75%;
+        }
+        
+        #target-meta-premiada .permissoes {
+            padding-bottom: 0;
+        }
+
+        .container-aum-limite {
+            padding-top: .5em;
+        }
+
+        .permissoes-content .minitxt {
+            padding-top: 1em;
+        }
+        .permissoes-content .smalltxt {
+            font-size: medium;
+        }
+
+        #permissoes>h2 {
+            margin-bottom: 1em;
+            text-shadow: none;
+        }
+
+        .ui-btn-arrow-blue-seguranca {
+            padding: 0.55em 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .botaoAzul {
+            font-weight: bold;
+        }
+
+        .btn-sim-nao {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            z-index: 1;
+        }
+
+        .container-icon-bottom {
+            width: 100%;
+            height: 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            align-self: flex-end;
+            position: absolute;
+            bottom: 0;
+        }
+
+        .card-icon-836 {
+            width: 12%;
+            height: 79%;
+            background-repeat: no-repeat;
+            margin-left: 1em;
+        }
+
+        .card-icon-1211 {
+            width: 6%;
+            height: 35%;
+            background-repeat: no-repeat;
+            margin-top: 1em;
+            margin-right: 1em;
+        }
+
+        <% if (platform === "IOS") {%>
+            
+            .flip-switch-permissoes .ui-flipswitch {
+                margin: -.3em 0 0 0;
+            }
+
+            .permissoes-content .smalltxt {
+                font-size: 0.9em;
+                font-family: NewJuneBook;
+                text-shadow: none;
+            }
+
+            .flex-permissoes > div > b {
+                font-family: NewJuneMedium;
+                font-weight: normal;
+            }
+
+            .desc-meta-premiada {
+                font-weight: normal !important;
+            }
+
+            .botaoAzul {
+                font-family: NewJuneMedium;
+                font-weight: normal;
+            }
+
+            .btn-nao-meta-premiada {
+                margin-top: 1.5em;
+                font-weight: normal;
+                font-family: NewJuneSemibold;
+            }
+
+            .btn-meta-atualizada {
+                color: #FFFFFF !important;
+                font-weight: normal !important;
+                font-size: 0.8em;
+                font-family: NewJuneMedium !important;
+            }
+
+            #permissoes .fnt-medium {
+                font-family: NewJuneMedium;
+                font-weight: normal !important;
+            }
+
+            .permissoes-content .decoration {
+                text-decoration: none;
+                text-shadow: none;
+                font-weight: normal;
+                font-family: NewJuneSemibold;
+            }
+
+            <% if (deviceModel.toUpperCase() === 'IPHONE5S') {%>
+                .container-txt-meta {
+                    height: 100%;
+                    margin-bottom: 1em;
+                }
+
+                .btn-sim-nao {
+                    height: 23%;
+                    margin-bottom: 1em;
+                    z-index: 1;
+                }
+
+                .container-icon-bottom {
+                    height: 9.1%;
+                }
+
+                .card-icon-836 {
+                    width: 13%;
+                }
+
+                .card-icon-1211 {
+                    width: 7%;
+                }
+
+                .btn-nao-meta-premiada {
+                    margin-top: 1.5em;
+                }
+	
+	            .btn-sim-meta-premiada {
+                    margin-top: 1em;
+                }
+
+                .fnt-book-small {
+                    font-size: x-small;
+                }
+
+                /* footer */
+                .container-footer-meta-premiada {
+                    justify-content: space-evenly;
+                }
+	    
+            <%}%>
+        <%}%>
+
+        <% 
+            
+            var androidDeviceModel = androidUtils.getAndroidPhone(androidUtils.getDeviceModel());
+            
+            if (androidDeviceModel.toUpperCase() === 'GALAXYNOTE8') {%>
+                .container-txt-meta {
+                    height: 32%;
+                }
+
+                .container-img-card {
+                    justify-content: space-between;
+                }
+
+                .btn-sim-nao{
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    margin-bottom: 2em;
+                    flex-grow: 1;
+                    justify-content: flex-end;
+                }
+
+                .container-txt-meta {
+                    height: 24%;
+                    flex-grow: 1;
+                    justify-content: space-between;
+                    margin-top: 16em;
+                }
+
+                .container-icon-bottom {
+                    margin-top: 1em;
+                }
+            <%}
+            
+            if (androidDeviceModel.toUpperCase() === 'GALAXYS6') {%>
+                .container-txt-meta {
+                    height: 68%;
+                }
+
+                .desc-meta-premiada {
+                    font-size: 3vw;
+                }
+
+                .container-icon-bottom {
+                    height: 9%;
+                    margin-top: -1em;
+                }
+            <% } %>
+
+            <% if (androidDeviceModel.toUpperCase() === 'GALAXYJ6') {%>
+                .container-icon-bottom {
+                    margin-top: 0.3em;
+                }
+            <% } %>
+</style>

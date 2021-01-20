@@ -1,0 +1,171 @@
+<%
+	var cartao = model;
+	var seguroAtivo;
+	var cancelamentoPendente;
+	if(cartao.flagSeguro == 'S'){
+		seguroAtivo = true;
+		if(cartao.cancelamentoPendente == 'S'){
+			cancelamentoPendente = true;
+		}else{
+			cancelamentoPendente = false;
+		}
+	}else{
+		seguroAtivo = false;
+	}
+
+%>
+<link rel="stylesheet" type="text/css" href="js/BradescoCartoesMobile/views/seguroCartao/seguroCartao.css">
+
+<div class="ui-grid-a saiba-mais-seguro">
+	<span class="fnt-regular txt-08em color-gray-darker">
+		Saiba mais	sobre o Superprotegido Premi&aacute;vel
+	</span>
+	<a href="#saibaMaisSeguro"  class="saiba-mais-icon margin-none"></a>
+</div>
+
+<% if ((!seguroAtivo) || (seguroAtivo && !cancelamentoPendente)) {%>
+<hr style="margin-bottom: 0" />
+<ul data-role="listview" style="margin-top: 0em;">
+	<li style="background-color: #f3f6fb !important;">
+		<div class="ui-grid-a">
+			<div class="ui-block-a" style="width:80%">
+				<p class="fnt-medium txt-1em fnt-wrap color-gray-darker" style="line-height: 1.65em;">Superprotegido Premi&aacute;vel</p>
+				<%= cartao.valorSeguroContratacao ? '<p class="fnt-regular txt-08em color-gray-darker">Valor mensal: R$ '+ ((cartao.valorSeguroContratacao+'').replace('.', ',')) + '</p>' : '' %>
+			</div>
+			<div class="ui-block-b remove-href" style="width:20%">
+					<input type="checkbox" data-role="flipswitch" id="seguroSwitch" data-current-value="<%= seguroAtivo ? 1 : 0 %>" data-on-text="" data-off-text="" <%=seguroAtivo ? 'checked' : '' %>/>
+			</div>
+		</div>
+	</li>
+</ul>
+<% } else{%>
+<hr>
+<p class="fnt-regular txt-1em color-gray-darker">O seguro desse cart&atilde;o possui uma solicita&ccedil;&atilde;o de cancelamento em andamento.</p>
+<p class="fnt-regular txt-1em color-gray-darker"><span style="font-weight: bold !important;" >N&ordm; de protocolo:</span> <%=model.protocoloCancelamento%></p>
+<% } %>
+
+<div id="divDispositivoSegurancaView" style="display: none;">
+	<!--
+		<input type="checkbox" style="display: none;" data-role="none" id="contratoCheckbox" checked="checked" data-awbe-bind="contratoCheckbox" />
+		<div class="checkboxSeguroCartao">
+			<label for="termoDeUsoCheckbox" class="ui-checkbox-geral" data-iconpos="right" style = "margin-left:1em; margin-right:1em;">
+			<div style="padding-left:1em; padding-right:1em;">
+					<span class="fnt-medium txt-09em color-gray-darker">Li e aceito os
+					<span id="termoSeguro" style="text-decoration: underline">Termos e Condi&ccedil;&otilde;es</span> Gerais do Seguro Superprotegido Premi&aacute;vel Bradesco
+				</span>
+			</div>
+			<hr />
+		</label>
+		<input type="checkbox" style="display: none;" id="termoDeUsoCheckbox" name="termoDeUsoCheckbox" data-awbe-bind="termoDeUsoCheckbox" />
+	</div> 
+	-->
+	<input type="checkbox" name="termoDeUsoCheckbox" id="termoDeUsoCheckbox" data-awbe-bind="termoDeUsoCheckbox" style="display: none;">
+	<label for="termoDeUsoCheckbox" class="label-termoDeUsoCheckbox ui-checkbox-geral-new-june-regular">
+		Li e aceito os
+		<span id="termoSeguro" style="text-decoration: underline">
+			Termos e Condi&ccedil;&otilde;es
+		</span>
+		Gerais do Seguro Superprotegido Premi&aacute;vel Bradesco
+	</label>
+	<hr style="margin-bottom: 0">
+	<div id="dispHabilitarSeguroCartao" style="margin: 0 -1em;"></div>
+</div>
+
+<div data-awbe-component="popup" data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="seguroContratadoSucesso">
+	<p class="titulo-modal">Seguro contratado com sucesso!</p>
+	<p class="texto-modal-normal">O Seguro ter&aacute; validade a partir de 24 horas da data de ades&atilde;o.</p>
+	<div class="align-botoes">
+		<a href="#seguroCartao" data-rel="back" class="botao-modal-002" onClick="unlockScroll();" >OK</a>
+	</div>
+</div>
+
+
+
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/seguroCartao/seguroCartao.js"></script>
+<script type="text/javascript">
+
+	
+
+	function showDispSegurancaSeguro() {
+		var optionsDisp = {
+				showTarget:true, 
+				targetElement:'dispositivoSegurancaTarget',
+				errorCallback: function(){
+					if($('#seguroSwitch').data('current-value')==0){
+						$('#seguroSwitch').prop('checked',false).flipswitch( "refresh" );
+					}
+				}
+			}
+		
+			$("#divDispositivoSegurancaView").css("display", "block");
+	}
+
+	function hideDispSeguranca() {
+		$('#divDispositivoSegurancaView').css("display", "none");
+	}
+
+	$("#seguroCartao\\/seguroCartaoPage").on('pageshow',function(){		
+		if($('#seguroSwitch').data('current-value')==1){
+			$('#seguroSwitch').prop('checked',true).flipswitch( "refresh" );
+		}
+	});
+
+    $(function () {
+		var seguroCartaoUtils = new SeguroCartaoUtils();
+		var $securityTargetComponent;
+        // Fix switch do jquery q mobile coloca um href="#" no elemento, 
+        // impossibilitando rotas ao clicar no circulo do switch
+        $(".ui-flipswitch-on").removeAttr("href");
+		$('#seguroSwitch').on('change',function(){
+			$securityTargetComponent = $('#' + $('#tipoDispositivoTela').val());
+			$this = $(this);
+			if(this.checked && $this.data('current-value')==0) {
+				showDispSegurancaSeguro();
+				habilitarCampo('#termoDeUsoCheckbox');
+				$('#divBotaoConfirmaDispositivo').addClass('temBlock');
+				$('#botaoCapturarChave').addClass('ui-disabled');
+		    }else if(!this.checked && $this.data('current-value')==1){
+		        AWBE.localStorage.setItem("title", "Cancelar Seguro");		    
+		    	window.location='#seguroCartaoCancelar';
+		    }else{
+		    	hideDispSeguranca();
+				}
+			
+			onTargetComponentKeyUp($securityTargetComponent);
+		});
+
+		$('#termoDeUsoCheckbox').on('change', function() {
+			if (this.checked) {
+				$('#divBotaoConfirmaDispositivo').removeClass('temBlock');
+				$('#botaoCapturarChave').removeClass('ui-disabled');
+				seguroCartaoUtils.mustEnableConfirmButton(
+					$securityTargetComponent,
+					$('#termoDeUsoCheckbox').prop('checked'));
+			} else {
+				$('#dispositivoToken').val('');
+				$('#divBotaoConfirmaDispositivo').addClass("disabledButton");
+				$('#divBotaoConfirmaDispositivo').addClass('temBlock');
+				$('#blockButton').removeAttr('onclick');
+				$('#botaoConfirmaDispositivo').removeAttr('onclick');
+				$('#botaoCapturarChave').addClass('ui-disabled');
+			}
+			$('#dispositivoTan').trigger('keyup');
+		});
+
+		function onTargetComponentKeyUp ($elem) {
+			$elem.on('keyup', function () {
+				seguroCartaoUtils.mustEnableConfirmButton(
+					$elem,
+					$('#termoDeUsoCheckbox').prop('checked'));
+			});
+		}
+	});
+
+    window.injecaoActionName = "#seguroCartaoValidarContratar";
+
+    window.injecaoTargetElement = "dispHabilitarSeguroCartao";
+</script>
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/smic/injecaoDispSeguranca.js"></script>

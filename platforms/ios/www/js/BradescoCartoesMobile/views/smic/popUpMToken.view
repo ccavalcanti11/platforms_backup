@@ -1,0 +1,111 @@
+
+<!-- Inicio tutorial Mtoken -->
+<div data-awbe-component="popup"
+data-awbe-component-option-theme-modal="b"
+data-awbe-component-option-modal="true"
+data-awbe-component-option-theme="a"
+data-awbe-component-popup-id="escolhaAppIntegrador">
+	<p class="titulo-modal">Escolha o aplicativo com a chave</p>
+
+	<div class="itemAppsInstalados-img" id="appsSmicBradesco" onclick="selecionaAppSmicHelper('Classic')"> 
+		<div class="icon-bradesco-img icon-bradesco-appsSmic"></div>
+		<div class="icon-bradesco-text"> Bradesco </div>
+		<div id="appBradescoSelecionado" class="selecao-smic selecao-smic-check"></div>
+	</div>
+	<div class="itemAppsInstalados-img" id="appsSmicExclusive" onclick="selecionaAppSmicHelper('Exclusive')"> 
+		<div class="icon-bradesco-exclusive-img icon-bradesco-appsSmic"></div>
+		<div class="icon-bradesco-text"> Bradesco Exclusive</div>
+		<div id="appExclusiveSelecionado" class="selecao-smic selecao-smic-check"></div>
+	</div>
+	<div class="itemAppsInstalados-img" id="appsSmicPrime" onclick="selecionaAppSmicHelper('Prime')"> 
+		<div class="icon-bradesco-prime-img icon-bradesco-appsSmic"></div>
+		<div class="icon-bradesco-text"> Bradesco Prime</div>
+		<div  id="appPrimeSelecionado" class="selecao-smic selecao-smic-check"></div>
+	</div>
+	<div class="itemAppsInstalados-img" id="appsSmicPrivate" onclick="selecionaAppSmicHelper('Private')">  
+		<div class="icon-bradesco-private-img icon-bradesco-appsSmic"></div>
+		<div class="icon-bradesco-text"> Bradesco Private</div>
+		<div  id="appPrivateSelecionado" class="selecao-smic selecao-smic-check"></div>
+	</div>
+
+	<div class="align-botoes" style="margin-top:0px">
+		<a onclick="AWBE.util.closePopup('escolhaAppIntegrador')" class="botao-modal-002">Cancelar</a>
+	</div>
+</div>
+
+<!-- POP-UP DE ERRO NO RETORNO DO MF-->
+<div data-awbe-component="popup" data-awbe-component-option-theme="a" data-awbe-component-option-theme-modal="b" data-awbe-component-option-modal="true" data-awbe-component-popup-id="popupErroAtivCartaoMF">
+<p class="titulo-modal">Indispon&iacute;vel Ativa&ccedil;&atilde;o</p>
+<p class="texto-modal-normal">N&atilde;o &eacute; poss&iacute;vel ativar este cart&atilde;o. Por favor, ligue na Central de Relacionamento.</p>
+<div class="align-botoes txt-caixaalta">
+<a class="botao-modal-002" data-rel="back" href="#">Fechar</a>
+</div>
+</div>
+
+<div data-awbe-component="popup" data-awbe-component-option-theme="a" data-awbe-component-option-theme-modal="b" data-awbe-component-option-modal="true" data-awbe-component-popup-id="popupErroConexao">
+<p class="titulo-modal">Erro de conex&atilde;o</p>
+<p class="texto-modal-normal">Sem conex&atilde;o. Verifique a rede e tente novamente.</p>
+<div class="align-botoes txt-caixaalta">
+<a class="botao-modal-002" data-rel="back" href="#">Fechar</a>
+</div>
+</div>
+
+<div class="tutorial-container" id="tutorialAutorizacao" style="display: none; z-index:999999; position: fixed;">
+<div style="width: 100%; height: 100%;">
+<img src="img/tutorial/dispositivoSeguranca/autorizarapp.png" style="margin: 0 !important; width: 100%; height: 100%;"></img>
+<div class="btnFecharTutorialPA btnFecharCarrossel" id="btnFecharCarrossel" onclick="BradescoCartoesMobile.components.fecharTutorialMtoken();" style="left: 16.5em;">
+<img src="img/tutorial/home/botaofechar.svg"></img>
+</div>
+<div class="ui-btn-blue" id="botaoAutorizarMToken" style="bottom: 30.6vh;left: 35vw !important;position: absolute;"  onclick="BradescoCartoesMobile.components.validaBtnCapturarChave();" >
+<p class="botaoAzul " style="padding-left: 2em;padding-right: 2em;">Autorizar</p>
+</div>
+</div>
+</div>
+
+<div class="tutorial-container" id="tutorialAbrir" style="display: none; z-index:999999; position: fixed;">
+<div style="width: 100%; height: 100%;">
+<img src="img/tutorial/dispositivoSeguranca/capturarchave.png" style="margin: 0 !important; width: 100%; height: 100%;"></img>
+<div class="btnFecharTutorialPA btnFecharCarrossel" id="btnFecharCarrossel" onclick="BradescoCartoesMobile.components.fecharTutorialMtoken();" style="left: 16.5em;">
+<img src="img/tutorial/home/botaofechar.svg"></img>
+</div>
+
+<div id="btnEntendiTutorialMToken" class="ui-btn-blue" style="bottom: 34.2vh;left: 36vw !important;position: absolute;"  onclick="BradescoCartoesMobile.components.fecharTutorialMtoken();" >
+<p class="botaoAzul" style="padding-left: 2em;padding-right: 2em;">Entendi</p>
+</div>
+</div>
+</div>
+
+<!-- POP-UP ERRO AO CAPTURAR CHAVE-->
+<div data-awbe-component="popup" data-awbe-component-option-theme="a" data-awbe-component-option-theme-modal="b" data-awbe-component-option-modal="true" data-awbe-component-popup-id="popupErroCapturarChave">
+<p class="titulo-modal">Erro ao Capturar Chave.</p>
+<div class="align-botoes txt-caixaalta">
+<a class="botao-modal-002" data-rel="back">OK</a>
+</div>
+</div>
+
+<!-- POP-UP NOVA CHAVE DE SEGURANCA-->
+<div data-awbe-component="popup"
+data-awbe-component-option-theme="a"
+data-awbe-component-option-theme-modal="b"
+data-awbe-component-option-modal="true"
+data-awbe-component-popup-id="popupNovaChaveSeguranca">
+<p class="titulo-modal">Nova chave de seguran&ccedil;a</p>
+<p class="texto-modal-normal">&Eacute; preciso autorizar a nova chave de seguran&ccedil;a no aplicativo do Bradesco.</p>
+<div class="align-botoes">
+<a class="botao-modal-002" data-rel="back">OK</a>
+</div>
+</div>
+
+
+<div data-awbe-component="popup"
+data-awbe-component-option-theme="a"
+data-awbe-component-option-theme-modal="b"
+data-awbe-component-option-modal="true"
+data-awbe-component-popup-id="popupErroDeComunicacao">
+<p class="titulo-modal">Erro</p>
+<p class="texto-modal-normal">Houve uma falha na comunica&ccedil;&atilde;o entre os aplicativos. Por favor, tente novamente.</p>
+<div class="align-botoes">
+<a class="botao-modal-002" data-rel="back">Fechar</a>
+</div>
+</div>
+<!-- Fim popups Mtokn -->

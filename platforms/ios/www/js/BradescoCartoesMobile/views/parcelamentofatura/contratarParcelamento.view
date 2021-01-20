@@ -1,0 +1,99 @@
+<div data-awbe-component="awbe-include" data-awbe-component-params="cabecalhoVoltarPagina"></div>
+
+
+<div class="ui-content div-content" data-role="content" style="padding: 1em;">
+
+    <div>
+    <%
+        var user = AWBE.sessionStorage.getItem('user');
+
+        if (user.perfil == "C") {
+    %>
+            <span class="fnt-book txt-12em lblDescPagamento">Digite a chave informada no seu dispositivo de segurança.</span>
+    <%
+        }else{
+    %>
+            <span class="fnt-book txt-12em lblDescPagamento">Digite a senha solicitada.</span>
+    <%
+        }
+    %>
+    </div>
+
+
+</div>
+
+<div>
+    <% _.each(params.formParams, function(input){ %>
+        <% 
+            var key = _.keys(input)[0];
+            var value = _.values(input)[0];
+        %>
+        <input type="hidden" data-awbe-bind="<%= key %>" name="<%= key %>" value="<%= value %>">
+    <% }) %>
+    <div id="dispSegurancaContrataParcelamento"></div>
+</div>
+
+
+<script>
+    window.injecaoActionName = '#realizarParcelamentoFatura';
+    window.injecaoTargetElement = 'dispSegurancaContrataParcelamento';
+</script>
+
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/smic/injecaoDispSeguranca.js"></script>
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/parcelamentofatura/contratarParcelamento.js"></script>
+
+<div data-awbe-component="popup" data-awbe-component-option-theme="a" data-awbe-component-option-theme-modal="b"
+    data-awbe-component-option-modal="true" data-awbe-component-popup-id="sucessoContratacaoParcelamentoBoleto">
+    <p data-device="<%= AWBE.device.platform %>" class="popup-title fnt-bold">
+        Parcelamento da fatura realizado com sucesso
+    </p>
+    <p data-device="<%= AWBE.device.platform %>" class="popup-txt">
+        Pague o valor exato da entrada para confirmar a solicita&ccedil;&atilde;o.
+    </p>
+    <div data-device="<%= AWBE.device.platform %>" class=" align-botoes align-botoes-popup">
+        <a data-parcelado-facil="<%= params.isParceladoFacil %>" onclick="fecharPopupPagamentoBoleto(event)" class="uppercase botao-modal-002" title="ok">ok</a>
+    </div>
+</div>
+
+
+<div data-awbe-component="popup" data-awbe-component-option-theme="a" data-awbe-component-option-theme-modal="b"
+    data-awbe-component-option-modal="true" data-awbe-component-popup-id="sucessoContratacaoParcelamentoDebito">
+    <p data-device="<%= AWBE.device.platform %>" class="popup-title fnt-bold">
+        Parcelamento da fatura realizado com sucesso
+    </p>
+    <p data-device="<%= AWBE.device.platform %>" class="popup-txt">
+        O valor da entrada será debitado automaticamente no dia do vencimento.
+    </p>
+    <div data-device="<%= AWBE.device.platform %>" class="align-botoes align-botoes-popup">
+        <a data-parcelado-facil="<%= params.isParceladoFacil %>" onclick="fecharPopupPagamentoDebito(event)" class="uppercase botao-modal-002" title="ok">ok</a>
+    </div>
+</div>
+
+<div data-awbe-component="popup" data-awbe-component-option-theme="a" data-awbe-component-option-theme-modal="b"
+    data-awbe-component-option-modal="true" data-awbe-component-popup-id="sucessoContratacaoParcelamentoP2">
+    <p data-device="<%= AWBE.device.platform %>" class="popup-title fnt-bold">
+        Opção selecionada
+    </p>
+    <p data-device="<%= AWBE.device.platform %>" class="popup-txt">
+        Pague o valor exato da primeira parcela para confirmar a solicitação.
+    </p>
+    <div data-device="<%= AWBE.device.platform %>" class="align-botoes align-botoes-popup">
+        <a data-parcelado-facil="<%= params.isParceladoFacil %>" onclick="fecharPopupPagamentoP2(event)" class="uppercase botao-modal-002" title="ok">ok</a>
+    </div>
+</div>
+
+<div data-awbe-component="popup"
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="mesmaSenhaCartao">
+	<p class="texto-modal-normal">A senha do cart&atilde;o &eacute; a mesma utilizada para compra e/ou saque.</p>
+	<p class="texto-modal-normal">Caso n&atilde;o se lembre, entre em contato com a Central de Atendimento.</p>
+	<div class="align-botoes">
+		<a href="#" data-rel="back" class="botao-modal-002">Fechar</a>
+	</div>
+</div>
+
+<link rel="stylesheet" type="text/css"
+    href="js/BradescoCartoesMobile/views/parcelamentofatura/parcelamentoFatura.css" />
+

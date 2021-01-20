@@ -1,0 +1,15 @@
+.esqueciSenhaCodigoVerificacao{
+	display: inline-block; 
+	margin-top: 0px;  
+	margin-bottom: 18px;
+}
+
+.esqueciSenhaTooltipCodigo{
+	float: right;
+    margin-top: 0px;
+    margin-left: 6px;
+}
+
+.esqueciSenhaQuebraTexto{
+	word-wrap: break-word;
+}

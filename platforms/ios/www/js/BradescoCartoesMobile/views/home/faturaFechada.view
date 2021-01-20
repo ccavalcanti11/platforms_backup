@@ -1,0 +1,55 @@
+<!-- POPUP DE FATURA FECHADA USADA QUANDO E EXPANDIDO O BLOCO DE EXTRATO -->
+<% if (model.status == "0") { %>
+	<%
+		var cartao  = model.cartao;
+		var extrato = model.extrato;
+		var dataObj = stringDateToJsonObject(extrato.dataVencimento.replace('/', '').replace('/', ''));
+		var paramsFuncionalidadeCache = BradescoCartoesMobile.controllers.getParamsFuncionalidades(cartao);
+		var funcionalidade = AWBE.sessionStorage.getItem(BradescoCartoesMobile.controllers.getFuncionalidadeKey(paramsFuncionalidadeCache));
+	%>
+	<!-- Verifica Status e monta as informacoes -->
+	<% if ((extrato.codigoRetorno == "00" || extrato.codigoRetorno == "0") && (extrato.valorTotal != "0.00" && extrato.sinalExtrato != "-")) { %>
+		<div class="faturaContent">
+			<div id="fatura" class="notVisible ui-content" style="padding-top: 0em; padding-bottom: 0em;" <%=( extrato.statusAberto !='A' && cartao.titularAdicional=='T' ) ? 'class="ui-box-arrow-top"' : '' %>>
+				<% if (extrato.statusAberto != 'A' && cartao.titularAdicional == 'T') { %>
+					<span class="btn-fechar-fatura" onclick="javascript:closePopUP()"></span>
+					<input type="hidden" name="cartaoFaturaFechou" id="cartaoFaturaFechou" value="<%=cartao.numeroCartao%>"></input>
+					<input type="hidden" name="dataFaturaFechou" id="dataFaturaFechou" value="<%=dataObj.dataYYYYMMDD%>"></input>
+					
+					<section class="resumo-fatura">
+						<div class="fatura-fechou">
+							<span>FATURA FECHADA</span>
+							<span class="grey">
+								R$ <%=extrato.sinalExtrato%><%=currency(extrato.valorTotal, false)%>
+							</span>
+						</div>
+						<!-- Verifica forma de pagamento (debito automatico/boleto) -->
+						<!-- botao codigo para pagamento/debito automatico -->
+						<div class="div-msg-pagamento">
+							<span class="notVisible lblDescDebitoAutomatico span-msg-pagamento">Agendado o pagamento no d&eacute;bito autom&aacute;tico.</span>
+						</div>		
+						<div>
+							<div id="btnParcelarFatura">
+								<form action="#valorEntradaParcelamentoFatura" id="formParcelamentoRedirect">
+									<button class="btn ui-btn ui-shadow ui-corner-all btn-parcelar-fatura">
+										
+									</button>
+								</form>
+							</div>
+							<span class="invisibleSpace" style="width: 0.5rem;"></span>
+							<div id="btnPagarFatura">
+								<form action="#pagamento" id="formPagamentoRedirect">
+									<button type="submit" class="btn ui-btn ui-shadow ui-corner-all btn-pagar-fatura">
+										Pagar fatura
+									</button>
+								</form>
+							</div>
+						</div>
+					</section>		
+				<% } %>
+			</div>
+		</div>	
+	<% } %>
+<% } %>
+<link rel="stylesheet" type="text/css" href="js/BradescoCartoesMobile/views/home/faturaFechada.css" />
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/home/faturaFechada.js"></script>

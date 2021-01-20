@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 31.5 31.5">
+  <defs>
+    <style>
+      .cls-1, .cls-2, .cls-5 {
+        fill: none;
+      }
+
+      .cls-2 {
+        stroke: #d51e31;
+        stroke-width: 1.5px;
+      }
+
+      .cls-3, .cls-4 {
+        stroke: none;
+      }
+
+      .cls-4 {
+        fill: #d51e31;
+      }
+    </style>
+  </defs>
+  <g id="Symbol_369_1" data-name="Symbol 369 – 1" transform="translate(-2794.25 -1022.25)">
+    <g id="Path_765" data-name="Path 765" class="cls-1" transform="translate(2798.75 1026.75)">
+      <path class="cls-3" d="M0,0H7.5V7.5H0Z"/>
+      <path class="cls-4" d="M 6 6 L 6 1.5 L 1.5 1.5 L 1.5 6 L 6 6 M 7.5 7.5 L -4.440892098500626e-16 7.5 L -4.440892098500626e-16 -4.440892098500626e-16 L 7.5 -4.440892098500626e-16 L 7.5 7.5 Z"/>
+    </g>
+    <g id="Rectangle_1964" data-name="Rectangle 1964" class="cls-2" transform="translate(2798.75 1042.688)">
+      <rect class="cls-3" width="7.5" height="7.5"/>
+      <rect class="cls-5" x="0.75" y="0.75" width="6" height="6"/>
+    </g>
+    <g id="Rectangle_1965" data-name="Rectangle 1965" class="cls-2" transform="translate(2814.688 1026.75)">
+      <rect class="cls-3" width="7.5" height="7.5"/>
+      <rect class="cls-5" x="0.75" y="0.75" width="6" height="6"/>
+    </g>
+    <g id="Rectangle_1966" data-name="Rectangle 1966" class="cls-2" transform="translate(2814.688 1042.688)">
+      <rect class="cls-3" width="7.5" height="7.5"/>
+      <rect class="cls-5" x="0.75" y="0.75" width="6" height="6"/>
+    </g>
+    <path id="Path_760" data-name="Path 760" class="cls-2" d="M3115.25,1017v11.25H3104" transform="translate(-305.25 9.75)"/>
+    <path id="Path_761" data-name="Path 761" class="cls-2" d="M7.5,0V5.625A1.827,1.827,0,0,1,5.625,7.5H0" transform="translate(2802.5 1030.5) rotate(180)"/>
+    <path id="Path_762" data-name="Path 762" class="cls-2" d="M3111.5,1017v5.625a1.827,1.827,0,0,1-1.875,1.875H3104" transform="translate(-286.5 28.5)"/>
+    <path id="Path_763" data-name="Path 763" class="cls-2" d="M7.5,0V5.625A1.827,1.827,0,0,1,5.625,7.5H0" transform="translate(2817.5 1030.5) rotate(-90)"/>
+    <path id="Path_764" data-name="Path 764" class="cls-2" d="M7.5,0V5.625A1.827,1.827,0,0,1,5.625,7.5H0" transform="translate(2802.5 1045.5) rotate(90)"/>
+    <line id="Line_279" data-name="Line 279" class="cls-2" y1="7.5" transform="translate(2810 1042.688)"/>
+    <line id="Line_280" data-name="Line 280" class="cls-2" x2="7.5" transform="translate(2814.688 1038)"/>
+  </g>
+</svg>

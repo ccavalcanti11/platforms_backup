@@ -1,0 +1,30 @@
+<%
+var viewBack;
+if (AWBE.Controller.lastView == 'desbloqueio/desbloquearCartoes'){
+	viewBack = '#desbloqueio';
+} else {
+	viewBack = '#homeLogada';
+}
+%>
+
+<div id="header-hide-arrow" data-role="header" data-position="fixed" data-tap-toggle="false" class="headerfix">
+	<a id="btnLeftPanel" href="<%=viewBack%>" class="btn-back" title="voltar para o menu anterior"></a>
+	<h1><%=AWBE.localStorage.getItem('title')%></h1>
+</div>
+
+<div class="ui-content" data-role="content" title="tela n&atilde;o possuo a senha ou n&atilde;o recebi o cart&atilde;o">
+	<p class="titulo-nao-possuo-senha">N&atilde;o possuo a senha</p>
+	<p class="fnt-book txt-1em color-gray-darker">Caso ainda n&atilde;o tenha recebido, voc&ecirc; pode entrar em contato com a <a href="#canaisAtendimentoLogado" class="fnt-book txt-1em color-gray-darker" style="text-decoration: underline;">Central de Atendimento</a>	
+	<%  var usuario = AWBE.sessionStorage.getItem('user');
+		if(usuario.perfil == "C"){ %>
+			e consultar a senha de seu cart&atilde;o. Voc&ecirc; precisar&aacute; informar sua Senha de 4 d&iacute;gitos e a chave de seguran&ccedil;a.
+		<% }else{ %>
+			e solicitar a emiss&atilde;o da segunda via da carta senha de seu cart&atilde;o.
+	<% }%>	
+	</p>
+	<hr>
+	<p class="titulo-nao-possuo-senha">N&atilde;o recebi o cart&atilde;o</p>
+	<p class="fnt-book txt-1em color-gray-darker">O prazo para recebimento do cart&atilde;o &eacute; de 7 a 10 dias &uacute;teis. 
+	   Caso voc&ecirc; n&atilde;o  tenha recebido ap&oacute;s esse per&iacute;odo, 
+	   entre em contato com a <a href="#canaisAtendimentoLogado" class="fnt-book txt-1em color-gray-darker" style="text-decoration: underline;">Central de Atendimento</a>.</p>
+</div>

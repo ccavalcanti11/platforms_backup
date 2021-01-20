@@ -1,0 +1,223 @@
+<div data-awbe-component="awbe-include" data-awbe-component-params="cabecalho" class="homeOfferOptin"></div>
+
+<% 
+	var user = AWBE.sessionStorage.getItem('user');
+	if(AWBE.localStorage.getItem('isNCLegado_' + user.cpf) == "true"){ %>
+	<div data-awbe-component="awbe-include" data-awbe-component-params="menuOpcoesLogadoNCLegado"></div>
+<% }else{ %>
+	<div data-awbe-component="awbe-include" data-awbe-component-params="menuOpcoesLogado"></div>
+<% }%>
+
+
+<div class="ui-content page home-logada" data-role="content" id="homeLogada">
+	<p id="semCartoes" style="display: none;" class="txt-09em fnt-regular color-gray-darker">
+		Selecione &ldquo;Personalizar cart&otilde;es&rdquo; no menu lateral e escolha ao menos um cart&atilde;o para gerenciar pelo seu aplicativo.		
+	</p>
+	<div data-awbe-component="carouselHomeLogada" data-awbe-target-element="carouselTarget" data-awbe-target-view="home/fatura.view"></div>
+	<div class="tutorial-container" style="display: none; z-index:999999" id="tutorialPrimeiroAcesso">
+		<!-- Esta estrutura de container e close button pode ser compartilhada entre varios tutoriais -->
+		<div id="tutorialHome">
+			<div>
+				<img src="img/tutorial/home/carousel.png"></img>
+				<div class="btnFecharTutorialPA btnFecharCarrossel" id="btnFecharCarrossel"><img src="img/tutorial/home/botaofechar.svg"></img></div>
+			</div>
+			<div>
+				<img src="img/tutorial/home/extratos.png"></img>
+				<div class="btnFecharTutorialPA btnFecharExtrato" id="btnFecharExtrato"><img src="img/tutorial/home/botaofechar.svg"></img></div>
+			</div>
+			<div>
+				<img src="img/tutorial/home/limites.png"></img>
+				<div class="btnFecharTutorialPA btnFecharLimite" id="btnFecharLimite"><img src="img/tutorial/home/botaofechar.svg"></img></div>
+			</div>
+			<div>
+				<img src="img/tutorial/home/pagamentos.png"></img>
+				<div class="btnFecharTutorialPA btnFecharPagamentos" id="btnFecharPagamentos"><img src="img/tutorial/home/botaofechar.svg"></img></div>
+			</div>
+		</div>
+	</div>
+	<!-- <div class="tutorial-container" id="tutorialIncentivo" style="display: block; z-index:999999; position: fixed;">
+	<div style="width: 100%; height: 100%;">
+		<img src="img/tutorial/home/tutorial-incentivo.png" style="margin: 0 !important; width: 100%; height: 100%;">
+		<div class="btnFecharTutorialPA btnFecharCarrossel" id="btnFecharCarrossel" style="left: 18.4em;width: 2.8em;" onclick="BradescoCartoesMobile.components.popularAppsFlyerGa('FECHATUTORIALCAD'); fecharTutorialIncentivo();">
+			<img src="img/tutorial/home/botaofechar.svg" onclick="BradescoCartoesMobile.components.popularAppsFlyerGa('FECHATUTORIALCAD');">
+		</div>
+		 <div class="ui-btn-blue" id="botaoAutorizar" style="bottom: 4.2em;left: 7em;position: absolute;height: 0.9em;width: 8.6em;" onclick="BradescoCartoesMobile.components.popularAppsFlyerGa('CONTINUARTUTORIALCAD'); btnContinuarIncentivo();">
+			<p class="botaoAzul" style="padding-left: 2em;padding-right: 2em;font-size: 0.9em;">Continuar</p>
+		 </div>
+		 <div class="botaoAzul" id="botaoAutorizar" style="bottom: 2.23em;left: 9.81em;position: absolute;height: 1.5em;width: 10.6em;" onclick="BradescoCartoesMobile.components.popularAppsFlyerGa('DEPOISCONTITUTORIALCAD'); fecharTutorialIncentivo();">
+			<a style="font-size: 0.96em;" class="ui-link">Depois eu continuo</a>
+		 </div>
+	</div> 
+</div>-->
+
+	<!-- BLOCO COM INFORMACOES DE LIMITE E EXTRATO -->
+	<div id="carouselTarget">
+	</div>
+	<div id="target-footer-meta-premiada"></div>
+	<div data-role="footer" class="fnt-regular footer-info footerfix" data-position="fixed" data-tap-toggle="false" id="informacoesSujeitasAlteracoes" style="z-index:996;">
+		<p class="txt-08em" style="text-align: left;">Informa&ccedil;&otilde;es sujeitas a altera&ccedil;&otilde;es.</p> 
+	
+	</div>
+</div>
+
+
+
+<div data-awbe-component="popup" data-awbe-component-option-theme="a" data-awbe-component-option-theme-modal="b" data-awbe-component-option-modal="true" data-awbe-component-popup-id="novoCartao">
+	<p class="texto-modal-normal" id="mensagem-novoCartao"></p>
+	<div class="align-botoes-2">
+		<a href="#personalizarCartoes" id="btnNo" class="botao-modal-002">Agora n&atilde;o</a>
+		<a id="btnYes" data-rel="back" class="botao-modal-003">Sim</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup"
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="dadosNConferemValidade">
+	<p class="texto-modal-normal">Servi&ccedil;o Indispon&iacute;vel</p>
+	<div class="align-botoes txt-caixaalta">
+		<a href="#" data-rel="back" class="botao-modal-002">Fechar</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="fingerprint-perfil-senha-alterada">
+	<p class="titulo-modal">Mudan&ccedil;a no banco de digitais</p>
+	<p class="texto-modal-normal">Identificamos que sua senha de 4 d&iacute;gitos foi alterada. Para que voc&ecirc; possa logar novamente com a digital, entre com sua senha de 4 d&iacute;gitos e cadastre novamente sua digital.</p>
+	<div class="align-botoes">
+		<a href="#" data-rel="back" class="botao-modal-002">DIGITAR SENHA</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup" 
+ 	 data-awbe-component-option-theme="a"
+	 data-awbe-component-option-theme-modal="b"
+	 data-awbe-component-option-modal="true"
+	 data-awbe-component-popup-id="qrcodenc">
+	<p class="titulo-modal">Pagamento por QR Code</p>
+	<p class="texto-modal-normal">
+		No momento o servi&ccedil;o de pagamento por QR Code est&aacute; dispon&iacute;vel para Cart&otilde;es Bradesco de clientes correntistas e titulares.
+	</p>
+	<div class="align-botoes txt-caixaalta">	
+		<a href="#" data-rel="back" class="botao-modal-002" id="okCpfExistente">Fechar</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup" 
+ 	 data-awbe-component-option-theme="a"
+	 data-awbe-component-option-theme-modal="b"
+	 data-awbe-component-option-modal="true"
+	 data-awbe-component-popup-id="qrcodecadsimp">
+	<p class="titulo-modal texto-negrito-modal">Finalizar cadastro</p>
+	<p class="texto-modal-normal">
+		Para utilizar o QR Code &eacute; preciso finalizar o cadastro.
+	</p>
+	<div class="align-botoes txt-caixaalta">	
+		<a class="botao-modal-002" onclick="atualizarCadastroQrCode()">Finalizar</a>
+		<a data-rel="back" class="botao-modal-002">Cancelar</a>
+	</div>
+</div>
+
+
+
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="erroPermissaoCamera">
+	<p class="titulo-modal texto-negrito-modal">Permiss&atilde;o</p>
+	<p class="texto-modal-normal">Para fazer um pagamento via QR Code, precisamos do acesso a sua c&acirc;mera.</p>
+	<div class="align-botoes align-botoes">	
+		<a onclick="fecharPopupCameraQR()" data-rel="back" class="botao-modal-002">fechar</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup" 
+ 	 data-awbe-component-option-theme="a"
+	 data-awbe-component-option-theme-modal="b"
+	 data-awbe-component-option-modal="true"
+	 data-awbe-component-popup-id="qrcodebradescard">
+	<p class="titulo-modal">Pagamento por QR Code</p>
+	<p class="texto-modal-normal">
+		No momento o servi&ccedil;o de pagamento por QR Code est&aacute; dispon&iacute;vel para Cart&otilde;es Bradesco de clientes correntistas e titulares.
+	</p>
+	<div class="align-botoes txt-caixaalta">	
+		<a href="#" data-rel="back" class="botao-modal-002" id="okCpfExistente">Fechar</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup" 
+ 	 data-awbe-component-option-theme="a"
+	 data-awbe-component-option-theme-modal="b"
+	 data-awbe-component-option-modal="true"
+	 data-awbe-component-popup-id="qrcodedesabilitado">
+	<p class="titulo-modal">Pagamento por QR Code</p>
+	<p class="texto-modal-normal">
+		O serviço de pagamento por QR Code está temporariamente indisponível. Tente mais tarde.
+	</p>
+	<div class="align-botoes txt-caixaalta">
+		<!-- volta para o institucional-->	
+		<a href="dcdcartoes://home" data-rel="close" class="botao-modal-002" id="okCpfExistente">Fechar</a>
+	</div>
+</div>
+
+<!-- <div data-awbe-component="popup" 
+ 	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="offer-optin-limite">
+	<p class="titulo-modal">Aumento de limite</p>
+	<p class="texto-modal-normal">Deseja aumentar os limites dos seus cart&otilde;es assim que estiverem dispon&iacute;veis para voc&ecirc;?</p>
+	<div class="align-botoes txt-caixaalta">	
+		<a href="#" data-rel="back" onClick="mantidos()" class="botao-modal-002">DEPOIS</a>
+		<a data-rel="back" onClick="abreAutorizado()" class="botao-modal-002">SIM, EU QUERO</a>
+	</div>
+</div> -->
+
+<div data-awbe-component="popup" 
+ 	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="autorizado-optin-limite">
+	<p class="titulo-modal">Autorizado</p>
+	<p class="texto-modal-normal">Aumentaremos gratuitamente os seus limites assim que dispon&iacute;veis, conforme an&aacute;lise de cr&eacute;dito.</p>
+	<div class="align-botoes txt-caixaalta">	
+		<a href="#" data-rel="back" class="botao-modal-002">FECHAR</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup" 
+ 	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="limitesMantidos">
+	<p class="titulo-modal">Limites mantidos</p>
+	<p class="texto-modal-normal">Caso mude de ideia, voc&ecirc; pode autorizar o aumento de limite atrav&eacute;s do menu "Permiss&otilde;es".</p>
+	<div class="align-botoes txt-caixaalta">	
+		<a href="#" data-rel="back" onClick="exibeCardOptinLimite()" class="botao-modal-002">OK</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup" 
+ 	 data-awbe-component-option-theme="a"
+	 data-awbe-component-option-theme-modal="b"
+	 data-awbe-component-option-modal="true"
+	 data-awbe-component-popup-id="popupAvaliarAppFim" >
+	<p class="titulo-modal">Gostou do aplicativo?</p>
+	<p class="texto-modal-normal">Avalie o aplicativo e nos ajude a melhorar!</p>
+	<div class="align-botoes">
+		<a class="botao-modal-002" onclick="fecharAvaliacao()">Agora n&atilde;o</a>
+		<a class="botao-modal-002" onclick="irParaPlayStore()">Avaliar</a>
+	</div>
+	
+</div>
+
+<script type="text/javascript" src="js/lib/vn-fingerprint-cadastro.js"></script>
+<script type="text/javascript" src="js/lib/vn-fingerprint-login.js"></script>
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/home/homeLogada.js"></script>
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/permissoes/metaPremiadaExec.js"></script>
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/home/permissaoOptin.js"></script>

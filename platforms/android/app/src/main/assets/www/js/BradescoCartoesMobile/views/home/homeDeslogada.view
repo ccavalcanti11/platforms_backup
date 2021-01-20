@@ -1,0 +1,63 @@
+<div data-awbe-component="awbe-include" data-awbe-component-params="cabecalho"></div>
+<div data-awbe-component="awbe-include" data-awbe-component-params="menuOpcoesDeslogado"></div>
+
+<div class="page home-deslogada" data-role="content">
+	<div class="ui-grid-solo">
+		<div class="ui-block-a">
+			<div data-awbe-component="carousel"
+				 data-awbe-component-item-image-style="height: 30vh; width: 100vw; display: block;"
+			 	 data-awbe-component-item-image-sources="img/home/carrousel_banner_1.png, img/home/carrousel_banner_2.png, img/home/carrousel_banner_3.png"			 		
+			 	 data-awbe-component-item-hrefs=" #Banner1, #Banner2, #Banner3">
+			</div>
+ 		</div>
+	</div>
+
+	<div class="content-margin">
+	 	<div class="align-text-center">
+			<div class="ui-grid-c">
+	  			<div class="ui-block-a">
+	<a href="#meusCartoes">
+						<div class="ui-bts-whiteball">
+			        		<div class="icon-icons_meuscartoes"></div>
+			        	</div>
+			        	<label class="font-small-xx home_text"><b>Meus<br/>Cartões</b></label>
+	</a>
+</div>	
+		
+		  		<div class="ui-block-b">
+		  			<a href="#">
+						<div class="ui-bts-whiteball">
+			           		<div class="icon-icons_checkin"></div>
+			        	</div>
+						<label class="font-small-xx home_text"><b>b. check-in</b></label>
+					</a>
+				</div>
+
+		  		<div class="ui-block-c">
+		  			<a href="#beneficios">
+						<div class="ui-bts-whiteball">
+			           		<div class="icon-icons_beneficos"></div>
+			        	</div>
+						<label class="font-small-xx home_text"><b>Benefícios</b></label>
+					</a>
+				</div>
+
+		  		<div class="ui-block-d">
+			  		<a href="#canaisAtendimento">
+						<div class="ui-bts-whiteball">
+							<div class="icon-icons_atendimento"></div>
+				        </div>
+						<label class="font-small-xx home_text"><b>Canais de<br/>Atendimento</b></label>
+					</a>
+				</div>
+			</div>
+		</div>
+
+		<div class="text-blue-highlight vantagens">
+			<p>CONHEÇA AS VANTAGENS DO<br/><b>BRADESCO CARTÕES</b></p>
+		</div>
+	</div>
+	<div class="footer-img" data-role="footer">
+		<img src="img/home/img-rodape.png">
+	</div>		
+</div>

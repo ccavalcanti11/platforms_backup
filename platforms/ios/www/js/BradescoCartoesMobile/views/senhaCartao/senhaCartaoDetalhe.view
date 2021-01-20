@@ -1,0 +1,42 @@
+<%
+	var cartaoAtual = AWBE.sessionStorage.getItem('meusCartoesAtual'); 
+	if (cartaoAtual.isMultiplo) { %>
+  
+	<div  class="fnt-book txt-1em color-gray-darker" style="margin-top: 0.8em">
+			Este cart&atilde;o possui a fun&ccedil;&atilde;o de D&eacute;bito e Cr&eacute;dito, a senha &eacute; a mesma utilizada para saque. Caso n&atilde;o se lembre procure a ag&ecirc;ncia onde possui conta.
+	</div>
+  
+	<% } else if (cartaoAtual.produtoPrincipal=="VISA FACIL") { %>
+		<div  class="fnt-book txt-1em color-gray-darker" style="margin-top: 0.8em">
+				Esta funcionalidade n&atilde;o est&aacute; dispon&iacute;vel para cart&atilde;o Visa F&aacute;cil. Caso n&atilde;o se lembre da senha procure a ag&ecirc;ncia onde possui conta.
+		</div>
+	<% } else { %>
+		<div class="fnt-book txt-1em color-gray-darker" style="margin: 0.8em 0 0.8em 0">
+			Caso voc&ecirc; n&atilde;o tenha recebido a sua senha, ou precise visualiz&aacute;-la novamente, clique no bot&atilde;o abaixo.
+		</div>
+		<hr/>
+		<div class="ui-grid-solo" id="divBotaoDesbloquearDispositivo">
+		<div class="ui-block-a">
+			<div style="text-align: center;">          
+			<div class="ui-btn-arrow-gray" style="width: 50%; display:inline-block" title="clique aqui para continuar" >
+				<a id='blockButtonDesbloquear' onclick="showDivDispositivoSeguranca('blockButtonDesbloquear', 'dispositivoSegurancaTarget');">Visualizar senha</a>
+			</div>
+			</div>
+		</div>
+		</div>
+		<div id="divDispositivoSeguranca" style="display: none; margin: 0 -1em;"></div>
+
+	<%}%>
+		
+<script >		
+	function showDivDispositivoSeguranca(idBotao, targetElement) {
+		BradescoCartoesMobile.components.dispositivoSeguranca(null,null,{},{showTarget:true, targetElement:targetElement});
+		$('#' + idBotao).addClass('disabledButton');
+		$('#' + idBotao).removeAttr('onclick');
+	}
+
+	window.injecaoTargetElement = "divDispositivoSeguranca";
+	window.injecaoActionName = "senhaCartaoValidarDispositivo";
+</script>
+
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/smic/injecaoDispSeguranca.js"></script>

@@ -1,0 +1,44 @@
+<div id="grafico-collapsible" data-role="collapsible" data-iconpos="false" data-inset="false" data-collapsed="false">
+    <h4>
+        <span class="colapsible-icon"></span>
+        <label class="colapsible-text">Gr&aacute;fico de gastos</label>
+    </h4>
+    <div class="ui-grid-solo">
+        <p> <%= model.resumoTitle %></p>
+    </div>
+    <div class="ui-grid-a content-grafico">
+        <div class="ui-block-a" id="myChartPie"></div>
+        <div class="ui-block-b legendaGrafico">
+            <% if (model.resumoConsumos.length == 0) { %>
+            <div class="margin-left-16" style="margin-top:20%">
+                <span class="font-small-ex ui-block-c grafico-width-c txt-08em">
+                    Nenhuma compra at&eacute; o momento.
+                </span><br />
+                <span class="font-small-ex ui-block-c grafico-width-c txt-08em">
+                    <b>Comece a usar seu cart&atilde;o agora mesmo!</b>
+                </span>
+            </div>
+            <%
+            } else { 
+                for (var i = 0; i < model.resumoConsumos.length; i++) { 
+                var resumo=model.resumoConsumos[i]; 
+                var graficoObj=BradescoCartoesMobile.grafico[resumo.codigoCategoria] || BradescoCartoesMobile.grafico[0]; %>
+            <div class="margin-tb margin-r-1">
+                <div class="txt-071em color-gray-darker fnt-bold percentualGasto">
+                    <%=currency(resumo.percentualGasto, false)%>%
+                </div>
+                <div class="<%=graficoObj.classe%>" style="color: <%=graficoObj.cor%>;">
+                    <span style="margin-left: .2em; margin-top: .2em;" class="txt-071em color-gray-darker">
+                        <%=resumo.nomeCategoria%>
+                    </span>
+                </div>
+            </div>
+            <div class="extrato-line">
+                <label class="extrato-taxas-label">
+                    Valores referente somente a compras efetuadas.
+                </label>
+            </div>
+            <% } } %>
+        </div>
+    </div>
+</div>

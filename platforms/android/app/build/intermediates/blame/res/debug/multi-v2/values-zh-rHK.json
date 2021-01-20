@@ -1,0 +1,43 @@
+{
+    "logs": [
+        {
+            "outputFile": "C:\\Users\\ccavalcanti\\Documents\\res\\Mobile_AppCartoes\\bcmp_mobile\\platforms\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-zh-rHK\\values-zh-rHK.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\ccavalcanti\\Documents\\res\\Mobile_AppCartoes\\bcmp_mobile\\platforms\\android\\app\\src\\main\\res\\values-zh-rHK\\fpauth-strings.xml",
+                    "from": {
+                        "startLines": "17,19,21,22,23,24,27,25,20,26,18",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "708,792,891,952,1003,1073,1280,1129,856,1215,747",
+                        "endColumns": "37,62,59,49,68,54,71,84,33,63,43",
+                        "endOffsets": "741,850,946,997,1067,1123,1347,1209,885,1274,786"
+                    },
+                    "to": {
+                        "startLines": "21,22,23,24,25,26,27,28,29,30,32",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "1874,1912,1975,2035,2085,2154,2209,2281,2366,2400,2566",
+                        "endColumns": "37,62,59,49,68,54,71,84,33,63,43",
+                        "endOffsets": "1907,1970,2030,2080,2149,2204,2276,2361,2395,2459,2605"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\ccavalcanti\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.4.0.aar\\804906a7fcf57147016af7e4e6b85e8a\\res\\values-zh-rHK\\values-zh-rHK.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,150,257,380,473,573,655,752,860,936,1012,1090,1186,1282,1377,1474,1569,1667,1780,1874",
+                        "endColumns": "94,106,122,92,99,81,96,107,75,75,77,95,95,94,96,94,97,112,93,101",
+                        "endOffsets": "145,252,375,468,568,650,747,855,931,1007,1085,1181,1277,1372,1469,1564,1662,1775,1869,1971"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,31",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,150,257,380,473,573,655,752,860,936,1012,1090,1186,1282,1377,1474,1569,1667,1780,2464",
+                        "endColumns": "94,106,122,92,99,81,96,107,75,75,77,95,95,94,96,94,97,112,93,101",
+                        "endOffsets": "145,252,375,468,568,650,747,855,931,1007,1085,1181,1277,1372,1469,1564,1662,1775,1869,2561"
+                    }
+                }
+            ]
+        }
+    ]
+}

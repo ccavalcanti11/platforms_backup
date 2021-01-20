@@ -1,0 +1,49 @@
+<div data-awbe-component="awbe-include" data-awbe-component-params="cabecalhoVoltarPagina"></div>
+
+<div id="header-hide-arrow" data-role="header" data-position="fixed" data-tap-toggle="false" class="headerfix">
+	<a id="btnLeftPanel" href="#webCard" class="btn-back"></a>
+	<h1><%=AWBE.localStorage.getItem('title')%></h1>
+</div>
+
+<div class="ui-content webCard" data-role="content" style="padding: 1em; padding-bottom: 0;">
+	<h2>DESABILITAR</h2>
+	<p>
+		Com o Cart&atilde;o Virtual seus dados ficam ainda mais seguros, ao desabilita-lo voc&ecirc; poder&aacute; utilizar apenas o n&uacute;mero real do seu cart&atilde;o de cr&eacute;dito nas suas compras pela internet.
+		<br><br>
+		Os n&uacute;meros de Cart&atilde;o Virtual j&aacute; gerados n&atilde;o ser&atilde;o cancelados e ainda poder&atilde;o ser utilizados dentro dos respectivos prazos de validade.
+	</p>
+
+</div>
+
+<script>
+	window.injecaoActionName = '#dispositivoSegurancaValidationDesabilitarWebCard';
+</script>
+
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/webCard/webCard.js"></script>
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/smic/injecaoDispSeguranca.js"></script>
+
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="webCardDesabilitarNegadoPopUp">
+	<p class="titulo-modal">Acesso Bloqueado</p>
+	<p class="texto-modal-normal">N&atilde;o foi poss&iacute;vel desabilitar o Cart&atilde;o Virtual. Por favor, entre em contato com a Central de Atendimento.</p>
+	<div class="align-botoes txt-caixaalta">	
+		<a href="#meusCartoes" onclick="fixPopupIssue(false)" class="botao-modal-002">OK</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="sistemaIndisponivel">
+	<p class="titulo-modal">Sistema indispon&iacute;vel</p>
+	<p class="texto-modal-normal">Sistema indispon&iacute;vel no momento, tente novamente mais tarde. Caso o erro persista, entre em contato com a Central de Atendimento.</p>
+	<div class="align-botoes">
+		<a href="#webCard" onclick="fixPopupIssue(false);imageNoScroll('sistemaIndisponivel',false);" class="botao-modal-002">FECHAR</a>
+	</div>
+</div>
+
+

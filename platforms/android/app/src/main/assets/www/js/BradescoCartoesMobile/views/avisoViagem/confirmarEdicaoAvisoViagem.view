@@ -1,0 +1,102 @@
+<div data-awbe-component="awbe-include" data-awbe-component-params="cabecalhoVoltarPagina"></div>
+
+
+<div class="ui-content aviso-viagem" data-role="content">
+
+		<h2>DADOS DA VIAGEM</h2>
+
+	<div>
+		<p class="fnt-book color-gray-darker">Confira o resumo do seu
+			Aviso de Viagem e confirme.</p>
+	</div>
+		<% var avisoViagem = model.avisoViagem;
+
+		_.forEach(avisoViagem.avisoContinentes,
+		function(itemAvisoViagemContinente) {
+
+		if(itemAvisoViagemContinente.dataInicioAsInteger &&
+		itemAvisoViagemContinente.dataFimAsInteger){%>
+		
+		
+	
+		<div title=" ">
+			<hr style="height: 1px;">
+			<div class="fnt-book txt-12em color-gray-darker"><%=
+				itemAvisoViagemContinente.continente.nome %>
+			</div>
+			<hr style="height: 1px;">
+			<div class="ui-grid-a">
+				<div class="ui-block-a" style="float: left; width: 50%;"
+					title="Per&iacute;odo da viagem de <%=converterDataIntParaFormatada(itemAvisoViagemContinente.dataInicioAsInteger)%> 
+															 At&eacute; <%=converterDataIntParaFormatada(itemAvisoViagemContinente.dataFimAsInteger)%>">
+					<div class="fnt-book color-gray-darker fnt-bold">Per&iacute;odo</div>
+					<br>
+					<div class="fnt-book color-gray-darker txt-08em">De:</div>
+					<div class="fnt-book color-gray-darker"><%=converterDataIntParaFormatada(itemAvisoViagemContinente.dataInicioAsInteger)%></div>
+					<br>
+					<div class="fnt-book color-gray-darker txt-08em">At&eacute;:</div>
+					<div class="fnt-book color-gray-darker"><%=converterDataIntParaFormatada(itemAvisoViagemContinente.dataFimAsInteger)%></div>
+				</div>
+				<div class="ui-block-b" style="float: right; width: 50%;">
+					<% if(itemAvisoViagemContinente.avisosPais &&
+					itemAvisoViagemContinente.avisosPais.length>0){%>
+					<div class="fnt-book color-gray-darker fnt-bold">Locais</div>
+					<br> 
+					<%_.forEach(itemAvisoViagemContinente.avisosPais,
+					function(itemAvisoViagemPais) {if(itemAvisoViagemPais.selecionado){%>
+					<div class="fnt-book color-gray-darker"><%=itemAvisoViagemPais.pais.nome%></div>
+					<%} })}%>
+				</div>
+			</div>
+		</div>
+		<br>
+		<%} })%>
+
+	<br>
+
+
+<div data-awbe-component="popup" data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="avisoViagemIncluidoSucesso">
+	<p class="texto-aviso-sucesso">Aviso de
+		Viagem inclu&iacute;do com sucesso!</p>
+	<div class="align-botoes txt-caixaalta">
+		<a href="#avisoViagem" onclick="unlockScroll()" data-rel="back" class="botao-modal-002">OK</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup" data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="avisoViagemAlteradoSucesso">
+	<p class="texto-aviso-sucesso">Aviso de
+		Viagem alterado com sucesso!</p>
+	<div class="align-botoes txt-caixaalta">
+		<a href="#avisoViagem" onclick="unlockScroll()" data-rel="back" class="botao-modal-002">OK</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup" data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="avisoViagemErro">
+	<p class="texto-modal-normal" style="text-align: left">N&atildeo foi poss&iacute;vel concluir o aviso de viagem.</p>
+	<p class="texto-modal-normal" style="text-align: left">Por favor,
+		entre em contato com a Central de Atendimento.</p>
+	<div class="align-botoes txt-caixaalta">
+		<a href="#avisoViagem" onclick="unlockScroll()" data-rel="back" class="botao-modal-002">OK</a>
+	</div>
+</div>
+
+</div>
+
+<div id="salvarAvisoViagem"></div>
+
+<script>
+	window.injecaoActionName = '#dispositivoSegurancaValidationSalvarAvisoViagem';
+	window.injecaoTargetElement = 'salvarAvisoViagem';
+</script>
+
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/avisoViagem/avisoViagem.js"></script>
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/smic/injecaoDispSeguranca.js"></script>

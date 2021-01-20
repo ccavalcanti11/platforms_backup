@@ -1,0 +1,56 @@
+<div id="header-hide-arrow" data-role="header" data-position="fixed" data-tap-toggle="false">
+	<a id="btnLeftPanel" href="#perfilEditar" class="btn-back"></a>
+	<h1>Pontos Livelo</h1>
+</div>
+
+<div class="page ui-content" data-role="content">
+	<%	var retorno = AWBE.sessionStorage.getItem('retornoLivelo');
+		var programaFidelidade = AWBE.sessionStorage.getItem('consultarProdutoProgramaFidelidade');
+		if(retorno.errorCode === undefined && retorno.errorMessage === undefined){ %>
+	
+<div class="bkg-SaldoPontosLivelo">
+
+    <img src="img/bkg-saldo-pontos-livelo.jpg" class="img-bkg-SaldoPontosLivelo">
+    <div class="pontuacaoLivelo">
+		<p id="qtdePontos"></p>
+	    <p id="txtSaldoLivelo">SEU SALDO LIVELO</p>
+    </div>
+</div>
+		<p class="txtLivelo" style="margin-top: 0;">Total de pontos vinculados &agrave; sua conta.</p>
+				
+		<hr class="hr-pontosLivelo"/>
+
+		<div class="ui-btn-blue-Livelo" onclick="irParaSitePontosLivelo();" >
+			<p class="botaoAzul-Livelo">Trocar meus pontos</p>
+		</div>
+
+		<p class="txtLivelo" style="margin-left: 3em;">Para saber mais detalhes <a href="" onclick="irParaConsulteALivelo();">consulte a Livelo.</a></p>
+
+	<% } else if(retorno.amount === undefined && retorno.errorCode == 12100 && Object.keys(programaFidelidade).length != 0){ %>
+		<div class="bkg-facaParteLivelo">
+			<img src="img/banner-livelo-faca-parte.svg" class="img-bkg-facaParteLivelo">
+		</div>
+		<!--- normal -->
+			<p class="txtLiveloFacaParte">A sua conta participa dos nossos programas de "Pontos Livelo". Voc&ecirc; pode começar, ainda hoje, a trocar seus pontos por recompensas, ativando sua conta nos programas dispon&iacute;veis. Para saber mais detalhes <a onclick="irParaConsulteALivelo();" href="">consulte a Livelo.</a></p>
+		<hr>
+		<!-- consultarProdutoProgramaFidelidade - 1: Fidelidade Bradesco Cartões // 2: Membership Rewards -->
+		<% if (programaFidelidade.includes(1)) {
+		%>
+			<!--- fidelidade bradesco cartões -->
+			<div class="progRecompensa">
+				<p class="txtLiveloFacaParte">No programa <b>Fidelidade Bradesco Cart&otilde;es</b>, voc&ecirc; acumula pontos Livelo e desfruta de mais de 700 mil op&ccedil;&otilde;es de recompensas. <br><a onclick="irParaHotsiteFidelidade();" href="">Clique para ativar sua conta.</a></a></p>
+			</div>
+		<% } if (programaFidelidade.includes(2)) { %>
+			<!--- membership rewards -->
+			<div class="progRecompensa">
+				<p class="txtLiveloFacaParte">Os clientes participantes do <b>Membership Rewards</b> tamb&eacute;m acumulam pontos que nunca expiram na Livelo. <a onclick="irParaMembershipRewards();" href="">Clique aqui para ativar sua conta.</a></a></p>
+			</div>
+		<% } %>
+	<% } else { %>
+		<div class="fnt-regular color-gray-darker txt-12em" style="padding-top:1em;">Voc&ecirc; n&atilde;o possui cart&otilde;es eleg&iacute;veis a este servi&ccedil;o.</div>
+	<% } %>
+
+</div>
+
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/pontosLivelo/pontosLivelo.js"></script>
+<link type="text/css" rel="stylesheet" href="js/BradescoCartoesMobile/views/pontosLivelo/pontosLivelo.css"></link>

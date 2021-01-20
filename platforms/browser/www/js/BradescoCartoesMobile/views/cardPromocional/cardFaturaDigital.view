@@ -1,0 +1,10 @@
+<!-- POPUP DE FATURA DIGITAL APARECE QUANDO A FATURA DIGITAL NAO ESTA HABILITADA-->
+<div class="ui-grid-solo faturadigital promofit" id="FaturaDigitalPromo">
+    <div class="fnt-medium txt-13em color-gray-darker divtitle">Fatura Digital</div>
+    <div class="toggle-btn-right">
+      <input onchange="habilitarFaturaDigital()" type="checkbox" data-role="flipswitch" value="habilitadoFatDig" id="faturaDigitalON" data-on-text="" data-off-text="">
+    </div>
+    <div class="smalltxt">Habilite o servi&ccedil;o para inibir o envio da fatura impressa na sua casa e acompanhar os seus gastos pelo site ou aplicativo Bradesco.
+    </div>
+</div>
+<h4 class="ui-collapsible-heading ui-collapsible-heading-collapsed" style="margin: 0 -1em;"><br/></h4>

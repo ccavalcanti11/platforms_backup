@@ -1,0 +1,237 @@
+			
+	<% if (params.perfilCliente == "C" && params.validaCorrentista == true) { %>
+			<input type="hidden" value="<%=params.cpf%>" data-awbe-bind="cpf"/>
+			<input type="hidden" value="<%=params.contaEDigito%>" data-awbe-bind="contaEDigito"/>
+			<input type="hidden" value="<%=params.agencia%>" data-awbe-bind="agencia"/>
+			<input type="hidden" value="<%=params.titularidade%>" data-awbe-bind="titularidade"/>
+			<input type="hidden" value="<%=params.perfilCliente%>" data-awbe-bind="perfilCliente"/>
+			<input type="hidden" value="<%=params.processadoraCartao%>" id="processadoraCartao" data-awbe-bind="processadoraCartao"/>
+
+		<% if (params.tipoDispositivoSeguranca == 1 || model.tipoDispositivoSeguranca == 1) { %>
+			<label class="forms">Chave de seguran&ccedil;a</label>
+			<input type="tel" class="input-pass-disp-seg" pattern="[0-9]*" inputmode="numeric" name="dispositivo" id="dispositivoToken" data-awbe-bind="dispositivo" maxlength="6" value="<%=params.dispositivo%>" autocomplete="off"/>
+			<input type="hidden" name="tipoDispositivoTela" id="tipoDispositivoTela" value="dispositivoToken" />
+			<p class="fnt-book txt-075em color-gray-darker margin-bottom-17">Ref.: <%=model.referen%></p>
+		<% } %>
+		<% if (params.tipoDispositivoSeguranca == 4 || model.tipoDispositivoSeguranca == 4) { %>
+			<label class="forms">Chave de seguran&ccedil;a</label>
+			<input type="tel" class="input-pass-disp-seg" pattern="[0-9]*" inputmode="numeric" name="dispositivo" id="dispositivoMtoken" data-awbe-bind="dispositivo" maxlength="6" value="<%=params.dispositivo%>" autocomplete="off"/>
+			<input type="hidden" name="tipoDispositivoTela" id="tipoDispositivoTela" value="dispositivoMToken" />
+			<p class="fnt-book txt-075em color-gray-darker">Ref.: <%=model.referen%></p>
+			<hr calss="hr-margin-tb"/>
+			<a href="#" class="no-decoration">
+				<span class="icon-go-right-dispositivo"></span>
+				<p class="fnt-book txt-1em color-gray-darker">	
+					<span class="fnt-bold">Visualizar Chave</span><br/>
+					<span style="margin-top: -1em;">no aplicativo Bradesco</span>
+				</p>
+			</a>
+		<% } %>			
+		<% if (params.tipoDispositivoSeguranca == 2 || model.tipoDispositivoSeguranca == 2) { %>
+			<input type="hidden" value="<%=model.celula%>" data-awbe-bind="posicaoTanCode"/>
+			<input type="hidden" value="<%=model.referen%>" data-awbe-bind="numRefDispositivo"/>
+			<input type="hidden" name="tipoDispositivoTela" id="tipoDispositivoTela" value="dispositivoTan" />			
+			<p class="fnt-medium txt-1em color-gray-darker" title="Chave da posi&ccedil;&atilde;o <%=model.celula%>">Chave da posi&ccedil;&atilde;o <font class="fnt-bold" title=""><%=model.celula%>:</p>
+			<input oncopy="return false" oncut="return false" onpaste="return false" type="tel" class="input-pass-disp-seg" pattern="[0-9]*" inputmode="numeric" name="dispositivo" id="dispositivoTan" data-awbe-bind="dispositivo" maxlength="3" autocomplete="off"/>
+			<p class="fnt-book txt-075em color-gray-darker margin-bottom-17">Ref: <%=model.referen%></p>
+		<% } %>
+
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="atualizarDispositivoSeguranca">
+	<p class="texto-modal-normal">&eacute; necess&aacute;rio atualizar seu dispositivo de seguran&ccedil;a para acessar o aplicativo.</p>
+	<p class="texto-modal-normal">V&aacute; &agrave; sua ag&ecirc;ncia ou ligue para Central de Atendimento:<br/>0800 570 0022</p>
+	<div class="align-botoes">	
+		<a href="#" data-rel="back" class="botao-modal-002">VOLTAR</a>
+		<a href="#" data-rel="back" class="botao-modal-002">OK</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="dispositivoIncorreto">
+	<p class="titulo-modal">A chave informada n&atilde;o &eacute; v&aacute;lida</p>
+	<p class="texto-modal-normal">Voc&ecirc; tem mais <span class="texto-negrito-modal" id="tent2"></span>.</p>
+	<div class="align-botoes txt-caixaalta-android">	
+		<a href="#" data-rel="back" id="botao-dispIncorreto" class="botao-modal-002 txt-semCapitalize-iOS">Tentar novamente</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="dispositivoIncorreto2">
+	<p class="titulo-modal">A chave informada n&atilde;o &eacute; v&aacute;lida</p>
+	<p class="texto-modal-normal">A chave ser&aacute; desativada na pr&oacute;xima tentativa incorreta</span>.</p>
+	<div class="align-botoes txt-caixaalta-android">	
+		<a href="#" data-rel="back" id="botao-dispIncorreto2" class="botao-modal-002 txt-semCapitalize-iOS">Tentar novamente</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="dispositivoBloqueado">
+	<p class="titulo-modal">Chave de Seguran&ccedil;a desativada</p>
+	<p class="texto-modal-normal">Para reativ&aacute;-la procure sua ag&ecirc;ncia ou contate o Fone F&aacute;cil Bradesco para outras informa&ccedil;&otilde;es.</p>
+	<div class="align-botoes">	
+		<a href="#meusCartoes" id="botao-dispositivoBloqueado-Fechar" class="botao-modal-002">FECHAR</a>
+	</div>
+</div>
+
+	 <% } else { %>
+		<label class="forms" style="display: flex;width: fit-content;">
+			<span class='txt-dispseg-senha'>Senha de compra do cart&atilde;o final <%=completeLeft(params.parcialCartao, 4)%></span>
+		</label>
+		<input oncopy="return false" oncut="return false" onpaste="return false" type="tel" class="input-pass-seis" pattern="[0-9]*" inputmode="numeric" name="senhaCartao" id="senhaCartao" data-awbe-bind="senhaCartao" autocomplete="off" maxlength="6" />
+		<input type="hidden" name="tipoDispositivoTela" id="tipoDispositivoTela" value="senhaCartao" />
+ 		<br/>
+ 		<div data-awbe-component="popup" 
+			data-awbe-component-option-theme="a"
+			data-awbe-component-option-theme-modal="b"
+			data-awbe-component-option-modal="true"
+			data-awbe-component-popup-id="senhaIncorreta">
+			<p class="titulo-modal">Sua senha est&aacute; incorreta.</p>
+			<p class="texto-modal-normal">Voc&ecirc; tem mais <span class="texto-negrito-modal" id="tent"></span> de acesso. Ao atingir esse limite, seu acesso ser&aacute; bloqueado.</p>
+			<div class="align-botoes txt-caixaalta">	
+				<a href="#" data-rel="back" onclick="unlockScroll();" class="botao-modal-002">Tentar novamente</a>
+			</div>
+		</div>
+		<div data-awbe-component="popup" 
+			data-awbe-component-option-theme="a"
+			data-awbe-component-option-theme-modal="b"
+			data-awbe-component-option-modal="true"
+			data-awbe-component-popup-id="senhaBloqueada">
+			<p class="titulo-modal"><span id="title-bloqueio"></span></p>
+			<p class="texto-modal-normal">Por favor, entre em contato com a Central de Atendimento.</p>
+			<div class="align-botoes txt-caixaalta">	
+				<a href="#meusCartoes" data-rel="back" class="botao-modal-002">FECHAR</a>
+			</div>
+		</div>
+		<div data-awbe-component="popup" 
+			data-awbe-component-option-theme="a"
+			data-awbe-component-option-theme-modal="b"
+			data-awbe-component-option-modal="true"
+			data-awbe-component-popup-id="senhaBloqueadaCV">
+			<p class="titulo-modal"><span id="title-bloqueio"></span></p>
+			<p class="texto-modal-normal">N&atilde;o foi poss&iacute;vel desabilitar o Cart&atilde;o Virtual. Por favor, entre em contato com a Central de Atendimento.</p>
+			<div class="align-botoes txt-caixaalta">	
+				<a href="#meusCartoes" data-rel="back" class="botao-modal-002">FECHAR</a>
+			</div>
+
+		</div>
+		
+		<div data-awbe-component="popup" 
+			data-awbe-component-option-theme="a"
+			data-awbe-component-option-theme-modal="b"
+			data-awbe-component-option-modal="true"
+			data-awbe-component-popup-id="dadosNEncontrados">
+			<p class="texto-modal-normal">Os dados informados n&atilde;o foram encontrados. Entre em contato com a Central de Atendimento.</p>
+			<div class="align-botoes txt-caixaalta">	
+				<a href="#" data-rel="back" class="botao-modal-002">Fechar</a>
+			</div>
+		</div>
+		
+		<div data-awbe-component="popup" 
+			data-awbe-component-option-theme="a"
+			data-awbe-component-option-theme-modal="b"
+			data-awbe-component-option-modal="true"
+			data-awbe-component-popup-id="cartaoBloqueado">
+			<p class="texto-modal-normal">N&atilde;o foi poss&iacute;vel finalizar seu cadastro, por favor entrar em contato com a Central de Atendimento</p>
+			<div class="align-botoes">	
+				<a href="#meusCartoes" data-rel="back" class="botao-modal-002">Fechar</a>
+			</div>
+		</div>
+
+		<div data-awbe-component="popup" 
+			data-awbe-component-option-theme="a"
+			data-awbe-component-option-theme-modal="b"
+			data-awbe-component-option-modal="true"
+			data-awbe-component-popup-id="dadosNConferem">
+			<p class="texto-modal-normal">Verifique o n&uacute;mero do cart&atilde;o informado e digite novamente ou digite um n&uacute;mero de cart&atilde;o eleg&iacute;vel.</p>
+			<div class="align-botoes txt-caixaalta">	
+				<a href="#" data-rel="back" class="botao-modal-002">Fechar</a>
+			</div>
+		</div>
+
+		<div data-awbe-component="popup" 
+			data-awbe-component-option-theme="a"
+			data-awbe-component-option-theme-modal="b"
+			data-awbe-component-option-modal="true"
+			data-awbe-component-popup-id="dadosNConferemValidade">
+			<p class="texto-modal-normal">Acesso Bloqueado - Voc&ecirc; excedeu o n&uacute;mero m&aacute;ximo de tentativas. Entre em contato com a Central de Atendimento.</p>
+			<div class="align-botoes txt-caixaalta">	
+				<a href="#" data-rel="back" class="botao-modal-002">Fechar</a>
+			</div>
+		</div>
+		
+		<div data-awbe-component="popup" 
+			data-awbe-component-option-theme="a"
+			data-awbe-component-option-theme-modal="b"
+			data-awbe-component-option-modal="true"
+			data-awbe-component-popup-id="bloqueioE">
+			<p class="titulo-modal"></p>
+			<p class="texto-modal-normal">Servi&ccedil;o Indispon&iacute;vel</p>
+			<div class="align-botoes txt-caixaalta">	
+				<a href="#" data-rel="back" class="botao-modal-002">Fechar</a>
+			</div>
+		</div>
+
+	<% } %>
+
+<div data-awbe-component="popup" 
+	 data-awbe-component-option-theme="a"
+	 data-awbe-component-option-theme-modal="b"
+	 data-awbe-component-option-modal="true"
+	 data-awbe-component-popup-id="alertaInformacao">
+	<p class="texto-modal-normal" id="alerta-mensagem"></p>
+	<div class="align-botoes txt-caixaalta">	
+		<a href="#" data-rel="back" class="botao-modal-002" id="hrefAlerInfo">FECHAR</a>
+	</div>
+</div>
+
+<!-- POPUP DE MENSAGEM GENERICA -->
+ <div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="popup-generico">
+	<p class="titulo-modal" id="titulo-modal-personalizado"></p>
+	<p class="texto-modal-normal" id="mensagem-personalizada"></p>
+ 	<div class="align-botoes">	
+ 		<a href="#" data-rel="back" class="botao-modal-002">FECHAR</a>
+ 	</div>
+ </div>
+  <div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="popup-generico2">
+	<p class="titulo-modal" id="titulo-modal-personalizado2">Erro</p>
+	<p class="texto-modal-normal" id="mensagem-personalizada2">Erro ao validar dispositivo de seguran&ccedil;a. Tente novamente.</p>
+ 	<div class="align-botoes">	
+ 		<a href="#" data-rel="back" id="botao-popup-generico2" class="botao-modal-002">FECHAR</a>
+ 	</div>
+ </div>
+
+
+ <div data-awbe-component="popup" 
+ data-awbe-component-option-theme="a"
+ data-awbe-component-option-theme-modal="b"
+ data-awbe-component-option-modal="true"
+ data-awbe-component-popup-id="popupErroServicoIndisponivel">
+<p class="titulo-modal">Indispon&iacute;vel temporariamente</p>
+<p class="texto-modal-normal">Tente novamente mais tarde.</p>
+<div class="align-botoes txt-caixaalta">    
+<a href="#cartoesAdicionais" data-rel="back" class="botao-modal-002">Fechar</a>
+</div>
+</div>
+
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/dispositivoSeguranca/dispositivoSeguranca.js"></script>
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/webCard/webCard.js"></script>

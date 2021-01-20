@@ -1,0 +1,45 @@
+<div data-awbe-component="awbe-include" data-awbe-component-params="cabecalho"></div>
+<div data-awbe-component="awbe-include" data-awbe-component-params="menuOpcoesDeslogado"></div>
+
+<% BradescoCartoesMobile.timer = model.tempo; %>
+
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/pid/perguntasPid.js"></script>
+
+<div class="ui-content" data-role="content">
+	<form id="formPID" action="#perguntasPid">
+		<input type="hidden" value="<%=params.cpf%>" id="cpf" data-awbe-bind="cpf"/>
+		<h2>PERGUNTAS DE SEGURAN&ccedil;A</h2>
+		<p class="fnt-book txt-1em color-gray-darker"><%=model.pergunta.textoPergunta%></p>
+		<input id="respostaPid5" type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" data-awbe-bind="resposta" />
+	</form>
+</div>
+
+		<div id="footer" data-role="footer" data-position="fixed" class="ui-footer-timer" data-tap-toggle="false">
+			<hr class="hr-margin-error"/>
+			<div id="CountDownTimer" data-timer="<%=model.tempo%>" style="width: 90px; height: 90px;" class="timer"></div>
+			<div class="ui-grid-a">
+				<div class="ui-block-a">
+					<div class="ui-btn-arrow-red-arrow"></div>
+					<div class="ui-btn-arrow-red">
+						<a href="#cancelarPerguntaPid">Cancelar</a>
+					</div>
+				</div>
+				<div class="ui-block-b disabledButton" id="btnConfirmar">
+					<div class="ui-btn-arrow-blue-arrow"></div>
+					<div class="ui-btn-arrow-blue">
+						<a id="submit" href="#">Continuar</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+<div data-awbe-component="popup"
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="limiteTentativas">
+	<p class="texto-modal-normal">N&atilde;o foi poss&iacute;vel finalizar o seu cadastro, por favor entre em contato com a Central de Atendimento.</p>
+	<div class="align-botoes">
+		<a href="#meusCartoes" data-rel="back" class="botao-modal-002 ui-link txt-caixaalta">Fechar</a>
+	</div>
+</div>

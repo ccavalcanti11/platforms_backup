@@ -1,0 +1,44 @@
+<div data-awbe-component="awbe-include"	data-awbe-component-params="cabecalho"></div>
+
+<% 
+	var user = AWBE.sessionStorage.getItem('user');
+	if(AWBE.localStorage.getItem('isNCLegado_' + user.cpf) == "true"){ %>
+	<div data-awbe-component="awbe-include" data-awbe-component-params="menuOpcoesLogadoNCLegado"></div>
+<% }else{ %>
+	<div data-awbe-component="awbe-include" data-awbe-component-params="menuOpcoesLogado"></div>
+<% }%>
+
+<div class="ui-content page" data-role="content">
+	<%if (AWBE.sessionStorage.getItem("hasCartoesCarrosselSenha")){%>
+		<div data-awbe-component="carrosselSenhaCartao"
+			data-awbe-target-element="carouselTarget"></div>
+	
+		<div id="carouselTarget"></div>
+	<%}else{%>
+		<dl>
+			<dt class="txt-1em color-gray-darker">Voc&ecirc; n&atilde;o possui cart&otilde;es associados a este servi&ccedil;o.</dt>
+		</dl>
+	<%}%>
+	<div data-awbe-component="popup" data-awbe-component-option-theme="a"
+		data-awbe-component-option-theme-modal="b"
+		data-awbe-component-option-modal="true"
+		data-awbe-component-popup-id="senhaCartaoErro">
+		<p class="titulo-modal">Erro</p>
+		<p class="texto-modal-normal" id="senhaCartaoErroMsg"></p>
+		<div class="align-botoes">
+			<a href="#senhaCartao" data-rel="back" class="botao-modal-002">FECHAR</a>
+		</div>
+	</div>
+	
+	<div data-awbe-component="popup" data-awbe-component-option-theme="a"
+		data-awbe-component-option-theme-modal="b"
+		data-awbe-component-option-modal="true"
+		data-awbe-component-popup-id="senhaCartaoAten">
+		<p class="titulo-modal">Aten&ccedil;&atilde;o</p>
+		<p class="texto-modal-normal" id="senhaCartaoAtenMsg"></p>
+		<div class="align-botoes">
+			<a href="#senhaCartao" data-rel="back" class="botao-modal-002">Fechar</a>
+		</div>
+	</div>
+
+</div>

@@ -1,0 +1,203 @@
+<div data-awbe-component="awbe-include" data-awbe-component-params="menuOpcoesDeslogado"></div>
+<div data-awbe-component="awbe-include" data-awbe-component-params="cabecalho"></div>
+
+
+<div  class="ui-content">
+	<%listaContas = model.meusCartoes != null ? model.meusCartoes : model.deleteConta != null ? model.deleteConta : model.editarConta != null ? model.editarConta : model.salvarCartao;%>
+
+	<form action="#adicionarCartoes">
+		<%if(!$.isEmptyObject(listaContas)){%>
+			<div class="titulo-lista">escolha um perfil</div>
+
+		<%}else{%>
+			<p class="fnt-book color-gray-darker txt-12em">Voc&ecirc; ainda n&atilde;o possui um perfil cadastrado no aplicativo.</p>
+			<p class="fnt-book color-gray-darker txt-12em">Adicione um perfil para ter acesso aos dados do seu cart&atilde;o de cr&eacute;dito.</p>
+		<%}%>
+		<div id="listview-meuscartoes">
+			<ul data-role="listview">
+				<%var index = 0;%>
+				<%_.forEach(listaContas, function(item) {%>
+
+					<li data-icon="false">
+						<a href="#login/index=<%=index%>"><%=item.identificador%></a>
+						<a href="javascript:void(0)" rel="modal" onclick="openPopUpConfirmar(<%=index%>)" id="<%=index%>" class="icon-listview-comum"></a>
+					</li>
+
+				<%index++;%>
+				<%})%>
+			</ul>
+		</div>
+	</form>
+</div>
+
+<div data-role="footer" data-position="fixed" data-tap-toggle="false">
+	<a id="btnAddConta" class="ui-btn-adicionar">Adicionar perfil</a>
+</div>
+
+<!-- POP UP DE AÇ&atilde;O DE EDITAR / EXCLUIR CONTA ------------------------------------------------------ -->
+<div data-awbe-component="popup"
+       data-awbe-component-option-theme-modal="b"
+       data-awbe-component-option-modal="false"
+       data-awbe-component-option-theme="a"
+       data-awbe-component-popup-id="popupAcao">
+       <a onclick="BradescoCartoesMobile.components.popularAppsFlyerGa('EDITARPERFIL'); abrirPopupEditar()" class="botao-modal-001">Editar</a>
+       <a onclick="AWBE.Analytics.eventClick('meusCartoesAbrirPopupExcluir');abrirPopupExcluir()" class="botao-modal-001">Excluir</a>
+</div>
+
+<!-- POP UP EDITAR CONTA --------------------------------------------------------------------------- -->
+<div data-awbe-component="popup"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-option-theme="a"
+	data-awbe-component-popup-id="editPopup">
+    <form id="editPopupForm" action="#editarConta">
+		<p class="titulo-modal">D&ecirc; um nome para este perfil:</p>
+		<input type="hidden" data-awbe-bind="index" value="index" id="editIndex" />
+		<input type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" id="identificador" data-awbe-bind="identificador" placeholder='"Exemplo: "Cart&atilde;o do Paulo" ou ..."' style="font-size: 0.9em !important;" maxlength="20"/>
+    </form>
+    	<div class="align-botoes">
+			<a onclick="clearInputClosePopup()" class="botao-modal-002 btnCancel">CANCELAR</a>
+			<a onclick="editarNomePerfil();" class="botao-modal-002 disabledButton" id="botaoSalvarNomePerfil">SALVAR</a>
+		</div>
+</div>
+
+
+<!-- POP UP DESEJA EXCLUIR CONTA ------------------------------------------------------------------- -->
+ <div data-awbe-component="popup"
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="deletePopupConf">
+	<p class="titulo-modal">Confirma&ccedil;&atilde;o</p>
+	<p class="texto-modal-normal">Deseja realmente excluir esse perfil?</p>
+	<form id="excluiPopupForm" action="#deleteConta">
+		<input type="hidden" id="deleteIndex" data-awbe-bind="index" value="index" />
+	</form>
+	<div class="align-botoes">
+		<a data-rel="back" class="botao-modal-002">N&atilde;o</a>
+		<a onclick="excluir()" data-rel="back" class="botao-modal-002">Sim</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup"
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="bloqueioVirtual">
+	<p class="texto-modal-normal"><b>Acesso temporariamente bloqueado</b></p>
+	<p class="texto-modal-normal">Para logar no Aplicativo cadastre uma nova senha ou entre em contato com a Central de Atendimento.</p>
+	<div class="align-botoes ">
+		<a href="#informacoesCartaoEsqueciSenha" data-rel="back" class="botao-modal-002">OK</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup"
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="popup-webview">
+	<p class="titulo-modal" id="titulo-modal-personalizado"></p>
+	<p class="texto-modal-normal">
+		Identificamos que h&aacute; atualiza&ccedil;&otilde;es pendentes do sistema Android que devem ser feitas antes de acessar o App Bradesco Cart&otilde;es.
+	</p>
+	<div class="align-botoes">
+		<a class="botao-modal-002" onclick="atualizarWebView()">Atualizar</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup"
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="popupAtualizarVersaoAppObrigatorio">
+	<p class="titulo-modal" id="titulo-modal-personalizado"></p>
+	<p class="texto-modal-normal">J&aacute; existe uma nova vers&atilde;o na loja, atualize o seu aplicativo.</p>
+	<div class="align-botoes">
+		<a class="botao-modal-002" onclick="irParaPlayStore()">Ir para a loja</a>
+		<a href="dcdcartoes://home" class="botao-modal-002">Agora n&atilde;o</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup"
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="popupAtualizarVersaoApp">
+	<p class="titulo-modal" id="titulo-modal-personalizado"></p>
+	<p class="texto-modal-normal">J&aacute; existe uma nova vers&atilde;o na loja, atualize o seu aplicativo.</p>
+	<div class="align-botoes">
+		<a class="botao-modal-002" onclick="irParaPlayStore()">Ir para a loja</a>
+		<a data-rel="back" class="botao-modal-002" onclick="fecharPopupAtualizacao()">Agora n&atilde;o</a>
+	</div>
+</div>
+
+<!-- POPUP DE MENSAGEM GENERICA -->
+ <div data-awbe-component="popup"
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="popup-generico">
+	<p class="titulo-modal" id="titulo-modal-personalizado"></p>
+	<p class="texto-modal-normal" id="mensagem-personalizada"></p>
+ 		<div class="align-botoes">
+ 			<a href="#" data-rel="back"  class="botao-modal-002">FECHAR</a>
+ 		</div>
+</div>
+
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="erroPermissaoCamera">
+	<p class="titulo-modal texto-negrito-modal">Permiss&atilde;o</p>
+	<p class="texto-modal-normal">Para fazer um pagamento via QR Code, precisamos do acesso a sua câmera.</p>
+	<div class="align-botoes align-botoes">	
+		<a onclick="fecharPopupCameraQR()" data-rel="back" class="botao-modal-002">fechar</a>
+	</div>
+</div>
+
+<% if(params.qrCodeSemCadastro){ 
+	params.qrCodeSemCadastro = false;
+%>
+
+<div class="tutorial-container" id="tutorialQr" style="display: block; z-index:1000; position: fixed;">
+	<div style="width: 100%; height: 100%; background: #bfddf0;">
+		<img src="img/tutorial/qrCode/tutorialQRprimeirocadastro.png" style="margin: 0 !important; width: 100%;"></img>
+		<div class="btnFecharTutorialPA btnFecharCarrossel" style="left: 85%;" onclick="fechartutorialQr();">
+			<a>
+				<img src="img/tutorial/qrCode/botaofechar.svg"></img>
+			</a>
+		</div>
+		 <div class="ui-btn-blue" id="btnAddContaQR" style="bottom: 5em; margin: 0 auto; width: 9em; position: relative; background: #0057B1; margin-top: -2em;" >
+			<p class="botaoAzul" style="padding-left: 1em;padding-right: 1em; font-size:0.9em;">Adicionar Perfil</p>
+		 </div> 
+	</div>
+</div>
+
+<% }%>
+
+<div data-awbe-component="popup" 
+			data-awbe-component-option-theme="a"
+			data-awbe-component-option-theme-modal="b"
+			data-awbe-component-option-modal="true"
+			data-awbe-component-popup-id="servicoIndisponivel">
+	<p class="titulo-modal"></p>
+	<p class="texto-modal-normal">Servi&ccedil;o Indispon&iacute;vel</p>
+	<div class="align-botoes txt-caixaalta">	
+		<a href="#" data-rel="back" class="botao-modal-002">Fechar</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup" data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="badWordsPopUp">
+	<p class="titulo-modal">Nome inv&aacute;lido</p>
+	<p class="texto-modal-normal">Parece que h&aacute; um erro no nome utilizado. Verifique a digita&ccedil;&atilde;o e tente novamente.</p>
+	<p class="texto-modal-normal">Se por engano estamos bloqueando, por favor, ligue na Central de Atendimento para corre&ccedil;&atilde;o.</p>
+	<div class="align-botoes txt-caixaalta">
+		<a onclick="reabrirPopUpEditar();" data-rel="back" class="botao-modal-002">Fechar</a>
+	</div>
+</div>
+
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/cartoes/meusCartoes.js"></script>

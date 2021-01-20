@@ -1,0 +1,80 @@
+<style>
+
+    <% 
+    
+    var deviceModel = window.device.platform;
+
+    if (deviceModel) {%>
+        <% if(deviceModel.contains('iOS')) {%>
+            
+            .container-flex {
+                display: flex;
+                align-items: center;
+            }
+
+            .btn-aviso-viagem .icon-32 {
+                padding:0;
+                background-position-y: 0;
+                margin: 0;
+                float: inherit;
+                height: 1.2em;
+            }
+
+            .btn-aviso-viagem .icon-editar-destinos {
+                width: 2.2em;
+            }
+
+            div.btn-aviso-viagem {
+                margin: 0;
+                padding: 0;
+                line-height: inherit;
+            }
+
+            .btn-aviso-viagem {
+                font-family: NewJuneBook;
+                font-size: .9em;
+                font-weight: normal;
+                line-height: 1em;
+                text-align: left;
+                color: #2165A1 !important;
+                text-decoration: none;
+                cursor: pointer;
+                padding: 1px 0em .5em 3em;
+                margin: 6px 0;
+            }
+
+            /* iPhone X,6,7,8: */
+            <% if(window.innerWidth == 375) {%>
+                .container-avisos-viagem {
+                    margin-bottom: 3em;
+                }
+            <%}%>
+            
+        <%} else {%>
+            .containerFlexCenter{
+	            display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+
+            .containerFlexCenter .icon-21 {
+                height: 1.3em;
+            }
+
+            .ui-listview .li-aviso-viagem {
+                font-family: NewJuneBook; 
+                font-weight: normal; 
+                font-size: 1em; 
+                color: #636363; 
+                background-color: transparent; 
+                padding: 1.3em 1.5em; 
+                padding-right: 0.7em;
+            }
+
+            .containerFlexCenter .ui-listview {
+                margin: 0;
+                flex-basis: 8%;
+            }
+        <%}%>
+    <%}%> 
+</style>

@@ -1,0 +1,46 @@
+.borda {
+    border-bottom-width: 1px;
+    border-style: solid;
+    border-width: 0 0 1px 0;
+    border-color: #ddd;
+}
+
+#carouselTarget .ui-listview .ui-li-static {
+    border-top-width: 0;
+}
+
+#carouselTarget .flex-superProtegido{
+    display: flex;
+    align-items: center;
+}
+
+.saiba-mais-seguro {
+    margin: .5em 0;
+    min-height: 1.5em;
+    position: relative;
+}
+
+.saiba-mais-seguro > span {
+    padding-top: 0.4em;
+    padding-right: 1.8em;
+    float: left;
+}
+
+.saiba-mais-seguro > .saiba-mais-icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    padding: .65em;
+}
+
+.saiba-mais-seguro > .saiba-mais-icon:after {
+    content: "";
+    background: url(./../../../../css/icons/icon-21.svg) no-repeat center;
+    background-size: contain;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}

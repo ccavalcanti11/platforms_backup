@@ -1,0 +1,18 @@
+<div data-awbe-component="awbe-include" data-awbe-component-params="cabecalho"></div>
+
+<% 
+	var user = AWBE.sessionStorage.getItem('user');
+	if(AWBE.localStorage.getItem('isNCLegado_' + user.cpf) == "true"){ %>
+	<div data-awbe-component="awbe-include" data-awbe-component-params="menuOpcoesLogadoNCLegado"></div>
+<% }else{ %>
+	<div data-awbe-component="awbe-include" data-awbe-component-params="menuOpcoesLogado"></div>
+<% }%>
+
+<div class="page ui-content" data-role="content">
+	<% if (AWBE.sessionStorage.getItem("hasCartoesCarrosselFauturaDigital") == true){ %>
+		<div data-awbe-component="carrosselGenerico" data-awbe-target-element="detalheCarousel"></div>
+		<div id="detalheCarousel" class="faturadigital"></div>
+	<% } else { %>
+		<div class="txt-1em fnt-book color-gray-darker">Voc&ecirc; n&atilde;o possui cart&otilde;es associados a este servi&ccedil;o.</div>
+	<% } %>
+</div>

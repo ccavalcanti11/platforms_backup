@@ -1,0 +1,181 @@
+
+<!-- BLOCO EXTRATO DA HOME -->
+
+<%
+if (model.status == "0" && model.ultimosLancamentos.length > 0) {
+	var ultimosLancamentosView = model.ultimosLancamentos;
+	var isBradescard = model.isBradescard; %>
+	<div>
+		<p class="ultimosLancTitulo">
+		ÚLTIMOS LANÇAMENTOS
+		</p>
+		<% if (ultimosLancamentosView != null && ultimosLancamentosView.length > 0) {
+			var numerocartaoAnterior = '';
+			var nomeCartaoAnterior = '';
+					for (var i = 0; i < ultimosLancamentosView.length; i++) {
+						var ultimoLancamento = ultimosLancamentosView[i];
+						var numerocartao = ultimoLancamento.nroCartao.replace( /\s/g, '' );
+						var nomeCartao = ultimoLancamento.nomePlastico;
+						var numParcelas = ultimoLancamento.nroTotalParcelas;
+						var parcelaParam = '';
+						if(numParcelas > 0){
+							parcelaParam = 'em<br>'+numParcelas + 'x';
+						}
+						var reversao = (ultimoLancamento.tipoSolicitacao == 'R') ? true : false;
+						var pagamento = (ultimoLancamento.tipoSolicitacao == 'C') ? true : false;
+						var valorOriginal = ultimoLancamento.valorOriginal;
+						var valorReal = ultimoLancamento.valorReal;
+						var dataCompra = ultimoLancamento.dataCompra.toString();
+						var dataCompraFormatada = dataCompra.substr(6,2)+"/"+dataCompra.substr(4,2);
+						var descLancamento = dataCompraFormatada;
+						if(reversao){
+							descLancamento = descLancamento + ' - ' + '<span style="color:red;">CANCELADO</span>';
+							var descLancamentoRevertido = dataCompraFormatada+'<br>'+ultimoLancamento.descCompra;
+						}
+						if(reversao || pagamento){
+							if(valorOriginal > 0){
+								valorOriginal = valorOriginal * -1;
+							}
+							if(valorReal > 0){
+								valorReal = valorReal * -1;
+							}
+						}
+						if(!isBradescard && !reversao){
+							console.log('valorOriginal -> ' + valorOriginal);
+							if(valorOriginal < 0 || valorReal < 0){
+								descLancamento = descLancamento + ' - ' + '<span style="color:red;">CANCELADO</span>';
+							}
+						}
+						descLancamento = descLancamento +'<br>'+ultimoLancamento.descCompra;
+						var cartaoMascara;
+						if(numerocartao.length > 15){
+							cartaoMascara = parseInt(numerocartao).toString().slice(0, 4) + ' XXXX XXXX ' + numerocartao.slice(-4);
+						} else {
+							cartaoMascara = parseInt(numerocartao).toString().slice(0, 4) + ' XXXXXX X' + numerocartao.slice(-4) 
+						}
+						var bandeira = ultimoLancamento.descProduto;
+						if(numParcelas > 1 && !AWBE.sessionStorage.getItem('meusCartoesAtual').bradescard){
+							cartaoMascara = "";
+							nomeCartao = "COMPRAS PARCELADAS";
+							bandeira = "";
+						}
+						if(bandeira != null && bandeira != ''){
+							bandeira = bandeira +' - ';
+						}
+						if (numerocartaoAnterior !=  numerocartao || nomeCartao != nomeCartaoAnterior){
+							numerocartaoAnterior = numerocartao;
+							nomeCartaoAnterior = nomeCartao;
+				%>
+			<%if (i>0){%>
+					</tbody>
+				</table><br/>
+			<%}%>
+			<div class="dependentes">
+				<dl class="destaque-area">
+					<dt class="fnt-bold txt-1em color-white destaque-area"><%= nomeCartao %></dt>
+					<dd class="fnt-regular txt-09em color-white destaque-area">
+						<%=bandeira%>
+						<span style=" white-space: nowrap;"><%=cartaoMascara%></span>
+					</dd>
+				</dl>
+			</div>
+			<table class="ui-table-lancamento">
+				<thead>
+					<tr>
+						<th class="bloco-23"></th>
+						<th class="bloco-1"></th>
+						<th class="bloco-23"></th>
+						<th class="bloco-23">US$</th>
+						<th class="bloco-23">R$</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th class="bloco-23" style="padding-top: 1em; text-align: center">
+							<span><img src="css/icons/icon-ultlanc-ativado.svg" width="15px"/></span>
+						</th>
+						<th class="bloco-1" style="padding-top: 1em; text-align: left">
+							<span class="txtHyphens"><%=descLancamento%></span>
+						</th>
+						<th class="align-valor bloco-23" style="padding-top: 1em; text-align: center">
+							<% if (numParcelas > 1){ %>
+								<span style=" white-space: nowrap;"><%=parcelaParam%></span>
+							<% }%>
+						</th>
+						<th class="align-valor bloco-23" style="padding-top: 0.8em"><span style=" white-space: nowrap;"><%=currency(valorOriginal, false)%></span></th>
+						<% if (valorOriginal) {%>
+							<th class="align-valor bloco-23" style="padding-top: 0.8em"><span style=" white-space: nowrap;">-</span></th>
+						<%} else {%>
+							<th class="align-valor bloco-23" style="padding-top: 0.8em"><span style=" white-space: nowrap;"><%=currency(valorReal, false)%></span></th>
+						<%}%>
+					</tr>
+				<%	} else {%>
+					<tr>
+						<th class="bloco-23" style="padding-top: 1em; text-align: center">
+							<span><img src="css/icons/icon-ultlanc-ativado.svg" width="15px"/></span>
+						</th>
+						<th class="bloco-1" style="padding-top: 1em; text-align: left">
+							<span class="txtHyphens"><%=descLancamento%></span>
+						</th>
+						<th class="align-valor bloco-23" style="padding-top: 1em; text-align: center">
+							<% if (numParcelas > 1){ %>
+								<span style=" white-space: nowrap;"><%=parcelaParam%></span>
+							<% }%>
+						</th>
+						<th class="align-valor bloco-23" style="padding-top: 0.8em"><span style=" white-space: nowrap;"><%=currency(valorOriginal, false)%></span></th>
+						<% if (valorOriginal) {%>
+							<th class="align-valor bloco-23" style="padding-top: 0.8em"><span style=" white-space: nowrap;">-</span></th>
+						<%} else {%>
+							<th class="align-valor bloco-23" style="padding-top: 0.8em"><span style=" white-space: nowrap;"><%=currency(valorReal, false)%></span></th>
+						<%}%>
+					</tr>
+				<% } %>
+				<%}%>
+				</tbody>
+			</table>
+			<%} %>
+		</div>
+		<br/>
+		<div id="goExtratoBotao" class="btn-dtl-extrato">
+			Detalhes do extrato
+		</div>
+	<%
+} else if (model.status == "1" || model.ultimosLancamentos.length == 0){%>
+	<div>
+		<p class="ultimosLancTitulo">
+		ÚLTIMOS LANÇAMENTOS
+		</p>
+		<table class="ui-table-lancamento">
+			<thead>
+				<tr>
+					<th class="bloco-23"></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th>
+						<p class="fnt-regular" style="font-size: 12px;text-align: center;">N&atilde;o h&aacute; lan&ccedil;amentos recentes</p>
+					</th>
+				</tr>
+			</tbody>
+		</table>
+				
+		</div>
+		<br/>
+		<div id="goExtratoBotao" class="btn-dtl-extrato">
+			Detalhes do extrato
+		</div>
+<% 	}%>
+
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/home/extrato.js"></script>
+
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a" 
+	data-awbe-component-option-theme-modal="b" 
+	data-awbe-component-option-modal="true" 
+	data-awbe-component-popup-id="sistemaIndisponivelExtratoHome">
+	<p class="texto-modal-normal">N&atilde;o foi poss&iacute;vel carregar seus &uacute;ltimos lan&ccedil;amentos no extrato.<br/><br/> Por favor, tente mais tarde.</p>
+	<div class="align-botoes txt-caixaalta">
+        <a href="#homeLogada" data-rel="back" class="botao-modal-002">Fechar</a>
+    </div>
+</div>

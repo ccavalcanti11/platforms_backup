@@ -1,0 +1,71 @@
+<%
+	var cartao = AWBE.sessionStorage.getItem('meusCartoesAtual');
+	var user = AWBE.sessionStorage.getItem('user');
+	var notificacaoHabilitada = false
+	var notificacao = JSON.parse(AWBE.localStorage.getItem("notificacao"));
+if (notificacao != null){ notificacaoHabilitada = notificacao.isEnable; }
+%>
+
+<div id="header-hide-arrow" data-role="header" data-position="fixed" data-tap-toggle="false">
+	<% if (notificacao != null && notificacao.notificacaoFrom == "home") { %>
+		<a id="btnLeftPanel" href="#homeLogada" class="btn-back"></a>
+	<% } else { %>
+		<a id="btnLeftPanel" href="#homeFaturaDigital" class="btn-back"></a>
+	<% } %>
+	<h1><%=AWBE.localStorage.getItem('title')%></h1>
+</div>
+<div class="ui-content faturadigital" data-role="content">
+	<% if (!cartao.bradescard) { %>
+		<h2>FATURA DIGITAL HABILITADA</h2>
+		<p>A partir de agora voc&ecirc; n&atilde;o receber&aacute; mais a vers&atilde;o impressa da fatura do cart&atilde;o:</p>
+	<% } else { %>
+		<h2>HABILITADA COM SUCESSO</h2>
+		<p>A partir do pr&oacute;ximo vencimento voc&ecirc; receber&aacute; sua fatura apenas no seu e-mail cadastrado, e n&atilde;o mais pelos correios.</p>
+	<% } %>
+	<div id="listaCartoesConfirmados" class="ui-grid-solo cardlist">
+		<dl>
+			<dt class="cartoesconfirmadoslist">
+			<span>&#9679;&#32;&#9679;&#32;&#9679;&#32;&#9679;&#32;</span>
+			<span>&nbsp;</span>
+			<%
+				
+				if(cartao.numeroCartao.length < 16) {
+			%>
+			<span>&#9679;&#32;&#9679;&#32;&#9679;&#32;&#9679;&#32;&#9679;&#32;&#9679;&#32;</span>
+			<span>&nbsp;</span>
+			<span>&#9679;&#32;</span>
+			<%
+				}else{
+			%>
+			<span>&#9679;&#32;&#9679;&#32;&#9679;&#32;&#9679;&#32;</span>
+			<span>&nbsp;</span>
+			<span>&#9679;&#32;&#9679;&#32;&#9679;&#32;&#9679;&#32;</span>
+			<span>&nbsp;</span>
+			<% } %>
+			<span style="font-weight: normal; font-family: NewJuneBold !important;">
+			 	<%=completeLeft(model.cartao.parcialCartao, 4)%>
+			</span>
+		</dt>
+		</dl>
+	</div>
+
+	<% if (cartao.bradescard) { %>
+		<p style="font-weight: bold; word-wrap: break-word;"><%=user.emailCadastro %></p>
+		<hr>
+		<br/>
+	<% } %>
+
+	<% if (!notificacaoHabilitada) { %>
+		<% if (cartao.bradescard) { %>
+			<h2>NOTIFICA&Ccedil;&Otilde;ES</h2>
+		<% } %>
+		<div id="lnkMarqueDiaVencimentoFaturaCalendario">
+		<div class="boxNotificacoes">
+			<a href="#notificacoes/personalizarNotificacoes" class="linknotificacoes">
+				<div class="icon-168-azul"></div>
+				<div class="notificacoestxt">Lembrar-me o dia do vencimento do cart&atilde;o no calend&aacute;rio do meu celular.</div>
+			</a>
+		</div>
+		</div>
+	<% } %>
+</div>

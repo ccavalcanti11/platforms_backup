@@ -1,0 +1,27 @@
+<div data-awbe-component="awbe-include" data-awbe-component-params="cabecalho"></div>
+<% 
+	var user = AWBE.sessionStorage.getItem('user');
+	if(AWBE.localStorage.getItem('isNCLegado_' + user.cpf) == "true"){ %>
+	<div data-awbe-component="awbe-include" data-awbe-component-params="menuOpcoesLogadoNCLegado"></div>
+<% }else{ %>
+	<div data-awbe-component="awbe-include" data-awbe-component-params="menuOpcoesLogado"></div>
+<% }%>
+
+<div class="ui-content page" data-role="content">
+
+<%
+
+	/*Adicionado a chamada do mostrarFuncionalidadesAtivas antes do makeCarousel*/  	  
+		
+	BradescoCartoesMobile.controllers.mostrarFuncionalidadesAtivas();  
+	if (model.cartoesSegurancaCartao.length > 0 ){%>
+		<div data-awbe-component="carouselSeguranca" data-awbe-target-element="carouselTarget"></div>
+		<div id="carouselTarget"></div>
+		<div data-awbe-target-view="seguranca/segurancaDetalhe.view"></div>
+  <%}else{%>
+	<dl>
+		<dt class="txt-1em color-gray-darker">Voc&ecirc; n&atilde;o possui cart&otilde;es associados a este servi&ccedil;o.</dt>  			
+	</dl>
+  <%}%>
+  
+</div>

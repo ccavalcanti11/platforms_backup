@@ -1,0 +1,102 @@
+<article id="<%= model.id %>" class="tutorial-caller-container">
+        <section class="tutorial-content">
+            <div class="btnFecharTutorialPA btnFecharCarrossel" id="<%= model.id %>_btnFecharTutorial">
+                <img src="img/tutorial/home/botaofechar.svg">
+            </div>
+            <section class="info">
+                <header>
+                    <h3 class="title">
+                        <%= model.title %>
+                    </h3>
+                </header>
+                <div class="body">
+                    <%= model.body %>
+                </div>
+                <div class="container-contratar">
+                    <div id="<%= model.id %>_btnEntendiTutorial" class="contratar">
+                        <%= model.btnDescription %>
+                    </div>
+                    <i></i>
+                </div>
+            </section>
+        </section>
+        <style>
+            .tutorial-caller-container * {
+                text-shadow: none;
+                text-align: center;
+                font-family: NewJuneMedium;
+                font-size: 13px;
+            }
+    
+            .tutorial-caller-container p {
+                color: #666;
+                font-size: 1.3em;
+                max-width: 230px;
+                margin: 0 auto;
+                line-height: 1.4;
+            }
+    
+            .tutorial-caller-container {
+                z-index: 9999;
+                width: 100%;
+                height: 100%;
+                background-color: #c9def1;
+                position: fixed !important;
+                overflow: hidden;
+                top: 0;
+                left: 0;
+            }
+    
+            .tutorial-content {
+                width: 100%;
+                height: 100%;
+                margin-top: 35%;
+            }
+    
+            .tutorial-content h3{
+                text-align: center;
+                font-family: NewJuneBold;
+                color: rgb(0, 87, 177);
+                font-size: 1.25em;
+                padding: 0;
+            }
+    
+            .container-contratar {
+                position: relative;
+                display: flex;
+                justify-content: flex-start;
+                margin-top: 2em;
+            }
+    
+            .container-contratar .contratar {
+                background-color: rgb(0, 87, 177);
+                border-radius: 5px;
+                color: #fff;
+                padding: .5em 2em;
+                font-size: 1.2em;
+                margin: 0 auto;
+                display: block;
+            }
+    
+            .tutorial-seta-container:before {
+                content: "";
+                background: url(./img/tutorial/dispositivoSeguranca/seta_2.png) no-repeat center;
+                background-size: contain;
+                padding: 4em;
+                position: absolute;
+                left: 0;
+                top: calc(50% - .25em);
+            }
+    
+            .tutorial-content>.btnFecharCarrossel {
+                right: 3%;
+                left: unset;
+            }
+
+            @media only screen and (max-device-width: 320px) {
+                .tutorial-caller-container * {
+                    font-size: 12px;
+                }
+            }
+        </style>
+    </article>

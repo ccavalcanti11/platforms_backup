@@ -1,0 +1,128 @@
+<div data-awbe-component="awbe-include" data-awbe-component-params="cabecalhoVoltarPagina"></div>
+<div data-awbe-component="awbe-include" data-awbe-component-params="menuOpcoesDeslogado"></div>
+
+
+<div class="page informacoes-cartao cadastro ui-content" data-role="content">	 
+	<input type="hidden" value="<%=model.tipo%>" id="tipo" data-awbe-bind="tipo"/>
+	<form>
+		<input type="hidden" value="perguntasPid" id="view" data-awbe-bind="view"/>
+		<input type="hidden" value="<%=params.cpf%>" id="cpf" data-awbe-bind="cpf"/>
+		<p class="fnt-book txt-1em color-gray-darker">Informe os dados do seu Cart&atilde;o de Cr&eacute;dito Bradesco para ter acesso a todos os servi&ccedil;os.</p>
+		<div class="divAlertas">
+			<hr class="hr-margin-error">
+			<div class="icon-20"></div>
+			<p class="txt-08em fnt-book color-gray-lighter margin-left-28em">Verifique os campos destacados</p>
+			<hr class="hr-margin-error">
+	 	</div>
+		<label class="forms">Digite o N&uacute;mero do Cart&atilde;o</label>
+		<input type="tel" name="numeroCartao" id="numeroCartao" data-awbe-bind="numeroCartao" data-awbe-validation="validarCartao" data-awbe-for="informacoesCartaoValidation" maxlength="19" value="<%=params.numeroCartao%>"/>
+		<label class="forms">Validade do Cart&atilde;o</label>
+		<div class="ui-grid-b">
+			<div class="ui-block-a">
+				<input type="tel" name="mes" id="mes" data-awbe-bind="mes" placeholder="M&ecirc;s" maxlength="2" data-awbe-validation="validarMes" data-awbe-for="informacoesCartaoValidation" value="<%=params.mes%>"/>
+			</div>
+			<div class="ui-block-b margin-left-25em">
+				<div class="ui-block-c">
+					<input type="tel" name="ano" id="ano" data-awbe-bind="ano" placeholder="Ano"  maxlength="2" data-awbe-validation="validarDoisDigitos" data-awbe-for="informacoesCartaoValidation" value="<%=params.ano%>"/>
+				</div>
+			</div>
+		</div>
+        <label class="forms">
+            <span style="display: block float: left;">C&oacute;digo Verificador (CVV).</span>
+            <a class="icon-21" onclick="AWBE.util.openPopup('cvvInvalido')"></a>
+        </label>
+		<div class="ui-grid-b">
+			<div class="ui-block-a">
+				<input type="tel" name="text_digitoCvv" id="digitoCvv" data-awbe-bind="digitoCvv"  maxlength="3" value="<%=params.digitoCvv%>"/>
+			</div>
+			<div class="ui-block-b"></div>
+			<div class="ui-block-c"></div>
+		</div>
+		
+		<input type="checkbox" id="checkCvv" data-awbe-bind="no_cvv"/>
+       	<label for="checkCvv" class="ui-checkbox-geral">Meu cart&atilde;o n&atilde;o possui CVV</label>
+		<label class="forms">Senha</label>
+		<div class="ui-grid-a">
+			<div class="ui-block-a">
+				<input type="tel" class="input-password-numeric input-pass" pattern="[0-9]*" inputmode="numeric" name="senha" id="senhaInformacaoCartao" data-awbe-bind="senha" maxlength="4" data-awbe-for="*" oncopy="return false" oncut="return false" onpaste="return false"/>
+			</div>
+			<div class="ui-block-b"></div>
+		</div>
+		<hr class="hr-margin-tb"/>
+		<div class="ui-grid-a">
+			<div class="ui-block-a">
+				<div class="disabledButton" id="divbotaoAdicionarCartoes">
+					<div class="ui-btn-arrow-blue-arrow"></div>
+					<div class="ui-btn-arrow-blue">
+				    	<a id="botaoSubmitDadosContaCorrente" href="#redefinicaoSenha">Continuar</a>
+				    </div>
+				</div>
+			</div>
+			<div class="ui-block-b"></div>
+		</div>
+	</form>
+</div>
+
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="cvvInvalido">
+	<p class="texto-modal-normal">Cart&otilde;es Visa, Master ou Elo.</p>
+	<img src="img/cartoes/cvv/cvv_invalido1.png"></img>
+	<p class="texto-modal-normal">Cart&otilde;es American Express.</p>
+	<img src="img/cartoes/cvv/cvv_invalido2.png"></img>
+	<div class="align-botoes">	
+		<a href="#" data-rel="back" class="botao-modal-002">Fechar</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="senhaIncorreta">
+	<p class="titulo-modal">A senha informada est&aacute; incorreta.</p>
+	<p class="texto-modal-normal">Voc&ecirc; tem mais <span class="texto-negrito-modal" id="tent"></span> de acesso. Ao atingir esse limite, seu acesso ser&aacute; bloqueado.</p>
+	<div class="align-botoes">	
+		<a href="#informacoesCartao" data-rel="back" class="botao-modal-002 txt-semCapitalize-iOS">Tentar novamente</a>
+	</div>
+</div>
+
+
+<div data-awbe-component="popup" 
+ 	data-awbe-component-option-theme="b"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="iniciarPerguntasPID">
+	<p class="texto-modal-normal">Para continuar, responda as perguntas de seguran&ccedil;a a seguir. Tenha em m&atilde;os seu RG e as informa&ccedil;&otilde;es do seu cart&atilde;o.</p>
+	<p class="texto-modal-normal">As perguntas t&ecirc;m como refer&ecirc;ncia o cart&atilde;o informado.</p>
+ 	<div class="align-botoes">	
+		<a href="#perguntasPid" data-rel="back" class="botao-modal-002">CONTINUAR</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="senhaBloqueada">
+	<p class="titulo-modal">Acesso Bloqueado</p>
+	<p class="texto-modal-normal">Voc&ecirc; excedeu o n&uacute;mero m&aacute;ximo de tentativas, por favor entrar em contato com a Central de Atendimento.</p>
+	<div class="align-botoes">	
+		<a href="#meusCartoes" data-rel="back" class="botao-modal-002">Fechar</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="alertaInformacao">
+	<p class="texto-modal-normal" id="alerta-mensagem"></p>
+	<div class="align-botoes">	
+		<a href="#" data-rel="back" class="botao-modal-002" id="hrefAlerInfo">Fechar</a>
+	</div>
+</div>
+
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/cartoes/cadastro/informacoesCartao.js"></script>

@@ -1,0 +1,28 @@
+<div data-awbe-component="awbe-include" data-awbe-component-params="cabecalho"></div>
+<div data-awbe-component="awbe-include" data-awbe-component-params="menuOpcoesLogado"></div>
+
+<div class="ui-content page" data-role="content">
+
+		<%
+		    /*Adicionado a chamada do mostrarFuncionalidadesAtivas antes do makeCarousel*/        
+		        
+		    BradescoCartoesMobile.controllers.mostrarFuncionalidadesAtivas();  
+	
+		    var cartoesValidados = AWBE.sessionStorage.getItem('cartoesQRCode');		    
+		   
+		    if (cartoesValidados.length > 0){
+
+	    %>
+	    
+        <div data-awbe-component="carouselQrCodeHabilitar" data-awbe-target-element="habilitar-qrcode" data-awbe-target-view="qrcode/habilitacaoQrCodeDetalhe.view"></div>
+</div>        	
+
+<div id="habilitar-qrcode"></div> 
+
+<%}else{%>
+    <dl id="sem-cartoes" style="display: none;">
+        <dt class="txt-1em color-gray-darker">Voc&ecirc; n&atilde;o possui cart&otilde;es associados a este servi&ccedil;o.</dt>
+    </dl>
+  <%}%>
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/qrcode/qrcode.js"></script>
+<link rel="stylesheet" type="text/css" href="js/BradescoCartoesMobile/views/qrcode/qrcode.css"/>

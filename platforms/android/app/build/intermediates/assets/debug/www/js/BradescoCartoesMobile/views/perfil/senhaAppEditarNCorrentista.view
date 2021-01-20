@@ -1,0 +1,106 @@
+<div data-awbe-component="awbe-include" data-awbe-component-params="cabecalhoVoltarPagina"></div>
+
+
+<div class="page ui-content" data-role="content">
+	<form action="#atualizarCadastro">
+		
+		<input type="hidden" value="<%=params.emailCadastro%>" data-awbe-bind="emailCadastro"/>
+		<input type="hidden" value="<%=params.dddCelular%>" data-awbe-bind="dddCelular" />
+		<input type="hidden" value="<%=params.numeroCelular%>" data-awbe-bind="numeroCelular"/>
+		<input type="hidden" value="senhaAppEditar" data-awbe-bind="view"/>
+
+		 <p class="fnt-book txt-12em color-gray-darker">Confirme as altera&ccedil;&otilde;es.</p>
+			<div class="divAlertas">
+				<hr class="hr-margin-error">
+				<div class="icon-20"></div>
+				<p class="txt-08em fnt-book color-gray-lighter margin-left-28em">A senha informada &eacute; inv&aacute;lida.</p>
+				<hr class="hr-margin-error">
+			</div>
+		 <div class="ui-grid-b textoSenha">
+		 	<div class="color-gray-darker">
+		 		<div class="float-left-block">
+					<span>Senha de acesso</span>
+					<br><p class="txt-075em" style="margin-top: 0;margin-bottom: 3em;">De 4 n&uacute;meros</p>
+				</div>
+				<div class="float-left-block">
+					<a class="icon-21" style="margin-left: .5em;" onclick="AWBE.util.openPopup('popupSenhaAcesso')"></a>
+				</div>
+			</div>	
+			<div class="ui-block-a" style="width: 37%;">
+				<input type="tel" class="input-password-numeric input-pass" pattern="[0-9]*" inputmode="numeric" name="senhaAcesso" id="senhaAcesso" data-awbe-bind="senhaAcesso" autocomplete="off" maxlength="4" oncopy="return false" oncut="return false" onpaste="return false"/>
+			</div>
+			<div class="ui-block-b"></div>
+			<div class="ui-block-c"></div>
+		</div>
+		<div class="hr-margin-tb"></div>
+		<div class="ui-grid-a">
+			<div class="ui-block-b disabledButton enable-buttom" style="float:right">
+				<div class="ui-btn-arrow-blue-arrow"></div>
+				<div class="ui-btn-arrow-blue">
+					<a id="btnContinuar" name="btnContinuar">Confirmar</a>
+			    </div>
+			</div>
+		   <div class="ui-block-b"></div>
+		</div>
+	</form>	
+</div>
+
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="dadosAlterado">
+	<p class="texto-modal-normal">Altera&ccedil;&otilde;es salvas com sucesso.</p>
+	<div class="align-botoes">	
+		<a href="#perfilEditar" data-rel="back" class="botao-modal-002">OK</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup" 
+	 data-awbe-component-option-theme="a"
+	 data-awbe-component-option-theme-modal="b"
+	 data-awbe-component-option-modal="true"
+	 data-awbe-component-popup-id="senhaIncorreta">
+		<p class="texto-modal-bloqueio">A senha informada est&aacute; incorreta.</p>
+		<p class="texto-modal-normal">Voc&ecirc; tem mais <span class="texto-negrito-modal" id="tent"></span> de acesso. Ao atingir esse limite, seu acesso ser&aacute; bloqueado.</p>
+ 		<div class="align-botoes">
+ 			<a href="#" data-rel="back"  class="botao-modal-002 txt-semCapitalize-iOS">Tentar novamente</a>
+ 		</div>
+</div>
+
+<!-- Popup Usuario bloqueado devido 3 erros de senha -->
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="acessoBloqueadoNCorrentista">
+	<p class="titulo-modal">Acesso Bloqueado</p>
+	<p class="texto-modal-normal">N&atilde;o foi poss&iacute;vel atualizar seus dados, por favor entre em contato com a Central de Atendimento.</p>
+	<div class="align-botoes">
+		<a href="#meusCartoes" data-rel="back" class="botao-modal-002">FECHAR</a>
+	</div>
+</div>
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="acessoBloqueadoCorrentista">
+	<p class="titulo-modal">Acesso Bloqueado</p>
+	<p class="texto-modal-normal">N&atilde;o foi poss&iacute;vel realizar o login, por favor entre em contato com o Fone F&aacute;cil Bradesco.</p>
+	<div class="align-botoes">
+		<a href="#meusCartoes" data-rel="back" class="botao-modal-002">FECHAR</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup"
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="popupSenhaAcesso">
+	<p class="texto-modal-normal">A senha de acesso &eacute; a mesma utilizada para entrar no aplicativo. Ela foi criada no cadastro ou no site Bradesco Cart&otilde;es.</p>
+	<div class="align-botoes">
+		<a href="#" data-rel="back" class="botao-modal-002">Fechar</a>
+	</div>
+</div>
+<link rel="stylesheet" type="text/css" href="js/BradescoCartoesMobile/views/perfil/editarNCorrentista.css"/>
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/perfil/senhaAppEditarNCorrentista.js"></script>

@@ -1,0 +1,46 @@
+<div data-awbe-component="awbe-include" data-awbe-component-params="cabecalho"></div>
+<div data-awbe-component="awbe-include" data-awbe-component-params="menuOpcoesLogado"></div>
+
+<style>
+#tutorialQrCode{
+	background-color: #bce1f1;
+}
+.desc-qrcode {
+	padding-top: 7.5em;
+	position: relative;
+}
+.desc-qrcode:before {
+	content: "";
+	background: url('./img/tutorial/qrCode/icon_qrcode.png') no-repeat center;
+	background-size: contain;
+	position: absolute;
+	padding: 3.4em;
+	right: 0;
+	left: 0;
+	top: 0;
+}
+</style>
+<script>
+AWBE.localStorage.setItem('QRCODE','false');
+function habilitarCartao() {
+	$("#botaoAlterarApp").addClass("ui-disabled");
+    $('.tutorial-container').hide();
+	$("#tutorialQrCode").remove();
+	AWBE.Connector.showLoading();
+	window.location.href = '#qrCodeHabilitacao';
+}
+
+function cancelarHabilitar() {
+	window.location.href = '#homeLogada';
+}
+
+TutorialCaller.render({
+	title: "Como funciona o<br/>QR Code",
+	body: "<p class='desc-qrcode'>Aqui você pode fazer<br> pagamento com seu<br>celular. É só habilitar os seus<br>cartões de crédito e<br>aproveitar essa facilidade<br>nos estabelecimentos.</p>",
+	btnDescription: "Habilitar",
+	id: "tutorialQrCode",
+	view: "tutoriais/genericTutorial",
+	callback: habilitarCartao,
+	callbackFechar: cancelarHabilitar
+});
+</script>

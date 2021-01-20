@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="br.com.bradesco.cartoes" version="VERSION_GOES_HERE" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>BradescoCartoesMobile</name>
+    <description>Bradesco Cartoes Mobile</description>
+    <author email="" href="">Bradesco Cartoes</author>
+    <content src="index.html" />
+    <access origin="*" />
+    <access launch-external="yes" origin="tel:*" />
+    <icon src="/www/img/icone.png" />
+    <preference name="StatusBarOverlaysWebView" value="false" />
+    <preference name="StatusBarStyle" value="default" />
+    <preference name="SplashScreen" value="none" />
+    <preference name="Orientation" value="portrait" />
+    <preference name="webviewbounce" value="false" />
+    <preference name="UIWebViewBounce" value="false" />
+    <preference name="DisallowOverscroll" value="true" />
+    <preference name="KeyboardDisplayRequiresUserAction" value="false" />
+    <preference name="android-minSdkVersion" value="16" />
+    <preference name="cordova.plugins.diagnostic.modules" value="LOCATION CAMERA NOTIFICATIONS CALENDAR EXTERNAL_STORAGE" />
+    <allow-navigation href="*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="dcdcartoes:*" />
+</widget>

@@ -1,0 +1,15 @@
+
+
+<div id='cotacaoInformativo' class='font-small'>
+  <div class='info-title'><%=params.title%></div>
+  <div class='top-1em'>
+    <div class='info-txt top-1em'>
+      <span><%=params.de%></span><%=params.infoTxtDe%>
+    </div>
+  </div>
+  <div class='top-1em'>
+    <div class='info-txt top-1em'>
+      <span><%=params.ate%></span><%=params.infoTxtAte%>
+    </div>
+  </div>
+</div>

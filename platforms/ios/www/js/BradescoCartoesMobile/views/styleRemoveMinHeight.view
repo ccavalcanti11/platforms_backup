@@ -1,0 +1,15 @@
+<style>
+    <% 
+    deviceModel=window.device.model;
+
+    //iPhone7
+    if (deviceModel && deviceModel.contains('iPhone9')) {%>
+        @media screen and (orientation: portrait) {
+            .ui-mobile .ui-page-active {
+                min-height: unset;
+            }
+        }
+
+    <%}%>
+    %>
+</style>

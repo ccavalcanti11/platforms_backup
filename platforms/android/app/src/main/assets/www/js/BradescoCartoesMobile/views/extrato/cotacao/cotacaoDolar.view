@@ -1,0 +1,119 @@
+<div data-awbe-component="awbe-include" data-awbe-component-params="cabecalhoVoltarPagina"></div>
+
+<div class='ui-content cotacao-container'>
+
+  <div class="fnt-book color-gray-darker">
+    <div id='txtCotacao' class='cotacao-txt'><%=params.txtCotacao%></div>
+    <div id='calendar-target' class='calendar-container'></div>
+  </div>
+
+  <div id='btnBuscarCotacao' class='btn-buscar fnt-book'>Buscar</div>
+
+  <hr class="hr-margin-bottom-0em" style="height: 1px !important;">
+  <div id='targetResult' class='fnt-book color-gray-darker'></div>
+  <div id='targetError' class='fnt-book color-gray-darker'></div>
+
+</div>
+
+
+<link rel="stylesheet" type="text/css" href="js/BradescoCartoesMobile/views/extrato/cotacao/cotacao.css" />
+
+<script>
+  (function () {
+    var cotacaoUtils = new CotacaoUtils();
+    cotacaoUtils.renderTemplateTo('calendarComponent', {}, $('#calendar-target'));
+    cotacaoUtils.renderTemplate('modalInvalidDateCotDolar');
+
+    $('.dateEnd').addClass('ui-state-disabled');
+    $('#btnBuscarCotacao').addClass('ui-state-disabled');
+
+    $('#cotacaoDateInicio, #cotacaoDateFim').on('click', function (e) {
+      console.log('CotacaoDolar - clicked on: ' + e.currentTarget.id )
+      removeUiErrorClass(e.currentTarget.id);
+      var $date = $('#' + e.currentTarget.id);
+      cotacaoUtils.setMinMaxDate($date);
+    });
+
+    var blurOrChange = AWBE.Platforms.runningOnIOS() ? 'blur' : 'change';
+
+    $('#cotacaoDateInicio, #cotacaoDateFim').on(blurOrChange, function (e) {
+      console.log('CotacaoDolar - ' + blurOrChange + ' on: ' + e.currentTarget.id);
+      var $date = $('#'.concat(e.currentTarget.id));
+      var id = $date.attr('id');
+
+      cotacaoUtils.checkDateIsValid($date).then(function () {
+        //date is valid!
+        shouldEnableInput(id);
+        shouldEnableSearchBtn();
+      }).fail(function (err) {
+        console.log('cotacaoDolar.view - ERRO: ' + err);
+        addUiErrorClass(err.objId);
+        $('#btnBuscarCotacao').addClass('ui-state-disabled');
+
+        cotacaoUtils.openPopup('modalInvalidDateCotDolar');
+        renderInfoText();
+      });
+
+      function renderInfoText() {
+      var params = {
+        title: 'Veja como preencher: ',
+        de: 'De: ',
+        infoTxtDe: 'É a data inicial da consulta. Precisa ser um dia útil (lembrando que a cotação é registrada ao final do dia).',
+        ate: 'Até: ',
+        infoTxtAte: 'Selecione qualquer data posterior a selecionada em "De". Você pode consultar um período de até 180 dias úteis.'
+      }
+
+      var $target = $('#targetResult');
+      cotacaoUtils.renderTemplateTo('cotacaoInformativo', params, $target);
+    }
+
+    })
+
+    function addUiErrorClass(id) {
+      id === 'cotacaoDateInicio' ? $('#cotacaoDateInicio').parent().addClass('ui-error') : $('#cotacaoDateFim').parent().addClass('ui-error');
+    }
+
+    function removeUiErrorClass(id) {
+      id === 'cotacaoDateInicio' ? $('#cotacaoDateInicio').parent().removeClass('ui-error') : $('#cotacaoDateFim').parent().removeClass('ui-error');
+    }
+
+    $('#cotacaoDateInicio, #cotacaoDateFim').on('blur', function () {
+      $('#cotacaoDateInicio').attr('min', '');
+      $('#cotacaoDateFim').attr('min', '');
+    })
+
+    $('#btnBuscarCotacao').on('click', function () {
+      //params são int
+
+      var params = {
+        dtIni: dateUtils.convertDateToInt($('#cotacaoDateInicio').val()),
+        dtFim: dateUtils.convertDateToInt($('#cotacaoDateFim').val())
+      }
+
+      
+      cotacaoUtils.getDolarExchangeRateByDate(params).then(function (response) {
+        var $target = $('#targetResult');
+        cotacaoUtils.renderTemplateTo('cotacaoList', response, $target);
+      }).fail(function(err) {
+        var $target = $('#targetError');
+        $target.text(err.message);
+      });
+
+    });
+
+    function shouldEnableInput(id) {
+      if (id === 'cotacaoDateInicio') {
+        if ($('#cotacaoDateInicio').val()) $('.dateEnd').removeClass('ui-state-disabled');
+        else $('.dateEnd').addClass('ui-state-disabled');
+      }
+    }
+
+    function shouldEnableSearchBtn() {
+      var $initDate = $('#cotacaoDateInicio');
+      var $endDate = $('#cotacaoDateFim');
+
+      if (($initDate.val() && $endDate.val()) && $initDate.val() <= $endDate.val()) $('#btnBuscarCotacao').removeClass('ui-state-disabled');
+      else $('#btnBuscarCotacao').addClass('ui-state-disabled');
+    }
+  })();
+</script>

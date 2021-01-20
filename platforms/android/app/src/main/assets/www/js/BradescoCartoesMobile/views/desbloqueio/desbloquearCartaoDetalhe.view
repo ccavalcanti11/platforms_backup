@@ -1,0 +1,144 @@
+<%
+/*Adicionado a chamada do mostrarFuncionalidadesAtivas antes do makeCarousel */
+
+	//injeta styleExtrato na view para corrigir layout window.height
+	var viewStyleRender = AWBE.Views.getView('desbloqueio/styleDesbloqueio');
+	viewStyleRender.render();
+
+BradescoCartoesMobile.controllers.mostrarFuncionalidadesAtivas();
+
+if (model.cartao.bradescard || model.cartao.codigoSituacaoCartao != "XW" || !AWBE.sessionStorage.getItem('menuDesbloqueio')) { %>
+	<div class="ui-blocked-card">
+		<div class="ui-blocked-card-titulo">Este cart&atilde;o est&aacute; bloqueado</div>
+		<p>
+			Todos os cart&otilde;es de cr&eacute;dito novos s&atilde;o emitidos bloqueados, por seguran&ccedil;a.<br/>
+			Ap&oacute;s receber seu cart&atilde;o, voc&ecirc; poder&aacute; desbloque&aacute;-lo nos canais indicados e passar&aacute; a ter acesso aos servi&ccedil;os disponibilizados em seu aplicativo.
+		</p>
+		<p class="ui-blocked-card-mensagem">
+			Caso tenha d&uacute;vidas, entre em contato com a central de relacionamento.
+		</p>
+	</div>
+<% } else { %>
+<div title="Tela de desbloqueio de cart&atilde;o" style="padding-bottom: 1.3em;">
+    <h2>CART&Atilde;O BLOQUEADO</h2>
+    <dl>
+		<dt class="fnt-book txt-1em color-gray-darker">Para fazer o desbloqueio, tenha<br/>certeza de que j&aacute; recebeu o seu<br/>cart&atilde;o.</dt>
+    </dl>
+    <hr/>
+	<br />
+	<div class="ui-grid-a">
+		<div id="divBotaoNaoPossuoSenha" class="ui-block-a">
+			<a id="botaoNaoPossuoSenha"  class="naoPossuiSenha">
+				<div class="naoPossuiSenha" style="font-weight: normal;">N&atilde;o possuo a senha<br/>ou n&atilde;o recebi meu<br/>cart&atilde;o</div>
+			</a>
+		</div>
+		<div id="divBotaoDesbloquearDispositivo" class="ui-block-b">
+			<div>
+				<div class="ui-btn-arrow-gray-arrow"></div>
+				<div class="ui-btn-arrow-gray">
+					<a id="blockButtonDesbloquear" onclick="SeguroCartaoUtils.prototype.showDispositivoSeguranca('blockButtonDesbloquear', 'dispositivoSegurancaTarget');">Desbloquear</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<br />    
+		<div id="divDispositivoSeguranca" style="display: none;">
+			<!-- BEGIN DIV SEGURO CARTAO -->
+			<div id="divSeguroCartao" class="checkboxSeguroCartao checkboxSeguroCartaoBox" style="display: none;">
+
+				<div class="ui-grid-a" style="margin:5px -10px 0 5px; position: relative;">
+					<div class="ui-block-a" style="margin-top: 0.5em; margin-bottom: 0.5em; width:100%;margin-left:0.6em">
+						<span class="fnt-regular txt-08em color-gray-darker" style="font-family: NewJuneBold, Regular; font-size: 14px;">SEGURO DO CART&Atilde;O
+						</span>
+						<span class="fnt-regular txt-08em color-gray-darker" style="margin-left: 15px; font-size: 12px;">opcional
+						</span>
+					</div>								
+				</div>
+
+				<div class="ui-grid-a" style="margin:0 -10px 0 5px; position: relative;">
+					<div class="ui-block-a" style="margin-top: 0.5em; margin-bottom: 0.5em; width:92%;margin-left:0.6em">
+						<span class="fnt-regular txt-08em color-gray-darker">Proteja seu cart&atilde;o contra perda, roubo, furto e fraude por apenas R$ <span id="valorSeguroDesb" /> por m&ecirc;s. Saiba mais <a href="#saibaMaisSeguro"  class="icon-21 margin-none" style="display:inline-block;background-position: center; position: absolute; background-position-x: 4px; background-position-y: 2px;" /></span>										
+					</div>			
+				</div>
+
+				<div class="ui-grid-a" style="margin:-5px 0 0 15px; position: relative;">
+					<label for="contratoCheckbox" class="" data-iconpos="right">
+						<div style="margin: 5px 0 0 0;">
+							<span class="fnt-regular txt-08em color-gray-darker" style="font-size: 14px;">Eu quero contratar o Seguro</span>
+						</div>
+					</label>
+					<input type="checkbox" style="display: none;" id="contratoCheckbox" name="contratoCheckbox" data-awbe-bind="contratoCheckbox" />
+				</div>
+
+				<div class="ui-grid-a" style="margin:-5px 0px 0 5px; position: relative;">
+					<div class="ui-block-a" style="margin-top: 0.5em; margin-bottom: 0.5em; width:95%;margin-left:0.6em">
+						<span class="fnt-regular txt-08em color-gray-darker" style="font-size: 10px;">Ao contratar voc&ecirc; est&aacute; aceitando os <span id="termoSeguro" style="text-decoration: underline; color: #2592ea;">Termos e Condi&ccedil;&otilde;es</span> Gerais do Seguro Superprotegido Premi&aacute;vel.</span>            
+					</div>								
+				</div>
+			</div>
+			<!-- END DIV SEGURO CARTAO -->
+
+			<div id="desbloquearCartao" style="margin: 0 -1em;"></div>
+			<script>
+				window.injecaoActionName = '#dispositivoSegurancaValidationDesbloquearCartao';
+				window.injecaoTargetElement = 'desbloquearCartao';
+			</script>
+
+			<div 	data-awbe-component="popup"
+				data-awbe-component-option-theme="a"
+				data-awbe-component-option-theme-modal="b"
+				data-awbe-component-option-modal="true"
+				data-awbe-component-popup-id="desbloqueioCartaoSucesso">
+				<p class="titulo-modal">Cart&atilde;o desbloqueado com sucesso!</p>
+				<p class="texto-modal-normal">N&atilde;o perca mais tempo, comece agora mesmo a utilizar
+			seu cart&atilde;o de cr&eacute;dito Bradesco e aproveite os benef&iacute;cios.</p>
+				<div class="align-botoes">
+					<a href="#desbloqueio" data-rel="back"  class="botao-modal-002">OK</a>
+				</div>
+			</div>
+			<div	data-awbe-component="popup"
+					data-awbe-component-option-theme="a"
+					data-awbe-component-option-theme-modal="b"
+					data-awbe-component-option-modal="true"
+					data-awbe-component-popup-id="desbloqueioCartaoSucessoComSeguro">
+				<p class="titulo-modal">Cart&atilde;o desbloqueado e Seguro contratado com sucesso!</p>
+				<p class="texto-modal-normal">O Seguro ter&aacute; validade a partir de 24 horas da data de ades&atilde;o.</p>
+				<div class="align-botoes">
+					<a href="#desbloqueio" data-rel="back"  class="botao-modal-002">OK</a>
+				</div>
+			</div>
+			<div	data-awbe-component="popup"
+					data-awbe-component-option-theme="a"
+					data-awbe-component-option-theme-modal="b"
+					data-awbe-component-option-modal="true"
+					data-awbe-component-popup-id="desbloqueioCartaoSucessoComSeguroFalha">
+				<p class="titulo-modal">Cart&atilde;o desbloqueado com sucesso!</p>
+				<p class="texto-modal-normal">N&atilde;o foi poss&iacute;vel efetuar a contrata&ccedil;&atilde;o do Seguro. Acesse "Seguros" no menu lateral e tente novamente.</p>
+				<div class="align-botoes">
+					<a href="#homeLogada" data-rel="back"  class="botao-modal-002">OK</a>
+				</div>
+			</div>
+			<div	data-awbe-component="popup"
+					data-awbe-component-option-theme="a"
+					data-awbe-component-option-theme-modal="b"
+					data-awbe-component-option-modal="true"
+					data-awbe-component-popup-id="desbloqueioCartaoFalhaSeguroFalha">
+				<p class="texto-modal-normal">N&atilde;o foi poss&iacute;vel desbloquear e contratar o Seguro do seu cart&atilde;o. Tente mais tarde ou entre em contato com a Central de Atendimento.</p>
+				<div class="align-botoes">
+					<a href="#homeLogada" data-rel="back"  class="botao-modal-002">OK</a>
+				</div>
+			</div>
+		</div>
+	</div>
+<script type="text/javascript">
+	$("#valorSeguro").ready(function(){
+		$("#valorSeguro").html(currency(AWBE.sessionStorage.getItem('meusCartoesAtual').valorSeguroContratacao,false));
+	});
+	
+	$("#botaoNaoPossuoSenha").on('click', function() {  		
+  		window.location = "#naoPossuoSenha";
+	});
+</script>
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/seguroCartao/seguroCartao.js"></script>
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/smic/injecaoDispSeguranca.js"></script>
+<% } %>

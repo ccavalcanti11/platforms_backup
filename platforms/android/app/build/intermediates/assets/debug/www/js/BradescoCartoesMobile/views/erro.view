@@ -1,0 +1,14 @@
+<div class="ui-content" data-role="content" style="text-align: center">
+	<h2>Erro</h2>
+	
+	<div data-role="footer" data-position="fixed" role="contentinfo"
+		class="ui-footer ui-bar-inherit ui-footer-fixed slideup">
+		<div data-role="navbar" class="ui-navbar" role="navigation">
+			<ul class="ui-grid-a">
+				<li class="ui-block-b">
+				 <a href="#"  onclick="AWBE.Controller.back();" class="ui-shadow ui-btn ui-corner-all" style="font-size: 20px;">VOLTAR</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>

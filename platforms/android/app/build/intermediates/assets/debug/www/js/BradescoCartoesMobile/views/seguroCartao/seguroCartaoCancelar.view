@@ -1,0 +1,48 @@
+<div data-awbe-component="awbe-include" data-awbe-component-params="cabecalhoVoltarPagina"></div>
+<a id="backToSeguroCartao" href="#seguroCartao"></a>
+
+<div class="ui-content" data-role="content">
+	<h2>QUAL O MOTIVO?</h2>
+<!-- 	<p class="fnt-regular txt-1em color-gray-darker">Deseja realmente cancelar o Seguro Superprotegido Premi&aacute;vel?</p> -->
+	
+	<p class="fnt-regular txt-1em color-gray-darker">Motivo:</p>
+	<p class="fnt-regular txt-11em color-gray-darker">
+		<input type="radio" name="radio-choice-v-1" id="radio-1" value="1" data-awbe-bind="motivoCancelamento">
+		<label class="radioButtonLabel ui-label" for="radio-1" class="color-gray-darker">Desinteresse</label>
+		
+		<input type="radio" name="radio-choice-v-1" id="radio-2" value="2" data-awbe-bind="motivoCancelamento">
+		<label class="radioButtonLabel ui-label" for="radio-2" class="color-gray-darker">Problemas financeiros</label>
+
+		<input type="radio" name="radio-choice-v-1" id="radio-3" value="3" data-awbe-bind="motivoCancelamento">
+		<label class="radioButtonLabel ui-label" for="radio-3" class="color-gray-darker">N&atilde;o atendeu a expectativa</label>
+	</p>
+	
+	</div>
+
+	<div data-awbe-component="popup" data-awbe-component-option-theme="a"
+		data-awbe-component-option-theme-modal="b"
+		data-awbe-component-option-modal="true"
+		data-awbe-component-popup-id="seguroCartaoErro">
+		<p class="titulo-modal">Erro</p>
+		<p class="texto-modal-normal" id="seguroCartaoErroMsg"></p>
+		<div class="align-botoes">
+			<a href="#seguroCartao" class="botao-modal-002">FECHAR</a>
+		</div>
+	</div>	
+	
+	<div data-awbe-component="popup" data-awbe-component-option-theme="a"
+		data-awbe-component-option-theme-modal="b"
+		data-awbe-component-option-modal="true"
+		data-awbe-component-popup-id="cancelamentoSeguroEmAndamento">
+		<p class="texto-modal-normal">Voc&ecirc; possui um pedido de cancelamento em andamento.</p>
+		<div class="align-botoes">
+			<a href="#seguroCartao" class="botao-modal-002">OK</a>
+		</div>
+	</div>	
+</div>
+
+<script>
+	window.injecaoActionName = "#seguroCartaoValidarCancelar";
+</script>
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/smic/injecaoDispSeguranca.js"></script>
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/seguroCartao/seguroCartao.js"></script>

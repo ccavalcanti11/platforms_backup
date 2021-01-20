@@ -1,0 +1,62 @@
+<%
+	
+	var viewStyleRender = AWBE.Views.getView('faturaDigital/styleFaturaDigital');
+    viewStyleRender.render();
+%>
+<div id="header-hide-arrow" data-role="header" data-position="fixed" data-tap-toggle="false">
+	<a id="btnLeftPanel" href="#homeFaturaDigital" class="btn-back"></a>
+	<h1><%=AWBE.localStorage.getItem('title')%></h1>
+</div>
+
+<div class="ui-content faturadigital" data-role="content">
+	<h2 class="fnt-no-wrap h2customizado">FATURA DIGITAL DESABILITADA</h2>
+	<% if(model.flagBloqCorrespondencia == 'S') { %>
+		<p>Favor contatar a Central de Atendimento para atualizar seus dados e concluir a solicita&ccedil;&atilde;o.</p>
+	<% }else { %>
+		<p>A partir de agora, voc&ecirc; receber&aacute; a vers&atilde;o impressa da fatura do cart&atilde;o:</p>		
+	<% } %>
+	<div id="listaCartoesConfirmados" class="ui-grid-solo cardlist">
+		<dl>
+			<dt class="mascaraCartaoFatura">
+				
+				<div class="flex-center-evenly">
+					<%
+						var cartao = AWBE.sessionStorage.getItem('meusCartoesAtual');
+						if(cartao.numeroCartao.length < 16) {
+					%>
+						<div class="mascaraAmexSpan">
+							<span>••••</span>
+							<span>••••••</span>
+							<span>•</span>
+						</div>
+						<div class="mascaraFaturaCartaoNumero">
+							<%=completeLeft(cartao.parcialCartao, 4)%>
+						</div>
+				
+					<%
+						}else{
+					%>
+						<div class="mascaraFaturaCartaoSpan">
+							<span>••••</span>
+							<span>••••</span>
+							<span>••••</span>
+						</div>
+						<div class="mascaraFaturaCartaoNumero">
+							<%=completeLeft(cartao.parcialCartao, 4)%>
+						</div>
+				
+					<% } %>
+				</div>
+			</dt>
+		</dl>
+	</div>
+	
+	<% if(model.flagBloqCorrespondencia == 'N') { %>
+		<div class="boxNotificacoes">
+			<span class="linkNotificacoesJ5">Sua pr&oacute;xima fatura chegar&aacute; em at&eacute; 30 dias &uacute;teis.</span>
+		</div>
+		
+	<% } %>
+</div>
+<link rel="stylesheet" type="text/css" href="js/BradescoCartoesMobile/views/faturaDigital/faturaDigital.css"/>
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/faturaDigital/layoutFaturaDigital.js"></script>

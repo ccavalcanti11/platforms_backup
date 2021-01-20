@@ -1,0 +1,34 @@
+<section class="fragment-lancamentos">
+    <script>
+        $(".alterarEmailLink").on("click", function () {
+            FocusBarUtil.closeFocusBar();
+            setTimeout(function () {
+                var user = AWBE.sessionStorage.getItem('user');
+                var isCadastroSimplificado = AWBE.localStorage.getItem('isCadastroSimplificado_' + user.cpf) === 'true';
+                if (isCadastroSimplificado) {
+                    window.location.href = "#dadosPessoais";
+                } else {
+                    window.location.href = "#editarDadosPessoais";
+                }
+            }, 1000)
+
+        });
+    </script>
+    <style>
+        .codigo_copiado b {
+            color: #666;
+            font-family: NewJuneBold;
+            font-weight: 500;
+        }
+
+        .codigo_copiado p {
+            color: #95989a;
+            font-family: NewJuneMedium;
+        }
+    </style>
+    <p><b class="color-gray-darker">Lan&ccedil;amentos enviados para</b></p>
+    <p>
+        <%=params.email %>
+    </p>
+    <a class="alterarEmailLink" href="#">alterar e-mail</a>
+</section>

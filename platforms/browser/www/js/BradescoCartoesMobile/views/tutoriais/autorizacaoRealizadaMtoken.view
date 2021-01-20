@@ -1,0 +1,191 @@
+<article id="<%= model.id %>" class="tutorial-caller-container">
+    <section class="tutorial-content">
+        <div class="btnFecharTutorialPA btnFecharCarrossel" id="<%= model.id %>_btnFecharTutorial">
+            <img src="img/tutorial/home/botaofechar.svg">
+        </div>
+        <section class="info">
+            <header>
+                <h2 class="title">
+                    <%= model.title %>
+                </h2>
+            </header>
+            <p>
+                <%= model.subtitle %>
+            </p>
+            <br>
+            <p>
+                <%= model.descricao %>
+            </p>
+            <div class="container-contratar">
+                <i class="tutorial-seta-container"></i>
+                <div id="<%= model.id %>_btnEntendiTutorial" class="contratar">
+                    <%= model.btnDescription %>
+                </div>
+                <i></i>
+            </div>
+        </section>
+        <div class="circle">
+            <div class="capturar-chave">
+                <i></i>
+                <p>Capturar chave</p>
+            </div>
+        </div>
+    </section>
+    <style>
+        .tutorial-caller-container * {
+            text-shadow: none;
+            text-align: center;
+            font-family: NewJuneMedium;
+            font-size: 13px;
+        }
+
+        .tutorial-caller-container p {
+            color: #666;
+            font-size: 1.3em;
+            max-width: 230px;
+            margin: 0 auto;
+            line-height: 1.4;
+        }
+
+        .tutorial-caller-container {
+            z-index: 9999;
+            width: 100%;
+            height: 100%;
+            background-color: #c9def1;
+            position: fixed !important;
+            overflow: hidden;
+            top: 0;
+            left: 0;
+        }
+
+        .tutorial-content {
+            width: 100%;
+            height: 100%;
+            margin-top: 35%;
+        }
+
+        .tutorial-content h2 {
+            text-align: center;
+            font-family: NewJuneBold;
+            color: rgb(0, 87, 177);
+            font-size: 1.25em;
+            padding: 0;
+        }
+
+        .circle {
+            border-radius: 50%;
+            background: #fff;
+            position: absolute;
+            padding: 5em;
+            left: -3em;
+            bottom: -4em;
+        }
+
+        .capturar-chave {
+            width: 5em;
+            height: 4em;
+            margin-left: -1em;
+            position: relative;
+        }
+
+        .capturar-chave * {
+            position: absolute;
+        }
+
+        .capturar-chave i {
+            background: url(./css/icons/icon-173.svg) no-repeat center;
+            margin-right: .5em;
+            padding: 1.3em;
+            left: 0;
+        }
+
+        .capturar-chave p {
+            word-break: break-word;
+            width: 7em;
+            text-align: left;
+            padding-left: 1em;
+            color: rgb(0, 87, 177);
+            font-size: 1em;
+            font-weight: bold;
+            left: 2em;
+        }
+
+        .container-contratar {
+            position: relative;
+            display: flex;
+            justify-content: flex-start;
+            margin-top: 2em;
+        }
+
+        .container-contratar * {
+            flex: 1;
+        }
+
+        .container-contratar .contratar {
+            background-color: rgb(0, 87, 177);
+            border-radius: 5px;
+            color: #fff;
+            padding: .5em 0;
+            font-size: 1.3em;
+            max-width: 10em;
+            flex-grow: 2;
+        }
+
+        .tutorial-seta-container:before {
+            content: "";
+            background: url(./img/tutorial/dispositivoSeguranca/seta_2.png) no-repeat center;
+            background-size: contain;
+            padding: 4em;
+            position: absolute;
+            left: 0;
+            top: calc(50% - .25em);
+        }
+
+        .tutorial-content>.btnFecharCarrossel {
+            right: 3%;
+            left: unset;
+        }
+
+        @media (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio : 3) {
+            .tutorial-caller-container * {
+                font-size: 16px;
+            }
+
+            .tutorial-content {
+                margin-top: 50%;
+            }
+
+            .circle {
+                padding: 6em;
+            }
+
+        }
+
+        @media (max-width: 320px) and (-webkit-device-pixel-ratio : 2) {
+            .contratar {
+                font-size: 1em;
+            }
+
+            .tutorial-seta-container:before {
+                padding: 2.5em;
+                margin-left: 1.7em;
+            }
+        }
+
+        @media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-device-pixel-ratio: 2) and (device-aspect-ratio: 2/3) {
+            .tutorial-caller-container * {
+                font-size: 12px;
+            }
+
+            .tutorial-content {
+                margin-top: 20%;
+            }
+
+            .circle {
+                padding: 4em;
+                bottom: -3em;
+                left: -2em;
+            }
+        }
+    </style>
+</article>

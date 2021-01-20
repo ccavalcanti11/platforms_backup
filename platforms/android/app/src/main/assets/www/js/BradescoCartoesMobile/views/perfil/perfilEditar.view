@@ -1,0 +1,139 @@
+<div data-awbe-component="awbe-include" data-awbe-component-params="cabecalho"></div>
+<% 
+	var user = AWBE.sessionStorage.getItem('user');
+	var isNCLegado = AWBE.localStorage.getItem('isNCLegado_' + user.cpf) == "true";
+	if(isNCLegado){ %>
+	<div data-awbe-component="awbe-include" data-awbe-component-params="menuOpcoesLogadoNCLegado"></div>
+<% }else{ %>
+	<div data-awbe-component="awbe-include" data-awbe-component-params="menuOpcoesLogado"></div>
+<% }
+	var tempConta = AWBE.sessionStorage.getItem('tempConta');
+	var cpf = tempConta.cpf;  
+	var isCadastroSimplificado = $.parseJSON(AWBE.localStorage.getItem('isCadastroSimplificado_' + cpf));
+	var mostrarMenuCadastroCompleto = BradescoCartoesMobile.components.verificarCadastroCompleto();
+	var mostrarPontosLivelo = AWBE.sessionStorage.getItem('showPontosLivelo');
+	var ehNCC = (tempConta.perfil == 'N');
+	
+if ((isCadastroSimplificado && mostrarMenuCadastroCompleto) || isNCLegado) { %>
+	<div class="header-box-dados-cadastrais">
+		<h2 class="h2-blue-no-padding"  style="font-weight: bold !important;">MAIS FUNCIONALIDADES</h2>
+		<p>
+		    Voc&ecirc; est&aacute; usando o cadastro simples. Finalize o cadastro e tenha dispon&iacute;vel todas as funcionalidades.
+		</p>
+		<div class="ui-grid-a" style="padding-top: 1.5em;">
+			<div class="ui-block-a" style="float:right" >
+				<div class="ui-btn-arrow-blue-arrow"></div>
+				<div class="ui-btn-arrow-blue" style="float:right">
+					<a onclick="BradescoCartoesMobile.components.popularAppsFlyerGa('FINALIZACADPERF');atualizarCadastro();">Finalizar</a>
+			    </div>
+			</div>
+			<div class="ui-block-b"></div>
+		</div>
+	</div>
+<% } %>
+<div class="ui-content perfilEditar" data-role="content">
+	
+	<h2 class="icon-26">
+		DADOS DE CONTATO
+		<%if(isCadastroSimplificado || isNCLegado){%>
+			<a href="#editarDadosPessoaisSimplificado">
+		<% } else {%>
+			<a href="#editarDadosPessoais">
+		<% } %>
+			<label class="icon-editar-perfil">Editar</label>
+			<span class="icon-editar-perfil"></span>
+		</a>
+	</h2>
+	<div class="ui-grid-b fnt-book txt-12em color-gray-darker margin-bottom-2em">
+		<span>E-mail:</span><br/>
+		<span class="fnt-bold fnt-editar-wrap " id="emailCliente"></span><br/><br/>
+		<span>Celular:</span><br/>
+		<span class="fnt-bold fnt-no-wrap" id="telefoneCliente"></span>			
+	</div>
+
+	<%if(!isCadastroSimplificado && !isNCLegado){%>
+	<div class="dadosBancarios">
+		<h2>
+			DADOS DA CONTA
+				<a href="#dadosBancarios"><label class="icon-editar-perfil">Editar</label>
+				<span class="icon-editar-perfil"></span></a>
+		</h2>
+		<div class="ui-grid-a fnt-book txt-12em color-gray-darker margin-bottom-2em">
+			<div class="ui-block-a margin-bottom-05em" style="width: 25%;">
+				Ag&ecirc;ncia:<br/>
+			</div>
+			<div class="ui-block-b">
+				<span class="fnt-bold" id="agenciaCliente"></span><br/>
+			</div>
+			<div class="ui-block-a" style="width: 20%;">
+				Conta:<br/>
+				<!-- Removido a Titularidade conforme alinhamento no apontamento TH - 986 -->
+				<!-- Titularidade: -->
+			</div>
+			<div class="ui-block-b">
+				<span class="fnt-bold" id="contaCliente"></span><br/>
+				<!-- Removido a Titularidade conforme alinhamento no apontamento TH - 986 -->
+				<!-- <span class="fnt-bold" id="titularidadeCliente"></span> -->
+			</div>
+		</div>
+	</div>
+	<% } %>
+
+	<% if(mostrarPontosLivelo || (!isCadastroSimplificado && !isNCLegado && ehNCC)){ %>
+		<h2 id="divOutrasOpcoes">OUTRAS OP&ccedil;&otilde;ES</h2>
+	<% } %>
+
+	<ul data-role="listview" class="alterarSenha">
+
+	<% if(!isCadastroSimplificado && !isNCLegado && ehNCC){ %>
+		<li data-icon="false" id="alterarSenhaLI">
+			<a href="#senhaAntiga" style="padding: 0.5em 1em 0.5em !important; background-color: #f3f6fb !important;">
+				<p class="fnt-book txt-1em color-gray-darker">Alterar senha do aplicativo</p>
+			</a>
+			<a href="#senhaAntiga" class="icon-listview-faturadigitalmotivos" style=" background-color: #f3f6fb !important;"></a>
+			</li>
+			<li data-icon="false">
+				<a href="#opcaoCadastroPerfil" style="padding: 0.5em 1em 0.5em !important; background-color: #f3f6fb !important;">
+					<p class="fnt-book txt-1em color-gray-darker" style="overflow: initial !important;">Alterar perfil para ag&ecirc;ncia e conta</p>
+				</a>
+				<a href="#opcaoCadastroPerfil" class="icon-listview-faturadigitalmotivos" style=" background-color: #f3f6fb !important;"></a>
+		</li>
+	<% } %>
+
+	<% if(mostrarPontosLivelo){ %>
+		<li data-icon="false">
+			<a href="#pontosLivelo" style="padding: 0.5em 1em 0.5em !important; background-color: #f3f6fb !important;">
+				<p class="fnt-book txt-1em color-gray-darker">Pontos Livelo</p>
+			</a>
+			<a href="#pontosLivelo" class="icon-listview-faturadigitalmotivos" style=" background-color: #f3f6fb !important;"></a>
+		</li>
+	<% } %>
+	
+	</ul>
+	
+</div>
+
+<div data-awbe-component="popup" 
+	 data-awbe-component-option-theme="a"
+	 data-awbe-component-option-theme-modal="b"
+	 data-awbe-component-option-modal="true"
+	 data-awbe-component-popup-id="popupErrorServicoIndisponivel">
+	 	<p class="titulo-modal">Indispon&iacute;vel temporariamente</p>
+		<p class="texto-modal-normal">Tente novamente mais tarde.</p>
+ 		<div class="align-botoes">	
+ 			<a href="#" data-rel="back" class="botao-modal-002">Fechar</a>
+ 		</div>
+</div>
+<div data-awbe-component="popup" 
+	 data-awbe-component-option-theme="a"
+	 data-awbe-component-option-theme-modal="b"
+	 data-awbe-component-option-modal="true"
+	 data-awbe-component-popup-id="popupErrorLivelo">
+	 	<p class="titulo-modal">Indispon&iacute;vel temporariamente</p>
+		<p class="texto-modal-normal">Para mais informa&ccedil;&otilde;es, <a href="" onclick="irParaConsulteALivelo();">consulte a Livelo.</a></p>
+ 		<div class="align-botoes">	
+ 			<a href="#" data-rel="back" class="botao-modal-002">Fechar</a>
+ 		</div>
+</div>
+
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/perfil/PerfilEditar.js"></script>

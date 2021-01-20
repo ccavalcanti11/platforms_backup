@@ -1,0 +1,134 @@
+<%
+	var cartaoAtual = AWBE.sessionStorage.getItem('meusCartoesAtual');
+	var cartao = model;
+	var webCardAtivo;	
+	
+	var tipoDispositivoSegurancaCad = AWBE.sessionStorage.getItem('tipoDispositivoConfigurado');
+
+    var possuiPermissao = false;
+	AWBE.sessionStorage.setItem('possuiPermissao', possuiPermissao);
+	
+	var viewStyleRender = AWBE.Views.getView('webCard/styleCartaoVirtual');
+	viewStyleRender.render();
+%>
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/webCard/webCard.js"></script>
+<div class="webCard">
+
+	<div style="font-size: 95%; position:relative; margin-top: 0.6em;">
+		<span class="textSaibaMaisCVWebCard color-gray-darker">Saiba mais sobre o Cart&atilde;o Virtual</span>
+		<span class="right" style="margin-right: 0em">
+			<a class="icon-21 margin-none" onclick="AWBE.util.openPopup('saibaMaisWebCard')"
+				title="Saiba mais sobre o Cart&atilde;o Virtual"></a>
+		</span>
+	</div>
+	<hr>
+	<div style="background-color: #f3f6fb !important; border-bottom-width: 0px;padding-right:0em; padding-top: 0.3em;">
+		<div id="informativoAtivarWebCard" class="container-flex-center">
+			<p class="fnt-medium txt-1em fnt-wrap color-gray-darker"
+				style="font-family: NewJuneMedium; border:0; margin:0em; margin-bottom: -0.2em;">Cart&atilde;o Virtual</p>
+			<p id="informativoAtivarWebCard2" class="fnt-book color-gray-darker" style="font-size: .65em;">
+				Agora voc&ecirc; tem mais de uma op&ccedil;&atilde;o para comprar na internet.
+				Habilite o Cart&atilde;o Virtual e deixe suas transa&ccedil;&otilde;es ainda mais seguras.
+			</p>
+			<div id="switchHabilitado" class="webCardSwitch-desabilitado">
+				<div>
+					<input type="checkbox" data-role="flipswitch" horizontal-align="right" id="webCardSwitch"
+						data-current-value="<%= webCardAtivo ? 1 : 0 %>" data-on-text="" data-off-text="">
+					<%=webCardAtivo ? 'checked' : '' %>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div id="boxWebCard"></div>
+
+</div>
+
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="desabilitarWebCardPop">
+	<p class="aviso-viagem-popup-text fnt-regular" style="margin:0.5em 0em -1em 0em;" >Tem certeza que deseja desabilitar o seu Cart&atilde;o Virtual?</p>
+	<br>
+	<div class="align-botoes-2 align-botoes-popup">
+					<a href="#" data-rel="back" onClick="naoDesabilitarWebCard()" id="naoDesabilitarWebCard" class="botao-modal-002 fnt-regular" title="Nao">N&atilde;o</a>
+					<a href="#desabilitarWebCard" data-rel="back" class="botao-modal-003 fnt-regular" title="Sim">Sim</a>
+	</div>
+</div>
+
+<!-- Inicio codigo m-token	--------------------------------------------->
+<!----------------------------------------------------------------------->
+
+<!-- POP-UP NOVA CHAVE DE SEGURANCA-->
+<div data-awbe-component="popup"
+    data-awbe-component-option-theme="a"
+    data-awbe-component-option-theme-modal="b"
+    data-awbe-component-option-modal="true"
+    data-awbe-component-popup-id="popupNovaChaveSeguranca">
+    <p class="titulo-modal">Nova chave de seguran&ccedil;a</p>
+    <p class="texto-modal-normal">&Eacute; preciso autorizar a nova chave de seguran&ccedil;a no aplicativo do Bradesco.</p>
+    <div class="align-botoes">
+        <a class="botao-modal-002" data-rel="back">OK</a>
+    </div>
+</div>
+
+<!-- POP-UP ERRO AO CAPTURAR CHAVE-->
+<div data-awbe-component="popup" data-awbe-component-option-theme="a" data-awbe-component-option-theme-modal="b" data-awbe-component-option-modal="true" data-awbe-component-popup-id="popupErroCapturarChave">
+  <p class="titulo-modal">Erro ao Capturar Chave.</p>
+  <div class="align-botoes txt-caixaalta">
+    <a class="botao-modal-002" data-rel="back">OK</a>
+  </div>
+</div>
+
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="popupErroDeComunicacao">
+	<p class="titulo-modal">Erro</p>
+	<p class="texto-modal-normal">Houve uma falha na comunica&ccedil;&atilde;o entre os aplicativos. Por favor, tente novamente.</p>
+	<div class="align-botoes">
+		<a class="botao-modal-002" data-rel="back">Fechar</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup"
+    data-awbe-component-option-theme-modal="b"
+    data-awbe-component-option-modal="true"
+    data-awbe-component-option-theme="a"
+    data-awbe-component-popup-id="escolhaAppIntegrador">
+        <p class="titulo-modal">Escolha o aplicativo com a chave</p>
+
+        <div class="itemAppsInstalados-img" id="appsSmicBradesco" onclick="BradescoCartoesMobile.components.selecionaAppSmic('Classic')"> 
+            <div class="icon-bradesco-img icon-bradesco-appsSmic"></div>
+            <div class="icon-bradesco-text"> Bradesco </div>
+            <div id="appBradescoSelecionado" class="selecao-smic selecao-smic-cartaoVirtual"></div>
+        </div>
+        <div class="itemAppsInstalados-img" id="appsSmicExclusive" onclick="BradescoCartoesMobile.components.selecionaAppSmic('Exclusive')"> 
+            <div class="icon-bradesco-exclusive-img icon-bradesco-appsSmic"></div>
+            <div class="icon-bradesco-text"> Bradesco Exclusive</div>
+            <div id="appExclusiveSelecionado" class="selecao-smic selecao-smic-cartaoVirtual"></div>
+        </div>
+        <div class="itemAppsInstalados-img" id="appsSmicPrime" onclick="BradescoCartoesMobile.components.selecionaAppSmic('Prime')"> 
+            <div class="icon-bradesco-prime-img icon-bradesco-appsSmic"></div>
+            <div class="icon-bradesco-text"> Bradesco Prime</div>
+            <div  id="appPrimeSelecionado" class="selecao-smic selecao-smic-cartaoVirtual"></div>
+        </div>
+        <div class="itemAppsInstalados-img" id="appsSmicPrivate" onclick="BradescoCartoesMobile.components.selecionaAppSmic('Private')">  
+            <div class="icon-bradesco-private-img icon-bradesco-appsSmic"></div>
+            <div class="icon-bradesco-text"> Bradesco Private</div>
+            <div  id="appPrivateSelecionado" class="selecao-smic selecao-smic-cartaoVirtual"></div>
+        </div>
+
+        <div class="align-botoes" style="margin-top:0px">
+            <a onclick="AWBE.util.closePopup('escolhaAppIntegrador')" class="botao-modal-002">Cancelar</a>
+        </div>
+</div>
+
+<script type="text/javascript">
+
+	BradescoCartoesMobile.components.checkSmicPermission();
+	
+</script>
+<script type="text/javascript" src="js/util/KeyboardIOS.js" />

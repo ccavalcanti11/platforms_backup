@@ -1,0 +1,36 @@
+<div data-awbe-component="awbe-include" data-awbe-component-params="cabecalho"></div>
+<% 
+	var user = AWBE.sessionStorage.getItem('user');
+	if(AWBE.localStorage.getItem('isNCLegado_' + user.cpf) == "true"){ %>
+	<div data-awbe-component="awbe-include" data-awbe-component-params="menuOpcoesLogadoNCLegado"></div>
+<% }else{ %>
+	<div data-awbe-component="awbe-include" data-awbe-component-params="menuOpcoesLogado"></div>
+<% }%>
+
+<article id="cadastro-analise" class="ui-content">
+	<header>
+		<h2>EM AN&Aacute;LISE</h2>
+	</header>
+	<section>
+	   	<p class="fnt-book color-gray-darker txt-12em">
+	   		Agora vamos analisar os dados e em at&eacute; 24 horas enviaremos um e-mail com os pr&oacute;ximos passos.
+   		</p>
+	   	<p class="fnt-book color-gray-darker txt-12em">
+   			Enquanto isso voc&ecirc; pode continuar usando o aplicativo com as funcionalidades atuais.
+   		</p>
+	</section>
+	<div class="border-complete-bottom margin-top-3em">
+			<h2 class="subtitle">OUTRAS OP&Ccedil;&Otilde;ES</h2>
+	</div>
+	<div class="border-complete-bottom" onclick="BradescoCartoesMobile.components.popularAppsFlyerGa('ANALISEVISEXTRATO'); location.hash='#extrato';">
+		<p class="colapsible-text">
+			<a href="#extrato" class="color-gray-darker txt-11em fnt-book" style="text-decoration: none;">Visualizar o extrato<span class="directaction-icon"></span></a>
+		</p>
+	</div>
+	<div class="border-complete-bottom" onclick="BradescoCartoesMobile.components.popularAppsFlyerGa('ANALISECONFLIMITE'); location.hash='#limites';">
+		<p class="colapsible-text">
+			<a href="#limites" class="color-gray-darker txt-11em fnt-book" style="text-decoration: none;">Conferir os meus limites<span class="directaction-icon"></span></a>
+		</p>
+	</div>
+	
+</article>

@@ -1,0 +1,56 @@
+span.botaoVencimentoFatura {
+	content: "";
+    border: none;
+    padding: 0.7em;
+    background-image: url(../../../../css/icons/icon-30.svg);
+    margin: -1.3em 0em 0px 0.25em;
+    background-repeat: no-repeat;
+    background-color: transparent !important;
+    background-size: contain;
+    float: right;
+}
+
+.notificacoes-content {
+	border-bottom: 1px solid #CCC;
+	border-top: 1px solid #CCC; 
+	margin: 0 -2em;
+}
+
+.textoBotaoVencimentoFatura {
+	text-decoration: none; 
+	font-weight: normal !important; 
+	font-size: 1em;
+}
+
+.switchAumentoLimite {
+    width: 25%;
+    float: right;
+    margin-right: -2.6em;
+    margin-top: -0.5em;
+    margin-left: 1em;
+}
+
+.tituloPermissoes {
+    padding: 0;
+    font-weight: bold !important;
+    margin-top: auto;
+}
+
+.textoAumentoLimite {
+    font-family: NewJuneBook;
+}
+
+.textoDescricaoAumentoLimite {
+    font-size: .85em;
+}
+
+@media only screen /* iPhone X */
+and (device-width : 375px)
+and (device-height: 812px)
+and (-webkit-device-pixel-ratio : 3) {
+    .notificacoes-content {
+        border-bottom: 1px solid #CCC;
+        border-top: 1px solid #CCC;
+        margin: 0 -1.8em;
+    }
+}

@@ -1,0 +1,105 @@
+<section class="lancamentos <%= model.lancamentosClass%>">
+    <% $.each(model.listaItensLancamentos, function(i, itens){ %>
+    <% $.each(itens, function(j, item){ %>
+    <div class="dependentes">
+        <dl class="destaque-area">
+            <dt class="fnt-bold txt-1em color-white destaque-area"><%= item.nome %></dt>
+            <dd class="fnt-regular txt-09em color-white destaque-area">
+                <%= model.cartao.produtoPrincipal%> - <span><%= item.cartaoMascarado %></span>
+            </dd>
+        </dl>
+    </div>
+    <!-- TODO: ajustar variaveis moeda e cotação -->
+    <!-- inicio mock novo modelo de lançamentos -->
+    <div class="lanc-container-flex color-gray-darker">
+        <% $.each(item.lancamentos, function(k, lancamento){ %>
+        <% var graficoObj =  BradescoCartoesMobile.grafico[lancamento.categoria] || BradescoCartoesMobile.grafico[0]; 
+           var moedaOrigemDolar = lancamento.codMoedaOrigem == 'USD';
+        %>
+        <div>
+            <% if (!lancamento.valorDolar) {%>
+                <div class="data-container-flex">
+                    <div class="icon-grafico">
+                        <span class=" <%=graficoObj.classe2%> "></span>
+                    </div>
+                    <div class="desc-lancamento-flex">
+                        <div class='flex-between'>
+                            <div class="data"> <%=lancamento.dataLancamento%> </div>
+                            <div class="parcelamento"> <%=lancamento.parcelas%> </div>
+                        </div>
+                        <div class='flex-between'>
+
+                            <div class="descricao"> <%=lancamento.descricaoLancamento%> </div>
+                            <div class="total-semDolar">R$ <%=currency(lancamento.valorReal, false)%> </div>
+                        </div>
+                    </div>
+                </div>
+                <hr class="hr-margin-bottom-0em" style="height: 1px !important;">
+            <%} else {%>
+                <div class="data-container-flex">
+                    <div class="icon-grafico">
+                        <span class=" <%=graficoObj.classe2%> "></span>
+                    </div>
+                    <div class="desc-lancamento-flex">
+                        <div class='flex-between'>
+                            <div class="data"> <%=lancamento.dataLancamento%> </div>
+                            <div class="parcelamento"> <%=lancamento.parcelas%> </div>
+                        </div>
+                        <div class="descricao"> <%=lancamento.descricaoLancamento%> </div>
+                    </div>
+                </div>
+                <div class="data-container-flex">
+                    <% if (lancamento.valorOrigem && !moedaOrigemDolar && lancamento.cotDolar) {%>
+                        <div class="moeda-origem">Moeda <br> <%=lancamento.codMoedaOrigem%> <%=currency(lancamento.valorOrigem, false)%></div>
+                        <div class="icon-flecha">
+                            <span>&#8594;</span>
+                        </div>
+                    <%} else {%>
+                        <div class="moeda-origem"></div>
+                        <div class="icon-flecha">
+                            <span></span>
+                        </div>
+                    <%}%>
+                    <div class="moeda-dolar">D&oacute;lar <br> $ <%=currency(lancamento.valorDolar, false)%></div>
+                    <% if (lancamento.cotDolar) {%>
+                        <div class="icon-x">X</div>
+                        <div class="cotacao-dolar">Cota&ccedil;&atilde;o <br>  R$ <%=currencyCotacao(lancamento.cotDolar, false)%></div>
+                    <%}%>
+                    <div class="icon-flecha">
+                        <span>&#8594;</span>
+                    </div>
+    
+                    <div class="total">Total <br> R$ <%=currency(lancamento.valorReal, false)%> </div>
+                </div>
+                <hr class="hr-margin-bottom-0em" style="height: 1px !important;">
+            <%}%>
+            
+        </div>
+        <% }); %>
+    </div>
+    <div class='container-subtotal color-gray-darker'>
+        <span class='footer-texto fnt-bold'>Sub-total</span>
+        <div class='footer-valor fnt-bold'> R$ <%=currency(item.valorTotalLancamentos, false) %></div>
+    </div>
+    <!-- -------------- fim mock --------------------- -->
+    <% }) %>
+    <% }) %>
+
+<!-- Comentando até a FIS arrumar o serviço que está retornando diferença entre os valores somados do titular e adicional com o total da fatura -->
+<!-- 
+    <div class="dependentes">
+        <dl class="destaque-area2">
+            <dt class="lancamento-total"><span>TOTAL</span>
+                <% if (model.lancamentosTitular.length > 0 && model.lancamentosAdicional.length > 0) { %>
+                TITULAR + ADICIONAL
+                <% } %>
+            </dt>
+            <dd class="lancamento-total">
+                <b>R$ <%=currency(model.totalLancamentos, false)%></b>
+            </dd>
+        </dl>
+    </div> -->
+</section>
+<section>
+    <div>N&atilde;o h&aacute; lan&ccedil;amentos para este cart&atilde;o</div>
+</section>

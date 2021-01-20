@@ -1,0 +1,33 @@
+.login-help .largura-480-px {
+	width: 23px;
+}
+
+.barraProgressoFundo {
+	border: 0px solid #ccc;
+	background: #BFDEF2!important;
+	border-radius: 25px;
+	height: 0.6em;
+	width: 100%;
+}
+
+.barraProgresso {
+	border-radius: 25px;
+	height: 0.6em;
+	width: 50%;
+	background-color: #0071e3!important;
+}
+
+.cardCadastroPendente {
+	margin: 0em 1em 1em -1em;
+	padding: 0.7em;
+	background-color: #FFF;
+}
+
+.justify-flex-end {
+	display: flex;
+	justify-content: flex-end;
+}
+
+.disp-seg-desbloqueio {
+	margin: 0 -1em;
+}

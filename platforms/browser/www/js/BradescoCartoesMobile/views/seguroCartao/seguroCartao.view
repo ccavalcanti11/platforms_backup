@@ -1,0 +1,32 @@
+<div data-awbe-component="awbe-include"	data-awbe-component-params="cabecalho"></div>
+
+<% 
+	var user = AWBE.sessionStorage.getItem('user');
+	if(AWBE.localStorage.getItem('isNCLegado_' + user.cpf) == "true"){ %>
+	<div data-awbe-component="awbe-include" data-awbe-component-params="menuOpcoesLogadoNCLegado"></div>
+<% }else{ %>
+	<div data-awbe-component="awbe-include" data-awbe-component-params="menuOpcoesLogado"></div>
+<% }%>
+
+<div class="ui-content page seguro-cartao" data-role="content">
+	<%if (model.cartoesElegiveis.length){%>
+		<div data-awbe-component="carrosselSeguroCartao"></div>
+	
+		<div id="carouselTarget"></div>
+	<%}else{%>
+		<dl>
+			<dt class="txt-1em color-gray-darker">Voc&ecirc; n&atilde;o possui cart&otilde;es associados a este servi&ccedil;o.</dt>
+		</dl>
+	<%}%>
+	<div data-awbe-component="popup" data-awbe-component-option-theme="a"
+		data-awbe-component-option-theme-modal="b"
+		data-awbe-component-option-modal="true"
+		data-awbe-component-popup-id="seguroCartaoErro">
+		<p class="texto-modal-normal" id="seguroCartaoErroMsg"></p>
+		<div class="align-botoes">
+			<a href="#seguroCartao" data-rel="back" class="botao-modal-002">FECHAR</a>
+		</div>
+	</div>
+	
+
+</div>

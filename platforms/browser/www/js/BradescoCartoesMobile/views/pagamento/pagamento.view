@@ -1,0 +1,92 @@
+<div data-awbe-component="awbe-include" data-awbe-component-params="cabecalho"></div>
+
+<% 
+	var user = AWBE.sessionStorage.getItem('user');
+	if(AWBE.localStorage.getItem('isNCLegado_' + user.cpf) == "true"){ %>
+	<div data-awbe-component="awbe-include" data-awbe-component-params="menuOpcoesLogadoNCLegado"></div>
+<% }else{ %>
+	<div data-awbe-component="awbe-include" data-awbe-component-params="menuOpcoesLogado"></div>
+<% }
+	BradescoCartoesMobile.model = model.pagamento;
+	BradescoCartoesMobile.params = params;
+	BradescoCartoesMobile.page = "pagamento";
+%>
+
+<div class="ui-content pagamento" data-role="content">
+	
+<%  
+	var temCartoesElegiveis = AWBE.sessionStorage.getItem('temCartoesElegiveis');
+		
+	if(temCartoesElegiveis){%>
+	
+		<div data-awbe-component="carouselPagamento"
+			 data-awbe-target-element="carouselTarget"
+			 data-awbe-target-view="pagamento/detalhe"></div>
+			 
+		<div id="carouselTarget"></div>
+	
+	 <% }else{%>
+    
+	   <div class="fnt-book color-gray-darker">Voc&ecirc; n&atilde;o possui cart&otilde;es associados a este serviço.</div>
+			
+	<% } %>
+
+</div>
+
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="faturaEnviada">
+		<p class="texto-modal-normal">Boleto enviado com sucesso para o e-mail cadastrado.</p>
+		<div class="align-botoes">
+			<a href="#" data-rel="back" class="botao-modal-002 txt-caixaalta">Fechar</a>
+		</div>
+</div>
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="faturaNaoEnviada">
+		<p class="texto-modal-normal">Falha ao enviar boleto para o e-mail cadastrado.</p>
+		<div class="align-botoes">
+			<a href="#" data-rel="back" class="botao-modal-002 txt-caixaalta">Fechar</a>
+		</div>
+</div>
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="codigoCopiado">
+		<p class="texto-modal-normal">C&oacute;digo copiado com sucesso.</p>
+		<div class="align-botoes">
+			<a href="#" data-rel="back" class="botao-modal-002 txt-caixaalta">Fechar</a>
+		</div>
+</div>
+<!-- POPUP DE MENSAGEM GENERICA -->
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="popup-generico">
+	<p class="titulo-modal" id="titulo-modal-personalizado"></p>
+	<p class="texto-modal-normal" id="mensagem-personalizada"></p>
+		<div class="align-botoes">	
+			<a href="#" data-rel="back"  class="botao-modal-002">FECHAR</a>
+		</div>
+</div>
+<!-- POPUP SEM EMAIL CADASTRADADO -->
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="emailNaoCadastrado">
+	<p class="titulo-modal">Dados de contato</p>
+	<p class="texto-modal-normal" style="word-wrap: break-word !important;">Para enviar essa informa&ccedil;&atilde;o atualize seus dados com e-mail e celular.</p>
+	<div class="align-botoes-2 txt-caixaalta">
+		<a href="#" id="btnCancelarEmail01" class="botao-modal-002" data-rel="back" onclick="BradescoCartoesMobile.components.popularAppsFlyerGa('CANCATUALIZADADOSCONT');">Cancelar</a>
+		<a href="#editarDadosPessoaisSimplificado" id="btnAtualizarEmail01" class="botao-modal-003" style="width: 50% !important;" data-rel="back" onclick="BradescoCartoesMobile.components.popularAppsFlyerGa('ATUALIZADADOSCONT');">Atualizar</a>
+	</div>
+</div>
+
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/pagamento/pagamento.js"></script>

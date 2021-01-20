@@ -1,0 +1,54 @@
+<div data-awbe-component="awbe-include" data-awbe-component-params="cabecalhoVoltarPagina"></div>
+
+<%
+	var tempConta = AWBE.sessionStorage.getItem('tempConta');
+	//CHAMADA PARA A MAQUINA DE ESTADOS
+	setTimeout(BradescoCartoesMobile.components.atualizaMaquinaEstado(
+		""+tempConta.cpf, 																				//CPF
+		BradescoCartoesMobile.components.passoMaquinaEstado.PERFIL_SIMPLIFICADO,					//PASSO
+		BradescoCartoesMobile.components.tipoCadastro.SIMPLIFICADO,				//TIPO CADASTRO
+		false,																	//IDENTIFICADOR LEGADO
+		BradescoCartoesMobile.components.etapaMaquinaEstado.OPCAO_CORRENTISTA_NAO_CORRENTISTA,		//CODIGO ETAPA
+		BradescoCartoesMobile.components.resultadoMaquinaEstado.PENDENTE							//RESULTADO PROCESSAMENTO
+	),200);
+	//FIM CHAMADA PARA A MAQUINA DE ESTADOS
+
+
+%>
+<div class="ui-content faturadigital" data-role="content">
+	<h2>POSSUI CONTA NO BRADESCO?</h2>
+
+	<p class="txt-12em fnt-book color-gray">Conta corrente ou poupan&ccedil;a.</p>
+
+	<div class="margin-top-15em">
+		<ul data-role="listview">
+			<li data-icon="false" id="tipoCorrentista">
+				<a onclick="" style="padding: 0.5em 1em 0.5em !important;">
+					<p class="lists">SIM</p>
+				</a>
+				<a onclick="" class="icon-listview-faturadigitalmotivos"></a>
+			</li>
+			<li data-icon="false" id="tipoNaoCorrentista">
+				<a onclick="" style="padding: 0.5em 1em 0.5em !important;">
+					<p class="lists">N&Atilde;O</p>
+				</a>
+				<a onclick="" class="icon-listview-faturadigitalmotivos"></a>
+			</li>
+		</ul> 
+	</div>
+</div>
+
+<!-- POPUP DE MENSAGEM GENERICA -->
+ <div data-awbe-component="popup"
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="popup-generico">
+	<p class="titulo-modal" id="titulo-modal-personalizado"></p>
+	<p class="texto-modal-normal" id="mensagem-personalizada"></p>
+ 		<div class="align-botoes">
+ 			<a href="#" data-rel="back"  class="botao-modal-002">Fechar</a>
+ 		</div>
+</div>
+
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/cartoes/cadastro/tipoCadastro.js"></script>

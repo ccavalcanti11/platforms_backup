@@ -1,0 +1,29 @@
+<div class="tutorial-container tutorial-mtoken" id="tutorialAutorizacao" tutoriais ></div>
+<div class="tutorial-container tutorial-mtoken" id="tutorialAbrir" tutoriais ></div>
+<script>
+    var isAndroid = cordova.platformId == 'android';
+    var capturarChave = isAndroid ? BradescoCartoesMobile.components.validaCapturaDeChave : BradescoCartoesMobile.components.validaBtnCapturarChave;
+    var fecharTutorial = isAndroid ? BradescoCartoesMobile.components.btnFecharTutorial : BradescoCartoesMobile.components.fecharTutorialMtoken;
+    
+    TutorialCaller.render({
+        target: $("#tutorialAbrir"),
+        title: "TUDO PRONTO",
+        subtitle: "Autorização realizada.",
+        descricao: "Agora é só tocar em Capturar chave, se autenticar no aplicativo Bradesco e finalizar.",
+        btnDescription: "Entendi",
+        id: "incjecaotutorialAbrir",
+        view: "tutoriais/autorizacaoRealizadaMtoken",
+        callback: fecharTutorial
+    });
+
+    TutorialCaller.render({
+        target: $("#tutorialAutorizacao"),
+        title: "TEMOS UMA NOVIDADE",
+        subtitle: "Agora você consegue usar o chave de segurança direto no aplicativo.",
+        descricao: "Antes de utilizar é preciso autorizar os aplicativos trocarem informações.",
+        btnDescription: "Autorizar",
+        id: "incjecaoTutorialAutorizacao",
+        view: "tutoriais/autorizacaoRealizadaMtoken",
+        callback: capturarChave
+    });
+</script>

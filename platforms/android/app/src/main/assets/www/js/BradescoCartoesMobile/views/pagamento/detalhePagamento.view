@@ -1,0 +1,139 @@
+<article data-device="<%= AWBE.device.platform %>">
+    <section class="resumo-fatura mt-1">
+        <div class="father-itens">
+            <span class="left-item fatura-fechada">Fatura Fechada</span>
+            <span class="right-item vencimento text-gray">
+                Vencimento
+                <b>
+                    <%=model.vencimento%>
+                </b>
+            </span>
+        </div>
+        <hr class="line-divisor">
+        <div class="total-fatura">
+            <div class="flex">
+                <span class="flex-item label">Total</span>
+                <span class="valor-total flex-item label text-right">
+                    <%= model.totalPagar %>
+                </span>
+            </div>
+            <div class="flex text-gray">
+                <small class="flex-item">
+                    <%= model.smallText %>
+                </small>
+                <small class="flex-item text-right">
+                    <%= model.smallValue %>
+                </small>
+            </div>
+        </div>
+
+        <% if (model.isParcelamentoContratado || model.parcelasContratadas) { %>
+          <div class="fatura-parcelada">
+            <form action="#resumoContratoParcelamentoFatura">
+              <button type="submit" data-parcelado-facil="<%= model.detalhesParcelamento.tipoParcelamento %>" class="btn ui-btn <%= model.btnClass %>">
+                <%= model.btnDescription %>
+              </button>
+            </form>
+            <small>
+                <%= model.parcelaConfirmationText %>
+            </small>
+          </div>
+        <% } %>
+
+    </section>
+
+    <section class="resumo-itens">
+        <% if (model.spanText) { %>
+        <div>
+            <span class="<%= model.spanClass %>">
+            </span>
+            <div>
+                <%= model.spanText %>
+            </div>
+        </div>
+        <% } %>
+        <% if (model.linhaDigitavelMascara) { %>
+          <div>
+              <label class="descricao-codbarras">
+                  <%= model.labelCodBarras %>
+              </label>
+              <span class="codigo-barras">
+                  <%= model.linhaDigitavelMascara %>
+              </span>
+
+              <% if (model.mostrarTextoFechamentoFatura) { %>
+                <span class="descricao-fechamento-fatura">
+                        Prezado cliente: aguarde 2 dias &uacute;teis ap&oacute;s a data de fechamento 
+                        da fatura para realizar o pagamento em qualquer rede banc&aacute;ria.
+                </span>
+              <% } %>
+          </div>
+          <div class="lista-botoes">
+              <% for(var i in model.listaBotoes){ %>
+              <button id="<%= model.listaBotoes[i].key %>" class="btn <%= model.listaBotoes[i].key %>">
+                  <%= model.listaBotoes[i].value %>
+              </button>
+              <% } %>
+          </div>
+        <% } %>
+    </section>
+
+    <section class="parcelar-fatura bg-white">
+      <% if (model.isParcelamentoFaturaDisponivel && !model.isParcelamentoContratado && !model.parcelasContratadas) { %>
+        <form action="#resumoContratoParcelamentoFatura" class="parcelamento <%= model.formClass %>">
+          <div class="card-parcelar-fatura">
+                  <p>Parcele a fatura</p>
+                  <div>
+                    <%= model.descricaoParcelamento %>
+                  </div>
+            <button type="submit" data-parcelado-facil="<%= model.detalhesParcelamento.tipoParcelamento %>" class="btn ui-btn <%= model.btnClass %>">
+                <%= model.btnDescription %>
+            </button>
+          </div>
+        </form>
+      <% } %>
+    </section>
+</article>
+
+<div data-awbe-component="popup" data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="updateContato">
+	<p class="titulo-modal">Dados de contato</p>
+	<p class="texto-modal-normal">Para enviar essa informação, atualize seus dados com e-mail e celular.</p>
+	<div class="align-botoes-2 txt-caixaalta">
+		<a id="atualizarContatoClose" data-rel="back" class="botao-modal-003">Cancelar</a> 
+        <a redirect-send-email data-rel="back" class="botao-modal-003">Atualizar</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup" data-awbe-component-option-theme="a" data-awbe-component-option-theme-modal="b"
+    data-awbe-component-option-modal="true" data-awbe-component-popup-id="parcelamentoFaturaSimplificado">
+    <p class="titulo-modal">
+        Parcelamento de fatura
+    </p>
+    <p class="texto-modal-normal">
+        Para parcelar sua fatura, você precisa completar o cadastro.
+    </p>
+    <p class="titulo-modal" style="margin-top: 1.5rem;">
+        Vamos lá? É rápido.
+    </p>
+    <div class="align-botoes-2 txt-caixaalta">
+        <a onclick="AWBE.util.closePopup('parcelamentoFaturaSimplificado')" data-rel="back" class="botao-modal-002">Cancelar</a>
+		<a data-rel="back" onclick="redirectCadastroCompleto();" class="botao-modal-003">Avan&ccedil;ar</a>
+    </div>
+</div>
+
+<div data-awbe-component="popup" data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="cadastroCompletoBloqueado">
+	<p class="texto-modal-normal">O cadastro ao aplicativo est&aacute;
+		temporariamente indispon&iacute;vel. Tente mais tarde.</p>
+	<div class="align-botoes ">
+		<a onclick="AWBE.util.closePopup('cadastroCompletoBloqueado')" data-rel="back" class="botao-modal-002">OK</a>
+	</div>
+</div>
+
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/pagamento/pagamentoExterno.js"></script>
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/pagamento/detalhePagamento.js"></script>

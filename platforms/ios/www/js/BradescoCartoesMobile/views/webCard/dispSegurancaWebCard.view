@@ -1,0 +1,78 @@
+<div data-awbe-component="awbe-include" data-awbe-component-params="cabecalhoVoltarPagina"></div>	
+
+<div data-role="content" class="ui-content" style="padding: 1em;" id="dispSegWebCard">
+
+	<%
+		var user = AWBE.sessionStorage.getItem('user');
+
+		if (user.perfil == "C") {
+	%>
+			<p class="fnt-regular color-gray-darker">Digite a chave informada no seu dispositivo de segurança.</p>
+	<%
+		}else{
+	%>
+			<p class="fnt-regular color-gray-darker" style="margin: 0;">Digite a senha solicitada.</p>
+	<%
+		}
+	%>
+
+
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="webCardGerarNegadoPopUp">
+	<p class="titulo-modal">Acesso Bloqueado</p>
+	<p class="texto-modal-normal">N&atilde;o foi poss&iacute;vel gerar o n&uacute;mero do Cart&atilde;o Virtual. Por favor, entre em contato com a Central de Atendimento.</p>
+	<div class="align-botoes txt-caixaalta">	
+		<a href="#meusCartoes" onclick="fixPopupIssue(false);unlockScroll();" data-rel="back" class="botao-modal-002">OK</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="sistemaIndisponivel">
+	<p class="titulo-modal">Sistema indispon&iacute;vel</p>
+	<p class="texto-modal-normal">Sistema indispon&iacute;vel no momento, tente novamente mais tarde. Caso o erro persista, entre em contato com a Central de Atendimento.</p>
+	<div class="align-botoes">
+		<a href="#webCard" data-rel="back" class="botao-modal-002">Fechar</a>
+	</div>
+</div>
+
+
+<script>
+	window.injecaoActionName = '#dispositivoSegurancaValidationGerarWebCard';
+</script>
+
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="webCardGerarNegadoPopUp">
+	<p class="titulo-modal">Acesso Bloqueado</p>
+	<p class="texto-modal-normal">N&atilde;o foi poss&iacute;vel gerar o n&uacute;mero do Cart&atilde;o Virtual. Por favor, entre em contato com a Central de Atendimento.</p>
+	<div class="align-botoes txt-caixaalta">	
+		<a href="#meusCartoes" onclick="fixPopupIssue(false);unlockScroll();" data-rel="back" class="botao-modal-002">OK</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="sistemaIndisponivel">
+	<p class="titulo-modal">Sistema indispon&iacute;vel</p>
+	<p class="texto-modal-normal">Sistema indispon&iacute;vel no momento, tente novamente mais tarde. Caso o erro persista, entre em contato com a Central de Atendimento.</p>
+	<div class="align-botoes">
+		<a href="#webCard" data-rel="back" class="botao-modal-002">Fechar</a>
+	</div>
+</div>
+
+</script>
+
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/webCard/webCard.js"></script>
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/smic/injecaoDispSeguranca.js"></script>
+
+</div>

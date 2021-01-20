@@ -1,0 +1,99 @@
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/cartoes/cadastro/dadosContatoNaoCorrentista.js"></script>
+
+<div data-awbe-component="awbe-include" data-awbe-component-params="cabecalho"></div>
+<% 
+	var user = AWBE.sessionStorage.getItem('user');
+	if(AWBE.localStorage.getItem('isNCLegado_' + user.cpf) == "true"){ %>
+	<div data-awbe-component="awbe-include" data-awbe-component-params="menuOpcoesLogadoNCLegado"></div>
+<% }else{ %>
+	<div data-awbe-component="awbe-include" data-awbe-component-params="menuOpcoesLogado"></div>
+<% }%>
+
+<div class="page dados-contato cadastro ui-content" data-role="content">
+	<form id="form" action="#dadosContatoNaoCorrentistaValidation">
+		<input type="hidden" value="personalizarCartoes" data-awbe-bind="view"/>
+		<input type="hidden" value="<%=model.termoUsoObrigatorio%>" data-awbe-bind="termoUsoObrigatorio"/>
+		<h2 class="fnt-no-wrap">Dados de contato</h2>
+		
+		<div class="divAlertas">
+			<hr class="hr-margin-error">
+			<table class="ui-table-generico-semBorder">
+				<tr>
+					<th class="col-20 icon-20-table"></th>
+					<th class="col-80 fnt-book color-gray-lighter">Os dados informados n&atilde;o conferem.</th>
+				</tr>
+			</table>
+			<hr class="hr-margin-error">
+		</div>
+
+		<div>
+			
+			<p class="txt-1em fnt-book color-gray margin-bottom-17 margin-top-14em">Use dados v&aacute;lidos para confirmar o cadastro.</p>
+			
+		</div>
+		<label class="forms">E-mail</label>
+		<input class="inputPlaceholder" type="email" maxlength="70" placeholder="cliente@email.com.br" name="confirma_dado1" id="email" data-awbe-bind="emailCadastro" data-awbe-for="dadosContatoValidation" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+		
+		<div class="ui-grid-b">
+			<label class="forms">Celular</label>
+			<div class="ui-block-a width-31em">
+				<input class="inputPlaceholder" type="tel" pattern="[0-9]*" name="ddd_celular" data-awbe-for="*" id="ddd-celular" data-awbe-bind="dddCelular" maxlength="2" data-awbe-component="ddd" />
+			</div>
+			<div class="ui-block-b margin-left-16">
+				<div class="width-93em">
+					<input class="inputPlaceholder" data-awbe-component="telefone" type="tel" pattern="[0-9]*" name="numero_celular" id="numero-celular" data-awbe-bind="numeroCelular" data-awbe-validation="validarCelular" data-awbe-for="personalizarCartoes" maxlength="10"/>
+				</div>
+			</div>
+		</div>
+		
+	</form>
+	<hr class="hr-margin-tb"/>
+	<div class="ui-grid-a">
+		<div class="ui-block-a disabledButton" id="botao-submit-contato" style="float: right;">
+			<div class="ui-btn-arrow-blue-arrow"></div>
+			<div class="ui-btn-arrow-blue" style="width:88%">
+				<a id="botaoSubmit">Continuar</a>
+		    </div>
+		</div>
+		<div class="ui-block-b"></div>
+	</div>
+
+</div>
+
+<div data-awbe-component="awbe-include" data-awbe-component-params="dialogErroCadastro"></div>
+
+<div data-awbe-component="popup"
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="alertaInformacao">
+	<p class="texto-modal-normal" id="alerta-mensagem"></p>
+	<div class="align-botoes">
+		<a href="#" data-rel="back" class="botao-modal-002" id="hrefAlerInfo">FECHAR</a>
+	</div>
+</div>
+
+<!-- POPUP DE MENSAGEM GENERICA -->
+ <div data-awbe-component="popup"
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="popup-generico">
+	<p class="titulo-modal" id="titulo-modal-personalizado"></p>
+	<p class="texto-modal-normal" id="mensagem-personalizada"></p>
+ 		<div class="align-botoes">
+ 			<a href="#" data-rel="back"  class="botao-modal-002">FECHAR</a>
+ 		</div>
+</div>
+
+<div data-awbe-component="popup"
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="alertaEmail">
+	<p  class="titulo-modal">E-mail Incompleto</p>
+	<p class="texto-modal-normal">O endere&ccedil;o de e-mail precisa ter um &ldquo;nome&rdquo;, um &ldquo;@&rdquo; e um complemento, por exemplo <span>&ldquo;cliente@email.com.br&rdquo;</span>.</p>
+	<div class="align-botoes">
+		<a href="#" data-rel="back" class="botao-modal-002">Fechar</a>
+	</div>
+</div>

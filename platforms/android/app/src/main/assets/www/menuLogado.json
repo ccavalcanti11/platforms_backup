@@ -1,0 +1,245 @@
+[ {
+	"key" : "homeLogada",
+	"data_icon" : false,
+	"id" : "",
+	"a" : {
+		"data_rel" : "",
+		"href" : "#homeLogada",
+		"onClick" : "mnu.doAction()",
+		"class" : "icon-listview-meuscartoes",
+		"text" : "Meus Cart&otilde;es"
+	},
+	"type" : "single"
+}, {
+	"key" : "extrato",
+	"data_icon" : false,
+	"id" : "menuExtrato",
+	"a" : {
+		"data_rel" : "",
+		"href" : "#extrato",
+		"onClick" : "mnu.doAction()",
+		"class" : "icon-listview-extratocartao",
+		"text" : "Extrato do Cart&atilde;o"
+	},
+	"type" : "single"
+}, {
+	"key" : "limites",
+	"data_icon" : false,
+	"id" : "menuLimite",
+	"a" : {
+		"data_rel" : "",
+		"href" : "#limites",
+		"onClick" : "mnu.doAction()",
+		"class" : "icon-listview-limitecartao",
+		"text" : "Limite do Cart&atilde;o"
+	},
+	"type" : "single"
+},{
+	"key" : "cartoesAdicionais",
+	"data_icon" : false,
+	"id" : "menuCartoesAdicionais",
+	"a" : {
+		"data_rel" : "",
+		"href" : "#cartoesAdicionais",
+		"onClick" : "mnu.doAction()",
+		"class" : "icon-listview-cartoesAdicionais",
+		"text" : "Cart&otilde;es Adicionais"
+	},
+	"type" : "single"
+},{
+	"key" : "faturaDigital",
+	"data_icon" : false,
+	"id" : "menuFaturaDigital",
+	"a" : {
+		"data_rel" : "",
+		"href" : "#homeFaturaDigital",
+		"onClick" : "mnu.doAction()",
+		"class" : "icon-listview-faturadigital",
+		"text" : "Fatura Digital"
+	},
+	"type" : "single"
+},{
+	"key" : "notificacoes",
+	"data_icon" : false,
+	"id" : "menuNotificacoes",
+	"a" : {
+		"data_rel" : "",
+		"href" : "#notificacoes",
+		"onClick" : "mnu.doAction()",
+		"class" : "icon-listview-notificacoes",
+		"text" : "Notifica&ccedil;&otilde;es"
+	},
+	"type" : "single"
+},{
+	"key" : "pagamento",
+	"data_icon" : false,
+	"id" : "menuPagamento",
+	"a" : {
+		"data_rel" : "",
+		"href" : "#pagamento",
+		"onClick" : "mnu.doAction(); populaAppsFlyerGa('MenuPagamentoFatura');",
+		"class" : "icon-listview-pagamentofatura",
+		"text" : "Pagamento da Fatura"
+	},
+	"type" : "single"
+}, {
+	"key" : "permissoes",
+    "data_icon" : false,
+    "id" : "menuPermissoes",
+    "a" : {
+        "data_rel" : "",
+        "href" : "#permissoes",
+        "onClick" : "mnu.doAction()",
+        "class" : "icon-listview-permissoes",
+        "text" : "Permiss&otilde;es"
+    },
+    "type" : "single"
+}, {   	
+	"key" : "desbloqueio",
+	"data_icon" : false,
+	"id" : "menuDesbloqueio",
+	"a" : {
+		"data_rel" : "",
+		"href" : "#desbloqueio",
+		"onClick" : "mnu.doAction()",
+		"class" : "icon-listview-desbloqueio",
+		"text" : "Desbloqueio de Cart&atilde;o"
+	},
+	"type" : "single"
+}, {
+	"key" : "avisoViagem",
+	"data_icon" : false,
+	"id" : "menuAvisoViagem",
+	"a" : {
+		"data_rel" : "",
+		"href" : "#avisoViagem",
+		"onClick" : "mnu.doAction()",
+		"class" : "icon-listview-avisoViagem",
+		"text" : "Aviso de Viagem"
+	},
+	"type" : "single"
+}, {
+	"key" : "qrcode",
+	"data_icon" : false,
+	"id" : "menuQrCode",
+	"a" : {
+		"data_rel" : "",
+		"href" : "#qrCodeHabilitacao",
+		"onClick" : "mnu.doAction()",
+		"class" : "icon-listview-qrCode",
+		"text" : "QR Code"
+	},
+	"type" : "single"
+}, {
+	"key" : "seguranca",
+	"data_icon" : false,
+	"id" : "menuSeguranca",
+	"a" : {
+		"data_rel" : "",
+		"href" : "#seguranca",
+		"onClick" : "mnu.doAction(); populaAppsFlyerGa('MenuSeguranca');",
+		"class" : "icon-listview-seguranca",
+		"text" : "Seguran&ccedil;a"
+	},
+	"type" : "single"
+}, {
+	"key" : "termosUsoLogado",
+	"data_icon" : false,
+	"id" : "",
+	"a" : {
+		"data_rel" : "",
+		"href" : "#termosUsoLogado",
+		"onClick" : "mnu.doAction()",
+		"class" : "icon-listview-termosdeuso",
+		"text" : "Termos de Uso"
+	},
+	"type" : "single"
+}, {
+	"key" : "personalizarCartoes",
+	"data_icon" : false,
+	"id" : "menuPersonalizarCartoes",
+	"a" : {
+		"data_rel" : "",
+		"href" : "#personalizarCartoes",
+		"onClick" : "mnu.doAction()",
+		"class" : "icon-listview-personalizar",
+		"text" : "Gerenciar Cart&otilde;es"
+	},
+	"type" : "single"
+}, {
+	"key" : "ajustes",
+	"data_icon" : false,
+	"id" : "",
+	"a" : {
+		"data_rel" : "",
+		"href" : "#ajustes",
+		"onClick" : "mnu.doAction()",
+		"class" : "icon-listview-ajustes",
+		"text" : "Ajustes"
+	},
+	"type" : "single"
+},	{
+	"key" : "webCard",
+	"data_icon" : false,
+	"id" : "menuWebCard",
+	"a" : {
+		"data_rel" : "",
+		"href" : "#webCard",
+		"onClick" : "mnu.doAction()",
+		"class" : "icon-listview-webCard",
+		"text" : "Cart&atilde;o Virtual"
+	},
+	"type" : "single"
+},{
+	"key" : "senhaCartao",
+	"data_icon" : false,
+	"id" : "menuSenhaCartao",
+	"a" : {
+		"data_rel" : "",
+		"href" : "#senhaCartao",
+		"onClick" : "mnu.doAction()",
+		"class" : "icon-listview-senhacartao",
+		"text" : "Senha do Cart&atilde;o"
+	},
+	"type" : "single"
+},
+{
+	"key" : "applepay",
+	"data_icon" : false,
+	"id" : "menuApplePay",
+	"a" : {
+		"data_rel" : "",
+		"href" : "#ewa",
+		"onClick" : "mnu.doAction()",
+		"class" : "icon-listview-applePay",
+		"text" : "Apple Pay"
+	},
+	"type" : "single"
+},
+{
+	"key":"renegociacao",
+	"data_icon":false,
+	"id":"menuRenegociacao",
+	"a":{
+	   "data_rel":"",
+	   "href":"#renegociacao",
+	   "onClick":"mnu.doAction()",
+	   "class":"icon-listview-renegociacao",
+	   "text":"Renegociar D&iacute;vidas"
+	},
+	"type":"single"
+},
+{
+	"key" : "fimSessao",
+	"data_icon" : false,
+	"id" : "",
+	"a" : {
+		"data_rel" : "",
+		"href" : "#fimSessao",
+		"onClick" : "mnu.doAction()",
+		"class" : "icon-listview-encerrar",
+		"text" : "Encerrar"
+	},
+	"type" : "single"
+}
+ ]

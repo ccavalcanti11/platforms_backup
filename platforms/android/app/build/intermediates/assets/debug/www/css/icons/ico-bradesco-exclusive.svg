@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: url(#linear-gradient);
+      }
+
+      .cls-2 {
+        fill: #fff;
+      }
+
+      .cls-3 {
+        fill: url(#linear-gradient-2);
+      }
+    </style>
+    <linearGradient id="linear-gradient" x1="-0.092" y1="0.842" x2="1.092" y2="0.158" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#906e00"/>
+      <stop offset="0.15" stop-color="#987408"/>
+      <stop offset="0.31" stop-color="#a67e17"/>
+      <stop offset="0.4" stop-color="#a9821f"/>
+      <stop offset="0.54" stop-color="#b18f36"/>
+      <stop offset="0.71" stop-color="#bfa35a"/>
+      <stop offset="0.91" stop-color="#d1be8d"/>
+      <stop offset="0.95" stop-color="#d6c599"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-2" x1="0.189" y1="0.689" x2="0.898" y2="0.259" xlink:href="#linear-gradient"/>
+  </defs>
+  <g id="ico_app_exclusive" data-name="ico app exclusive" transform="translate(-66 -87)">
+    <rect id="Rectangle_1969" data-name="Rectangle 1969" class="cls-1" width="32" height="32" transform="translate(66 87)"/>
+    <path id="Path_774" data-name="Path 774" class="cls-2" d="M3.2,0H24.32a3.2,3.2,0,0,1,3.2,3.2V24.32a3.2,3.2,0,0,1-3.2,3.2H3.2A3.2,3.2,0,0,1,0,24.32V3.2A3.2,3.2,0,0,1,3.2,0Z" transform="translate(68.24 89.24)"/>
+    <path id="Path_769" data-name="Path 769" class="cls-3" d="M53.391,54.814a22.583,22.583,0,0,0-3.732.324,7.087,7.087,0,0,1,5.6-2.716A7.248,7.248,0,0,1,59.736,54c.2.169.361.184.512.031s.141-.308-.032-.512A7.909,7.909,0,0,0,46.761,55.8a14.208,14.208,0,0,0-2.7,1.126c-.219.128-.3.278-.219.463s.236.23.454.169c.69-.2,1.4-.37,2.132-.525a6.061,6.061,0,0,0-.128,1.2A7.771,7.771,0,0,0,49.911,64.9c.22.138.408.138.534-.031s.109-.324-.079-.494a6.8,6.8,0,0,1-2.175-5.011,6.612,6.612,0,0,1,.549-2.67c.737-.061,1.536-.108,2.415-.108,5.708,0,10.522,1.882,10.522,4.352,0,1.249-1.583,2.5-3.465,3.328-.456.2-.5.339-.439.54s.266.246.5.169c3.292-1.08,5.786-2.854,5.786-4.992,0-2.916-4.7-5.169-10.662-5.169m2.259,8.371c.256-.148.465-.027.465.229v6.193a.315.315,0,0,1-.356.332H53.994v-5.8l1.656-.957m-2.127,6.753H52.4a.206.206,0,0,1-.228-.223v-4.3a.352.352,0,0,1,.192-.326l1.164-.673Z" transform="translate(27.793 42.799)"/>
+  </g>
+</svg>

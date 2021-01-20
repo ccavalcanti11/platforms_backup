@@ -1,0 +1,38 @@
+<div data-awbe-component="awbe-include" data-awbe-component-params="cabecalho"></div>
+<div data-awbe-component="awbe-include" data-awbe-component-params="menuOpcoesDeslogado"></div>
+
+<div class="page finalizar-cadastro ui-content" data-role="content">
+	<form action="#meusCartoes">
+		<% if (model.finalizarCadastro.perfilCliente.toLowerCase() === "correntista") { %>
+			<p class="fnt-bold txt-1em color-gray-darker">Pronto!</p>
+			<p class="fnt-book txt-1em color-gray-darker">Para acessar o aplicativo, use a mesma senha de acesso do Bradesco Internet Banking e Fone F&aacute;cil.</p>
+		<% } else { %>
+			<p class="fnt-bold txt-1em color-gray-darker">Pronto, Você est&aacute; cadastrado!</b>
+			<p class="fnt-book txt-1em color-gray-darker">Use a mesma senha para acessar o Bradesco Internet Banking, Fone F&aacute;cil e o Portal Bradescard.</p>
+		<% } %>
+		<% if (model.finalizarCadastro.cartoes.length === 1) { %>
+			<p><img src="<%=model.finalizarCadastro.cartoes[0].img%>" /></p>
+		<% } %>
+		<% if (model.finalizarCadastro.cartoes.length > 1) { %>
+		 	<p class="fnt-book txt-1em color-gray-darker">Selecione os cart&otilde;es que deseja gerenciar pelo aplicativo.
+			<%
+		    	var index = 0;
+			%>
+		    <%_.forEach(model.finalizarCadastro.cartoes, function(item) {%>
+				<label for="<%=item.nome%>" class="ui-checkbox-geral"><img src="<%=item.img%>" /></label>
+				<input type="checkbox" name="<%=item.nome%>" id="<%=item.nome%>" data-awbe-bind="cartao_selecionado">
+				<%index++;%>
+			<%})%>
+		<% } %>		
+		<hr class="hr-margin-tb"/>
+		<div class="left">
+			<div class="ui-btn-arrow-blue-arrow"></div>
+			<div class="ui-btn-arrow-blue">
+		    	<a onclick="$(this).closest('form').submit()">Continuar</a>
+		    </div>
+		</div>
+	</form>
+	<!-- <a onclick="AWBE.util.openPopup('erroCadastro');">naoPossivelFinalizar</a> -->
+</div>
+
+<div data-awbe-component="awbe-include" data-awbe-component-params="dialogErroCadastro"></div>

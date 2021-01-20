@@ -1,0 +1,53 @@
+<div id="left-panel" style="background-color: white;" class="ui-panel">
+	<ul data-role="listview">
+		<%
+		if (BradescoCartoesMobile.menuDeslogado != undefined && BradescoCartoesMobile.menuDeslogado.length > 0) {
+			var item = null;
+			for (var i = 0; i < BradescoCartoesMobile.menuDeslogado.length; i++) {
+				item = BradescoCartoesMobile.menuDeslogado[i];
+				if (item.flagAppCartoes == true || item.flagAppCartoes == 'true') {
+		%>
+		<li data-icon="false">
+			<a href="<%= item.href %>" onclick="<%= item.onClick %>" data-rel="close" class="<%= item.class %>"><%= item.text %></a>
+		</li>
+		<%
+				}
+			}
+		%>
+		<% } else { %>
+		<li data-icon="false">
+			<a href="dcdcartoes://home" onclick="mnu.doAction()" data-rel="close" class="icon-listview-inicio">In&iacute;cio</a>
+		</li>
+		<li data-icon="false">
+			<a href="#meusCartoes" onclick="mnu.doAction()" class="icon-listview-meuscartoes">Meus Perfis</a>
+		</li>
+		<li data-icon="false">
+            <a href="dcdcartoes://bcheckin" onclick="mnu.doAction()" class="icon-listview-bcheckin">Pontos Livelo</a>
+		</li>
+		<li data-icon="false">
+			<a href="dcdcartoes://beneficios" onclick="mnu.doAction()" class="icon-listview-beneficios">Benef&iacute;cios</a>
+		</li>
+		<li data-icon="false">
+			<a href="dcdcartoes://atendimento" onclick="mnu.doAction()" class="icon-listview-canaisatendimento">Canais de Atendimento</a>
+		</li>
+		<li data-icon="false">
+			<a href="#ajustesDeslog" onclick="mnu.doAction()" class="icon-listview-ajustes">Ajustes</a>
+		</li>
+		<% } %>
+	</ul>
+</div>
+
+<script>
+	var mnu = new Bra300Menu('left-panel');
+	mnu.process({
+		width: '85%', //Largura do menu
+		height: '100%', //Altura do menu
+		zIndex: 10000, //Zindex do menu
+		block: $('.ui-page-active'), //Em qual objeto ele vai criar um div preto
+		bindObj: $('.ui-page-active')
+	});
+
+	setTimeout(function(){
+		$('#cartoes\\/meusCartoesPage').css('transform', 'none');
+	},500);
+</script>

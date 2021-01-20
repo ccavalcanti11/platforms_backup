@@ -1,0 +1,56 @@
+<link rel="stylesheet" type="text/css" href="js/BradescoCartoesMobile/views/faturaDigital/habilitar/habilitarFaturaDigital.css"/>
+<% var cartao = model.cartao; %>
+<div class="faturadigital">
+	<br>
+	<form method="post" action="#habilitarFaturaDigital" id="formHabilitarFaturaDigital">
+		<div id=faturaDigitalNotificacoes class="ui-grid-solo">
+			<div class="fnt-medium txt-13em color-gray-darker">Notifica&ccedil;&otilde;es</div>
+			<input type="checkbox" id="chkNotificacoesDiaVencimentoNoCalendario" />
+			<label class="personalizarnotificacoes checkboxNotificacoesFatura" style="font-family: NewJuneBook !important; font-size: .7em !important; left: 0.5em !important;"for="chkNotificacoesDiaVencimentoNoCalendario">Lembre-me o dia do vencimento do cart&atilde;o no calend&aacute;rio do meu celular.</label>
+			<hr class="line" />
+		</div>
+	</form>
+	<form action="#dispositivoHabilitarFaturaDigital" id="formDispositivoSeguranca">
+		<div class="ui-grid-a margin-top-2em">
+			<div class="ui-block-a"></div>
+			<div id="divBotaoConfirmaDispositivo" class="ui-block-b">
+				<div class="ui-btn-arrow-blue">
+					<a id='blockButton'>Continuar</a>
+				</div>
+			</div>
+		</div>
+	</form>
+	<div id="informacoesSujeitasAlteracoesFaturaDigital" class="fnt-regular footer-info footerbottom">
+		<p class="txt-08em" style="text-align: left;">Informa&ccedil;&otilde;es sujeitas a altera&ccedil;&otilde;es.</p>
+	</div>
+</div>
+<div data-awbe-component="popup" data-awbe-component-option-theme="a" data-awbe-component-option-theme-modal="b" data-awbe-component-option-modal="true" data-awbe-component-popup-id="falhaHabilitarFaturaDigital">
+	<p class="texto-modal-normal">N&atilde;o foi poss&iacute;vel habilitar a Fatura Digital. Por favor, tente novamente.</p>
+	<div class="align-botoes">
+		<a href="#homeLogada" data-rel="back" class="botao-modal-002">OK</a>
+	</div>
+</div>
+<div data-awbe-component="popup" data-awbe-component-option-theme="a" data-awbe-component-option-theme-modal="b" data-awbe-component-option-modal="true" data-awbe-component-popup-id="acessoCalendarioCelular">
+  <div style=" font-weight: bold; text-align: left;">
+    <p class="texto-modal-normal">Para utilizar a funcionalidade </br>
+      de Notificações, habilite a permissão de acesso ao calendário para Bradesco Cartões em Ajustes do seu celular.</p>
+  </div>
+  <div class="align-botoes txt-caixaalta">
+    <a onclick="popupActionCalendarioAjustes()" class="botao-modal-002" data-rel="back">Ajustes</a>
+    <a onclick="popupActionCalendarioAgoraNao()" class="botao-modal-003" data-rel="back">Agora N&atilde;o</a>
+  </div>
+</div>
+<div data-awbe-component="popup" data-awbe-component-option-theme="a" data-awbe-component-option-theme-modal="b" data-awbe-component-option-modal="true" data-awbe-component-popup-id="CalendarioNativoNaoEncontrado">
+  </br>
+  <p class="titulo-modal-normal">O App não encontrou nenhum</br>
+    calendário ativo em seu</br>
+    aparelho. Ative ou baixe um</br>
+    calendário e tente novamente.</br>
+  </p>
+  </br>
+  <div class="align-botoes txt-caixaalta">
+    <a class="botao-modal-002" data-rel="back">Ok</a>
+  </div>
+</div>
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/faturaDigital/habilitar/habilitarFaturaDigital.js"></script>
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/faturaDigital/faturaDigital.js"></script>

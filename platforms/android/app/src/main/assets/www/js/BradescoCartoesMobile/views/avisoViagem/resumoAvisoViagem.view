@@ -1,0 +1,111 @@
+<link rel="stylesheet" type="text/css" href="js/BradescoCartoesMobile/views/avisoViagem/avisoViagem.css" />
+<br>
+<%
+      var viewStyleRender = AWBE.Views.getView('avisoViagem/styleAvisoViagem');
+      viewStyleRender.render();
+%>
+<div>
+      <div class="border-complete-avisoviagem containerFlexCenter">
+      <span class="fnt-book color-gray-darker fontSaibaMaisAvisoViagem" style="font-size:15px">Saiba mais sobre o Aviso de Viagem</span>
+            <a class="icon-21 margin-none" onclick="AWBE.util.openPopup('saibaMaisAvisoViagem')" title="Saiba mais sobre o Aviso de Viagem"></a>
+      </div>
+</div>
+<hr class="hr-margin-top-1em hr-margin-bottom-15em">
+
+<div class="container-avisos-viagem">
+      <%
+            
+            if (BradescoCartoesMobile.avisoViagem.cartaoAtual.avisoViagemOriginal) {
+                                         
+                  model.avisoViagem = BradescoCartoesMobile.avisoViagem.cartaoAtual.avisoViagemOriginal;
+                  BradescoCartoesMobile.avisoViagem.cartaoAtual.avisoViagem = model.avisoViagem;
+            }                 
+                        
+      if (model.avisoViagem.ativo) {
+      
+            var avisoContinentes = model.avisoViagem.avisoContinentes;
+            var count = 1;
+                        
+            if(avisoContinentes && avisoContinentes.length > 0) {
+            
+                  %>
+                  <div class="border-complete">
+                        <h2 class="icon-26">
+                              <a href="#editarAvisoViagem"><label class="icon-editar" id="textoEditar">Editar</label>
+                              <span class="icon-editar" id="iconEditar"></span></a>
+                        </h2>
+                  </div>
+                  <%
+            
+                  _.forEach(avisoContinentes, function(itemAvisoViagemContinente) {
+                  
+                        if(itemAvisoViagemContinente.dataInicioAsInteger && itemAvisoViagemContinente.dataFimAsInteger){
+                                         
+                              var ouputContinente = count + ". " + itemAvisoViagemContinente.continente.nome;
+                              
+                              %><div class="fnt-medium color-gray-darker txt-11em margin-top-1em margin-bottom-05em"><%= ouputContinente %></div>
+                              <div class="fnt-book color-gray-darker txt-08em fnt-no-wrap">Agendado para: <%= itemAvisoViagemContinente.dataInicioLabel %> at&eacute; <%= itemAvisoViagemContinente.dataFimLabel %></div>
+                              
+                              <%
+                              
+                              if(itemAvisoViagemContinente.avisosPais && itemAvisoViagemContinente.avisosPais.length > 0) {
+                              
+                                   var paises = itemAvisoViagemContinente.avisosPais;
+                                   var paisesConcatenados = "";
+                                   
+                                   _.forEach(paises, function(itemAvisoViagemPais,index) {
+                                         if(itemAvisoViagemPais.selecionado){
+                                               paisesConcatenados = paisesConcatenados + itemAvisoViagemPais.pais.nome;
+                                               paisesConcatenados = paisesConcatenados + ", "
+                                         }
+                                   })
+                                   paisesConcatenados = paisesConcatenados.substring(0,paisesConcatenados.length-2);
+                                   
+                                   if (paises.length > 1 ){                                   
+                                   %>
+                                   <div class="fnt-book color-gray-darker txt-08em" >Locais: <%= paisesConcatenados %></div>
+                                   <%
+                                   }else{                                   
+                                   %>
+                                   <div class="fnt-book color-gray-darker txt-08em">Local: <%= paisesConcatenados %></div>
+                                                                                                                 
+                              <%    
+                                   }                       
+                              }
+
+                              count++;
+                              %><hr class="hr-margin-top-1em"><%
+                        }
+
+                  })%>
+                  <div data-role="footer" data-position="fixed" data-tap-toggle="false" class="aviso-viagem-footer">
+                        <a href="#solicitarCancelamentoAvisoViagem" class="ui-btn-cancelar">Cancelar aviso</a>
+                  </div>
+                <% 
+            
+            }
+      
+      } else { %>
+
+            <p class="fnt-book color-gray-darker fontSaibaMaisAvisoViagem">Voc&ecirc; n&atilde;o possui nenhum Aviso de Viagem agendado, clique no bot&atilde;o abaixo para adicionar.</p>
+                  
+                  <div data-role="footer" data-position="fixed" data-tap-toggle="false">
+                        <a href="#adicionarAvisoViagem" class="ui-btn-adicionar">Adicionar aviso</a>
+                  </div>
+            
+      <% } %>
+      
+      
+</div>            
+<script type="text/javascript" >
+      var page = $( "." + $.mobile.activePageClass );
+      var pageHeight = page.height();
+      var pageOuterHeight = page.outerHeight( true );
+      var height = $.mobile.getScreenHeight();
+      
+      if( page.height() < height ) {     
+                  page.css( "min-height", height - ( pageOuterHeight - pageHeight ) );   
+      }
+      $.mobile.silentScroll(0);
+</script>
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/avisoViagem/layoutAvisoViagem.js"></script>

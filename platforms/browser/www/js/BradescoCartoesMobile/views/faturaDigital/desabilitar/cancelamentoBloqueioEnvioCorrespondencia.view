@@ -1,0 +1,20 @@
+<div data-awbe-component="awbe-include" data-awbe-component-params="cabecalho"></div>
+
+<% 
+	var user = AWBE.sessionStorage.getItem('user');
+	if(AWBE.localStorage.getItem('isNCLegado_' + user.cpf) == "true"){ %>
+	<div data-awbe-component="awbe-include" data-awbe-component-params="menuOpcoesLogadoNCLegado"></div>
+<% }else{ %>
+	<div data-awbe-component="awbe-include" data-awbe-component-params="menuOpcoesLogado"></div>
+<% }%>
+
+<div class="page ui-content faturadigital" data-role="content">
+	<h2>CANCELAMENTO</h2>
+	<div>
+		<p>N&atilde;o foi poss&iacute;vel concluir o cancelamento da </br>
+			Fatura Digital para este cart&atilde;o. </br>
+			</br>
+			Por favor, entre em contato com a <a href="#canaisAtendimentoLogado" class="linkred" style="text-decoration: underline;">Central de Atendimento</a> do seu cartão.
+		</p>
+	</div>
+</div>

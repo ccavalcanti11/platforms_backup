@@ -1,0 +1,18 @@
+<div data-awbe-component="popup" data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="modalInvalidDateCotDolar">
+	<p class="titulo-modal">Data inv&aacute;lida</p>
+	<p class="texto-modal-normal">N&atilde;o &eacute; poss&iacute;vel realizar a consulta com per&iacute;odo superior a 180 dias &uacute;teis.</p>
+	<div class="align-botoes txt-caixaalta">
+		<a id='btnFecharInvalidDateCotDolar' data-rel="back" class="botao-modal-002">Fechar</a>
+	</div>
+</div>
+
+<script>
+	var cotacaoUtils = new CotacaoUtils;
+	$('#btnFecharInvalidDateCotDolar').on('click',function(){
+		$('#cotacaoDateInicio').focus();
+		cotacaoUtils.removeTemplate('modalInvalidDateCotDolar');
+	});
+</script>

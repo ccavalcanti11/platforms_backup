@@ -1,0 +1,100 @@
+<% 
+var usuario = AWBE.sessionStorage.getItem('user');
+AWBE.sessionStorage.setItem('totalPagar', model.sinalExtrato + '' + model.totalPagar);
+
+var viewStyleRender = AWBE.Views.getView('pagamento/stylePagamento');
+viewStyleRender.render();
+
+if ((model.codigoRetorno == "0" || model.codigoRetorno == "00" || model.codigoRetorno == "M0000") && (model.totalPagar != "0.00" && model.sinalExtrato != "-")) {
+	if (model.formaPagamento == 'F') { %>
+		<div id="fatura" class="ui-box-arrow-top"  style="padding-top: 0.3em;"> 
+			<div class="ui-grid-a margin-top-07em fnt-medium">
+				<dl class="ui-block-a color-gray-darker">
+					<dt class="titulo-pagamento">Total a pagar:</dt>
+					<dd class="txt-1em">R$ <%=model.sinalExtrato%><%=currency(model.totalPagar, false)%></dd>
+					<dd style="font-size: .62em;">Vencimento: <span><%=model.vencimento == undefined ? '' : model.vencimento%></span></dd>
+				</dl>
+				<dl class="ui-block-b  color-gray-darker">
+					<dt class="titulo-pagamento">Pagamento m&iacute;nimo:</dt>
+					<dd class="txt-1em">R$ <%=model.sinalExtrato%><%=currency(model.pagamentoMinimo, false)%></dd>
+				</dl>
+			</div>
+			<% if(model.totalPagar != "0.00") { %>
+				<p class="barcode-container txt-070em fnt-bold color-gray-darker">
+					<span>O c&oacute;digo de barras para o pagamento da sua fatura:</span>
+					<span class="fnt-medium custom-fnt-size"><%=model.linhaDigitavel%></span>
+				</p>
+			<% } %>
+			<div class="ui-grid-solo margin-top-07em">
+				<div class="ui-block-a" >
+					<input type="hidden" name="codigoTexto" id="codigoTexto" data-awbe-bind="codigoTexto" value="<%=model.linhaDigitavel%>"></input>
+					<div class="ui-btn-blue" style="width: 50%; margin: 0 auto;" onclick="AWBE.Analytics.eventClick('pagamentoDetalheCopiarCodigoBarras'); copyLinhaDigitavelToClipboard();">
+						<a>Copiar c&oacute;digo</a>
+					</div>
+				</div>
+			</div>
+			<hr/>
+			<div class="icon-20" style="margin-top: .425em;"></div>
+			<p class="txt-075em fnt-book color-gray-darker margin-left-35em margin-bottom-17 margin-top-14em">Caso tenha efetuado o pagamento, em breve suas informa&ccedil;&otilde;es ser&atilde;o atualizadas.</p>
+			<hr/>
+		</div>
+		<div class="border-complete-bottom">
+			<p class="txt-1em fnt-medium color-gray-darker">Mais op&ccedil;&otilde;es para esta fatura</p>
+		</div>
+		<% if(model.totalPagar != "0.00") { %>
+			<div class="border-complete-bottom" onclick="AWBE.Analytics.eventClick('pagamentoDetalheEnviarPorEmail');location.hash='#pagamentoEnviarEmail';">
+				<p class="colapsible-text">
+					<a class="color-gray-darker fnt-medium" style="text-decoration: none;">Enviar boleto por e-mail <span class="directaction-icon"></span></a>
+				</p>
+			</div>
+			<% if (usuario.perfil == "C" && BradescoCartoesMobile.apps != undefined && BradescoCartoesMobile.apps != null) { %>
+				<div class="border-complete-bottom" onclick="AWBE.Analytics.eventClick('pagamentoDetalhePagarAppBradesco');">
+					<p class="colapsible-text">
+						<a href="#pagarPeloAplicativo" class="color-gray-darker fnt-medium" style="text-decoration: none;">Pagar pelo aplicativo Bradesco <span class="directaction-icon"></span></a>
+					</p>
+				</div>
+			<% } %>
+		<% } %>
+	<% } else if (model.formaPagamento == 'D') { %>
+		<div id="fatura" class="ui-box-arrow-top">
+			<div class="ui-grid-a fatura-fechou">
+				<dl class="ui-block-a color-gray-darker">
+					<dt class="titulo-pagamento">Total a pagar:</dt>
+					<dd class="txt-1em">R$ <%=model.sinalExtrato%><%=currency(model.totalPagar, false)%></dd>
+				</dl>
+				<dl class="ui-block-b color-gray-darker">
+					<dt style="font-size: .62em;">Vencimento:</dt>
+					<dd class="txt-1em"><%=model.vencimento%></dd>
+				</dl>
+			</div>
+			<p class="txt-1em fnt-book color-gray-darker">
+				Pagamento deste cart&atilde;o est&aacute; programado
+				no d&eacute;bito autom&aacute;tico.
+			</p>
+			<hr/>
+			<div class="icon-20" style="margin-top: .425em;"></div>
+				<p class="txt-075em fnt-book color-gray-darker margin-left-35em margin-bottom-17 margin-top-14em">Caso tenha efetuado o pagamento, em breve suas informa&ccedil;&otilde;es ser&atilde;o atualizadas.</p>
+			<hr/>
+		</div>
+		<% } %>
+	<% } else if ( model.codigoRetorno == "01" || model.codigoRetorno == "NTP" || model.codigoRetorno == "16" || model.totalPagar == "0.00" || model.sinalExtrato == "-") { %>
+	<fieldset data-role="controlgroup">
+		<h2>Este cart&atilde;o n&atilde;o possui pagamentos a serem exibidos.</h2>
+		<div class="fnt-book">
+			<p>N&atilde;o foram encontradas informa&ccedil;&otilde;es de pagamento para esse cart&atilde;o.</p>
+		<p>Em caso de d&uacute;vidas, entre em contato com a Central de Atendimento.</p>
+		</div>
+	</fieldset>
+	<% } else { %>
+	<fieldset data-role="controlgroup">
+		<h2>N&atilde;o existem pagamentos a	</br>serem exibidos.</h2>
+		<p>N&atilde;o foram encontradas informa&ccedil;&otilde;es de pagamento para esse cart&atilde;o.</p>
+	</fieldset>
+	<div class="alert-info">
+		<span class="icon-icons_atencao"></span>
+		<p>Em caso de d&uacute;vidas, entre em contato com a Central de Atendimento.</p>
+	</div>
+<% } %>
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/pagamento/pagamentoExterno.js"></script>
+
+

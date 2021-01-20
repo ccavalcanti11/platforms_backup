@@ -1,0 +1,195 @@
+<div data-awbe-component="awbe-include" data-awbe-component-params="cabecalhoVoltarPagina"></div>
+
+<% 
+	var user = AWBE.sessionStorage.getItem('user');
+	if(AWBE.localStorage.getItem('isNCLegado_' + user.cpf) == "true"){ %>
+	<div data-awbe-component="awbe-include" data-awbe-component-params="menuOpcoesLogadoNCLegado"></div>
+<% }else{ %>
+	<div data-awbe-component="awbe-include" data-awbe-component-params="menuOpcoesLogado"></div>
+<% }%>
+
+<form action="#idVirtualCartaoValidation" id="formCartao">
+<div  class="ui-content">
+	<p class="fnt-regular color-gray-lighter">Digite os dados do cartão de crédito para cadastrar este dispositivo como aparelho de acesso.</p>
+	<br><hr style="margin-top: -1em;"><br>
+	<label class="forms" style="margin-top: -0.5em;">Digite o n&uacute;mero do cart&atilde;o</label>
+	<input type="tel" name="numeroCartao" id="numeroCartao"
+			data-awbe-bind="numeroCartao"
+			data-awbe-for="informacoesCartaoValidation" maxlength="16"
+			value="<%=params.numeroCartao%>" />
+			<label class="forms">Senha do cart&atilde;o</label>
+		<div class="ui-grid-b margin-bottom-17">
+			<div class="ui-block-a width-7em">
+				<input type="tel"
+					class="input-password-numeric input-pass width-7em"
+					pattern="[0-9]*" inputmode="numeric" name="senhaInformacaoCartao"
+					id="senhaInformacaoCartao" data-awbe-bind="senhaInformacaoCartao"
+					maxlength="6" data-awbe-for="*" oncopy="return false"
+					oncut="return false" onpaste="return false" />
+			</div>
+		</div>
+	
+	<div class="ui-grid-a disabledButton margin-top-4em" id="divbotaoAdicionarCartoes">
+		<div class="ui-block-a" style="float: right;">
+			<div class="ui-btn-arrow-blue-arrow"></div>
+			<div class="ui-btn-arrow-blue" style="width:89%">
+				<a id="botaoSubmitInformacoesCartao">Continuar</a>
+			</div>
+		</div>
+		<div class="ui-block-b"></div>
+	</div>
+</div>
+</form>
+
+<div data-awbe-component="popup"
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="vinculoComSucesso">
+	<p class="texto-modal-normal">Pronto! V&iacute;nculo realizado com sucesso.</p>
+	<div class="align-botoes">
+		<a id="btnOK" data-rel="back" class="botao-modal-002">OK</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup"
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="segundaSenhaIncorreta">
+	<p class="titulo-modal">A senha informada est&aacute; incorreta.</p>
+	<p class="texto-modal-normal">Voc&ecirc; tem mais <b>1 tentativa(s)</b> de acesso. Ao atingir esse limite, sua senha ser&aacute; bloqueada.</p>
+	<div class="align-botoes txt-caixaalta">
+		<a href="#" data-rel="back" class="botao-modal-002 txt-semCapitalize-iOS">Tentar novamente</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup"
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="senhaIncorreta">
+	<p class="titulo-modal">Sua senha est&aacute; incorreta.</p>
+	<p class="texto-modal-normal">Voc&ecirc; tem mais <span class="texto-negrito-modal" id="tent"></span> de acesso. Ao atingir esse limite, seu acesso ser&aacute; bloqueado.</p>
+	<div class="align-botoes txt-caixaalta">
+		<a href="#" data-rel="back" class="botao-modal-002">Tentar novamente</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup"
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="senhaBloqueada">
+	<p class="titulo-modal">Acesso Bloqueado</p>
+	<p class="texto-modal-normal">Por favor entre em contato com a Central de Relacionamento.</p>
+	<div class="align-botoes txt-caixaalta">
+		<a href="#meusCartoes" data-rel="back" class="botao-modal-002">Fechar</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup"
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="dadosNEncontrados">
+	<p class="texto-modal-normal">Verifique o n&uacute;mero do cart&atilde;o informado e digite novamente.</p>
+	<div class="align-botoes txt-caixaalta">
+		<a href="#" data-rel="back" class="botao-modal-002">Fechar</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup"
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="naoPossuiCartao">
+	<p class="titulo-modal"></p>
+	<p class="texto-negrito-modal">Voc&ecirc; n&atilde;o possui cart&atilde;o de cr&eacute;dito ativo vinculado ao seu CPF.</p>
+	<p class="texto-modal-normal">Para acessar o aplicativo &eacute; necess&aacute;rio possuir ao menos um Cart&atilde;o de Cr&eacute;dito Bradesco ou BradesCard.</p>
+	<div class="align-botoes">
+		<a href="#meusCartoes" class="botao-modal-002">OK</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup"
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="dadosNConferemValidation">
+	<p class="texto-modal-normal">Verifique campos destacados e digite novamente.</p>
+	<div class="align-botoes txt-caixaalta">
+		<a href="#" data-rel="back" class="botao-modal-002">Fechar</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup"
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="numeroCartaoRepetido">
+	<p class="texto-modal-normal">Os dados informados n&atilde;o conferem.</p>
+	<div class="align-botoes txt-caixaalta">
+		<a href="#" data-rel="back" class="botao-modal-002">Fechar</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup"
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="numeroCartaoRepetidoCadastro">
+	<p class="texto-modal-normal">Verifique o n&uacute;mero do cart&atilde;o informado e digite novamente.</p>
+	<div class="align-botoes txt-caixaalta">
+		<a href="#" data-rel="back" class="botao-modal-002">Fechar</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup"
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="dadosNConferem">
+	<p class="texto-modal-normal">Verifique os dados informados e digite novamente ou insira um n&uacute;mero de cart&atilde;o eleg&iacute;vel.</p>
+	<div class="align-botoes txt-caixaalta">
+		<a href="#" data-rel="back" class="botao-modal-002">Fechar</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup"
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="dadosNConferemValidade">
+	<p class="texto-modal-normal">Verifique os dados informados e digite novamente ou insira um n&uacute;mero de cart&atilde;o eleg&iacute;vel.</p>
+	<div class="align-botoes txt-caixaalta">
+		<a href="#" data-rel="back" class="botao-modal-002">Fechar</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup"
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="alertaInformacao">
+	<p class="texto-modal-normal" id="alerta-mensagem"></p>
+	<div class="align-botoes txt-caixaalta">
+		<a href="#" data-rel="back" class="botao-modal-002" id="hrefAlerInfo">Fechar</a>
+	</div>
+</div>
+<!-- POPUP DE MENSAGEM GENERICA -->
+ <div data-awbe-component="popup"
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="popup-generico">
+	<p class="titulo-modal" id="titulo-modal-personalizado"></p>
+	<p class="texto-modal-normal" id="mensagem-personalizada"></p>
+ 		<div class="align-botoes">
+ 			<a href="#" data-rel="back"  class="botao-modal-002">FECHAR</a>
+ 		</div>
+</div>
+
+
+
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/idVirtual/idVirtual.js" />

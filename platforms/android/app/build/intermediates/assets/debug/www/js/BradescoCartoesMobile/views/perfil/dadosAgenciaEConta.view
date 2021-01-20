@@ -1,0 +1,132 @@
+<div id="header-hide-arrow" data-role="header" data-position="fixed" data-tap-toggle="false" class="headerfix">
+	<a id="btnLeftPanel" href="#perfilEditar" class="btn-back" title="voltar para o menu anterior"></a>
+	<h1><%=AWBE.localStorage.getItem('title')%></h1>
+</div>
+
+<div class="ui-content dadosBancarios" data-role="content">
+	<form action="#editarNCorrentistaParaCorrentista">
+		<input type="hidden" value="1" id="titularidade" data-awbe-bind="titularidade"/>
+		<h2>DADOS BANC&aacute;RIOS</h2>
+		<div class="ui-grid-b">
+			<div class="ui-block-a">
+				<p class="fnt-book label-editar-ag color-gray-darker">Ag sem d&iacute;gito</p>
+				<input type="tel" name="agencia" id="agencia" data-awbe-bind="agencia" maxlength="5"/>
+			</div>
+			<div class="ui-block-b margin-left-16">
+				<div class="ui-block-c" style="width: 170%">	
+				<p class="fnt-book label-editar-ag color-gray-darker fnt-no-wrap">Conta e d&iacute;gito sem h&iacute;fen</p>
+				<input type="tel" id="contaEDigito" data-awbe-bind="contaEDigito" maxlength="9"/>
+				</div>
+			</div>
+		</div>
+		<label class="forms">Titularidade</label>
+		<div class="navbar" data-role="navbar" id="titular">
+			<ul class="border-titulares">
+				<li><a data-awbe-bind="primeiro_titular" id="titular_1"
+					data-value="1">1º titular</a></li>
+				<li><a data-awbe-bind="segundo_titular" id="titular_2"
+					data-value="2">2º titular</a></li>
+				<li><a data-awbe-bind="terceiro_titular" id="titular_3"
+					data-value="3">3º titular</a></li>
+			</ul>
+		</div>		
+		<p class="fnt-book txt-1em color-gray-darker" style="line-height: 2em !important; vertical-align: middle; margin-bottom: 0;">
+			<span style="display: block; float: left; margin-right:0.5em;">Senha de 4 d&iacute;gitos</span> 
+			<a class="icon-21" onclick="AWBE.util.openPopup('mesmaSenhaIb')"></a>
+		</p>
+		<div class="ui-grid-b margin-bottom-17" style="clear: both">
+			<div class="ui-block-a">
+				<input type="tel" class="input-password-numeric input-pass"
+					pattern="[0-9]*" inputmode="numeric" name="senhaIB" id="senhaIB"
+					data-awbe-bind="senhaIB" maxlength="4" value="<%=params.senhaIB%>"
+					oncopy="return false" oncut="return false" onpaste="return false" />
+			</div>
+			<div class="ui-block-b"></div>
+			<div class="ui-block-c"></div>
+		</div>	
+		<hr class="hr-margin-tb"/>
+		<div class="ui-grid-a disabledButton margin-top-2em" id="botaoSubmitDadosConta">
+			<div class="ui-block-a" style="float:right">
+				<div class="ui-btn-arrow-blue-arrow"></div>
+				<div class="ui-btn-arrow-blue ">
+			    	<a id="botaoSubmitDadosAgenciaEConta">Continuar</a>
+			    </div>
+			</div>
+			<div class="ui-block-b"></div>
+		</div>
+	</form>
+</div>
+<!-- Correção para validar erro de senha:-->
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="senhaIncorreta">
+	<p class="titulo-modal">A senha informada est&aacute; incorreta.</p>
+	<p class="texto-modal-normal">Voc&ecirc; tem mais <span class="texto-negrito-modal" id="tent"></span> de acesso. Ao atingir esse limite, sua senha ser&aacute; bloqueada.</p>
+	<div class="align-botoes txt-caixaalta">
+		<a href="#" data-rel="back" class="botao-modal-002">Tentar novamente</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="senhaBloqueada">
+	<p  class="titulo-modal">Senha de 4 dígitos Bloqueada</p>
+	<p class="texto-modal-normal">Para cadastrar uma nova senha, entre em contato com o Fone F&aacute;cil Bradesco.</p>
+	<div class="align-botoes txt-caixaalta">
+		<a href="#meusCartoes" data-rel="back" class="botao-modal-002">Fechar</a>
+	</div>	
+</div>
+
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="mesmaSenhaIb">
+	<p class="texto-modal-normal">Seu acesso &eacute; feito com a senha de 4 d&iacute;gitos, a mesma utilizada no Bradesco Internet Banking.</p>
+	<p class="texto-modal-normal">Caso tenha alguma dificuldade com a senha, entre em contato com o Fone F&aacute;cil Bradesco.</p>
+	<div class="align-botoes txt-caixaalta">
+		<a href="#" data-rel="back" class="botao-modal-002">Fechar</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="dadosNConferemValidation">
+	<p class="texto-modal-normal">Os dados informados não foram encontrados. Entre em contato com a Central de Relacionamento.</p>
+	<div class="align-botoes txt-caixaalta">	
+		<a href="#" data-rel="back" class="botao-modal-002" onclick="desabilitarBotao()">Fechar</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup"
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="infoNAtualizada">
+	<p class="texto-modal-normal" >Campo(s) de entrada inconsistente(s).</p>
+	<div class="align-botoes">
+		<a href="#" data-rel="back" class="botao-modal-002">OK</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup"
+      data-awbe-component-option-theme="a"
+      data-awbe-component-option-theme-modal="b"
+      data-awbe-component-option-modal="true"
+      data-awbe-component-popup-id="infoAtualizada">
+      <p class="titulo-modal">Cadastro alterado</p>
+      <p class="texto-modal-normal">Agora todas as funcionalidades est&atilde;o dispon&iacute;veis para voc&egrave;.</p>
+      <br>
+  	  <p class="texto-modal-normal">Para sua seguran&ccedil;a, o acesso ao aplicativo ser&aacute; feito com a senha de 4 d&iacute;gitos, a mesma do site Bradesco Internet Banking e Fone F&aacute;cil.</p>
+      <div class="align-botoes">
+            <a href="#homeLogada" data-rel="back"  class="botao-modal-002">OK</a>
+      </div>
+</div>
+
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/perfil/dadosAgenciaEConta.js"></script>

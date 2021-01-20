@@ -1,0 +1,68 @@
+<div data-awbe-component="awbe-include" data-awbe-component-params="cabecalhoVoltarPagina"></div>
+
+<div class="page ui-content" data-role="content">
+	<p class="fnt-medium txt-1em color-gray-darker" style="font-family:NewJuneBook">Antes de cadastrar a nova senha, informe sua senha antiga.</p>	
+	<div class="divAlertas">
+		<hr class="hr-margin-error">
+		<div class="icon-20"></div>
+		<p class="txt-08em fnt-book color-gray-lighter margin-left-28em">A senha informada &eacute; inv&aacute;lida.</p>
+		<hr class="hr-margin-error">
+ 	</div>
+	<p class="fnt-book txt-1em color-gray-darker">Senha antiga</p>
+	<div class="ui-grid-b" style="margin-bottom: 2.3em;">
+		<div class="ui-block-a">
+			<form action="#redefinicaoSenhaEditar">
+				<input type="tel" class="input-password-numeric input-pass" pattern="[0-9]*" inputmode="numeric" name="senhaCompra" id="senhaCompra" data-awbe-bind="senhaCompra" autocomplete="off" maxlength="4" oncopy="return false" oncut="return false" onpaste="return false"/>
+			</form>
+		</div>
+		<div class="ui-block-b"></div>
+		<div class="ui-block-c"></div>
+	</div>
+	<div class="ui-grid-a">
+		<div class="ui-block-a disabledButton enable-buttom" style="float:right">
+			<div class="ui-btn-arrow-blue-arrow"></div>
+			<div class="ui-btn-arrow-blue" style="float:right">
+    			<a id="botaoSubmitInformacoesCartao">Continuar</a>
+    		</div>
+	    	<div class="ui-block-b"></div>
+		</div>
+	</div>
+</div>
+
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="popup-generico">
+	<p class="titulo-modal" id="titulo-modal-personalizado"></p>
+	<p class="texto-modal-normal" id="mensagem-personalizada"></p>
+		<div class="align-botoes">	
+			<a href="#" data-rel="back"  class="botao-modal-002">FECHAR</a>
+		</div>
+</div>
+
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="excessoTentativasNCorrentista">
+	<p class="texto-modal-normal" style="font-weight: bold">Acesso Bloqueado</p>
+	<p class="texto-modal-normal">Voc&ecirc; excedeu o n&uacute;mero m&aacute;ximo de tentativas, por favor entrar em contato com a Central de Relacionamento.</p>
+	<div class="align-botoes">
+    	<a href="#meusCartoes" data-rel="back" class="botao-modal-002">Fechar</a>
+ 	</div>
+</div>
+
+<div data-awbe-component="popup" 
+	 data-awbe-component-option-theme="a"
+	 data-awbe-component-option-theme-modal="b"
+	 data-awbe-component-option-modal="true"
+	 data-awbe-component-popup-id="senhaIncorreta">
+		<p class="texto-modal-normal">A senha informada est&aacute; incorreta.</p>
+		<p class="texto-modal-normal">Voc&ecirc; tem mais <span class="texto-negrito-modal" id="tent"></span> de acesso. Ao atingir esse limite, seu acesso ser&aacute; bloqueado.</p>
+ 		<div class="align-botoes txt-caixaalta">	
+ 			<a href="#" data-rel="back"  class="botao-modal-002 txt-semCapitalize-iOS">Tentar novamente</a>
+ 		</div>
+</div>
+
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/perfil/senhaAntiga.js"></script>

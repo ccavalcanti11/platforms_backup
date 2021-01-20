@@ -1,0 +1,42 @@
+<%
+var CVV = model.webCard ? completeLeft(model.cvvVirtual, 3) : "000";
+var nomeEmbosso = model.webCard ? model.nomeVirtual : "XXXXX XXXXX XXXXX";
+var numeroCartao = model.webCard ? formatarWebCard(model.webCard) : "•••• •••• •••• ••••";
+var btnID = model.webCard ? "botaoGerarNovoCartaoVirtual" : "botaoGerarCartaoVirtual";
+var btnText = model.webCard ? "Gerar novo cartão virtual" : "Gerar cartão virtual";
+var dataValidade = model.webCard ? converterDataStringParaFormatadaDiaMes(model.dataExpiracaoVirtual) : "00/00";
+var horasValidade = model.horasValidade 
+	? "Esse Cartão Virtual é válido apenas para uma compra e durante o período de " + model.horasValidade + " horas."
+	: "";
+%>
+
+<div>
+	<div class="cartao-virtual">
+		<div class="flex-item">
+			<p class="numero-cartao"><b><%= numeroCartao %></b></p>
+		</div>
+		<div class="flex-item flex">
+			<div class="flex-item">
+				<span class="text-center">Validade: <b><%=dataValidade%></b></span>
+			</div>
+			<div class="flex-item">
+				<span class="text-center">CVV: <b><%=CVV%></b></span>
+			</div>
+		</div>
+		<div class="flex-item text-center">
+			<b><%= nomeEmbosso %></b>
+		</div>
+	</div>
+	<% if(horasValidade){ %>
+		<div class="limiteDuracaoCartao txt-validade-webcard">
+			<%= horasValidade %>
+		</div>
+	<% } %>
+	<div class="container-btn">
+		<div class="ui-btn-blue" id="<%= btnID %>">
+			<p class="botaoAzul"><%= btnText %></p>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/webCard/webCard.js"></script>

@@ -1,0 +1,114 @@
+<% var email = AWBE.sessionStorage.getItem('user').emailCadastro; var cartao = model.cartao; var faturaDigitalAtiva = false; AWBE.sessionStorage.setItem('isSeguro','false'); if(cartao.indicadorBloqueioFatura != 'S') { faturaDigitalAtiva = false; } else { faturaDigitalAtiva = true;} 
+if(cartao.formaPagamento == 'D') { %>
+<div class="ui-grid-solo faturadigital">
+	<div class="divFaturaDebAutomatico">O pagamento da fatura deste cart&atilde;o est&aacute; programado no d&eacute;bito autom&aacute;tico. Assim a fatura digital &eacute; habilitada automaticamente.</div>
+	<hr class="hrFaturaDigital" />
+	<div class="ui-grid-a divGridDebAutomatico">
+		<div class="ui-block-a divBlockaDebAutomatico">
+			<div class="icon-20" style="margin-top: -.2em;"></div>
+		</div>
+		<div class="ui-block-b divBlockbDebAutomatico">
+			<span style="font-size: 0.75em;">Acompanhe seus gastos atrav&eacute;s do Extrato do Cart&atilde;o no Menu Lateral do Aplicativo.</span>
+		</div>
+	</div>
+	<hr class="hrFaturaDigital"/>
+</div>
+<% }else{%>
+<div class="ui-grid-solo faturadigital">
+ <form method="post" action="#alterarFaturaDigital" id="formFaturaDigitalConfirmacao">
+	 <div class="fnt-medium txt-1em divtitle">Fatura Digital</div>
+	 <div class="toggle-btn-right">
+		 <input type="checkbox" data-role="flipswitch" id="faturaDigitalSwitch" data-current-value="<%= faturaDigitalAtiva ? 1 : 0 %>" data-on-text="" data-off-text="" <%=faturaDigitalAtiva ? 'checked' : '' %>/>
+	 </div>
+	 <% if (!cartao.bradescard) { %>
+		<div class="smalltxt">Habilite o servi&ccedil;o para inibir o envio da fatura impressa na sua casa e acompanhar os seus gastos pelo site ou aplicativo Bradesco.</div>
+
+	 <% } else { %>
+		<div class="smalltxt">Aderindo a Fatura Digital, voc&ecirc; receber&aacute; a fatura no seu e-mail e n&atilde;o mais a vers&atilde;o impressa entregue pelos correios.<br/><br/>
+			As informa&ccedil;&otilde;es tamb&eacute;m poder&atilde;o ser obtidas pelo site <a onclick="openExternalUrl('https://www.bradescard.com.br')">Bradescard.com.br</a>
+		</div>
+	 <% } %>
+     <input type="hidden" data-awbe-bind="numParcialCartao" id="numParcialCartao" value=""/>
+ </form>
+</div>
+<hr class="line">
+<form action="#dispositivoHabilitarFaturaDigital" id="formDispositivoSeguranca" style="display: none;">
+ <div class="ui-grid-a margin-top-1em">
+	 <div class="ui-block-a"></div>
+	 <div id="divBotaoConfirmaDispositivo" class="ui-block-b">
+		 <div class="ui-btn-arrow-blue">
+			 <a id='blockButton'>Continuar</a>
+		 </div>
+	 </div>
+ </div>
+</form>
+<% } %>
+<div data-awbe-component="popup" data-awbe-component-option-theme="a" data-awbe-component-option-theme-modal="b" data-awbe-component-option-modal="true" data-awbe-component-popup-id="falhaHabilitarFaturaDigital">
+ <p class="texto-modal-normal">N&atilde;o foi poss&iacute;vel habilitar a Fatura Digital. Por favor, tente novamente.</p>
+ <div class="align-botoes">
+	 <a href="#homeLogada" data-rel="back" class="botao-modal-002">OK</a>
+ </div>
+</div>
+<div data-awbe-component="popup" data-awbe-component-option-theme="a" data-awbe-component-option-theme-modal="b" data-awbe-component-option-modal="true" data-awbe-component-popup-id="falhaHabilitarFaturaDigitalCentralRelacionamento">
+	<p class="texto-modal-normal">N&atilde;o foi poss&iacute;vel habilitar a Fatura Digital. Por favor, tente novamente.</p>
+	<div class="align-botoes">
+		<a href="#canaisAtendimentoLogado" data-rel="back" class="botao-modal-002">OK</a>
+ </div>
+</div>
+<div data-awbe-component="popup" data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="cadastroEmail">
+	<p class="titulo-modal">Dados de contato</p>
+	<p class="texto-modal-normal">Para enviar essa informação, atualize seus dados com e-mail e celular.</p>
+	<div class="align-botoes-2 txt-caixaalta">
+		<a href="#homeFaturaDigital" id="atualizarContatoClose" data-rel="back" class="botao-modal-003">Cancelar</a> 
+        <a onclick="popupActionAtualizarEmail()" class="botao-modal-003">Atualizar</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup" data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="atualizarEmail">
+	<p class="texto-modal-normal" style="word-wrap: break-word !important;">A fatura será enviada para <%=email%>.</p>
+	<p class="texto-modal-normal">Deseja enviar para este e-mail?</p>
+	<div class="align-botoes-2 txt-caixaalta">
+		<a onclick="popupActionAtualizarEmail()" class="botao-modal-003">Alterar</a> 
+        <a onclick='HabilitarFaturaDigital()' class="botao-modal-003">Enviar</a>
+	</div>
+</div>
+
+<link rel="stylesheet" type="text/css" href="js/BradescoCartoesMobile/views/faturaDigital/faturaDigital.css"/>
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/faturaDigital/faturaDigital.js"></script>
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/faturaDigital/layoutFaturaDigital.js"></script>
+<script type="text/javascript">
+	$("#faturaDigital\\/faturaDigitalPage").on('pageshow', function() {
+		if ($('#faturaDigitalSwitch').data('current-value') == 1) {
+			try{
+				$('#faturaDigitalSwitch').prop('checked', true).flipswitch("refresh");
+
+			} catch (e) {
+				console.log(e);
+			}
+		}
+	});
+	$('document').ready(function() {
+		AWBE.sessionStorage.setItem('numParcialFat',completeLeft(<%=model.cartao.parcialCartao%>, 4));
+		$('#faturaDigitalSwitch').on('change', function(e) {
+			AWBE.sessionStorage.setItem('faturaDigitalSwitch', document.getElementById("faturaDigitalSwitch").checked);
+			$this = $(this);
+			if (this.checked && $this.data('current-value') == 0) {
+				$("#formDispositivoSeguranca").show();
+			} else if (!this.checked && $this.data('current-value') == 1) {
+				document.getElementById("numParcialCartao").value = AWBE.sessionStorage.getItem('numParcialFat');
+				event.preventDefault();
+				$('#formFaturaDigitalConfirmacao').submit();
+			} else {
+				$("#divDispositivoSeguranca").hide();
+				$('#botaoContinuarListarMotivos').show();
+				$("#formDispositivoSeguranca").hide();
+			}
+		});
+	});
+</script>

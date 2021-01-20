@@ -1,0 +1,90 @@
+<%
+    metaPremiadaTemplateUtils.renderTemplate('stylePermissoes');
+
+    var MetaPremiada = window.BradescoCartoesMobile.components.MetaPremiada;
+    var textosCampanha = MetaPremiada.getCampaignData().textosCampanha;
+%>
+
+<div class="container-card-meta-premiada" id="cardMetaPremiada">
+    <div class="container-img-card" style="background-image: url(img/tutorial/metaPremiada/cardMetaPremiada.svg);">
+        <div class="btnFecharMetaPremiada" id="btnFecharCardMetaPremiada"
+            onclick="metaPremiadaTemplateUtils.hideCard(); populaAppsFlyerGa('HomeOptinPromo_Fechar'); mustShowFooter();">
+            <img src="img/tutorial/home/botaofechar.svg"></img>
+        </div>
+
+        <div class="container-txt-meta">
+            <div class='container-card-titulo'>
+                <div class="color-blue-darker acao-title">a&ccedil;&atilde;o</div>
+                <div class="fnt-bold color-blue-darker card-title"><%= textosCampanha.titulo %></div>
+            </div>
+            <div class="container-card-texto">
+                <div class="desc-meta-premiada color-gray-darker fnt-book">
+                    <%= textosCampanha.texto_card_1 %><br>
+                    <%= textosCampanha.texto_card_2 %> <br>
+                    <%= textosCampanha.texto_card_3 %><br>
+                    <%= textosCampanha.texto_card_4 %>
+                </div>
+            </div>
+            
+            <div class='container-txt-participe'>
+                <div class="fnt-bold margin-top-1em color-gray-darker txt-participe"><%= textosCampanha.texto_card_5 %></div>
+            </div>
+
+        </div>
+        <div class="btn-sim-nao">
+            <div id="btnSimCardMetaPremiada" class="ui-btn-blue btn-sim-meta-premiada"
+                onclick="callViewPermissoes(); metaPremiadaTemplateUtils.hideCard(); populaAppsFlyerGa('HomeOptinPromo_Sim');">
+                <p class="botaoAzul pad-left-right">Sim, eu quero!</p>
+            </div>
+            <p class="color-blue-darker btn-nao-meta-premiada"
+                onclick="metaPremiadaTemplateUtils.hideCard(); populaAppsFlyerGa('HomeOptinPromo_Nao'); mustShowFooter();">Agora
+                n&atilde;o
+            </p>
+        </div>
+        <div class="container-icon-bottom">
+            <div class='card-icon-836' style='background-image: url(img/tutorial/metaPremiada/card-icon-836.svg)'></div>
+            <div class='card-icon-1211' style='background-image: url(img/tutorial/metaPremiada/card-icon-1211.svg)'></div>
+        </div>
+    </div>
+    
+   
+</div>
+
+<script>
+
+    function mustShowFooter() {
+
+       var MetaPremiada = window.BradescoCartoesMobile.components.MetaPremiada;
+
+        if (MetaPremiada.mustShowFooterCampaign) {
+            metaPremiadaTemplateUtils.renderFooter();
+        } else {
+            metaPremiadaTemplateUtils.hideFooter();
+        }
+    }
+
+    function callViewPermissoes() {
+        
+        var MetaPremiada = window.BradescoCartoesMobile.components.MetaPremiada;
+        
+        MetaPremiada.optInOutCampaign('S').then(function () {
+            MetaPremiada.setHasFooterBeenSeen();
+            metaPremiadaTemplateUtils.viewPermissoes();
+        }).fail(function (error) {
+            
+            metaPremiadaTemplateUtils.viewPermissoes().done(function () {
+                var texto = (error === 99 || error === 500)
+                    ? 'Sem conex&atilde;o. Verifique a rede e tente novamente.'
+                    : 'Tente novamente mais tarde.';
+                var cabecalho = (error === 99 || error === 500)
+                    ? 'Erro de conex&atilde;o'
+                    : 'Indispon&iacute;vel temporariamente'
+
+                return AWBE.Dialog.error({
+                    texto: texto,
+                    cabecalho: cabecalho
+                });
+            });
+        });
+    }
+</script>

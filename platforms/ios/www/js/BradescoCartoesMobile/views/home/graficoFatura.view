@@ -1,0 +1,64 @@
+<!-- BLOCO USADO PARA ATUALIZAR O GRAFICO DO EXTRATO QUANDO usuario
+TROCA O MES DO EXTRATO DO CARTAO
+-->
+
+<%
+var extrato = model;
+var mesesDisponiveis = extrato.mesesDisponiveis;
+var cartao = AWBE.sessionStorage.getItem('meusCartoesAtual');
+%>
+<div class="ui-grid-a limites" id="valorTotal0">
+	<dl class="ui-block-a">
+	<% if(cartao.titularAdicional == 'T'){ %>
+		<dt>Total desta fatura:</dt>
+		<dd>R$ <%=extrato.sinalExtrato%><%=currency(extrato.valorTotal)%></dd>
+		<% } %>
+	</dl>
+</div>
+
+<%
+	var graficoKey = extrato.numeroCartao + extrato.mesExtrato + extrato.anoExtrato;
+	
+	if(extrato.statusAberto == 'F') {
+		//busca dados de fatura fechada do localStorage
+		var resumoConsumosJson = AWBE.localStorage.getItem(graficoKey);
+		if(resumoConsumosJson != undefined) {
+			var resumoConsumosObj = JSON.parse(resumoConsumosJson);
+			extrato.resumoConsumos = resumoConsumosObj;
+		}
+	}
+%>
+
+<% if (extrato.resumoConsumos) { %>
+<div class="ui-grid-a content-grafico">
+	<div class="ui-block-a" id="myChartPie"></div>
+	<div class="ui-block-b legendaGrafico">
+		<%
+		if (extrato.resumoConsumos.length > 0) {
+			for (var i = 0; i < extrato.resumoConsumos.length; i++) {
+				var resumo = extrato.resumoConsumos[i];
+				var graficoObj = BradescoCartoesMobile.grafico[resumo.codigoCategoria] || BradescoCartoesMobile.grafico[0];
+		%>
+			<div class="margin-tb margin-r-1">
+				<div class="txt-071em color-gray-darker fnt-bold percentualGasto" style="margin-top: .2em">
+					<%=currency(resumo.percentualGasto, false)%>%
+				</div>
+				<div class="<%=graficoObj.classe%>" style="color: <%=graficoObj.cor%>;">
+					<span style="margin-left: .2em;" class="txt-071em fnt-bold"><%=resumo.nomeCategoria%></span>
+				</div>
+			</div>
+		<% 	}
+		} else { %>
+			<div class="margin-left-16" style="margin-top:20%">
+				<span class="font-small-ex ui-block-c grafico-width-c txt-08em">Nenhuma compra at&eacute; o momento.</span><br/>
+				<span class="font-small-ex ui-block-c grafico-width-c txt-08em" style="font-weight:bold;"><b>Comece a usar seu cart&atilde;o agora mesmo!</b></span>
+			</div>
+		<% } %>
+	</div>
+	<% if (extrato.resumoConsumos.length > 0) { %>
+		<div class="extrato-line" style="float: left">
+			<label class="extrato-taxas-label">Valores referente somente a compras efetuadas.</label>
+		</div>
+	<% } %>
+</div>
+<% } %>

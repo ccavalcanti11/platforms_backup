@@ -1,0 +1,151 @@
+<%
+	var viewStyleRender = AWBE.Views.getView('avisoViagem/styleAvisoViagem');
+    viewStyleRender.render();
+%>
+<div data-awbe-component="awbe-include" data-awbe-component-params="cabecalhoVoltarPagina"></div>
+
+<script type="text/javascript"	src="js/BradescoCartoesMobile/views/avisoViagem/avisoViagem.js"></script>
+<script type="text/javascript"	src="js/BradescoCartoesMobile/views/avisoViagem/editarAvisoViagemContinente.js"></script>
+<div class="ui-content" data-role="content">
+
+	<%
+		var avisoContinentes = model.avisoViagem.avisoContinentes;
+		var temAvisoViagemContinente = false;
+		if (avisoContinentes &&	avisoContinentes.length > 0) {
+			_.forEach(avisoContinentes,	function (itemAvisoViagemContinente) {
+				if (itemAvisoViagemContinente.dataInicioAsInteger && itemAvisoViagemContinente.dataFimAsInteger) {
+					temAvisoViagemContinente = true;
+				}
+			})
+		}
+	%>
+
+	<div>
+		<p class="h2-acessivel" title="Dados do aviso de viagem">DADOS DO AVISO DE VIAGEM</p>
+		<div class="fnt-book color-gray-darker">Antes de viajar para o exterior, informe o destino e per&iacute;odo da sua viagem.</div>
+		<br>
+	</div>
+	<br>
+	<div>
+	<% if(avisoContinentes && avisoContinentes.length > 0) {%>
+		<form action="#editarAvisoViagemContinente" id="editarAvisoViagemContinente">
+			<input type="hidden" data-awbe-bind="indexAvisoViagemContinente" id="editIndex" value="" />
+		</form>
+
+		<form action="#excluirAvisoViagemContinente" id="excluirAvisoViagemContinente">
+			<input type="hidden" data-awbe-bind="indexAvisoViagemContinente" id="deleteIndex" value="" />
+		</form>
+
+		<ul data-role="listview" style="margin: -1.5em; margin-bottom: auto;">
+
+			<%
+				_.forEach(avisoContinentes, function(itemAvisoViagemContinente,indexAvisoViagemContinente) {
+
+					if(itemAvisoViagemContinente.dataInicioAsInteger == null){ %>
+						<li data-icon="false">
+							<a onclick="indexEdit(<%=indexAvisoViagemContinente%>);$('#editarAvisoViagemContinente').attr('action','#avisoViagemAdicionarContinente').submit();"
+								style="cursor: pointer;">
+								<span class="fnt-book txt-13em color-gray-darker">
+								<%= itemAvisoViagemContinente.continente.nome %></span>
+								<span class="txt-08em color-blue-ligher fnt-book">
+									<span class="ver-mais-icon"></span>
+								</span>
+							</a>
+						</li>
+			<%
+					}else{
+			%>
+						<li data-icon="false" style="font-family: NewJuneBook; font-weight: normal; font-size: 0.9em; color: #636363; background-color: transparent; padding: 1.3em 1.5em;">
+							<div class="containerFlexCenter">
+								<div>
+									<span class="fnt-book txt-13em color-gray-darker">
+										<%=	itemAvisoViagemContinente.continente.nome %>
+									</span>
+								</div>
+								<div style="display: flex">
+									<div style="display: flex; align-items: center">
+										<span class="icon-check" />
+									</div>
+									<div style="display: flex; align-items: center">
+										<div style="padding: 0px 5px 0px 10px;">
+											<p class="txt-08em color-blue-ligher" style="cursor: pointer;! important;"
+											title="de <%=itemAvisoViagemContinente.dataInicioLabel %>">
+											<span class="fnt-bold">De:</span><span class="fnt-book"> <%=itemAvisoViagemContinente.dataInicioLabel %></span>
+											</p>
+											<p class="txt-08em color-blue-ligher" style="cursor: pointer;! important; font-family: NewJuneBold;"
+												title="At&eacute <%=itemAvisoViagemContinente.dataFimLabel %>">
+												<span class="fnt-bold">At&eacute;:</span><span class="fnt-book"> <%= itemAvisoViagemContinente.dataFimLabel %>
+												</span>
+											</p>
+										</div>
+										<div class="ui-listview">
+											<a href="javascript:void(0)" rel="modal" onclick="openPopUpEditarAviso(<%=indexAvisoViagemContinente%>)"
+												id="<%=indexAvisoViagemContinente%>" style="cursor: pointer; padding: 0;">
+												<img src="css/icons/icon-08.svg" width="20px"
+													title="clique para editar ou excluir aviso de viagem">
+											</a>
+											<div data-awbe-component="popup" data-awbe-component-option-theme-modal="b" data-awbe-component-option-modal="false"
+												data-awbe-component-option-theme="a" data-awbe-component-popup-id="popupAcao"
+												title="clique para editar ou excluir aviso de viagem">
+												<a onclick="$('#editarAvisoViagemContinente').attr('action','#editarAvisoViagemContinente').submit();"
+													class="botao-modal-001">Editar</a>
+												<a onclick="$('#excluirAvisoViagemContinente').submit();" class="botao-modal-001">Excluir</a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</li>
+			<%
+					}
+				});
+			%>
+		</ul>
+	<% } %>
+
+	</div>
+	<br>
+	<br>
+		<% if(temAvisoViagemContinente && !isEditando()) { %>
+				<div class="ui-grid-solo margin-bottom-1em">
+					<div class="ui-grid-a">
+						<div class="ui-block-b" style="float: right;">
+							<div>
+								<div class="ui-btn-arrow-blue" >
+		                        <div><a href="#confirmarEdicaoAvisoViagem">Finalizar</a></div>
+		                    </div>
+							</div>
+						</div>
+					</div>
+				</div>
+		<%
+			}
+
+            if(!temAvisoViagemContinente && !isCriando()) { %>
+				<div class="ui-grid-solo margin-bottom-1em">
+					<div class="ui-grid-a">
+						<div class="ui-block-b" style="float: right;">
+							<div>
+								<div class="ui-btn-arrow-blue" >
+									<div>
+										<a href="#solicitarCancelamentoAvisoViagem">Finalizar</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+		<% } %>
+</div>
+
+<div data-awbe-component="popup"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="false"
+	data-awbe-component-option-theme="a"
+	data-awbe-component-popup-id="popupAcao">
+	<a
+		onclick="$('#editarAvisoViagemContinente').submit();"
+		class="botao-modal-001">Editar</a> <a
+		onclick="$('#excluirAvisoViagemContinente').submit();"
+		class="botao-modal-001">Excluir</a>
+</div>

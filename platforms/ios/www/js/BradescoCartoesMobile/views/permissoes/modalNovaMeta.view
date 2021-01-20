@@ -1,0 +1,22 @@
+<div data-awbe-component="popup" data-awbe-component-option-theme="a" data-awbe-component-option-theme-modal="b"
+    data-awbe-component-option-modal="true" data-awbe-component-popup-id="modalNovaMeta">
+    <p class="titulo-modal">A&ccedil;&atilde;o "Pontos Premiados"</p>
+    <p class="texto-modal-normal">Sua nova meta para este m&ecirc;s foi atualizada e est&aacute; dispon&iacute;vel para consulta. Boas compras!</p>
+    <p class="texto-modal-normal">Deseja consultar agora?</p>
+    <div class="align-botoes-2 txt-caixaalta txt-semCapitalize-iOS">
+        <a href="#" data-rel="back" class="botao-modal-002" onclick="closeUpdateCampaignPopUp();populaAppsFlyerGa('HomeOptinPromo_Popup_Fec');">Fechar</a>
+        <a href="#" data-rel="back" class="botao-modal-002" onclick="metaPremiadaTemplateUtils.viewPermissoes();populaAppsFlyerGa('HomeOptinPromo_Popup_S');">Sim, eu quero</a>
+    </div>
+</div>
+
+<script>
+    var MetaPremiada = window.BradescoCartoesMobile.components.MetaPremiada;
+    function closeUpdateCampaignPopUp() {
+        if (MetaPremiada.mustShowFooterUpdatedCampaign) {
+            metaPremiadaTemplateUtils.renderFooter();
+            $('#footerMetaPremiada').show();
+        } else {
+            metaPremiadaTemplateUtils.hideFooter();
+        } 
+    }
+</script>

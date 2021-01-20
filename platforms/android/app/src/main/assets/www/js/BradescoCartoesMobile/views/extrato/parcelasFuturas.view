@@ -1,0 +1,144 @@
+<div id="header-hide-arrow" data-role="header" data-position="fixed" data-tap-toggle="false">
+	<a id="btnLeftPanel" href="#extrato" class="btn-back"></a>
+	<h1>Parcelas Futuras</h1>
+</div>
+
+<script type="text/javascript">
+	function mesParcelasFuturasAppsFlyerAnalytics()
+	{
+		AWBE.Analytics.eventClick('SelecionaMesaSerExibido');
+
+ 		// Evento AppsFlyer
+   		var eventName = "visualizar_mes_parcelas_futuras_1";
+ 		var eventValues = {};
+ 		window.plugins.appsFlyer.trackEvent(eventName, eventValues);
+	}
+</script>
+<div class="ui-content" data-role="content">
+	<% var parcelasFuturasMesesDTO = AWBE.sessionStorage.getItem('parcelasFuturasMesesDTO');  
+	if (parcelasFuturasMesesDTO.length > 0) { %>
+
+		<p class="parcelasText">Acompanhe suas compras parceladas.</p>
+		<hr style="margin: 0em -1em 0em -1em !important;" />
+
+		<% for(var i=0 ; i < parcelasFuturasMesesDTO.length ; i++) { %>
+		
+		<div data-role="collapsible" data-iconpos="false" data-inset="false">
+			<h4 onClick="mesParcelasFuturasAppsFlyerAnalytics()">
+				<span class="colapsible-icon"></span> 
+				<label class="colapsible-text"><%= parcelasFuturasMesesDTO[i].mes %>
+					<label class="colapsible-text-right">R$ <%= parcelasFuturasMesesDTO[i].valorTotalMascarado %></label>
+				</label>
+			</h4>
+
+			<% var mes = parcelasFuturasMesesDTO[i]; %>
+			<% if(mes.listaTitulares != undefined){ %>
+
+				<% for (var j=0 ; j < mes.listaTitulares.length ; j++){ %>
+					
+					<div class="dependentes">
+						<dl class="destaque-area">
+							<dt class="fnt-bold txt-1em color-white destaque-area" style="text-transform: uppercase;"><%= parcelasFuturasMesesDTO[i].listaTitulares[j].nomePlastico %></dt>
+							<dd class="fnt-regular txt-09em color-white destaque-area"><%= parcelasFuturasMesesDTO[i].listaTitulares[j].DescProduto.toUpperCase() %> - 
+								<span style="white-space: nowrap;"><%= parcelasFuturasMesesDTO[i].listaTitulares[j].cartaoMascarado %></span>
+							</dd>
+						</dl>
+					
+						<div class="boxParcelasFuturas boxParcelasFuturasHeader">
+							<div class="boxheader1"></div>
+							<div class="boxheader2">US$</div>
+							<div class="boxheader3">R$</div>
+						</div>
+
+					<% var cartoesTitulares = mes.listaTitulares[j]; %>
+					<% for (var k = 0 ; k < cartoesTitulares.listaTransacoes.length ; k++) { %>
+
+						<div class="boxParcelasFuturas boxParcelasFuturasLista">
+							<div class="boxIconeParcelasFuturas">
+								<span class="icon-categoria-parcelas-futuras-<%= parcelasFuturasMesesDTO[i].listaTitulares[j].listaTransacoes[k].categEstabelecimento %>"></span>
+							</div>
+							<div class="boxCompraParcelasFuturas">
+								<div class="boxDataParcela"><%= parcelasFuturasMesesDTO[i].listaTitulares[j].listaTransacoes[k].dataLancamento %></div>
+								<div class="boxLocalCompra"><%= parcelasFuturasMesesDTO[i].listaTitulares[j].listaTransacoes[k].descLancamento.toUpperCase() %></div>
+							</div>
+							<div class="boxNumeroParcela"><%= parcelasFuturasMesesDTO[i].listaTitulares[j].listaTransacoes[k].parcela %></div>
+							<div class="boxValorParcela"><%= parcelasFuturasMesesDTO[i].listaTitulares[j].listaTransacoes[k].valorDolar %></div>
+							<div class="boxValorParcela"><%= parcelasFuturasMesesDTO[i].listaTitulares[j].listaTransacoes[k].valorParcela %></div>
+						</div>
+
+					<% } %>
+
+						<div class="boxParcelasFuturas boxParcelasFuturasFoot">
+							<div class="boxFoot1">Total</div>
+							<div class="boxFoot2">R$ <%= parcelasFuturasMesesDTO[i].listaTitulares[j].valorTotalMascarado %></div>
+						</div>
+					</div>
+
+				<% } %>
+
+			<% } %>
+
+			<% if(mes.listaAdicionais != undefined){ %>
+
+				<% for (var l=0 ; l < mes.listaAdicionais.length ; l++){ %>
+
+					<div class="dependentes">
+						<dl class="destaque-area">
+							<dt class="fnt-bold txt-1em color-white destaque-area" style="text-transform: uppercase;"><%= parcelasFuturasMesesDTO[i].listaAdicionais[l].nomePlastico %></dt>
+							<dd class="fnt-regular txt-09em color-white destaque-area"><%= parcelasFuturasMesesDTO[i].listaAdicionais[l].descProduto.toUpperCase() %> - <span style="white-space: nowrap;"><%= parcelasFuturasMesesDTO[i].listaAdicionais[l].cartaoMascarado %></span>
+							</dd>
+						</dl>
+
+						<div class="boxParcelasFuturas boxParcelasFuturasHeader">
+							<div class="boxheader1"></div>
+							<div class="boxheader2">US$</div>
+							<div class="boxheader3">R$</div>
+						</div>
+
+					<% var cartoesAdicionais = mes.listaAdicionais[l]; %>
+					<% for (var m = 0 ; m < cartoesAdicionais.listaTransacoes.length ; m++) { %>
+
+						<div class="boxParcelasFuturas boxParcelasFuturasLista">
+							<div class="boxIconeParcelasFuturas">
+								<span class="icon-categoria-parcelas-futuras-<%= parcelasFuturasMesesDTO[i].listaAdicionais[l].listaTransacoes[m].categEstabelecimento %>"></span>
+							</div>
+							<div class="boxCompraParcelasFuturas">
+								<div class="boxDataParcela"><%= parcelasFuturasMesesDTO[i].listaAdicionais[l].listaTransacoes[m].dataLancamento %></div>
+								<div class="boxLocalCompra"><%= parcelasFuturasMesesDTO[i].listaAdicionais[l].listaTransacoes[m].descLancamento.toUpperCase() %></div>
+							</div>
+							<div class="boxNumeroParcela"><%= parcelasFuturasMesesDTO[i].listaAdicionais[l].listaTransacoes[m].parcela %></div>
+							<div class="boxValorParcela"><%= parcelasFuturasMesesDTO[i].listaAdicionais[l].listaTransacoes[m].valorDolar %></div>
+							<div class="boxValorParcela"><%= parcelasFuturasMesesDTO[i].listaAdicionais[l].listaTransacoes[m].valorParcela %></div>
+						</div>
+
+					<% } %>
+
+						<div class="boxParcelasFuturas boxParcelasFuturasFoot">
+							<div class="boxFoot1">Total</div>
+							<div class="boxFoot2">R$ <%= parcelasFuturasMesesDTO[i].listaAdicionais[l].valorTotalMascarado %></div>
+						</div>
+					</div>
+
+				<% } %>
+
+			<% } %>
+
+		</div>	
+
+		<% } %>
+
+	<% } else { %>
+
+		<div class="parcelasFuturas">
+			<p class="parcelasText">N&atilde;o h&aacute; parcelas agendadas.</p>
+		</div>
+
+	<% } %>	
+
+</div>
+
+<script>
+	function backToTop(){
+		$('html, body').animate({scrollTop: 0}, 0);
+	}
+</script>

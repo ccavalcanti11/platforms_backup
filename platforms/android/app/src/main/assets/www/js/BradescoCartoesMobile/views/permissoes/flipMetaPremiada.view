@@ -1,0 +1,90 @@
+<%
+    var MetaPremiada = window.BradescoCartoesMobile.components.MetaPremiada;
+    var statusOptin = MetaPremiada.getCampaignData().statusOptin;
+    var textosCampanha = MetaPremiada.getCampaignData().textosCampanha;
+
+    var unformatPoints = MetaPremiada.getCampaignData().textosCampanha.texto_tela.match(/\<b\>(,*[0-9])(.*?)\<\/b\>/)[0];
+    var formatPoints = unformatPoints.replace(/,/g,'.');
+    var textoTela = MetaPremiada.getCampaignData().textosCampanha.texto_tela.replace(unformatPoints, formatPoints);
+
+%>
+
+<!-- TODO: alterar o site para o site da campanha quando estiver pronto: -->
+<div class="ui-content page permissoes" data-role="content" id="permissoes">
+    <h2 class="permissao-func-titulo fnt-medium-bold fnt-medium"> A&Ccedil;&Atilde;O <%= textosCampanha.titulo %> </h2>
+    <div class="permissoes-content">
+        <div class="flex-permissoes">
+            <div class="smalltxt color-gray-darker flex-permissoes">
+                <div>
+                    <%= textoTela %>
+                </div>
+            </div>
+            <div class="toggle-btn-right flip-switch-permissoes" style="margin-left: .5em;">
+                <input type="checkbox" data-role="flipswitch" id="flipSwitchCampanha"
+                    data-current-value="<%=statusOptin%>" data-on-text="" data-off-text=""
+                    <%= statusOptin ? 'checked' : '' %> />
+            </div>
+        </div>
+        <div class="minitxt color-gray-darker"><%= textosCampanha.texto_tela_2 %></div>
+        <div class="margin-top-1em fnt-medium txt-08em color-blue-darker"> 
+            <a class='decoration' href="" onclick="irParaURLMetaPremiada()">Termos e condi&ccedil;&otilde;es</a>
+        </div>
+    </div>
+</div>
+
+<script>
+    
+    $('#flipSwitchCampanha').on('change', optInOptOutCampanha);
+
+    var MetaPremiada = window.BradescoCartoesMobile.components.MetaPremiada;
+    
+    if (MetaPremiada.getCampaignData().statusOptin && MetaPremiada.getCampaignData().metaAtualizada) {
+        MetaPremiada.setHasUpdateFooterBeenSeen();
+    }
+
+    function optInOptOutCampanha(event) {
+        
+        var optin = event.currentTarget.checked ? 'S' : 'N';
+
+        if(optin == 'S'){
+            populaAppsFlyerGa('MenuOptinPromo_Hab');
+        } else {
+            populaAppsFlyerGa('MenuOptinPromo_Desab');
+        }
+
+        MetaPremiada.optInOutCampaign(optin)
+        .then(function(response) {
+            MetaPremiada.setHasFooterBeenSeen();
+            MetaPremiada.setHasCardBeenOffered(true);
+        })
+        .fail(function(error) {
+            var texto = (error === 99 || error === 500)
+                        ? 'Sem conex&atilde;o. Verifique a rede e tente novamente.'
+                        : 'Tente novamente mais tarde.';
+            var cabecalho = (error === 99 || error === 500)
+                        ? 'Erro de conex&atilde;o'
+                        : 'Indispon&iacute;vel temporariamente'
+
+            return AWBE.Dialog.error({
+                    texto: texto,
+                    cabecalho: cabecalho,
+                    callback: atualizarFlipSwitch()
+                });
+        });
+    }
+
+    function atualizarFlipSwitch() {
+        
+        var statusFlipSwitch = $('#flipSwitchCampanha').prop('checked');
+        $('#flipSwitchCampanha').off('change', optInOptOutCampanha);
+        $('#flipSwitchCampanha').prop('checked', !statusFlipSwitch).flipswitch("refresh");
+        $('#flipSwitchCampanha').on('change', optInOptOutCampanha);
+    }
+
+    function irParaURLMetaPremiada() {
+        event.stopPropagation();
+        event.preventDefault();
+        cordova.InAppBrowser.open('https://banco.bradesco/assets/common/pdf/pontos-premiados.pdf', '_system', 'location=yes,hardwareback=yes');
+        return false;
+    }
+</script>

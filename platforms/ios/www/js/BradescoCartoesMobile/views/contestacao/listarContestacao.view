@@ -1,0 +1,36 @@
+<div data-awbe-component="awbe-include" data-awbe-component-params="cabecalhoVoltarPagina"></div>
+<div class="ui-content contestacao" data-role="content">
+	<h2>CONTESTAR UMA COMPRA</h2>
+	<table class="divCompra">
+		<tbody>
+			<tr>
+				<th class="bloco-23"><%=model.dataCompra%></th>
+				<th class="bloco-1"><%=model.local%></th>
+				<% if (model.parcela != 0) { %>
+					<th class="bloco-23"><%=model.parcela%></th>
+				<%}%>
+				<th class="bloco-23"><%=currency(model.valor, false)%></th>
+			</tr>
+		</tbody>
+	</table> 
+	<div class="margin-top-15em">
+		<ul data-role="listview">
+			<% _.each(model.lista, function(contestacao){ %>
+				<li data-icon="false" style="hyphens: auto;">
+					<a onclick="AWBE.Analytics.eventClick('SelecionaMotivoContestacao');location.href='#listarRespostaContestacao/motivoId=<%=contestacao.codigo%>';" style="font-weight:bold; word-break: break-word;">
+						<%=contestacao.motivo%>
+					</a>
+					<a onclick="AWBE.Analytics.eventClick('SelecionaMotivoContestacao');location.href='#listarRespostaContestacao/motivoId=<%=contestacao.codigo%>';" class="icon-listview-contestacaoMotivos"></a>
+				</li>
+			<% }) %>
+		</ul>
+	</div>
+	<div data-role="footer" class="fnt-regular footer-info footerfix footerfixios" data-position="fixed" data-tap-toggle="false" id="informacoesSujeitasAlteracoes">
+		<p class="txt-08em" style="text-align: left;">Para transa&ccedil;&otilde;es n&atilde;o reconhecidas, entre em contato com nossa central de atendimento.</p>
+	</div>
+</div>
+<script type="text/javascript">
+	setTimeout(function(){
+		$.mobile.silentScroll(0);
+	},500);
+</script>

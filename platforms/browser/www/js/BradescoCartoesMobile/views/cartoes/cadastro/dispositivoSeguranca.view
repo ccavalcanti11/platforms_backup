@@ -1,0 +1,138 @@
+<div data-awbe-component="awbe-include" data-awbe-component-params="cabecalho"></div>
+<div data-awbe-component="awbe-include" data-awbe-component-params="menuOpcoesDeslogado"></div>
+
+<div class="page ui-content dispositivo-seguranca" data-role="content">
+	<div class="divAlertas">
+		<hr/>
+		<!-- Mensagem de alerta ao usuario -->
+		<div class="icon-20"></div>
+		<p class="txt-075em fnt-book color-gray-darker margin-left-35em">C&oacute;digo informado &eacute; Inv&aacute;lido.</p>
+		<hr/>
+	</div>
+	<form action="#dispositivoSegurancaValidation">
+		<input type="hidden" value="<%=params.cpf%>" data-awbe-bind="cpf"/>
+		<input type="hidden" value="<%=params.contaEDigito%>" data-awbe-bind="contaEDigito"/>
+		<input type="hidden" value="<%=params.agencia%>" data-awbe-bind="agencia"/>
+		<input type="hidden" value="<%=params.titularidade%>" data-awbe-bind="titularidade"/>
+		<input type="hidden" value="<%=params.perfilCliente%>" data-awbe-bind="perfilCliente"/>
+		<input type="hidden" value="<%=params.processadoraCartao%>" id="processadoraCartao" data-awbe-bind="processadoraCartao"/>
+		<input type="hidden" value="dadosContato" data-awbe-bind="view"/>
+		<p class="fnt-book txt-1em color-gray-darker">Ag&ecirc;ncia: <span class="fnt-bold"><%=[params.agencia]%></span><br/></>Conta: <span class="fnt-bold"><%=[params.contaEDigito]%></span></p>
+		<% if (params.tipoDispositivoSeguranca == 1 || model.tipoDispositivoSeguranca == 1) { %>
+			<label class="forms">Chave de seguran&ccedil;a</label>
+			<input type="tel" name="dispositivo" id="dispositivoToken" data-awbe-bind="dispositivo" data-awbe-validation="validarSeisDigitos" data-awbe-for="*" maxlength="6" value="<%=params.dispositivo%>" autocomplete="off"/>
+			<p class="fnt-book txt-075em color-gray-darker margin-bottom-17">Ref.: <%=model.numRefDispositivo%></p>
+            <p class="fnt-book txt-075em color-gray-darker">Caso voc&ecirc; tenha a chave de seguran&ccedil;a no Aplicativo Bradesco, &eacute; necess&aacute;rio acess&aacute;-lo para visualizar a chave e inserir no campo acima</p>
+		<% } %>
+		<% if (params.tipoDispositivoSeguranca == 4 || model.tipoDispositivoSeguranca == 4) { %>
+			<label class="forms">Chave de seguran&ccedil;a</label>
+			<input type="tel" name="dispositivo" id="dispositivoMtoken" data-awbe-bind="dispositivo" data-awbe-validation="validarSeisDigitos" data-awbe-for="*" maxlength="6" value="<%=params.dispositivo%>" autocomplete="off"/>
+			<p class="fnt-book txt-075em color-gray-darker">Ref.: <%=model.numRefDispositivo%></p>
+			<p class="fnt-book txt-075em color-gray-darker">Caso voc&ecirc; tenha a chave de seguran&ccedil;a no Aplicativo Bradesco, &eacute; necess&aacute;rio acess&aacute;-lo para visualizar a chave e inserir no campo acima</p>
+			<hr calss="hr-margin-tb"/>
+			<a href="#" class="no-decoration">
+				<span class="icon-go-right-dispositivo"></span>
+				<p class="fnt-book txt-1em color-gray-darker">	
+					<span class="fnt-bold">Visualizar Chave</span><br/>
+					<span style="margin-top: -1em;">no aplicativo Bradesco</span>
+				</p>
+			</a>
+
+		<% } %>			
+		<% if (params.tipoDispositivoSeguranca == 2 || model.tipoDispositivoSeguranca == 2) { %>
+			<input type="hidden" value="<%=model.posicaoTanCode%>" data-awbe-bind="posicaoTanCode"/>
+			<input type="hidden" value="<%=model.numRefDispositivo%>" data-awbe-bind="numRefDispositivo"/>
+			<p class="fnt-book txt-1em color-gray-darker">Digite abaixo a chave num&eacute;rica indicada no verso do seu cart&atilde;o, conforme posi&ccedil;&atilde;o solicitada.</p>
+			<p class="fnt-medium txt-1em color-gray-darker">Chave da posi&ccedil;&atilde;o <span class="fnt-bold"><%=model.posicaoTanCode%></span>:</p>
+			<input type="tel" name="dispositivo" id="dispositivoTan" data-awbe-bind="dispositivo" data-awbe-validation="validarTresDigitos" data-awbe-for="*" maxlength="3" value="<%=params.dispositivo%>" autocomplete="off"/>
+			<p class="fnt-book txt-075em color-gray-darker margin-bottom-17">Ref: <%=model.numRefDispositivo%></p>
+		<% } %>
+		<hr class="hr-margin-error"/>
+		<div class="ui-grid-a disabledButton" id="botaoConfirmaDispositivo">
+			<div class="ui-block-a">
+				<div id="botaoContinuarDispoSeguranca">
+					<div class="ui-btn-arrow-blue-arrow"></div>
+					<div class="ui-btn-arrow-blue">
+				    	<a id='blockButton'>Continuar</a>
+				    </div>
+				</div>
+			</div>
+			<div class="ui-block-b"></div>
+		</div>
+	</form>
+</div>
+
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="atualizarDispositivoSeguranca">
+	<p class="texto-modal-normal">&eacute; necess&aacute;rio atualizar seu dispositivo de seguran&ccedil;a para acessar o aplicativo.</p>
+	<p class="texto-modal-normal">V&aacute; &agrave; sua ag&ecirc;ncia ou ligue para Central de Relacionamento:<br/>0800 570 0022</p>
+	<div class="align-botoes">	
+		<a href="#" data-rel="back" class="botao-modal-002">VOLTAR</a>
+		<a href="#" data-rel="back" class="botao-modal-002">OK</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="dispositivoIncorreto">
+	<p class="titulo-modal">A chave informada n&atilde;o &eacute; v&aacute;lida</p>
+	<p class="texto-modal-normal">Voc&ecirc; tem mais <span class="texto-negrito-modal" id="tent"></span>.</p>
+	<div class="align-botoes txt-caixaalta-android">	
+		<a href="#" data-rel="back" class="botao-modal-002 txt-semCapitalize-iOS">Tentar novamente </a>
+	</div>
+</div>
+
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="dispositivoIncorreto2">
+	<p class="titulo-modal">A chave informada n&atilde;o &eacute; v&aacute;lida</p>
+	<p class="texto-modal-normal">A chave ser&aacute; desativada na pr&oacute;xima tentativa incorreta</span>.</p>
+	<div class="align-botoes txt-caixaalta-android">	
+		<a href="#" data-rel="back" class="botao-modal-002 txt-semCapitalize-iOS">Tentar novamente</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="dispositivoBloqueado">
+	<p class="titulo-modal">Chave de Segurança desativada</p>
+	<p class="texto-modal-normal">Para reativ&aacute;-la procure sua ag&ecirc;ncia ou contate o Fone F&aacute;cil Bradesco para outras informa&ccedil;&otilde;es.</p>
+	<div class="align-botoes">	
+		<a href="#meusCartoes" data-rel="back" class="botao-modal-002">FECHAR</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="alertaInformacao">
+	<p class="texto-modal-normal" id="alerta-mensagem"></p>
+	<div class="align-botoes">	
+		<a href="#" data-rel="back" class="botao-modal-002" id="hrefAlerInfo">FECHAR</a>
+	</div>
+</div>
+
+<!-- POPUP DE MENSAGEM GENERICA -->
+ <div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="popup-generico">
+	<p class="titulo-modal" id="titulo-modal-personalizado"></p>
+	<p class="texto-modal-normal" id="mensagem-personalizada"></p>
+ 		<div class="align-botoes">	
+ 			<a href="#" data-rel="back"  class="botao-modal-002">FECHAR</a>
+ 		</div>
+</div>	
+
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/cartoes/cadastro/dispositivoSeguranca.js"></script>

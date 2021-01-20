@@ -1,0 +1,105 @@
+[
+{
+	"key" : "homeLogada",
+	"data_icon" : false,
+	"id" : "",
+	"a" : {
+		"data_rel" : "",
+		"href" : "#homeLogada",
+		"onClick" : "mnu.doAction()",
+		"class" : "icon-listview-meuscartoes",
+		"text" : "Meus Cart&otilde;es"
+	},
+	"type" : "single"
+},
+{
+	"key" : "limites",
+	"data_icon" : false,
+	"id" : "menuLimite",
+	"a" : {
+		"data_rel" : "",
+		"href" : "#limites",
+		"onClick" : "mnu.doAction()",
+		"class" : "icon-listview-limitecartao",
+		"text" : "Limite do Cart&atilde;o"
+	},
+	"type" : "single"
+},
+{
+	"key" : "pagamento",
+	"data_icon" : false,
+	"id" : "menuPagamento",
+	"a" : {
+		"data_rel" : "",
+		"href" : "#pagamento",
+		"onClick" : "mnu.doAction()",
+		"class" : "icon-listview-pagamentofatura",
+		"text" : "Pagamento da Fatura"
+	},
+	"type" : "single"
+},
+{
+    "key" : "permissoes",
+    "data_icon" : false,
+    "id" : "menuPermissoes",
+    "a" : {
+        "data_rel" : "",
+        "href" : "#permissoes",
+        "onClick" : "mnu.doAction()",
+        "class" : "icon-listview-permissoes",
+        "text" : "Permiss&otilde;es"
+    },
+    "type" : "single"
+}, 
+{
+	"key" : "termosUsoLogado",
+	"data_icon" : false,
+	"id" : "",
+	"a" : {
+		"data_rel" : "",
+		"href" : "#termosUsoLogado",
+		"onClick" : "mnu.doAction()",
+		"class" : "icon-listview-termosdeuso",
+		"text" : "Termos de Uso"
+	},
+	"type" : "single"
+},
+{
+	"key" : "extrato",
+	"data_icon" : false,
+	"id" : "menuExtrato",
+	"a" : {
+		"data_rel" : "",
+		"href" : "#extrato",
+		"onClick" : "mnu.doAction()",
+		"class" : "icon-listview-extratocartao",
+		"text" : "Extrato do Cart&atilde;o"
+	},
+	"type" : "single"
+},
+{
+	"key" : "ajustes",
+	"data_icon" : false,
+	"id" : "",
+	"a" : {
+		"data_rel" : "",
+		"href" : "#ajustes",
+		"onClick" : "mnu.doAction()",
+		"class" : "icon-listview-ajustes",
+		"text" : "Ajustes"
+	},
+	"type" : "single"
+}, {
+	"key" : "fimSessao",
+	"data_icon" : false,
+	"id" : "",
+	"a" : {
+		"data_rel" : "",
+		"href" : "#fimSessao",
+		"onClick" : "mnu.doAction()",
+		"class" : "icon-listview-encerrar",
+		"text" : "Encerrar"
+	},
+	"type" : "single"
+}
+]

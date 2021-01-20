@@ -1,0 +1,85 @@
+/*----------------------------------------------------------------------------------------------------------*/
+/* Home Logada Carousel
+ ------------------------------------------------------------------------------------------------------------*/
+.meses {
+    background-color: #fff;
+    padding: .01em 1.2em 1em 1em
+}
+
+#meses {
+    text-align: center;
+    background: #fff !important;
+}
+
+.meses h5 {
+    margin: 0 0 20px;
+}
+
+#meses button {
+    font-size: 0;
+    border: none;
+    height: 30px;
+    cursor: pointer;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    background-color: #fff;
+}
+
+#meses button:after {
+    position: absolute;
+    content: "";
+    border-width: 13px 10px;
+    left: 50%;
+    margin: -10px 0 0 -10px;
+    border-style: solid;
+}
+
+#meses button.slick-prev {
+    margin: 0 0 20px;
+}
+
+#meses button.slick-prev:after {
+    border-color: transparent transparent #999 transparent;
+    top: 5px;
+}
+
+#meses button.slick-next {
+    margin: 20px 0 0;
+}
+
+#meses button.slick-next:after {
+    border-color: #999 transparent transparent transparent;
+    bottom: -6px;
+}
+
+#meses .slick-list {
+    overflow: hidden;
+    height: 60px !important;
+}
+
+#meses .slick-slide {
+	font-family: NewJuneBook;
+	font-size: 1em;
+    line-height: 30px;
+    width: 100% !important;
+    opacity: 0.5;
+    color: #979797;
+}
+
+#meses .slick-current {
+    opacity: 1;
+    font-size: 1.2em;
+    color: #000;
+}
+
+.btn-ok {
+    text-align: right;
+}
+
+.btn-ok #ok {
+    color: red;
+    font-size: 80%;
+    font-weight: bold;
+    text-decoration: none;
+}

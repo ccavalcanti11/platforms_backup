@@ -1,0 +1,231 @@
+<link rel="stylesheet" type="text/css" href="js/BradescoCartoesMobile/views/perfil/perfil.css" />
+<div id="header-hide-arrow" data-role="header" data-position="fixed"
+	data-tap-toggle="false">
+	<a id="btnLeftPanel" href="#perfilEditar" class="btn-back"></a>
+	<h1>Editar dados cadastrais</h1>
+</div>
+
+<% 
+	var user = AWBE.sessionStorage.getItem('user');
+	if(AWBE.localStorage.getItem('isNCLegado_' + user.cpf) == "true"){ %>
+	<div data-awbe-component="awbe-include" data-awbe-component-params="menuOpcoesLogadoNCLegado"></div>
+<% }else{ %>
+	<div data-awbe-component="awbe-include" data-awbe-component-params="menuOpcoesLogado"></div>
+<% }%>
+
+<div class="ui-content dadosBancarios" data-role="content">
+	<form action="#dispositivoSegurancaEditar">
+		<input type="hidden" data-awbe-bind="cpf" id="cpf"/>
+		<input type="hidden" value="1" id="titularidade" data-awbe-bind="titularidade"/>
+
+		<h2>DADOS BANC&aacute;RIOS</h2>
+		<div class="ui-grid-a fnt-book txt-12em color-gray-darker margin-bottom-1em">
+			<div class="ui-block-a" style="width: 25%">
+				Ag&ecirc;ncia:<br/>
+			</div>
+			<div class="ui-block-b">
+				<span class="fnt-bold" id="agenciaClienteEditar"></span><br/>
+			</div>
+			<div class="ui-block-a" style="width: 20%">
+				Conta:<br/>
+				<!-- Removido a Titularidade conforme alinhamento no apontamento TH - 986 -->
+				<!-- Titularidade: -->
+			</div>
+			<div class="ui-block-b">
+				<span class="fnt-bold" id="contaClienteEditar"></span><br/>
+				<!-- Removido a Titularidade conforme alinhamento no apontamento TH - 986 -->
+				<!-- <span class="fnt-bold" id="titularidadeClienteEditar"></span> -->
+			</div>
+		</div>
+		<hr class="hr-margin-tb"/>
+		<h2>NOVOS DADOS BANC&aacute;RIOS</h2>
+		<div class="ui-grid-b">
+			<div class="ui-block-a">
+				<p class="fnt-book label-editar-ag color-gray-darker">Ag sem d&iacute;gito</p>
+				<input type="tel" name="agencia" id="agencia" data-awbe-bind="agencia" maxlength="5" data-awbe-validation="validarCampoInvalido" data-awbe-for="informacoesCartaoValidation" value="<%=params.agencia%>"/>
+			</div>
+			<div class="ui-block-b margin-left-16">
+				<div class="ui-block-c"  style="width: 170%;">
+				<p class="fnt-book label-editar-ag color-gray-darker fnt-no-wrap">Conta e d&iacute;gito sem h&iacute;fen</p>
+				<input type="tel" name="conta" id="conta" data-awbe-bind="conta" maxlength="9" data-awbe-validation="validarCampoInvalido" data-awbe-for="informacoesCartaoValidation" value="<%=params.conta%>"/>
+				</div>
+			</div>
+		</div>
+		<p class="fnt-book label-editar-ag color-gray-darker">Titularidade</p>
+		<div class="navbar" data-role="navbar" id="titular">
+			<ul class="border-titulares">
+				<li class="ui-block-a"><a class="ui-btn-active ui-link ui-btn" data-awbe-bind="primeiro_titular" id="titular_1" data-value="1">1º titular</a></li>
+				<li class="ui-block-b"><a data-awbe-bind="segundo_titular" id="titular_2" class="ui-link ui-btn" data-value="2">2º titular</a></li>
+				<li class="ui-block-c"><a data-awbe-bind="terceiro_titular" id="titular_3" class="ui-link ui-btn" data-value="3">3º titular</a></li>
+			</ul>
+		</div>
+
+		<!--<p class="fnt-book txt-1em color-gray-darker" style="line-height: 2em !important; vertical-align: middle; margin-bottom: 0;">
+			<span style="display: block; float: left;">Senha de 4 d&iacute;gitos</span>
+			<a class="icon-21" onclick="abrePopup()"></a>
+		</p>-->
+
+		<div class="ui-grid-a" style="margin-top: 0.5em;">
+			<div class="ui-block-a" style="width: auto">
+				<label class="forms">Senha de 4 d&iacute;gitos</label>
+			</div>
+			<div class="ui-block-b login-help">
+				<a class="icon-21" id="botaoInfo" style="background-position: bottom !important;" onclick="abrePopup()"></a>
+			</div>
+		</div>
+
+		<div class="ui-grid-a margin-bottom-17" style="clear:both">
+			<div class="ui-block-a">
+				<input type="tel" class="input-password-numeric input-pass" pattern="[0-9]*" inputmode="numeric" name="senhaIB" id="senhaIB" data-awbe-bind="senhaIB" maxlength="4" value="<%=params.senhaIB%>" oncopy="return false" oncut="return false" onpaste="return false"/>
+			</div>
+			<div class="ui-block-b"></div>
+			<div class="ui-block-c"></div>
+		</div>
+
+		<hr class="hr-margin-tb"/>
+		<div class="ui-grid-a">
+			<div class="ui-block-a" style = "float: right">
+				<div class="disabledButton" id="divbotaoDadosContaCorrente">
+					<div class="ui-btn-arrow-blue-arrow"></div>
+					<div class="ui-btn-arrow-blue"    style = "float: right">
+				    	<a id="botaoSubmitDadosContaCorrente">Continuar</a>
+				    </div>
+				</div>
+			</div>
+			<div class="ui-block-b"></div>
+		</div>
+	</form>
+</div>
+
+<div data-awbe-component="popup"
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="mesmaSenhaIb">
+	<p class="texto-modal-normal">Digite a senha de 4 d&iacute;gitos associada &agrave; nova conta informada, a mesma senha utilizada no Bradesco Internet Banking.</p>
+	<div class="align-botoes txt-caixaalta">
+		<a href="#" data-rel="back" class="botao-modal-002">Fechar</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup"
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="infoAtualizada">
+	<p class="texto-modal-normal" >Pronto. A sua senha de acesso tem 4 d&iacute;gitos e &eacute; a mesma da sua conta cadastrada.</p>
+	<div class="align-botoes">
+		<a href="#perfilEditar" data-rel="back" class="botao-modal-002">FECHAR</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup"
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="infoNAtualizada">
+	<p class="texto-modal-normal" >Campo(s) de entrada inconsistente(s).</p>
+	<div class="align-botoes">
+		<a href="#" data-rel="back" class="botao-modal-002">OK</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup"
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="dadosIguais">
+	<p class="texto-modal-normal" >Os dados digitados s&atilde;o iguais aos cadastrados. Insira dados diferentes.</p>
+	<div class="align-botoes">
+		<a href="#" data-rel="back" class="botao-modal-002">Tentar novamente</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup"
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="dadosNEncontrados">
+	<p class="texto-modal-normal">Os dados informados não foram encontrados. Entre em contato com a Central de Relacionamento.</p>
+	<div class="align-botoes txt-caixaalta">
+		<a href="#" data-rel="back" class="botao-modal-002">Fechar</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup"
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="tentarRedefinirSenha">
+	<p class="texto-modal-normal">Seu acesso &eacute; feito com a senha de 4 d&iacute;gitos, a mesma usada no Bradesco Internet Banking.</p>
+	<p class="texto-modal-normal">Voc&ecirc; poder&aacute; definir uma nova senha pelo Internet Banking, Fone F&aacute;cil ou na sua ag&ecirc;ncia.</p>
+	<div class="align-botoes txt-caixaalta">
+		<a href="#" data-rel="back" class="botao-modal-002">Tentar novamente</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup"
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="senhaIncorreta">
+	<p class="titulo-modal">A senha informada est&aacute; incorreta.</p>
+	<p class="texto-modal-normal">Voc&ecirc; tem mais <span class="texto-negrito-modal" id="tent"></span> de acesso. Ao atingir esse limite, sua senha ser&aacute; bloqueada.</p>
+	<div class="align-botoes txt-caixaalta">
+		<a href="#" data-rel="back" class="botao-modal-002 txt-semCapitalize-iOS">Tentar novamente</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup"
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="senhaBloqueada">
+	<p  class="titulo-modal">Acesso Bloqueado</p>
+	<p class="texto-modal-normal">Voc&ecirc; excedeu o n&uacute;mero m&aacute;ximo de tentativas.</p>
+	<p class="texto-modal-normal">Voc&ecirc; poder&aacute; definir uma nova senha pelo Internet Banking, FoneF&aacute;cil ou na sua Ag&ecirc;ncia.</p>
+	<div class="align-botoes txt-caixaalta">
+		<a href="#fimSessao" data-rel="back" class="botao-modal-002">Fechar</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup"
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="alertaInformacao">
+	<p class="texto-modal-normal" id="alerta-mensagem"></p>
+	<div class="align-botoes txt-caixaalta">
+		<a href="#" data-rel="back" class="botao-modal-002" id="hrefAlerInfo">Fechar</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup"
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="dispositivoInexistente">
+	<p class="titulo-modal">Dispositivo Inexistente</p>
+	<p class="texto-modal-normal">Ser&aacute; necess&aacute;rio atualizar seu dispositivo de seguran&ccedil;a para acessar esse aplicativo.</p>
+	<p class="texto-modal-normal">Por favor, entre em contato com sua ag&ecirc;ncia ou Central de Atendimento.</p>
+	<div class="align-botoes txt-caixaalta">
+		<a id="dispositivoInexistenteClose" data-rel="back" class="botao-modal-002">Voltar</a>
+		<a href="#meusCartoes" data-rel="back" class="botao-modal-002">Ok</a>
+	</div>
+</div>
+
+<!-- POPUP DE MENSAGEM GENERICA -->
+ <div data-awbe-component="popup"
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="popup-generico">
+	<p class="titulo-modal" id="titulo-modal-personalizado"></p>
+	<p class="texto-modal-normal" id="mensagem-personalizada"></p>
+ 	<div class="align-botoes txt-caixaalta">
+ 		<a href="#" data-rel="back"  class="botao-modal-002">Fechar</a>
+ 	</div>
+</div>
+
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/perfil/dadosBancarios.js"></script>
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/perfil/layoutPerfil.js"></script>

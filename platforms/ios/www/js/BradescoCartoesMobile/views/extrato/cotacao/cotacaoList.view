@@ -1,0 +1,13 @@
+
+<%
+  var listDolarExchangeRate = params;
+  $.each(listDolarExchangeRate, function(index, item){ %>
+  <div class='result-container'>
+    <div class='date-container'>
+      <div class='day fnt-bold'><%= item.day%> </div>
+      <div class='month'><%= item.month %> </div>
+      <div class='year'><%= item.year %> </div>
+    </div>
+    <div class='currency-container fnt-bold'>R$ <%=currencyCotacao(item.exchangeRate, false)%> </div>
+  </div>
+<% }) %>

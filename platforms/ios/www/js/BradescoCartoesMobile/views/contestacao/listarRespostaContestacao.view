@@ -1,0 +1,62 @@
+<div data-awbe-component="awbe-include" data-awbe-component-params="cabecalhoVoltarPagina"></div>
+<div class="ui-content contestacao" data-role="content">
+	<h2>CONTESTAR UMA COMPRA</h2>
+	<table class="divCompra">
+		<tbody>
+			<tr>
+				<th class="bloco-23"><%=model.dataCompra%></th>
+				<th class="bloco-1"><%=model.local%></th>
+				<% if (model.parcela != 0) { %>
+					<th class="bloco-23"><%=model.parcela%></th>
+				<%}%>
+				<th class="bloco-23"><%=currency(model.valor, false)%></th>
+			</tr>
+		</tbody>
+	</table> 
+		<p><b><%=model.motivoContestacao.motivo%></b></p>
+		<hr class="margin-tb-13em" />
+	<p>Recomendamos que voc&ecirc; entre em contato com o estabelecimento onde a compra foi realizada para verificar o ocorrido. 
+	<br><br>
+	 Se voc&ecirc; j&aacute; fez esse contato, verifique em sua fatura se j&aacute; existe estorno ou cr&eacute;dito referente a transa&ccedil;&atilde;o.</p>
+		<p><b>Voc&ecirc; ainda quer contestar?</b></p>
+		
+			<div class="ui-grid-a margin-tb-25em">
+			<div class="ui-block-a">
+				<div onclick="AWBE.Analytics.eventClick('CancelaContestacao');location.href='#extrato';">
+					<div class="icone-fechar-azul"></div>
+					<div class="botaoNaoQueroContestar">N&atilde;o quero </br> mais contestar</div>
+				</div>
+			</div>
+			<div class="ui-block-b">
+				<div class="ui-btn-arrow-blue" id="botaoHomeFaturaDigital">
+					<a onclick="AWBE.Analytics.eventClick('ContinuaContestacao');AWBE.util.openPopup('popupContinuar')">Sim</a>
+				</div>
+			</div>
+		</div>
+</div>
+
+<!-- POP-UP CONTINUAR-->
+<div data-awbe-component="popup" data-awbe-component-option-theme="a" data-awbe-component-option-theme-modal="b" data-awbe-component-option-modal="true" data-awbe-component-popup-id="popupContinuar">
+  <p class="texto-modal-normal">Utilizaremos o e-mail ou telefone cadastrado
+	no aplicativo para tratar a solicita&ccedil;&atilde;o.<br><br>
+	Para atualiz&aacute;-los acesse o seu<br>
+	Perfil e clique em Editar seus<br>
+	Dados Pessoais. 
+  </p>
+  <div class="align-botoes txt-caixaalta">
+    <a onclick="AWBE.Analytics.eventClick('ConfirmaContestacao');location.href='#solicitarContestacao/motivoId=<%=model.motivoContestacao.codigo%>'" class="botao-modal-002" data-rel="back">OK</a>
+  </div>
+</div>
+
+<script type="text/javascript">
+	setTimeout(function(){
+		$.mobile.silentScroll(0);
+
+		// fix erro crash app ao clicar em voltar
+		var content = $("#header-hide-arrow > a").clone();
+		$("#header-hide-arrow > a").remove();
+		$("#header-hide-arrow").prepend(content);
+		$("#header-hide-arrow > a").attr("href","#extrato");
+	},500);
+	
+</script>

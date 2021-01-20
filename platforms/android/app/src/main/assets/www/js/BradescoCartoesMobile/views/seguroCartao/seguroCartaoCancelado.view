@@ -1,0 +1,21 @@
+<div id="header-hide-arrow" data-role="header" data-position="fixed" data-tap-toggle="false">
+	<a id="btnLeftPanel" href="#seguroCartao" class="btn-back"></a>
+	<h1><%=AWBE.localStorage.getItem('title')%></h1>
+</div>
+
+<div class="ui-content" data-role="content">
+	<h2>SOLICITA&Ccedil;&Atilde;O EFETUADA</h2>
+	<p class="fnt-regular txt-1em color-gray-darker">O cancelamento ser&aacute; realizado em at&eacute; 5 dias &uacute;teis para o cart&atilde;o.</p>
+	<div>
+		<div style="font-size: 1em!important;border-radius: 5px;background-color: #e3e6eb;margin: auto;width: 95%;text-align: center;margin-top:1.5em;margin-bottom:1.5em;">
+			<p class="fnt-medium-bold txt-1em color-gray-darker" style="line-height: 2em;padding: 10px 0px; white-space: nowrap;">
+				<span style="font-family: Password !important; color: #636363 !important; letter-spacing: 0.3em; font-size:13px">
+					••••&nbsp;••••&nbsp;••••
+				</span>
+				<%=completeLeft(model.cartaoCancelado.parcialCartao, 4)%>
+			</p>
+		</div>
+	</div>
+	<p class="fnt-regular txt-1em color-gray-darker"><span style="font-weight: bold !important;" >N&ordm; de protocolo:</span> <%=model.protocoloCancelamento%></p>
+
+</div>

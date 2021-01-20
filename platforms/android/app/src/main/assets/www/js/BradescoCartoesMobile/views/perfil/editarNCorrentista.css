@@ -1,0 +1,14 @@
+.float-left-block{
+	float: left;
+    display: block;
+    font-weight: lighter;
+    font-stretch: semi-condensed;
+}
+.icon-21:after{
+	padding: 1.2em .6em !important;
+}
+.textoSenha{
+	font-family: NewJuneBook;
+	font-weight: bold;
+	font-size: .9em !important;
+}

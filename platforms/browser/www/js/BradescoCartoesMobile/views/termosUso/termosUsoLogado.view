@@ -1,0 +1,20 @@
+<div data-awbe-component="awbe-include" data-awbe-component-params="cabecalho"></div>
+
+<% 
+	var user = AWBE.sessionStorage.getItem('user');
+	if(AWBE.localStorage.getItem('isNCLegado_' + user.cpf) == "true"){ %>
+	<div data-awbe-component="awbe-include" data-awbe-component-params="menuOpcoesLogadoNCLegado"></div>
+<% }else{ %>
+	<div data-awbe-component="awbe-include" data-awbe-component-params="menuOpcoesLogado"></div>
+<% }%>
+
+<div class="ui-content" data-role="content" style="word-wrap: break-word">	<hr>
+	<div class="border-complete">
+
+		<h3 class="fnt-medium color-gray-darker">Vers&atilde;o - <%=model.buscarTermoUso.versao.toFixed(1)%></h3>
+	</div>	<hr>
+	
+	<div class="removeTextShadow">
+		<p class="fnt-book color-gray-lighter" ><%=model.buscarTermoUso.texto%></p>
+	</div>
+</div>		

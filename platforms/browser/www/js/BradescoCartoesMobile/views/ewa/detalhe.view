@@ -1,0 +1,59 @@
+<%
+var cartaoAtual = AWBE.sessionStorage.getItem('meusCartoesAtual');
+var cartao = model;
+var webCardAtivo;
+AWBE.localStorage.setItem('EWA', "false");
+var possuiPermissao = false;
+
+
+AWBE.sessionStorage.setItem('possuiPermissao', possuiPermissao);
+
+var tipoDispositivoSegurancaCad = AWBE.sessionStorage.getItem('tipoDispositivoConfigurado');
+BradescoCartoesMobile.components.verificaDispositivoSegurancaCadastrado().then(function(){
+    BradescoCartoesMobile.components.validaDispMtokenDirecionamento();
+});
+
+%>
+<br>
+
+<div class="webCard ui-content" style=" padding-top:0em; padding-left: 0;padding-right: 0;">
+    <div class="WebCard" style="margin: 0em 0em 0.8em 0em">
+        <span class="textAtivarCartao">Ativar este cart&atilde;o no Apple Pay</span>
+        <div onclick="BradescoCartoesMobile.components.abrirPopupAppsSmic()"style="float:right; font-family: 'NewJuneBook'">
+            <div class="icon-alterar-smic"></div>
+            <div style="float:right;font-size: 0.8em;">Alterar</div>
+        </div>
+        <div id="divDispositivoSeguranca" style="margin-top: 1em;">
+
+        <form action="#ewaDispositivoSegurancaValidation" id="formDispositivoSeguranca">
+            <div data-awbe-component="dispositivoSeguranca" data-awbe-target-element="dispositivoSegurancaTarget" data-awbe-target-view="dispositivoSeguranca/dispositivoSeguranca" />
+            <div id="dispositivoSegurancaTarget" />
+        </form>
+
+        <div class="ui-grid-a" style="padding-bottom: 15px;" >
+
+        <div id="botaoCapturarChave" class="ui-block-a" style="display:none">
+
+            <label onclick="BradescoCartoesMobile.components.validaBtnCapturarChave();" style="position: static;display: block;float: left;padding-right: 1em;
+            margin-left: 1em;"><span style="width: 31px; height: 46px; margin-right: -19px; position: static; display: block; float: left; padding-right: 1em" class="icon-obterChave"></span><a style="font-size: 14px;">Capturar chave</a></label>
+
+        </div>
+        <div id="divBotaoConfirmaDispositivo" style="float: right" class="ui-block-b disabledButton"><div>
+            <div class="ui-btn-arrow-blue">
+                <a id="blockButton">Ativar</a>
+            </div>
+        </div>
+
+
+</div>
+</div>
+
+</div>
+</div>
+</div>
+
+<div id="boxWebCard"></div>
+
+<div data-awbe-component="mToken" data-component="EscolhaAppIntegrador"></div>
+
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/ewa/ewaController.js"></script>

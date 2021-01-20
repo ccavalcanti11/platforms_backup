@@ -1,0 +1,45 @@
+<%
+	var cartaoAtual = AWBE.sessionStorage.getItem('meusCartoesAtual');
+	var cartao = model;
+	var webCardAtivo;
+
+	var viewStyleRender = AWBE.Views.getView('webCard/styleCartaoVirtual');
+	viewStyleRender.render();
+%>
+
+<div class="webCard" style="padding-top:0.5em">
+	<div class="flex-center-between">
+		<span class="textSaibaMaisCVWebCard">Saiba mais sobre o Cart&atilde;o Virtual</span>
+		<span class="icon-21-webCard">
+			<a id="SaibaMaisWebCard-Android" onclick="showInformativo()" class="icon-21 ui-link" title="Saiba mais sobre o WebCard"></a>
+		</span>
+	</div>
+	<hr>
+	<div style="background-color: #f3f6fb !important; border-bottom-width: 0px; padding-top:1em;padding-right:0em;margin-top: -0.5em;">
+		<div id="informativoAtivarWebCard" class="flex-item flex">
+			<div style="margin-right: 3em;text-align: justify;">
+				<p class="fnt-medium txt-1em fnt-wrap color-gray-darker"
+					style="font-family: NewJuneMedium; line-height: 1.60em; border:0; margin:0em;">Cart&atilde;o Virtual</p>
+				<p id="informativoAtivarWebCard2" class="fnt-book color-gray-darker informativo-flex-item" style="font-size: .65em; margin:0em">
+					Agora voc&ecirc; tem mais de uma op&ccedil;&atilde;o para comprar na internet.
+					Habilite o Cart&atilde;o Virtual e deixe suas transa&ccedil;&otilde;es ainda mais seguras.
+				</p>
+			</div>
+			<div class="flex-item">
+				<div id="switchHabilitado" class="webCardSwitch-desabilitado" style="float: right;" >
+					<div>
+						<input type="checkbox" data-role="flipswitch" horizontal-align="right" id="webCardSwitch"
+							data-current-value="<%= webCardAtivo ? 1 : 0 %>" data-on-text="" data-off-text="">
+						<%=webCardAtivo ? 'checked' : '' %>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="boxWebCard"></div>
+
+<div style="height: 40em" id="boxPreenchimento"></div>
+
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/webCard/webCard.js"></script>

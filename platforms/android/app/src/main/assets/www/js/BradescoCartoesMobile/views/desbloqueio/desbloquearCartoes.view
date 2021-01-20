@@ -1,0 +1,26 @@
+<div data-awbe-component="awbe-include" data-awbe-component-params="cabecalho"></div>
+
+<% 
+	var user = AWBE.sessionStorage.getItem('user');
+	if(AWBE.localStorage.getItem('isNCLegado_' + user.cpf) == "true"){ %>
+	<div data-awbe-component="awbe-include" data-awbe-component-params="menuOpcoesLogadoNCLegado"></div>
+<% }else{ %>
+	<div data-awbe-component="awbe-include" data-awbe-component-params="menuOpcoesLogado"></div>
+<% }%>
+
+<div class="ui-content page" data-role="content">
+
+<% if ( model.cartoesBloqueados.length != 0 ){%>
+	<div data-awbe-component="carouselDesbloqueioCartoes"
+		 data-awbe-target-element="carouselTarget"
+	     data-awbe-target-view="home/fatura.view"></div>
+	<div id="carouselTarget"></div>
+<%}else{%>
+	<div>
+		<p class="txt-1em color-gray-darker">N&atilde;o existem cart&otilde;es para desbloquear.</p>
+	</div>
+<%}%>
+<div data-role="footer" class="fnt-regular footer-info" style="right: 0 !important; bottom: 0 !important; top:auto !important;" data-position="fixed" data-tap-toggle="false">
+	<p class="txt-08em" style="text-align: left;">Informa&ccedil;&otilde;es sujeitas a altera&ccedil;&otilde;es.</p>
+</div>
+</div>

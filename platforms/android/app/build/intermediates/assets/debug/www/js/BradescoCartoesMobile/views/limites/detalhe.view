@@ -1,0 +1,201 @@
+<% 	var cartaoAtual = AWBE.sessionStorage.getItem('meusCartoesAtual'); 
+	var cartaoVisivel = BradescoCartoesMobile.cartaoSelecionado; 
+%>
+
+<% if (model.codigoRetorno == "00" || model.codigoRetorno == "0") { %>
+	<% if (model.categoriaLimite != ""  && model.categoriaLimite != "SEM LIMITE PRE ESTABELECIDO") { %>
+		
+		<h2><%=model.categoriaLimite%></h2>
+		<hr />
+		<div class="fnt-medium limits">
+			<h3>Compra</h3>
+			<dl class="color-gray-darker">
+				<dt class="txt-08em">Limite total:</dt>
+				<dd class="txt-12em">R$ <%=currency(model.limiteCreditoCompra, false)%><dd>
+			</dl>
+			<div class="ui-grid-solo">
+				<progress class="ui-block-a" value="<%= model.limiteCreditoCompra > 0 ? (model.limiteCompraUtilizado) * 100 / model.limiteCreditoCompra : 0%>" max="100"></progress>
+			</div>
+			<div class="ui-grid-a margin-top-07em">
+				<dl class="ui-block-a color-gray-darker">
+					<dt class="txt-08em">Utilizado:</dt>
+					<dd class="txt-12em">R$ <%=currency(model.limiteCompraUtilizado, false)%></dd>
+				</dl>
+				<dl class="ui-block-b color-gray-darker">
+					<dt class="txt-08em">Dispon&iacute;vel:</dt>
+					<dd class="txt-12em">R$ <%=currency(model.limiteDisponivelCompra, false)%></dd>
+				</dl>
+			</div>
+		</div>
+	
+	<%} else if(model.categoriaLimite == "SEM LIMITE PRE ESTABELECIDO") { %>
+
+		<div class="ui-grid-a margin-top-07em">
+				<span class="fnt-book color-gray-darker">Este cart&atilde;o n&atilde;o possui limite preestabelecido. </span>
+				<span class="right">
+					<a class="icon-21 margin-none" onclick="AWBE.util.openPopup('saibaMaisLimiteAmex')"></a>
+				</span>
+		</div>
+		<hr />
+	
+	<% } else { %>
+
+	<%
+  		var percent = 0;
+  		var limiteCreditoCompra = 0;
+  		var limiteCompraUtilizado = 0;
+  		var limiteDisponivelCompra = 0;
+  		try {
+  			limiteCreditoCompra = parseFloat(model.limiteCreditoCompra);
+  		} catch(e) {}
+  		try {
+  			limiteCompraUtilizado = parseFloat(model.limiteCompraUtilizado);
+  		} catch(e) {}
+  		try {
+  			limiteDisponivelCompra = parseFloat(model.limiteDisponivelCompra);
+  		} catch(e) {}
+  		if(limiteCreditoCompra < limiteCompraUtilizado) {
+  			percent = 100;
+  		} else {
+  			percent = limiteCreditoCompra > 0 ? (limiteCreditoCompra - limiteDisponivelCompra) * 100 / limiteCreditoCompra : 0;
+  		}
+	%>
+	
+		<div class="fnt-medium limits">
+			<h3>Compra</h3>
+			<dl class="color-gray-darker">
+				<dt class="txt-08em">Limite total:</dt>
+				<dd class="txt-12em">R$ <%=currency(model.limiteCreditoCompra, false)%><dd>
+			</dl>
+			<div class="ui-grid-solo">
+				<progress class="ui-block-a" value="<%= percent %>" max="100"></progress>
+			</div>
+			<div class="ui-grid-a margin-top-07em">
+				<dl class="ui-block-a color-gray-darker">
+					<dt class="txt-08em">Utilizado:</dt>
+					<dd class="txt-12em">R$ <%=currency(model.limiteCompraUtilizado, false)%></dd>
+				</dl>
+				<dl class="ui-block-b color-gray-darker">
+					<dt class="txt-08em">Dispon&iacute;vel:</dt>
+					<dd class="txt-12em">R$ <%=currency(model.limiteDisponivelCompra, false)%></dd>
+				</dl>
+			</div>
+		</div>
+	
+	<% } %>
+	
+	<div class="fnt-medium limits">
+		<h3>Saque</h3>
+			<div class="ui-grid-a margin-top-07em">
+				<dl class="ui-block-a color-gray-darker">
+					<dt class="txt-08em">Limite total:</dt>
+					<dd class="txt-12em">R$ <%=currency(model.limiteCreditoSaque, false)%><dd>
+				</dl>
+				<dl class="ui-block-b color-gray-darker">
+					<dt class="txt-08em">Dispon&iacute;vel:</dt>
+					<dd class="txt-12em">R$ <%=currency(model.limiteDisponivelSaque, false)%></dd>
+				</dl>
+			</div>
+	</div>
+	
+	<% if (model.bcard) {%>
+<!-- 		<div class="fnt-medium limits"> -->
+<!-- 			<h3>Parcelado</h3> -->
+<!-- 			<div class="ui-grid-a margin-top-07em"> -->
+<!-- 				<dl class="ui-block-a color-gray-darker"> -->
+<!-- 					<dt class="txt-08em">Limite total:</dt> -->
+<!-- 					<dd class="txt-12em">R$ <%=currency(model.limiteCreditoParcelado, false)%></dd> -->
+<!-- 				</dl> -->
+<!-- 				<dl class="ui-block-b color-gray-darker"> -->
+<!-- 					<dt class="txt-08em">Dispon&iacute;vel:</dt> -->
+<!-- 					<dd class="txt-12em">R$ <%=currency(model.limiteDisponivelParcelado, false)%></dd> -->
+<!-- 				</dl> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
+	<% }%>
+	<% if (model.dependentes && model.dependentes.length >= 1 && model.dependentes[0].numeroCartao != '') { %>
+		<p class="fnt-bold label-limite-bold">Aten&ccedil;&atilde;o, os seus limites s&atilde;o compartilhados com os seguintes cart&otilde;es:</p>
+		<%
+		for (var i = 0; i < model.dependentes.length; i++) {
+			var item = model.dependentes[i];
+			if (item.numeroCartao != cartaoAtual.numeroCartao && item.compra == 0 && item.saque == 0  ) {
+		%>
+				<div class="dependentes">
+					<dl class="destaque-area">
+						<dt class="fnt-bold txt-1em color-white destaque-area"><%=item.nomeEmbosso%></dt>
+						<dd class="fnt-regular txt-09em color-white destaque-area"><%=cartaoAtual.produtoPrincipal%> - cart&atilde;o final <%=item.numeroCartao.slice(-4)%></dd>
+					</dl>
+				</div>
+			<%}%>
+		<%}%>
+		<%
+		for (var i = 0; i < model.dependentes.length; i++) {
+			var item = model.dependentes[i];
+			if (item.numeroCartao != cartaoAtual.numeroCartao && (item.compra > 0 || item.saque > 0)) {
+		%>
+				<div class="dependentes">
+					<dl class="destaque-area">
+						<dt class="fnt-bold txt-1em color-white destaque-area"><%=item.nomeEmbosso%></dt>
+						<dd class="fnt-regular txt-09em color-white destaque-area"><%=cartaoAtual.produtoPrincipal%> - cart&atilde;o final <%=item.numeroCartao.slice(-4)%></dd>
+					</dl>
+					<%
+					if (item.compra > 0) {
+					%>
+					<div class="ui-grid-a border-complete-bottom">
+						<dl class="ui-block-a" style="padding-left: 1em; padding-top: 1em; padding-bottom: 1em;">							
+							<dd class="fnt-medium txt-1em color-gray-darker">COMPRA</dd>
+						</dl>
+						<dl class="ui-block-b" style="padding-right: 1em; padding-top: 1em; padding-bottom: 1em;">
+							<dd class="fnt-medium txt-1em color-gray-darker">R$ <%=currency(item.compra, false)%></dd>
+						</dl>
+					</div>
+					<%}%>
+					<%
+					if (item.saque > 0) {
+					%>
+					<div class="ui-grid-a">
+						<dl class="ui-block-a" style="padding-left: 1em; padding-top: 1em; padding-bottom: 1em;">
+							<dd class="fnt-medium txt-1em color-gray-darker">SAQUE</dd>
+						</dl>
+						<dl class="ui-block-b" style="padding-right: 1em; padding-top: 1em; padding-bottom: 1em;">
+							<dd class="fnt-medium txt-1em color-gray-darker">R$ <%=currency(item.saque, false)%></dd>
+						</dl>
+					</div>
+					<%}%>
+				</div>
+			<%}%>
+		<%}%>
+	<%}%>
+<%
+	}
+	
+	var htmlFooter = "Atualizado em " + model.dataAtualizacao;
+	if(model.codigoRetorno == "00" || model.codigoRetorno == "0") {
+		$("div[data-role='footer']").show();
+		$("#infectAtualizacao").html(htmlFooter);
+	}
+%>
+
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="sistemaIndisponivel">
+	<p class="texto-modal-small" style="text-align: left">Sistema Indispon&iacute;vel</p>
+	<div class="align-botoes txt-caixaalta">	
+		<a href="#" data-rel="back" class="botao-modal-002">OK</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="saibaMaisLimiteAmex">
+	<p class="texto-modal-small" style="text-align: left">Para que voc&ecirc; compre com liberdade, mas sem abrir m&atilde;o da seguran&ccedil;a, seu limite de despesas ser&aacute; flex&iacute;vel de acordo com diversos fatores, como comportamento de gastos, hist&oacute;rico de pagamentos e fontes de recursos financeiros.</p>
+	<br>
+	<p class="texto-modal-small" style="text-align: left">Para sempre assegurar a aprova&ccedil;&atilde;o de suas despesas, em caso de gastos acima dos habituais, &eacute; conveniente informar nossa central de atendimento com anteced&ecirc;ncia.</p>
+	<div class="align-botoes txt-caixaalta">	
+		<a href="#" data-rel="back" class="botao-modal-002">FECHAR</a>
+	</div>
+</div>

@@ -1,0 +1,29 @@
+<!-- POPUP DE FATURA DIGITAL APARECE QUANDO A FATURA DIGITAL NAO ESTA HABILITADA-->
+<% 
+  var faturaDigitalAtiva = false;
+  var cartao = AWBE.sessionStorage.getItem('meusCartoesAtual');
+
+  if(cartao.indicadorBloqueioFatura == 'S' || cartao.formaPagamento == 'D') {
+      faturaDigitalAtiva = true;
+  }
+
+  habilitarFaturaDigital();
+%>
+<div class="ui-grid-solo faturadigital promofit" id="FaturaDigitalPromo">
+    <div class="fnt-medium txt-13em color-gray-darker divtitle">Fatura Digital</div>
+    <div class="toggle-btn-right">
+      <input onchange="habilitarFaturaDigital()" type="checkbox" data-role="flipswitch" value="habilitadoFatDig" id="faturaDigitalON" data-on-text="" data-off-text="" 
+      data-current-value="<%= faturaDigitalAtiva ? 1 : 0 %>" <%= faturaDigitalAtiva ? 'checked' : '' %> >
+    </div>
+
+    <% if (!cartao.bradescard) { %>
+      <div class="smalltxt">Habilite o servi&ccedil;o para inibir o envio da fatura impressa na sua casa e acompanhar os seus gastos pelo site ou aplicativo Bradesco.</div>
+   
+      <% } else { %>
+       <div class="smalltxt">Aderindo a Fatura Digital, voc&ecirc; receber&aacute; a fatura no seu e-mail e n&atilde;o mais a vers&atilde;o impressa entregue pelos correios.<br/><br/>
+         As informa&ccedil;&otilde;es tamb&eacute;m poder&atilde;o ser obtidas pelo site <a onclick="openExternalUrl('https://www.bradescard.com.br')">Bradescard.com.br</a>
+         </div>
+      <% } %>
+</div>
+<h4 class="ui-collapsible-heading ui-collapsible-heading-collapsed" style="margin: 0 -1em;"><br/></h4>
+

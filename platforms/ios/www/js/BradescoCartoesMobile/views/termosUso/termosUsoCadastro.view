@@ -1,0 +1,31 @@
+<div data-awbe-component="awbe-include" data-awbe-component-params="cabecalho"></div>
+<div data-awbe-component="awbe-include" data-awbe-component-params="menuOpcoesDeslogado"></div>
+
+<div class="ui-content" data-role="content" style="word-wrap: break-word">
+	<div style="line-height: normal;"> <hr>
+		<div class="border-complete">
+		
+			<h3 class="fnt-medium color-gray-darker">Vers&atilde;o - <%=model.buscarTermoUso.versao.toFixed(1)%></h3>
+			
+		</div><hr>
+		<div class="removeTextShadow">
+			<p class="fnt-book color-gray-lighter"><%=model.buscarTermoUso.texto%></p>
+		</div>
+	
+		<hr class="hr-margin-tb"/>		
+		<div class="ui-grid-a">
+			<div class="ui-block-a" style="float: right">
+				<div class="ui-btn-arrow-blue-arrow"></div>
+				<div class="ui-btn-arrow-blue" style="width:89%">
+					<a href="javascript:BradescoCartoesMobile.components.customBackButton()">Continuar</a>
+				</div>
+			</div>
+			<div class="ui-block-b"></div>
+		</div>
+	</div>
+</div>
+<script>
+setTimeout(function(){
+$.mobile.silentScroll(0);
+},500);
+</script>

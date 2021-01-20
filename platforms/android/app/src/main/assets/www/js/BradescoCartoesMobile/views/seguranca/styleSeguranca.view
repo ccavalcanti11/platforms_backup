@@ -1,0 +1,31 @@
+<style>
+
+    .permissoes-icon-break {
+        position: relative;
+        display: inline-block;
+        padding-right: 2em;
+    }
+
+    .permissoes-info-icon{
+        right: 0;
+        width: 2em;
+        top: 0.05em;
+    }
+    
+</style>
+    <% var deviceModel=window.device.model;
+    if (deviceModel) {%>
+
+        <% if (deviceModel.contains('iPhone10')) {%>
+            #carouselTarget .seguranca-func-opcao {
+                position: relative;
+            }
+
+            #carouselTarget .directaction-icon-seguranca {
+                position: relative;
+            }
+
+        <%}%>
+    <%}%>
+
+</style>

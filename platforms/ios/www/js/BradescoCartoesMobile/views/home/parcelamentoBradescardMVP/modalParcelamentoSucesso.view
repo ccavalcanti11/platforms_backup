@@ -1,0 +1,15 @@
+<div data-awbe-component="popup" data-awbe-component-option-theme="a" data-awbe-component-option-theme-modal="b"
+    data-awbe-component-option-modal="true" data-awbe-component-popup-id="modalParcelamentoSucesso">
+    <p class="titulo-modal"></p>
+    <p class="texto-modal-normal"></p>
+    <div class="align-botoes txt-caixaalta">
+        <a href="#pagamento" data-rel="back" class="botao-modal-002" data-value='btn-ok' onclick="redirectClick(event)">OK</a>
+    </div>
+</div>
+
+<script>
+  function redirectClick(event){
+    var value = event.target.dataset.value;
+    BradescoCartoesMobile.ParcelamentoFatura.bradescard.populaAppsFlyerGa(value);
+  }
+</script>

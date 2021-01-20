@@ -1,0 +1,12 @@
+.switchVencimentoFatura {
+    height: fit-content;
+    margin-top: 3em;
+}
+
+.switchVencimentoFatura .ui-flipswitch {
+    margin: 0;
+}
+
+.personalizarnotificacoes {
+    display: flex;
+}

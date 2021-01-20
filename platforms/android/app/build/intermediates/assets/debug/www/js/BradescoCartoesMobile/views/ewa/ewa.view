@@ -1,0 +1,117 @@
+<div data-awbe-component="awbe-include" data-awbe-component-params="cabecalho"></div>
+<div data-awbe-component="awbe-include" data-awbe-component-params="menuOpcoesLogado"></div>
+
+<div class="ui-content" data-role="content">
+	<%
+	var temCartoesElegiveis = AWBE.sessionStorage.getItem('temCartoesElegiveis');
+    
+	
+	if(temCartoesElegiveis){%>
+		
+		<div data-awbe-component="carouselEwa"
+		     data-awbe-target-element="carouselTarget"
+		     data-awbe-target-view="ewa/detalhe"></div>
+		     
+	    <div id="carouselTarget"></div>
+    
+    
+   <% }else{%>
+    
+	   <div class="fnt-book color-gray-darker">Voc&ecirc; n&atilde;o possui cart&otilde;es associados a este servi&ccedil;o.</div>
+			
+	<% } %>
+</div>
+
+<!-- POP-UP VERSAO MENOR QUE 9-->
+<div data-awbe-component="popup" data-awbe-component-option-theme="a" data-awbe-component-option-theme-modal="b" data-awbe-component-option-modal="true" data-awbe-component-popup-id="popupVersaoInferiorNove">
+  <p class="titulo-modal">Vers&atilde;o menor que 9.</p>
+  <div class="align-botoes txt-caixaalta">
+    <a class="botao-modal-002" data-rel="back">OK</a>
+  </div>
+</div>
+
+<!-- POP-UP SUCESSO QUANDO APENAS UM CARTAO-->
+<div data-awbe-component="popup" data-awbe-component-option-theme="a" data-awbe-component-option-theme-modal="b" data-awbe-component-option-modal="true" data-awbe-component-popup-id="popupSucessoAtivCartao">
+  	<p class="titulo-modal">Cart&atilde;o ativado com sucesso</p>
+  	<p class="texto-modal-normal">Deseja retornar &agrave; Wallet?</p>
+
+  	<div class="align-botoes-2">
+		<a class="botao-modal-002" data-rel="back" onclick="abrirWallet()">Sim</a>
+		<a class="botao-modal-003" data-rel="back" href="#homeLogada">N&atilde;o</a>
+	</div>
+
+</div>
+
+<!-- POP-UP SUCESSO QUANDO MAIS DE UM CARTAO-->
+<div data-awbe-component="popup" data-awbe-component-option-theme="a" data-awbe-component-option-theme-modal="b" data-awbe-component-option-modal="true" data-awbe-component-popup-id="popupSucessoAtivMaisDeUmCartao">
+  	<p class="titulo-modal" style="text-align: center">Cart&atilde;o ativado com sucesso</p>
+  	<p class="texto-modal-normal">Deseja ativar outro Cart&atilde;o?</p>
+	<div class="align-botoes-2">
+		<a class="botao-modal-002" data-rel="back" onclick="abrirWallet()">N&atilde;o</a>
+		<a class="botao-modal-003" data-rel="back" onclick="abrirApplePay()">Ativar</a>
+	</div>
+</div>
+
+<!-- POP-UP DE ERRO NO RETORNO DO MF-->
+<div data-awbe-component="popup" data-awbe-component-option-theme="a" data-awbe-component-option-theme-modal="b" data-awbe-component-option-modal="true" data-awbe-component-popup-id="popupErroAtivCartaoMF">
+  <p class="titulo-modal">Indispon&iacute;vel Ativa&ccedil;&atilde;o</p>
+  <p class="texto-modal-normal">N&atilde;o &eacute; poss&iacute;vel ativar este cart&atilde;o. Por favor, ligue na Central de Atendimento.</p>
+  <div class="align-botoes txt-caixaalta">
+    <a class="botao-modal-002" data-rel="back" href="#">Fechar</a>
+  </div>
+</div>
+
+<div data-awbe-component="popup" data-awbe-component-option-theme="a" data-awbe-component-option-theme-modal="b" data-awbe-component-option-modal="true" data-awbe-component-popup-id="popupErroConexao">
+  <p class="titulo-modal">Erro de conex&atilde;o</p>
+  <p class="texto-modal-normal">Sem conex&atilde;o. Verifique a rede e tente novamente.</p>
+  <div class="align-botoes txt-caixaalta">
+    <a class="botao-modal-002" data-rel="back" href="#">Fechar</a>
+  </div>
+</div>
+
+<div class="tutorial-container" id="tutorialAutorizacao" style="display: none; z-index:999999; position: fixed;">
+	<div style="width: 100%; height: 100%;">
+		<img src="img/tutorial/dispositivoSeguranca/autorizarapp.png" style="margin: 0 !important; width: 100%; height: 100%;"></img>
+		<div class="btnFecharTutorialPA btnFecharCarrossel" id="btnFecharCarrossel" style="left: 16.5em;">
+			<img src="img/tutorial/home/botaofechar.svg"></img>
+		</div>
+		 <div class="ui-btn-blue" id="botaoAutorizar" style="bottom: 11.2em; left: 7em; position: absolute;" onclick="autorizar();" >
+			<p class="botaoAzul" style="padding-left: 2em;padding-right: 2em;">Autorizar</p>
+		 </div> 
+	</div>
+</div>
+
+<div class="tutorial-container" id="tutorialAbrir" style="display: none; z-index:999999; position: fixed;">
+	<div style="width: 100%; height: 100%;">
+		<img src="img/tutorial/dispositivoSeguranca/capturarchave.png" style="margin: 0 !important; width: 100%; height: 100%;"></img>
+		<div class="btnFecharTutorialPA btnFecharCarrossel" id="btnFecharCarrossel" style="left: 16.5em;">
+			<img src="img/tutorial/home/botaofechar.svg"></img>
+		</div>
+
+		<div id="btnFecharCarrosselEntendi" class="ui-btn-blue" style="bottom: 12.2em; left: 7em; position: absolute;" onclick="fecharTutorial();" >
+			<p class="botaoAzul" style="padding-left: 2em;padding-right: 2em;">Entendi</p>
+		</div> 
+						
+	</div>
+</div>
+
+<!-- POP-UP ERRO AO CAPTURAR CHAVE-->
+<div data-awbe-component="popup" data-awbe-component-option-theme="a" data-awbe-component-option-theme-modal="b" data-awbe-component-option-modal="true" data-awbe-component-popup-id="popupErroCapturarChave">
+  <p class="titulo-modal">Erro ao Capturar Chave.</p>
+  <div class="align-botoes txt-caixaalta">
+    <a class="botao-modal-002" data-rel="back">OK</a>
+  </div>
+</div>
+
+<div data-awbe-component="popup" data-awbe-component-option-theme="a" data-awbe-component-option-theme-modal="b" data-awbe-component-option-modal="true"
+data-awbe-component-popup-id="smic-request-permission">
+	<p class="aviso-viagem-popup-text fnt-regular" style="margin:0.5em 0em -1em 0em;" ><b>"Bradesco Cart&otilde;es" <br> deseja abrir "Bradesco" </b></p>
+	<br>
+	<div class="align-botoes-2 align-botoes-popup">
+		<a href="#" data-rel="back" style="font-weight: normal;"onClick="cancelarPopup();" class="botao-popup-permitir-001" title="Cancelar">Cancelar</a>
+		<a href="#" data-rel="back" style="font-weight: normal;"onClick="chamarSmicPermission()" class="botao-popup-permitir-002" title="Abrir"><b>Abrir</b></a>
+	</div>
+</div>
+
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/ewa/ewa.js"></script>
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/ewa/ewaController.js"></script>

@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32.006">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+      }
+
+      .cls-2 {
+        fill: #d51e31;
+      }
+    </style>
+  </defs>
+  <g id="icon-qrcode" transform="translate(0 0.006)">
+    <g id="Path_765" transform="translate(4.521 4.521)">
+      <path id="Path_802" data-name="Path 802" class="cls-1" d="M-2794.3-1022.3h7.619v7.619h-7.619Z" transform="translate(2794.3 1022.3)"/>
+      <path id="Path_803" data-name="Path 803" class="cls-2" d="M-2788.2-1016.2v-4.571h-4.572v4.571h4.572m1.524,1.524h-7.619v-7.619h7.619Z" transform="translate(2794.3 1022.3)"/>
+    </g>
+    <g id="Rectangle_1964" transform="translate(4.521 20.712)">
+      <rect id="Rectangle_2080" data-name="Rectangle 2080" class="cls-1" width="7.619" height="7.619"/>
+      <path id="Path_804" data-name="Path 804" class="cls-2" d="M-2786.681-1014.681h-7.619v-7.619h7.619Zm-6.1-1.524h4.572v-4.571h-4.572Z" transform="translate(2794.3 1022.3)"/>
+    </g>
+    <g id="Rectangle_1965" transform="translate(20.712 4.521)">
+      <rect id="Rectangle_2081" data-name="Rectangle 2081" class="cls-1" width="7.619" height="7.619"/>
+      <path id="Path_805" data-name="Path 805" class="cls-2" d="M-2786.681-1014.681h-7.619v-7.619h7.619Zm-6.1-1.524h4.572v-4.571h-4.572Z" transform="translate(2794.3 1022.3)"/>
+    </g>
+    <rect id="Rectangle_1968" class="cls-2" width="1.422" height="1.422" transform="translate(24.584 24.584)"/>
+    <path id="Union_28" class="cls-2" d="M20.4,28.019V20.4h7.619v1.422h-6.2v6.2Z" transform="translate(0.324 0.324)"/>
+    <path id="Path_806" data-name="Path 806" class="cls-2" d="M16.69,16.69H4.5V15.167H15.167V4.5H16.69Z" transform="translate(0.071 0.072)"/>
+    <path id="Path_807" data-name="Path 807" class="cls-2" d="M1.524,8.432H0V2.641A2.6,2.6,0,0,1,2.54,0H8.33V1.524H2.641a1.154,1.154,0,0,0-.813.3,1.154,1.154,0,0,0-.3.813Z" transform="translate(0 0)"/>
+    <path id="Path_808" data-name="Path 808" class="cls-2" d="M29.09,31.63H23.3V30.106h5.689a1.066,1.066,0,0,0,1.117-1.117V23.3H31.63v5.689a2.6,2.6,0,0,1-2.54,2.641Z" transform="translate(0.37 0.37)"/>
+    <path id="Path_809" data-name="Path 809" class="cls-2" d="M31.63,8.432H30.106V2.641a1.066,1.066,0,0,0-1.117-1.117H23.3V0h5.689A2.538,2.538,0,0,1,31.63,2.54Z" transform="translate(0.37)"/>
+    <path id="Path_810" data-name="Path 810" class="cls-2" d="M2.641,31.63a2.608,2.608,0,0,1-1.829-.711A2.544,2.544,0,0,1,0,29.09H0V23.3H1.524v5.689a1,1,0,0,0,.3.813,1.154,1.154,0,0,0,.813.3H8.33V31.63Z" transform="translate(0 0.37)"/>
+    <rect id="Rectangle_2082" data-name="Rectangle 2082" class="cls-2" width="1.524" height="7.619" transform="translate(15.238 20.724)"/>
+    <rect id="Rectangle_2083" data-name="Rectangle 2083" class="cls-2" width="7.619" height="1.524" transform="translate(20.724 15.238)"/>
+  </g>
+</svg>

@@ -1,0 +1,23 @@
+<div id="header-hide-arrow" data-role="header" data-position="fixed"
+	data-tap-toggle="false">
+	<a id="btnLeftPanel" href="#webCard" class="btn-back"></a>
+	<h1><%=AWBE.localStorage.getItem('title')%></h1>
+</div>
+<%var cartaoAtual = AWBE.sessionStorage.getItem('meusCartoesAtual');%>
+
+<div class="webCard">
+	<h2 class="h2WebCardDesabilitado" style="padding-left: 0em">Cart&atilde;o Virtual DESABILITADO</h2>
+	
+	<p class="pWebCardDesabilitado">
+		A partir de agora a fun&ccedil;&atilde;o Cart&atilde;o Virtual est&aacute; desabilitada para o cart&atilde;o:
+	</p>
+	<div class="ui-grid-solo cardlist">
+			<div class="mascaraCartao">
+				<span>••••</span>
+				<span>••••</span>
+				<span>••••</span>
+				<span class="mascaraCartaoNumero"><%=completeLeft(cartaoAtual.parcialCartao, 4)%></span>
+			</div>
+	</div>
+</div>
+

@@ -1,0 +1,125 @@
+<div id="header-hide-arrow" data-role="header" data-position="fixed" data-tap-toggle="false">
+	<a id="btnLeftPanel" href="#avisoViagem" class="btn-back"></a>
+	<h1><%=AWBE.localStorage.getItem('title')%></h1>
+</div>
+
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/avisoViagem/avisoViagem.js"></script>
+<div class="ui-content aviso-viagem" data-role="content">
+
+<%
+	var avisoContinentes = model.avisoViagem.avisoContinentes;
+	
+	var temAvisoViagemContinente = false;
+	
+	if(avisoContinentes && avisoContinentes.length > 0) {
+		_.forEach(avisoContinentes, function(itemAvisoViagemContinente) {
+			if(itemAvisoViagemContinente.dataInicioAsInteger && itemAvisoViagemContinente.dataFimAsInteger){
+				temAvisoViagemContinente = true;
+			}
+		})
+	}
+
+%>
+
+	<div class="dadosBancarios">
+		<h2>
+			Dados do Aviso de Viagem
+		</h2>
+
+	<div class="fnt-book color-gray-darker">Antes de viajar para o exterior, informe o destino e per&iacute;odo da sua viagem.</div>
+		<br>
+
+	
+	</div>
+<%
+			if(avisoContinentes && avisoContinentes.length > 0) {%>
+				<form action="#editarAvisoViagemContinente" id="editarAvisoViagemContinente">
+					<input type="hidden" data-awbe-bind="indexAvisoViagemContinente" id="editIndex" value=""/>
+				</form>
+				<form action="#excluirAvisoViagemContinente" id="excluir-aviso-swipe">
+					<input type="hidden" data-awbe-bind="indexAvisoViagemContinente" id="deleteIndex" value=""/>
+				</form>
+				<div class="listview-swipe">
+					<ul data-role="listview">
+				
+		<%
+				var index = 0;
+				_.forEach(avisoContinentes, function(itemAvisoViagemContinente,indexAvisoViagemContinente) {				
+		%>
+					
+					<% if(itemAvisoViagemContinente.dataInicioAsInteger){ %>
+						<li data-icon="false">
+							<div class="buttons">
+								<a class="edit-btn" onclick="indexEdit(<%=indexAvisoViagemContinente%>);$('#editarAvisoViagemContinente').attr('action','#editarAvisoViagemContinente').submit();">
+								<span class="text-btn">Editar</span>
+								</a>
+								<a class="delete-btn" onclick="indexEdit(<%=indexAvisoViagemContinente%>);$('#excluir-aviso-swipe').submit();">
+								<span class="text-btn">Excluir</span>
+								</a>
+							</div>
+						
+							<div class="view" id="aviso_item_<%=index%>">
+								<a href="javascript:void(0)"><%=itemAvisoViagemContinente.continente.nome%>
+										<span class="icon-check"></span>
+								</a>
+								<div style="display: inline-block; vertical-align: middle; right: 17%; position: absolute; margin-top:13px">
+                                <span class="txt-070em color-blue-ligher" style="cursor: pointer; font-family: NewJuneBold;">
+                                    <span>De:</span>
+                                    <span style="font-family: NewJuneBook;"><%= itemAvisoViagemContinente.dataInicioLabel %> <br/></span>
+                                    <span>At&eacute;:</span>
+                                    <span style="font-family: NewJuneBook;"><%= itemAvisoViagemContinente.dataFimLabel %></span>                                         
+                                </span>
+								</div>								
+								<a href="javascript:void(0)" id="<%=index%>" class="icon-listview-comum swipe-arrows"></a>
+							</div>
+							
+							<script>
+								window.setTimeout(function() {
+								var is = new Item300Swipe("#aviso_item_<%=index%>");
+								is.process();
+								}, 200);
+							</script>
+						</li>
+					<% }else{ %>					
+						<li data-icon="false">
+							<div class="view" id="aviso_item_<%=index%>">
+								<a href="javascript:void(0)"><%=itemAvisoViagemContinente.continente.nome%></a>
+								<a onclick="indexEdit(<%=indexAvisoViagemContinente%>);$('#editarAvisoViagemContinente').attr('action','#avisoViagemAdicionarContinente').submit();" id="<%=index%>" class="icon-listview-comum ver-mais-icon"></a>
+							</div>
+						</li>					
+					<% }
+					index++;
+				})
+		%>
+					</ul>
+				</div>
+		<%
+			}
+		%>
+	<br><br>
+	<%if(temAvisoViagemContinente && !isEditando()){ %>
+		<div class="ui-grid-solo margin-bottom-1em">
+			<div class="ui-grid-a">
+				<div class="ui-block-b" style="float: right;">
+					<div>						
+						<div class="ui-btn-arrow-blue">
+					    	<a href="#confirmarEdicaoAvisoViagem" id="botaoSubmitLogin">Finalizar</a>
+					    </div>
+					</div>
+				</div>
+			</div>
+		</div>
+	<%} if(!temAvisoViagemContinente && !isEditando() && !isCriando()){ %>
+            <div class="ui-grid-solo margin-bottom-1em">
+			<div class="ui-grid-a">
+				<div class="ui-block-b" style="float: right;">
+					<div>
+						<div class="ui-btn-arrow-blue">
+					    	<a href="#solicitarCancelamentoAvisoViagem" id="botaoSubmitLogin">Finalizar</a>
+					    </div>
+					</div>
+				</div>
+			</div>
+		</div>
+            <% } %>
+</div>

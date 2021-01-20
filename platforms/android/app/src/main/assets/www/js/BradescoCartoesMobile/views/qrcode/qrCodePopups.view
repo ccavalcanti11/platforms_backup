@@ -1,0 +1,22 @@
+<div data-awbe-component="awbe-include" data-awbe-component-params="cabecalho"></div>
+<div data-awbe-component="awbe-include" data-awbe-component-params="menuOpcoesLogado"></div>
+
+<div class="ui-content page" data-role="content ">
+	<dl>
+	    <dt class="txt-1em color-gray-darker fnt-book">Erro de leitura. QR Code inv&aacute;lido.</dt>
+	</dl>
+
+	<div class="ui-grid-solo margin-bottom-1em" style="margin-top: 1em">
+		<div class="ui-grid-a continue " style="margin:0 1em; margin-left: 0em">
+			<div class="ui-block-a">
+				<div class="ui-btn-arrow-blue-arrow"></div>
+				<div class="ui-btn-arrow-blue3">
+					<a href="#qrCode" id="confirmarPagamentoQrCode" class="ui-link">Voltar</a>
+				</div>
+			</div>
+			<div class="ui-block-b">
+			</div>
+		</div>
+	</div>
+
+</div>

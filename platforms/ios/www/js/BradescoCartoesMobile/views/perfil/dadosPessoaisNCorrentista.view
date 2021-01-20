@@ -1,0 +1,100 @@
+<% var user = AWBE.sessionStorage.getItem('user'); 
+AWBE.localStorage.setItem('title','Dados de contato');
+%>
+
+<div data-awbe-component="awbe-include" data-awbe-component-params="cabecalhoVoltarPagina">
+</div>
+
+<div class="ui-content dadosPessoais" data-role="content">
+	<form action="#senhaAppEditarNCorrentista">
+		
+		<div class="divAlertas">
+			<hr class="hr-margin-error">
+			<table class="ui-table-generico-semBorder">
+				<tr>
+					<th class="col-12 icon-20-table"></th>
+					<th class="col-88 fnt-book color-gray-lighter txt-08em" id="mensagemDivAlertas"></th>
+				</tr>
+			</table>
+			<hr class="hr-margin-error">
+		</div>
+		
+		<input type="hidden" value="editarPerfil" data-awbe-bind="view"/>
+		<p class="fnt-book txt-1em color-gray-darker">E-mail</p>
+		<input class="inputPlaceholder" type="email" maxlength="70" placeholder="cliente@email.com.br" name="confirma_dado" id="email" data-awbe-bind="emailCadastro" 
+		autocorrect="off" autocomplete="off" spellcheck="false"	autocapitalize="off" data-awbe-for="dadosContatoValidation" value="<%=user.emailCadastro%>"/>
+		<div class="ui-grid-b">
+			<p class="fnt-book txt-1em color-gray-darker">Celular</p>
+			<div class="ui-block-a width-31em">
+				<input class="inputPlaceholder" type="tel" name="ddd_celular" data-awbe-for="*" id="ddd-celular" data-awbe-bind="dddCelular" maxlength="2" data-awbe-component="ddd" pattern="[0-9]*"  value=<%=user.dddCelular%>/>
+			</div>
+			<div class="ui-block-b margin-left-16">
+				<div class="ui-block-c width-93em">
+					<input class="inputPlaceholder" data-awbe-component="telefone" type="tel" name="numero_celular" id="numero-celular" data-awbe-bind="numeroCelular" data-awbe-for="dadosPessoaisValidation" maxlength="11" value=<%=user.numeroCelular%>/>
+				</div>
+			</div>
+		</div>
+	</form>
+	<div class="hr-margin-tb"></div>
+	<div class="ui-grid-a"  >
+		<div class="ui-block-a disabledButton tira-disabled" style="float:right" >
+			<div class="ui-btn-arrow-blue-arrow" ></div>
+			<div class="ui-btn-arrow-blue" style="float:right">
+				<a id="botaoSubmitDadosPessoaisNCorrentista" name="botaoSubmitDadosPessoaisNCorrentista">Continuar</a>
+		    </div>
+		</div>
+	   <div class="ui-block-b"></div>
+	</div>
+</div>
+
+<div data-awbe-component="popup"
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="alertaEmail">
+	<p  class="titulo-modal">E-mail Incompleto</p>
+	<p class="texto-modal-normal">O endere&ccedil;o de e-mail precisa ter um &ldquo;nome&rdquo;, um &ldquo;@&rdquo; e um complemento, por exemplo <span>&ldquo;cliente@email.com.br&rdquo;</span>.</p>
+	<div class="align-botoes">
+		<a href="#" data-rel="back" class="botao-modal-002">Fechar</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup"
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="alertaEmailLegado">
+	<p  class="titulo-modal">E-mail Incompleto</p>
+		<p class="texto-modal-normal">O endere&ccedil;o de e-mail precisa ter um &ldquo;nome&rdquo;, um &ldquo;@&rdquo; e um complemento, por exemplo <span>&quot;cliente@email.com.br&quot;</span>.</p>
+	<div class="align-botoes">
+		<a href="#" data-rel="back" class="botao-modal-002">Fechar</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup"
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="alertaTelefone">
+	<p  class="titulo-modal"></p>
+	<p class="texto-modal-normal">Insira um DDD e n&uacute;mero de telefone v&aacute;lido.</p>
+	<div class="align-botoes">
+		<a href="#" data-rel="back" class="botao-modal-002">OK</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup"
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="popupEmailEmUso">
+	<p class="titulo-modal">E-mail em uso</p>
+	<p class="texto-modal-normal">O e-mail informado j&aacute; est&aacute; sendo utilizado em outro perfil.</p>
+	<p class="texto-modal-normal">Por favor, utilize outro.</p>
+	<div class="align-botoes">
+		<a href="#" data-rel="back" class="botao-modal-002">Fechar</a>
+	</div>
+</div>
+
+
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/perfil/dadosPessoaisNCorrentista.js"></script>

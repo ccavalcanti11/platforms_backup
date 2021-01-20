@@ -1,0 +1,51 @@
+<div data-awbe-component="awbe-include" data-awbe-component-params="cabecalhoVoltarPagina"></div>
+
+<div class="ui-content page" data-role="content">
+	<p class="fnt-book color-gray-darker txt-1em">Para continuar, informe a senha do cartão final <span class="fnt-bold"><%=model.dados.quatroDigitos%></span>:</p>
+	<label class="forms">Senha de Compra</label>
+	<div class="ui-grid-b">
+	 	<div class="ui-block-a">
+			<input type="tel" class="input-password-numeric only-pass input-pass" pattern="[0-9]*" inputmode="numeric" name="senhaCompra" id="senhaCompra" data-awbe-bind="senhaCompra" autocomplete="off" maxlength="4"/>
+			<input type="hidden" data-awbe-bind="view" value="redefinicaoSenha" oncopy="return false" oncut="return false" onpaste="return false"/>
+		</div>
+		<div class="ui-block-b"></div>
+		<div class="ui-block-c"></div>
+	</div>
+	<p class="fnt-medium txt-08em color-blue-darker">
+		<%=model.dados.bandeira%><br/>
+		<%=model.dados.quatroDigitos%>
+	</p>
+	<hr class="hr-margin-tb" />
+	<div class="left">
+		<div class="ui-btn-arrow-blue-arrow"></div>
+		<div class="ui-btn-arrow-blue" style="float:right">
+			<a  id="botaoContinuarSenhaCompra">Continuar</a>
+	    </div>
+	</div>
+</div>
+	
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="senhaIncorreta">
+	<p class="texto-modal-normal">A senha informada est&aacute; incorreta</p>
+	<p class="texto-modal-normal">Voc&ecirc; tem mais <span class="texto-negrito-modal" id="tent"></span> de acesso. Ao atingir esse limite, seu acesso ser&aacute; bloqueado.</p>
+	<div class="align-botoes">	
+		<a href="#" data-rel="back" class="botao-modal-002">Fechar</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup" 
+ 	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="senhaBloqueada">
+	<p class="titulo-modal">Acesso Bloqueado</p>
+	<p class="texto-modal-normal">"N&atilde;o foi poss&iacute;vel finalizar seu cadastro, por favor entrar em contato com a Central de Atendimento"</p>
+	<div class="align-botoes">	
+		<a href="#" data-rel="back" class="botao-modal-002">VOLTAR</a>
+	</div>
+</div>
+
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/login/esqueciSenha/recuperacaoSenha.js"/>

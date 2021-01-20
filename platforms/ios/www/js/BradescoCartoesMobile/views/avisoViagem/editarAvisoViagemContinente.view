@@ -1,0 +1,154 @@
+<%
+    var viewStyleRender = AWBE.Views.getView('avisoViagem/styleAvisoViagem');
+    viewStyleRender.render();
+%>
+
+<div data-awbe-component="awbe-include" data-awbe-component-params="cabecalhoVoltarPagina"></div>
+
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/avisoViagem/avisoViagem.js"></script>
+<div class="ui-content aviso-viagem" data-role="content">
+    <div>
+        <h2>DADOS DA VIAGEM</h2>
+		<div class="fnt-bold txt-13em color-gray-darker" style="font-family:NewJuneBook"><%= model.avisoViagemContinente.continente.nome %></div>
+		<div >
+			<p class="fnt-book color-gray-darker">O per&iacute;odo deve incluir todos os intervalos. Per&iacute;odo m&aacute;ximo de 60 dias.</p>
+		</div>
+		<br>
+	</div>
+
+	<hr class="hr-margin-bottom-0em" style="height: 1px !important;">
+
+	<form action="#confirmarEdicaoAvisoViagemContinente" id="confirmarEdicaoAvisoViagemContinente">
+		
+        <div class="ui-grid-a">
+        	<div class="ui-block-a" style="width:10%">
+        		<p style="margin:initial;line-height:3em;font-family:RobotoRegular" class="fnt-bold color-gray-darker" >De:</p>
+        	</div>
+			<div class="ui-block-b" style="width:90%">
+				<input type="date" id="dataInicio" class="long-date" data-awbe-bind="dataInicio" data-role="none" value="<%=model.avisoViagemContinente.dataInicioFormatada%>"  />
+			</div>
+		</div>
+		
+	<hr class="hr-margin-bottom-0em" style="height: 1px !important;">
+		
+		<div class="ui-grid-a">
+        	<div class="ui-block-a" style="width:10%">
+        		<p style="margin:initial;line-height:3em;font-family:RobotoRegular" class="fnt-bold color-gray-darker" >At&eacute;:</p>
+        	</div>
+			<div class="ui-block-b" style="width:90%">
+				<input type="date" id="dataFim" class="long-date" data-awbe-bind="dataFim" data-role="none" value="<%=model.avisoViagemContinente.dataFimFormatada%>"  />
+			</div>
+		</div>
+		
+	<hr class="hr-margin-bottom-0em" style="height: 1px !important;">
+
+        <div id="checkboxesListAvisoViagemDIV" title="selecione abaixo os pa&iacute;ses">
+            <input type="hidden" data-awbe-bind="indexAvisoViagemContinente" id="editIndex" value="" />
+            <%
+				var avisosPais = model.avisoViagemContinente.avisosPais;
+
+				if(avisosPais && avisosPais.length>0){
+					%>
+                <div class="fnt-book txt-13em color-gray-darker">Locais da Viagem</div>
+                <%
+				}
+
+				_.forEach(avisosPais, function(itemAvisoViagemPais,index) {
+
+					if(itemAvisoViagemPais.selecionado){%>
+                    <input type="checkbox" name="checkbox-pais" id="selecionado<%=itemAvisoViagemPais.pais.id%>" data-awbe-bind="selecionado<%=itemAvisoViagemPais.pais.id%>" checked="checked" />
+                    <%
+					}else{
+						%>
+                        <input type="checkbox" name="checkbox-pais" id="selecionado<%=itemAvisoViagemPais.pais.id%>" data-awbe-bind="selecionado<%=itemAvisoViagemPais.pais.id%>" />
+                        <%}%>
+                            <label for="selecionado<%=itemAvisoViagemPais.pais.id%>" class="ui-checkbox-geral">
+                                <%=itemAvisoViagemPais.pais.nome%>
+                            </label>
+                            <%
+				})
+			%>
+        </div>
+    </form>
+    <br>
+   <div class="ui-grid-solo margin-bottom-1em">
+        <div class="ui-grid-a">
+            <div class="ui-block-a">
+                <%if(model.avisoViagemContinente.dataInicioFormatada){%>
+                    <div class="ui-block-a esqueciSenha ui-disabled" id="divBotaoAddDestinos">
+                            <div onclick="setFinalizar(false);indexEdit(<%=model.indice%>);$('#confirmarEdicaoAvisoViagemContinente').submit();" class="btn-aviso-viagem container-flex">
+                                <div class="icon-editar-destinos"></div>
+                                <div style="margin-left:5%;font-family:NewJuneBold">
+                                    <div class="btn-aviso-viagem" style="font-family:NewJuneBook">Editar outros destinos</div>
+                                </div>
+                            </div>
+                        </div>
+                    <%}else if(params.bloquearBotao){%>
+                        <div class="ui-block-a esqueciSenha ui-disabled">
+                            <a class="esqueci-senha">
+                                <div class="icon-32"></div>
+                                <div class="esqueci-senha" style="font-family:NewJuneBook">Adicionar outros destinos</div>
+                            </a>
+                        </div>
+                    <%}else{%>
+                        <div class="ui-block-a esqueciSenha ui-disabled" id="divBotaoAddDestinos">
+                            <div onclick="setFinalizar(false);indexEdit(<%=model.indice%>);$('#confirmarEdicaoAvisoViagemContinente').submit();" class="btn-aviso-viagem container-flex ui-link">
+                                <div class="icon-32"></div>
+                                <div style="margin-left:5%;font-family:NewJuneBold">
+                                    <div class="btn-aviso-viagem" style="font-family:NewJuneBook">Adicionar outros destinos</div>
+                                </div>
+                            </div>
+                        </div>
+                        <%}%>
+            </div>
+            <div class="ui-block-b"  style="float: right; width: 50%;">
+                    <div class="ui-btn-arrow-blue ui-disabled" id="divBotaoFinalizar">
+                        <div><a onclick="setFinalizar(true);indexEdit(<%=model.indice%>);$('#confirmarEdicaoAvisoViagemContinente').submit();" id="botaoSubmitLogin">Finalizar</a></div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div data-awbe-component="popup" data-awbe-component-option-theme="a" data-awbe-component-option-theme-modal="b" data-awbe-component-option-modal="true" data-awbe-component-popup-id="sobreposicaoDatasAndroid">
+	<p class="texto-modal-normal" style="text-align: left">Verifique o per&iacute;odo informado. N&atilde;o &eacute poss&iacute;vel selecionar a mesma data para continentes diferentes.</p>
+    <div class="align-botoes txt-caixaalta"> <a href="#" data-rel="back" class="botao-modal-002">OK</a> </div>
+</div>
+<div data-awbe-component="popup" data-awbe-component-option-theme="a" data-awbe-component-option-theme-modal="b" data-awbe-component-option-modal="true" data-awbe-component-popup-id="erroDataMinimaAndroid">
+	<p class="texto-modal-normal" style="text-align: left">Data inv&aacute;lida &minus; Favor inserir uma data maior ou igual que a data atual.</p>
+    <div class="align-botoes txt-caixaalta"> <a href="#" data-rel="back" class="botao-modal-002">OK</a> </div>
+</div>
+<div data-awbe-component="popup" data-awbe-component-option-theme="a" data-awbe-component-option-theme-modal="b" data-awbe-component-option-modal="true" data-awbe-component-popup-id="erroDataMaximaAndroid">
+	<p class="texto-modal-normal" style="text-align: left">Data inv&aacute;lida &minus; Favor inserir uma data que n&atilde;o ultrapasse o per&iacute;odo de 60 dias.</p>
+    <div class="align-botoes txt-caixaalta"> <a href="#" data-rel="back" class="botao-modal-002">OK</a> </div>
+</div>
+<div data-awbe-component="popup" data-awbe-component-option-theme="a" data-awbe-component-option-theme-modal="b" data-awbe-component-option-modal="true" data-awbe-component-popup-id="erro60diasAndroid">
+    <p class="texto-modal-normal" style="text-align: left">N&atilde;o &eacute; poss&iacute;vel incluir um Aviso de Viagem com per&iacute;odo superior a 60 dias para o mesmo cart&atilde;o.</p>
+    <div class="align-botoes txt-caixaalta"> <a href="#" data-rel="back" class="botao-modal-002">OK</a> </div>
+</div>
+<div data-awbe-component="popup" data-awbe-component-option-theme="a" data-awbe-component-option-theme-modal="b" data-awbe-component-option-modal="true" data-awbe-component-popup-id="erroDataInicioDiferenteDataFinalAndroid">
+    <p class="texto-modal-normal" style="text-align: left">O intervalo entre os destinos n&atilde;o &eacute; v&aacute;lido. Verifique as datas e insira novamente.</p>
+    <div class="align-botoes txt-caixaalta"> <a href="#" data-rel="back" class="botao-modal-002">OK</a> </div>
+</div>
+<div data-awbe-component="popup" data-awbe-component-option-theme="a" data-awbe-component-option-theme-modal="b" data-awbe-component-option-modal="true" data-awbe-component-popup-id="sobreposicaoDatasIOS">
+	<p class="texto-modal-normal" style="text-align: center">Verifique o per&iacute;odo informado. N&atilde;o &eacute poss&iacute;vel selecionar a mesma data para continentes diferentes.</p>
+    <div class="align-botoes txt-caixaalta"> <a href="#" data-rel="back" class="botao-modal-002">OK</a> </div>
+</div>
+<div data-awbe-component="popup" data-awbe-component-option-theme="a" data-awbe-component-option-theme-modal="b" data-awbe-component-option-modal="true" data-awbe-component-popup-id="erroDataMinimaIOS">
+	<p class="texto-modal-normal" style="text-align: center">Data inv&aacute;lida &minus; Favor inserir uma data maior ou igual que a data atual.</p>
+    <div class="align-botoes txt-caixaalta"> <a href="#" data-rel="back" class="botao-modal-002">OK</a> </div>
+</div>
+<div data-awbe-component="popup" data-awbe-component-option-theme="a" data-awbe-component-option-theme-modal="b" data-awbe-component-option-modal="true" data-awbe-component-popup-id="erroDataMaximaIOS">
+	<p class="texto-modal-normal" style="text-align: center">Data inv&aacute;lida &minus; Favor inserir uma data que n&atilde;o ultrapasse o per&iacute;odo de 60 dias.</p>
+    <div class="align-botoes txt-caixaalta"> <a href="#" data-rel="back" class="botao-modal-002">OK</a> </div>
+</div>
+<div data-awbe-component="popup" data-awbe-component-option-theme="a" data-awbe-component-option-theme-modal="b" data-awbe-component-option-modal="true" data-awbe-component-popup-id="erroDataInicioDiferenteDataFinalIOS">
+    <p class="texto-modal-normal" style="text-align: center">O intervalo entre os destinos n&atilde;o &eacute; v&aacute;lido. Verifique as datas e insira novamente.</p>
+    <div class="align-botoes txt-caixaalta"> <a href="#" data-rel="back" class="botao-modal-002">OK</a> </div>
+</div>
+<div data-awbe-component="popup" data-awbe-component-option-theme="a" data-awbe-component-option-theme-modal="b"
+    data-awbe-component-option-modal="true" data-awbe-component-popup-id="erro60diasIOS">
+    <p class="texto-modal-normal" style="text-align: center">N&atilde;o &eacute; poss&iacute;vel incluir um Aviso de
+        Viagem com per&iacute;odo superior a 60 dias para o mesmo cart&atilde;o.</p>
+    <div class="align-botoes txt-caixaalta"> <a href="#" data-rel="back" class="botao-modal-002">OK</a> </div>
+</div>
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/avisoViagem/editarAvisoViagemContinente.js"></script>

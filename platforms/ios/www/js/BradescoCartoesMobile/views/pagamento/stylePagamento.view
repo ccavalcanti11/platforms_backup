@@ -1,0 +1,18 @@
+<style>
+    <% 
+    var devicePlatform = window.device.platform;
+    var iosDeviceModel = iosUtils.getIphone(iosUtils.getDeviceModel());
+
+    if (devicePlatform.contains('iOS')) {%>
+        <% if (iosDeviceModel === 'IPHONE6' || iosDeviceModel === 'IPHONE6S') {%>
+            .barcode-container .custom-fnt-size {
+                font-size: 0.8em;
+            }
+        <%} else {%>
+            .barcode-container .custom-fnt-size {
+                font-size: 0.9em;
+            }
+        <%}%>
+    <%}%>
+
+</style>

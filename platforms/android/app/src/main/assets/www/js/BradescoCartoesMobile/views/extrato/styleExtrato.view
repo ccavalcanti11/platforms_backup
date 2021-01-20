@@ -1,0 +1,55 @@
+<style>
+    <%  var deviceModel=window.device.model;
+        var devicePlatform = window.device.platform;
+        if (deviceModel) {%>
+
+            <% if (deviceModel.contains('iPhone10')) {%>
+
+                #carouselTarget .fnt-medium {
+                    word-break: break-word;
+                }   
+        
+            <%}%>
+        <%}%>
+        <% if(devicePlatform == "iOS") {%>
+            .flex-container {
+                display: flex;
+                align-items: center;
+            }
+
+            .percentualGasto {
+                float: none;
+            }
+
+            .texto-icon-grafico {
+                font-family: NewJuneMedium;
+                font-size: 0.51em;
+            }
+
+            [class*="icon-categoria-"] {
+                padding: 0.05em .7em;
+            }
+
+            [class*="icon-categoria-"]::before {
+                padding: 0.05em .7em;
+            }
+
+            .content-grafico {
+                display: flex;
+                align-items: flex-start;
+                flex-wrap: wrap;
+                justify-content: space-between;
+            }
+
+            @media only screen and (max-device-width : 376px) {
+                .icon-categoria-outros2{
+                    padding: 0;
+                }
+                .icon-categoria-outros2::before {
+                    padding: 1em;
+                }
+            }
+
+        <%}%>
+
+</style>

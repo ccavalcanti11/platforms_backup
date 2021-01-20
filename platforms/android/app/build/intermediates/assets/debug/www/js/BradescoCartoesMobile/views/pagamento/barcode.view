@@ -1,0 +1,21 @@
+<div class="landscapeBackground animated fadeIn" data-role="content" style="animation-delay: 0.6s;">
+	<div class="landscape rotate">
+		<%if(model.barcode.back == "homeLogada"){%>
+			<div class="btn-fechar-fatura-div">
+			<a href="#homeLogada"><span class="btn-fechar-codigo-pagamento"></span></a>
+			</div>
+		<%}else if(model.barcode.back == "pagamento"){%>
+			<div class="btn-fechar-fatura-div">
+			<a href="#pagamento"><span class="btn-fechar-codigo-pagamento"></span></a>
+			</div>
+		<%}%>
+	    <div class="landscapeContent">
+			<div class="landscapeBarcode">
+				<div data-awbe-component="barcode"><%=model.barcode.codigoBarras%></div>
+			</div>
+			<label><%=model.barcode.codigoTexto%></label>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/pagamento/barcode.js" ></script>

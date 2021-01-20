@@ -1,0 +1,22 @@
+<div data-awbe-component="awbe-include" data-awbe-component-params="cabecalho"></div>
+
+<% 
+	var user = AWBE.sessionStorage.getItem('user');
+	if(AWBE.localStorage.getItem('isNCLegado_' + user.cpf) == "true"){ %>
+	<div data-awbe-component="awbe-include" data-awbe-component-params="menuOpcoesLogadoNCLegado"></div>
+<% }else{ %>
+	<div data-awbe-component="awbe-include" data-awbe-component-params="menuOpcoesLogado"></div>
+<% }%>
+
+<div class="ui-content cadastrarNovaSenha" data-role="content">
+	<h2 class="icon-26">
+		DADOS PESSOAIS
+		<label class="icon-editar"><a href="#dadosPessoais">Editar</a></label>
+		<span class="icon-editar"></span>
+	</h2>
+	<p class="fnt-book txt-12em color-gray-darker">
+		E-mail: <span class="fnt-bold">cliente@email.com.br<%=[params.agencia]%></span><br/>
+		Celular: <span class="fnt-bold">(11) 98888-8888<%=[params.conta]%></span>
+	</p>
+	<a href="#"><p class="fnt-book txt-1em color-gray-darker">Alterar senha de acesso ao aplicativo</p></a>
+</div>

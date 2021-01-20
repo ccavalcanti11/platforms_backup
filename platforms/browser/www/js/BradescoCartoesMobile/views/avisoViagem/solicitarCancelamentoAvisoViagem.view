@@ -1,0 +1,37 @@
+<div id="header-hide-arrow" class="fullWidth" data-role="header" data-position="fixed"
+	data-tap-toggle="false" style="position:absolute;">
+	<a id="btnLeftPanel" href="#avisoViagem" class="btn-back" title="voltar para o menu anterior"></a>
+	<h1><%=AWBE.localStorage.getItem('title')%></h1>
+</div>
+
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/avisoViagem/avisoViagem.js"></script>
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/smic/injecaoDispSeguranca.js"></script>
+
+<div class="ui-content" data-role="content">
+	<div class="dadosBancarios">
+		<p class="h2-acessivel" title="cancelar aviso de viagem">
+			CANCELAR AVISO DE VIAGEM
+		</p>
+		<div class="fnt-book color-gray-darker">Ao confirmar, voc&ecirc; ir&aacute; excluir todos os destinos agendados nesse Aviso de Viagem.</div>
+	</div>
+</div>
+
+<div id="cancelaAvisoViagem"></div>
+
+<script>
+	window.injecaoActionName = '#dispositivoSegurancaValidationCancelarAvisoViagem';
+	window.injecaoTargetElement = 'cancelaAvisoViagem';
+</script>
+
+</div>
+
+<div data-awbe-component="popup"
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="avisoViagemCanceladoSucesso">
+	<p class="texto-modal-normal">Aviso de Viagem cancelado com sucesso!</p>
+	<div class="align-botoes txt-caixaalta">
+		<a href="#avisoViagem" data-rel="back" class="botao-modal-002">OK</a>
+	</div>
+</div>

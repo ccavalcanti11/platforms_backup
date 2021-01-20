@@ -1,0 +1,231 @@
+* {
+    font-family: NewJuneBook;
+    text-shadow: none;
+}
+
+b {
+    font-family: NewJuneBold;
+}
+
+.pt-05 {
+    padding-top: .5em;
+}
+
+.text-red {
+    color: #d51e31 !important;
+}
+
+.text-uppercase {
+    text-transform: uppercase;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.font-075 {
+    font-size: 0.75em;
+}
+
+.font-08 {
+    font-size: 0.8em;
+}
+
+.voltar-topo {
+    height: 2em;
+}
+
+.vencimento b {
+    color: #666;
+    margin-left: .5em;
+}
+
+.card .vencimento span {
+    color: #95989a;
+}
+
+.lancamentos+section:last-child {
+    display: none;
+}
+
+.lancamentos.hide-lancamentos+section:last-child {
+    display: block;
+}
+
+.detalhes-extrato>article {
+    margin: 0 -1em;
+    padding: 0 1em;
+}
+
+.detalhes-extrato>article.card {
+    background: #fff;
+}
+
+.detalhes-extrato>article:first-child {
+    border-bottom: 1px solid #ccc;
+}
+
+.card span {
+    color: #666;
+}
+
+.card>div:first-child {
+    border-bottom: 1px solid #ccc;
+    font-weight: bold;
+    padding: .5em 0;
+    display: flex;
+}
+
+.card>div:first-child>div {
+    align-self: flex-end;
+}
+
+.card>div:last-child {
+    font-size: 1.2em;
+    padding: .5em 0;
+}
+
+#mes-button {
+    border: none;
+    background: transparent;
+    box-shadow: none;
+    padding: .7em 0;
+    text-align: right;
+}
+
+#mes-button span:before {
+    content: "";
+    background: url("../../../../css/icons/icon-27.svg") no-repeat center;
+    padding: .7em;
+    background-size: contain;
+    position: relative;
+    left: -31px;
+}
+
+#mes-button span.needsclick.mes {
+    display: block;
+    color: #005cbc;
+    font-size: 1em;
+    font-family: NewJuneBold;
+    position: relative;
+}
+
+.container-mes .ui-select {
+    margin: .6em 0;
+}
+
+.detalhes-extrato .buttons-container {
+    display: flex;
+    padding: 0.5em 0 1em 0;
+}
+
+article.buttons-container>button.comprovante,
+article.buttons-container>button.comprovante:hover,
+article.buttons-container>button.comprovante:active {
+    color: #666;
+    text-align: left;
+}
+
+article.buttons-container>button.comprovante:after {
+    content: "Mais detalhes";
+    float: right;
+    color: #3c93eb;
+}
+
+.buttons-container>button.ui-btn,
+.buttons-container>button.ui-btn:hover,
+.buttons-container>button.ui-btn:active {
+    flex: 1;
+    margin: 0 0.5em 0 0;
+    color: #3c93eb;
+    text-shadow: none;
+    font-family: NewJuneBook;
+    background-color: #fff;
+    box-shadow: none;
+    font-weight: normal;
+}
+
+.buttons-container>button.blue,
+.buttons-container>button.blue:hover,
+.buttons-container>button.blue:active {
+    background: #0057b1;
+    color: #fff;
+    margin: 0 0 0 .5em;
+}
+
+.ui-table-lancamento td {
+    border-bottom: thin solid #CCC;
+    padding: .5em;
+}
+
+.legendaGrafico .extrato-line {
+    display: none;
+}
+
+.ui-collapsible-themed-content .ui-collapsible-content{
+    padding: .5em 1em;
+}
+
+.text-decoration-none {
+    text-decoration: none;
+}
+
+@media only screen and (max-device-width : 375px){
+    .card .vencimento span{
+        font-size: 0.75rem;
+    }
+}
+}
+
+.vencimento-text {
+    margin-right: 0.2em;
+}
+
+/* CSS novo estilo de lançamento - adicionado na demanda Cotação do Dolar */
+
+.data-container-flex {
+    display: flex;
+    align-items: center;
+    font-size: x-small;
+    justify-content: space-between;
+    text-align: center;
+}
+
+.desc-lancamento-flex {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-left: 1em;
+    flex-grow: 1;
+    flex-flow: column;
+    align-items: baseline;
+    color: #222;
+}
+
+.flex-between {
+    display: flex;
+    justify-content: space-between;
+    width: -webkit-fill-available;
+}
+
+.container-subtotal {
+    font-size: x-small;
+    display: flex;
+    justify-content: space-between;
+    margin: 1em 0;
+}
+
+.icon-flecha {
+    font-size: small;
+}
+
+.total {
+    width: 6em;
+    color: #222;
+}
+
+.moeda-origem .moeda-dolar .cotacao-dolar {
+    color: #555
+}
+
+/* --------------------- */

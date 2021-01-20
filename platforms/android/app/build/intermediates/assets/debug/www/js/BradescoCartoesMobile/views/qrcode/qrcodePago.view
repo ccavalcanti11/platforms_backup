@@ -1,0 +1,55 @@
+<%
+	var cartaoSelecionado = AWBE.sessionStorage.getItem('meusCartoesAtual');
+	var finalCartao = cartaoSelecionado.numeroCartao.slice(cartaoSelecionado.numeroCartao.length - 4, cartaoSelecionado.numeroCartao.length);
+	
+%>
+
+<div class="ui-content page" data-role="content">
+	<div class="fnt-bold txt-10em color-gray-darker divtitle">Pagamento efetuado com sucesso</div><br>
+	<span style="font-size: 0.8em; font-family: NewJuneBold;"><%=params.fantasia%></span><br>
+
+	<span style="font-size: 0.8em; font-family: NewJuneBook"><%=params.cidade%></span><br>
+</div>
+
+<table  style="background-color:#e7eaef !important; font-family: NewJuneBook;  font-size: 0.8em;">
+	<tbody>
+		<tr style="border-bottom: 1px solid #CCC;border-top: 1px solid #CCC;">
+			<th style="text-align: left; padding: 1em;">Valor da Compra</th>
+			<th class="align-valor" style="padding: 1em; font-family: NewJuneBold;">R$ <%=params.valorEmReais %></th>
+		</tr>
+		<tr style="border-bottom: 1px solid #CCC;">
+			<th style="text-align: left; padding: 1em;">Data da Compra</th>
+			<th class="align-valor" style="padding: 1em;"><%=params.dataFormatada%></th>
+		</tr>
+		<tr style="border-bottom: 1px solid #CCC;">
+			<th style="text-align: left; padding: 1em;">Forma de pagamento</th>
+			<th class="align-valor" style="padding: 1em;"><%=params.formaPagamento %></th>
+		</tr>
+		<tr style="border-bottom: 1px solid #CCC;">
+			<th style="text-align: left; padding: 1em;">Cart&atilde;o</th>
+			<th class="align-valor" style="padding: 1em;"><%=cartaoSelecionado.bandeira%> Final <%=finalCartao%></th>
+		</tr>
+	</tbody>
+</table>
+
+
+<div class="ui-content-maisopcoes" style="padding-left: 1em; padding-right: 1em; background-color: #f3f6fb">
+	<div>
+		<p class="maisopcoes-title">Outras op&ccedil;&otilde;es </p>
+	</div>
+	<div>
+		<p class="colapsible-text">
+			<a href="#qrCode" class="color-gray-darker ui-link" style="text-decoration: none; font-weight:normal;">
+				Fazer outra transa&ccedil;&atilde;o
+			<span class="directaction-icon-extrato"></span></a>
+		</p>
+	</div>
+	
+	<div>
+		<p class="colapsible-text">
+			<a href="#fimSessao" onclick="mnu.doAction()" class="color-gray-darker ui-link" style="text-decoration: none; font-weight:normal;">Fechar aplicativo
+			<span class="directaction-icon-extrato"></span></a>
+		</p>
+	</div>
+		
+</div>

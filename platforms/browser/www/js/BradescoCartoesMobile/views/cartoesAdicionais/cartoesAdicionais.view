@@ -1,0 +1,44 @@
+<div data-awbe-component="awbe-include" data-awbe-component-params="cabecalho"></div>
+<div data-awbe-component="awbe-include" data-awbe-component-params="menuOpcoesLogado"></div>
+
+<div class="ui-content page" data-role="content">
+
+<%
+	/*Adicionado a chamada do mostrarFuncionalidadesAtivas antes do makeCarousel*/  	  
+		
+	BradescoCartoesMobile.controllers.mostrarFuncionalidadesAtivas();  
+	if (model.cartoesAdicionais.length > 0 ){
+
+	%>
+		<div data-awbe-component="carouselCartoesAdicionais" data-awbe-target-element="carouselTarget"></div>
+		<div id="carouselTarget"></div>
+		<div data-awbe-target-view="cartoesAdicionais/cartoesAdicionaisDetalhe.view"></div>
+  <%}else{%>
+	<dl>
+		<dt class="txt-1em color-gray-darker">Voc&ecirc; n&atilde;o possui cart&otilde;es associados a este servi&ccedil;o.</dt>  			
+	</dl>
+  <%}%>
+  
+  <div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="saibaMaisCartoesAdicionais">
+	<div class="cartao-adicional-popup-title">
+		<p class="text-cartao-adicional-a" style="margin: .5em .4375em;">Cart&otilde;es adicionais</p>
+	</div>	
+	<p class="cartao-adicional-popup-texto" style="margin-bottom: .1em"> Para solicitar &eacute; preciso:</p>	
+	<ul class="cartao-adicional-popup-texto cartao-adicional-popup-p">
+		<li>Ser maior de 16 anos;</li>
+		<li>Ter CPF;</li>
+		<li>Ser um CPF diferente do titular;</li>
+		<li>Ter limite dispon&iacute;vel.</li>
+	</ul>
+	<p class="cartao-adicional-popup-texto"> O cart&atilde;o adicional pode ter valor de anuidade e o limite escolhido &eacute; compartilhado com o cart&atilde;o do titular. </p>   
+	<p style="margin-top:1.5em;" class="cartao-adicional-popup-texto"> S&atilde;o exibidos apenas os cart&otilde;es que possuem essa funcionalidade.</p>
+	<div class="align-botoes align-botoes-popup txt-caixaalta">	
+		<a href="#" data-rel="back" class="botao-modal-002" title="clique para voltar para tela de cart&otilde;es adicionais">Fechar</a>
+	</div>
+</div>
+
+</div>

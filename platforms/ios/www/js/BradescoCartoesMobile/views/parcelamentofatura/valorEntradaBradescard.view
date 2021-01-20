@@ -1,0 +1,94 @@
+<div data-awbe-component="awbe-include" data-awbe-component-params="cabecalhoVoltarPagina"></div>
+<div data-awbe-component="awbe-include" data-awbe-component-params="menuOpcoesLogado"></div>
+
+<article data-device="<%= AWBE.device.platform %>" class="container_valorentrada">
+    <section id="resumo">
+        <div class="item_resumo">
+            <span>
+                <b>Fatura</b>
+                <span>
+                    <%= params.valorTotalReais %>
+                </span>
+            </span>
+        </div>
+        <div class="item_resumo">
+            <span>=</span>
+        </div>
+        <div class="item_resumo">
+            <span>
+                <b> <%= params.descricaoTopoEntradaPrimeiraParcela %> </b>
+                <span id="valor_entrada">
+                    <%= params.valorEntradaReais %>
+                </span>
+            </span>
+        </div>
+        <div class="item_resumo">
+            <span>+</span>
+        </div>
+        <div class="item_resumo">
+            <span>
+                <b>Financiado</b>
+                <span id="valor_parcela">
+                    <%= params.valorFinanciamentoReais %>
+                </span>
+            </span>
+        </div>
+    </section>
+    <section class="ui-content">
+        <div class="container-spacing color-gray-darker">
+            <h3>
+                <%= params.descricaoEntradaPrimeiraParcela %>
+            </h3>
+            <div class='primeira-parcela-bradescard'><%= params.primeiraParcelaReais %></div>
+        </div>
+
+        <section id="container_parcelas">
+            <p id="escolhaUmaOpcao">
+                Escolha uma op&ccedil;&atilde;o
+            </p>
+
+            <ul>
+                <% _.each(params.listaParcelas, function(parcela){ %>
+                    <li data-value="<%= parcela.qtdParcelas %>" class='parcela'><%= parcela.descricao %></li>
+                <% }) %>
+            </ul>
+
+            <form action="#resumoContratoParcelamentoFatura" class="resumoContrato">
+                <input type="hidden" name="qtdParcelas" data-awbe-bind="qtdParcelas">
+                <input type="hidden" name="isParcelamentoAlterado" data-awbe-bind="isParcelamentoAlterado">
+                <input type="hidden" name="possuiEntrada" data-awbe-bind="possuiEntrada" value="<%= params.possuiEntrada %>">
+            </form>
+        </section>
+
+        <section class="container_error hide">
+            <div class="content-error">
+                <hr class="line-divisor">
+                <i class="icon-icons_atencao"></i>
+                <p class="text-error">Erro ao carregar <br>os valores</p>
+                <p class="text-center"><a class="submitBtn">Tentar novamente</a></p>
+            </div>
+        </section>
+
+    </section>
+</article>
+
+<link rel="stylesheet" type="text/css"
+    href="js/BradescoCartoesMobile/views/parcelamentofatura/parcelamentoFatura.css" />
+
+<script>
+    setTimeout(function() {
+        $(window).scrollTop(0);
+    }, 500);
+
+    $('.container-corona').show();
+    function coronaContainerClose() {
+        $('.container-corona').hide();
+    }
+
+    $(".parcela").on('click', function(event){
+        $('[name=qtdParcelas]').val(event.target.dataset.value);
+        $('[name=isParcelamentoAlterado]').val(true);
+        $('.resumoContrato').submit();
+    });
+
+</script>

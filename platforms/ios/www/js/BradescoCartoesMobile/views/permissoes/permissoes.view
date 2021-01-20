@@ -1,0 +1,98 @@
+<% 
+	var aumentoLimiteHabilitado = AWBE.sessionStorage.getItem('flagOptin');
+	var mostrarPermissoes = AWBE.sessionStorage.getItem('mostrarOptInLimite');
+	var mostrarNotificacoes = AWBE.sessionStorage.getItem('mostrarMenuLateralNotificacoes');
+	
+	var viewStyleRender = AWBE.Views.getView('permissoes/stylePermissoes');
+    viewStyleRender.render();
+	
+	var user = AWBE.sessionStorage.getItem('user');
+	if(AWBE.localStorage.getItem('isNCLegado_' + user.cpf) == "true"){ %>
+	<div data-awbe-component="awbe-include" data-awbe-component-params="menuOpcoesLogadoNCLegado"></div>
+<% }else{ %>
+	<div data-awbe-component="awbe-include" data-awbe-component-params="menuOpcoesLogado"></div>
+<% }%>
+<div data-awbe-component="awbe-include" data-awbe-component-params="cabecalho"></div>
+
+<div id="target-meta-premiada"></div>
+
+<div class="ui-content page container-aum-limite" data-role="content" id="permissoes">
+	<% if(mostrarPermissoes){ %>
+		<div class="flex-between-center">
+			<div>
+					<h2 class="permissao-func-titulo fnt-medium"> Aumento de Limite </h2>
+					<div class="permissoes-content">
+							<div class="smalltxt color-gray-darker"> Aumentaremos gratuitamente os limites dos seus cartões assim que disponíveis
+								para você.
+								<div id="permissoes-info-icon" class="permissoes-info-icon" onclick="nShowPopupAumentoLimite()"></div>
+							</div>
+							<div class="minitxt color-gray-darker"> Sujeito a an&aacute;lise de cr&eacute;dito</div>
+						</div>
+				
+			</div>
+			<div class="toggle-btn-right flip-switch-permissoes" style="margin-bottom: 0.3em;">
+				<input onchange="habilitarAumentoLimite()" type="checkbox" data-role="flipswitch" id="AumentoLimON"
+					data-current-value="<%= aumentoLimiteHabilitado %>" data-on-text="" data-off-text=""
+					<%=aumentoLimiteHabilitado ? 'checked' : '' %> />
+			</div>
+		</div>
+		
+	<% } %>
+</div>
+<% if(mostrarNotificacoes){ %>
+<div class="ui-content page">
+	<h2 class="tituloPermissoes"> NOTIFICA&Ccedil;&Otilde;ES </h2>
+	<span class="fnt-bold fnt-no-wrap color-gray-darker">Vencimento da fatura</span><br><br>
+	<div class="notificacoes-content">
+		<p class="seguranca-func-opcao colapsible-text" style="border-bottom: 0px">
+			<a href="#notificacoes" class="ui-link color-gray-darker textoBotaoVencimentoFatura">
+				Adicionaremos automaticamente no <br> seu calend&aacute;rio lembretes do dia de <br> vencimento do seu cart&atilde;o de cr&eacute;dito.
+				<span class="botaoVencimentoFatura"></span>
+			</a>
+		</p>
+	</div>
+</div>
+<% } %>
+
+<!-- PopUps -->
+
+<div data-awbe-component="popup" 
+ 	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="aumentoLimite">
+	<p class="titulo-modal">Aumento de limite</p>
+	<p class="texto-modal-normal">Ao habilitar esta op&ccedil;&atilde;o voc&ecirc; autoriza que o banco analise e aumente os limites dos seus cart&otilde;es, quando estiverem dispon&iacute;veis para voc&ecirc;. Esse servi&ccedil;o est&aacute; sujeito a an&aacute;lise de cr&eacute;dito.</p>
+	<div class="align-botoes txt-caixaalta">	
+		<a href="#" data-rel="back" class="botao-modal-002">Fechar</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup" 
+ 	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="desabilitarPermissao">
+	<p class="titulo-modal">Desabilitar permiss&atilde;o</p>
+	<p class="texto-modal-normal">Se desabilitar esta permiss&atilde;o, o banco n&atilde;o ser&aacute; capaz de automatizar o aumento dos seus limites quando dispon&iacute;veis para voc&ecirc;.</p>
+	<p class="texto-modal-normal">Deseja confirmar a a&ccedil;&atilde;o?</p>
+	<div class="align-botoes-2">	
+		<a href="#" data-rel="back" class="botao-modal-002" onclick="naoDesabilitaPermissao()">N&atilde;o</a>
+		<a href="#" data-rel="back" class="botao-modal-003" onclick="DesabilitaPermissao()">Sim</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup" 
+ 	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="autorizadoAumento">
+	<p class="titulo-modal">Autorizado</p>
+	<p class="texto-modal-normal">Aumentaremos gratuitamente os seus limites assim que dispon&iacute;veis, conforme an&aacute;lise de cr&eacute;dito.</p>
+	<div class="align-botoes">	
+		<a href="#" data-rel="back" class="botao-modal-002">Fechar</a>
+	</div>
+</div>
+
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/permissoes/permissoes.js"></script>
+<link rel="stylesheet" type="text/css" href="js/BradescoCartoesMobile/views/permissoes/permissoes.css">

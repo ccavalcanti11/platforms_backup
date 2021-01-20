@@ -1,0 +1,58 @@
+<div data-awbe-component="awbe-include" data-awbe-component-params="cabecalhoVoltarPagina"></div>
+<div data-awbe-component="awbe-include" data-awbe-component-params="menuOpcoesLogado"></div>
+
+<div class="ui-content aviso-viagem" data-role="content">
+	<h2>NOME IMPRESSO NO CART&Atilde;O</h2>
+
+	<div style="margin-bottom: 1em;font-size: 95%;">
+		<span class="textSaibaMaisCVWebCard color-gray-darker" style="font-size: 90%">Escolha uma das op&ccedil;&otilde;es abaixo:</span>
+	</div>
+
+	<form action="#escolhaLimiteSolicitarCartoes">
+		<% 
+		var contador = 0;
+		_.forEach(params.listaOpcoesNomes, function(itemListaNomes){
+			
+		%>
+		<hr class="hr-margin-bottom-0em" style="height: 1px !important;">
+
+		<input type="radio" name="embossingName" id="embossing_<%=contador %>" value="<%=params.listaOpcoesNomes[contador]%>" data-awbe-bind="opcaoNomeRadio" 
+			<% if (contador==0){ %>
+			unchecked <% } %> >
+		<label class="radioButtonLabel ui-label embossing_<%=contador %>" for="embossing_<%=contador %>"><%=itemListaNomes %> </label>
+
+		<% 
+		contador++;
+		});
+		%>
+		<hr class="hr-margin-bottom-0em" style="height: 1px !important;">
+
+
+		<div class="ui-grid-a ui-disabled" id="divbotaoAdicionarCartoes" style="margin-top: 1em">
+			<div class="ui-block-a" style="float: right">
+				<div class="ui-btn-arrow-blue-arrow " id="botaoContinuarAddCartoesArrow"></div>
+				<div class="ui-btn-arrow-blue ui-btn-arrow-blue-width89" id="botaoContinuarAddCartoes">
+			    	<a id="continuarNomeImpresso">Continuar</a>
+			    </div>
+			</div>
+			<div class="ui-block-b"></div>
+		</div>
+	</form>
+
+</div>
+
+<script>
+	function escolhaLimite(){
+		$('form').submit();
+	};
+
+ 	$('#divbotaoAdicionarCartoes').addClass('ui-disabled');
+ 	$('#botaoContinuarAddCartoes').removeClass('ui-disabled');
+
+	$('input:radio').on('click', function(){
+ 		$('#divbotaoAdicionarCartoes').removeClass('ui-disabled');
+ 		$('#botaoContinuarAddCartoes').removeClass('ui-disabled');
+ 		$('#continuarNomeImpresso').attr('onclick', 'escolhaLimite(); EventAppsFlyerGA("SolicCartaoAdicional_NomeCartao")');
+	});
+</script>
+

@@ -1,0 +1,96 @@
+<script>
+	window.isFirstLoad = true;
+	window.cartaoAtual = "XXX";
+</script>
+<div data-awbe-component="awbe-include" data-awbe-component-params="cabecalho"></div>
+
+<% 
+	var user = AWBE.sessionStorage.getItem('user');
+	if(AWBE.localStorage.getItem('isNCLegado_' + user.cpf) == "true"){ %>
+	<div data-awbe-component="awbe-include" data-awbe-component-params="menuOpcoesLogadoNCLegado"></div>
+<% }else{ %>
+	<div data-awbe-component="awbe-include" data-awbe-component-params="menuOpcoesLogado"></div>
+<% }%>
+
+<div  class="ui-content" data-role="content">
+<%
+	BradescoCartoesMobile.model = model.extrato;
+	BradescoCartoesMobile.params = params;
+	BradescoCartoesMobile.page = "extrato";
+	
+	var temCartoesElegiveis = AWBE.sessionStorage.getItem('temCartoesElegiveis');
+		
+	if(temCartoesElegiveis){%>
+
+			<div data-awbe-component="carouselExtrato"
+		         data-awbe-target-element="carouselTarget"
+		         data-awbe-target-view="extrato/fatura"></div>
+		    
+		    <!-- BLOCO COM POPUP SE FATURA FECHADA -->
+		    <div id="targetFaturaFechada"><div id="fatura"></div></div>
+		    <div id="carouselTarget"></div>
+			
+			<!-- <a onclick="AWBE.util.openPopup('extratoEnviado');">extratoEnviado</a> -->
+		
+   <% }else{%>
+    
+	   <div class="fnt-book color-gray-darker">Voc&ecirc; n&atilde;o possui cart&otilde;es associados a este serviço.</div>
+			
+	<% } %>
+
+</div>
+<div data-awbe-component="popup" 
+	 data-awbe-component-option-theme="a"
+	 data-awbe-component-option-theme-modal="b"
+	 data-awbe-component-option-modal="true"
+	 data-awbe-component-popup-id="extratoEnviado">
+		<p class="texto-modal-normal">Lan&ccedil;amentos enviados com sucesso para o e-mail cadastrado.</p>
+ 		<div class="align-botoes">	
+ 			<a href="#" data-rel="back"  class="botao-modal-002">Fechar</a>
+ 		</div>
+</div>
+
+<div data-awbe-component="popup" 
+	 data-awbe-component-option-theme="a"
+	 data-awbe-component-option-theme-modal="b"
+	 data-awbe-component-option-modal="true"
+	 data-awbe-component-popup-id="extratoNaoEnviado">
+		<p class="texto-modal-normal">Falha ao enviar lan&ccedil;amentos para o e-mail cadastrado.</p>
+ 		<div class="align-botoes">	
+ 			<a href="#" data-rel="back"  class="botao-modal-002">Fechar</a>
+ 		</div>
+</div>
+
+<!-- POP-UP ERRO DE CONEX�O-->
+<div data-awbe-component="popup" data-awbe-component-option-theme="a" data-awbe-component-option-theme-modal="b" data-awbe-component-option-modal="true" data-awbe-component-popup-id="semConexaoInternet">
+	<p class="titulo-modal">Sem Conex&atilde;o com a Internet</p>
+	<p class="texto-modal-normal">Verifique a sua internet e tente novamente</p>
+	<div class="align-botoes">
+		<a href="#" data-rel="back" class="botao-modal-002">OK</a>
+	</div>
+</div>
+
+<!-- POPUP SEM EMAIL CADASTRADADO -->
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="emailNaoCadastrado">
+	<p class="titulo-modal">Dados de contato</p>
+	<p class="texto-modal-normal" style="word-wrap: break-word !important;">Para enviar essa informa&ccedil;&atilde;o, atualize seus dados com e-mail e celular.</p>
+	<div class="align-botoes-2 txt-caixaalta">
+		<a href="#" id="btnCancelarEmail01" class="botao-modal-002" data-rel="back" onclick="BradescoCartoesMobile.components.popularAppsFlyerGa('CANCATUALIZADADOSCONT');">Cancelar</a>
+		<a href="#editarDadosPessoaisSimplificado" id="btnAtualizarEmail01" class="botao-modal-003" style="width: 50% !important;" data-rel="back" onclick="BradescoCartoesMobile.components.popularAppsFlyerGa('ATUALIZADADOSCONT');">Atualizar</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="faturaNaoEnviada">
+		<p class="texto-modal-normal">Falha ao enviar boleto para o e-mail cadastrado.</p>
+		<div class="align-botoes">
+			<a href="#" data-rel="back" class="botao-modal-002 txt-caixaalta">Fechar</a>
+		</div>
+</div>

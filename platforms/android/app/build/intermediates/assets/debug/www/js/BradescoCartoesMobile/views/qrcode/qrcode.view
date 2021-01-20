@@ -1,0 +1,107 @@
+<link rel="stylesheet" type="text/css" href="js/BradescoCartoesMobile/views/qrcode/qrcode.css" />
+
+<div data-awbe-component="awbe-include" data-awbe-component-params="cabecalhoVoltarPagina"></div>
+<div data-awbe-component="awbe-include" data-awbe-component-params="menuOpcoesLogado"></div>
+
+<div class="ui-content page" data-role="content">
+
+
+
+	<%
+	    /*Adicionado a chamada do mostrarFuncionalidadesAtivas antes do makeCarousel*/        
+	        
+	    BradescoCartoesMobile.controllers.mostrarFuncionalidadesAtivas();  
+
+	    var cartoesValidados = AWBE.sessionStorage.getItem('cartoesQRCode');
+	   
+	    if (cartoesValidados.length > 0 ){
+
+	    %>
+	    
+        <div data-awbe-component="carouselQrCode" data-awbe-target-element="carouselTarget" data-awbe-target-view="qrcode/qrcode.view"></div>
+</div>        	
+
+<div id="habilitar-qrcode"></div> 
+
+<div class="ui-content page" style="padding-top: 0px;">
+		
+		<div class="fnt-book txt-11em color-gray-darker divtitle" >Confirme o valor do pagamento</div>
+
+</div>
+
+<div style="background-color:#e7eaef !important; padding-top: 0.5em;padding-bottom: 0.5em; text-align: center;font-size: 2em; border-bottom: 1px solid #CCC;">
+    <span id="valorSelecionado" class="textSaibaMaisCVWebCard color-gray-darker" style="display: inline-block;">R$ <%=params.valorEmReais %></span>
+    
+</div>
+
+<table  style="background-color:#e7eaef !important; font-family: NewJuneBook;  font-size: 0.8em;">
+	<tbody>
+		<tr style="border-bottom: 1px solid #CCC;">
+			<th class="texto-estabelecimento">Estabelecimento</th>
+			<th class="align-valor" style="padding: 1rem; padding-left: 0; font-family: NewJuneBold; text-transform:capitalize;"><%=params.fantasia.toLocaleLowerCase()%></th>
+		</tr>
+		<tr style="border-bottom: 1px solid #CCC;">
+			<th class="texto-forma-pagamento">Forma de pagamento</th>
+			<th class="align-valor" style="padding: 1rem; padding-left: 0; font-family: NewJuneBold;"><%=params.formaPagamento %></th>
+		</tr>
+	</tbody>
+</table>
+
+<div class="ui-content">
+	<div class="ui-grid-solo margin-bottom-1em">
+		<div class="ui-grid-a continue">
+			<div class="ui-block-a"></div>
+			<div class="ui-block-b">
+				<div class="ui-btn-arrow-blue-arrow"></div>
+				<div class="ui-btn-arrow-blue" style="width: 90%;">
+					<a href="#qrCodePagamento" class="ui-link">Pagar</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<%}else{%>
+    <dl id="sem-cartoes" style="display: none;">
+        <dt class="txt-1em color-gray-darker">Voc&ecirc; n&atilde;o possui cart&otilde;es associados a este servi&ccedil;o.</dt>
+    </dl>
+  <%}%>
+  
+
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="erroLeituraQrCode">
+	<p class="texto-modal-normal">N&atilde;o foi possível efetuar a leitura do QR Code. Por favor, tente novamente mais tarde.</p>
+	<div class="align-botoes align-botoes">	
+		<a href="#homeLogada" onclick="mnu.doAction()" data-rel="back" class="botao-modal-002">Fechar</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="sucessoPagamentoQrCode">
+	<p class="titulo-modal texto-negrito-modal">Pagamento</p>
+	<p class="texto-modal-normal">Para saber se o pagamento foi autorizado, aguarde a impress&atilde;o do comprovante.</p>
+	<div class="align-botoes align-botoes">	
+		<a href="#fimSessao" onclick="mnu.doAction()" data-rel="back" class="botao-modal-002 txt-caixaalta">ok</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="erroPagamentoQrCode">
+	<p class="texto-modal-normal">N&atilde;o foi possível concluir o pagamento. Por favor, entrar em contato com a Central de Atendimento.</p>
+	<div class="align-botoes align-botoes">	
+		<a href="#homeLogada" onclick="mnu.doAction()" data-rel="back" class="botao-modal-002">Fechar</a>
+	</div>
+</div>
+
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/qrcode/qrcode.js"></script>
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/qrcode/layoutQrCode.js"></script>

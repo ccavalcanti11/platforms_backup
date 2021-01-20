@@ -1,0 +1,18 @@
+<style>
+    <% 
+        var deviceModel=window.device.model;
+
+        if (deviceModel) {%>
+            /* iPhone 6 ou 6s */
+            <% if (deviceModel.contains('iPhone7,2') || deviceModel.contains('iPhone8,1')) {%>
+                .container-flex-end #divBotaoNaoPossuoSenha {
+                    width: 50%;
+                }
+
+                .container-flex-end #divBotaoDesbloquearDispositivo {
+                    width: 50%;
+                }
+
+            <%}%> 
+        <%}%>
+</style>

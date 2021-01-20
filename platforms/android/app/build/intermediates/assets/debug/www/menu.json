@@ -1,0 +1,37 @@
+[
+	{
+		"href": "dcdcartoes://home",
+		"onClick": "mnu.doAction(event)",
+		"class": "icon-listview-inicio",
+		"text": "In&iacute;cio",
+		"flagAppCartoes": "true"
+	},
+	{
+		"href": "#meusCartoes",
+		"onClick": "mnu.doAction(event)",
+		"class": "icon-listview-meuscartoes",
+		"text": "Meus Perfis",
+		"flagAppCartoes": "true"
+	},
+	{
+		"href": "dcdcartoes://bcheckin",
+		"onClick": "mnu.doAction(event)",
+		"class": "icon-listview-bcheckin",
+        "text": "Pontos Livelo",
+		"flagAppCartoes": "true"
+	},
+	{
+		"href": "dcdcartoes://atendimento",
+		"onClick": "mnu.doAction(event)",
+		"class": "icon-listview-canaisatendimento",
+		"text": "SAC/Ouvidoria",
+		"flagAppCartoes": "true"
+	},
+	{
+		"href": "#ajustesDeslog",
+		"onClick": "mnu.doAction(event)",
+		"class": "icon-listview-ajustes",
+		"text": "Ajustes",
+		"flagAppCartoes": "true"
+	}
+]

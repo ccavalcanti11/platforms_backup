@@ -1,0 +1,21 @@
+<!-- TODO: Validar funcionalidade no iOS, não está chamando o css correto: -->
+<% if(AWBE.device.platform.toUpperCase() == 'IOS'){%>
+<link rel="stylesheet" type="text/css" href="../SSO/sso_ios.css">
+<%}%>
+
+
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a" 
+	data-awbe-component-option-theme-modal="b"
+    data-awbe-component-option-modal="true"
+    data-awbe-component-popup-id="popup_smic_permissao">
+    <p class="titulo-modal texto-negrito-modal">Permiss&atilde;o de Acesso</p>
+    <p class="texto-modal-small" id="mensagem-permissao-smic"></p>      
+    <p class="texto-modal-small texto-negrito-modal">
+        Deseja permitir?
+    </p>
+    <div data-device="<%=AWBE.device.platform%>" class="sso_popup align-botoes">
+        <a data-rel="back" class="botao-modal-002 negarPermissao">N&atilde;o permitir</a>
+        <a class="botao-modal-003 concederPermissao">Permitir</a>
+    </div>
+</div>

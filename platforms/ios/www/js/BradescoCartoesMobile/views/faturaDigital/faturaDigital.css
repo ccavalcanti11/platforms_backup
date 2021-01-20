@@ -1,0 +1,45 @@
+/************************************************ ajuste para J5************************************/
+.divFaturaDebAutomaticoJ5 {
+	    margin: 1em 0em 1em 0em;
+	    text-align: left;
+	    font-size: 1em;
+}
+
+.divGridDebAutomaticoJ5 {
+	display: flex;
+	margin-left: 0;
+}
+
+.mascaraCartaoFaturaJ5 .mascaraAmexSpan {
+    	font-size: 33px;
+    	letter-spacing: 0.094em;
+    	text-align: center;
+    	margin-left: 0.045em;
+    }
+    
+.mascaraCartaoFaturaJ5 .mascaraFaturaCartaoSpan{
+	font-size: 31.8px;
+	letter-spacing: 0.065em;
+	text-align: center;
+}
+
+.faturadigital .mascaraFaturaCartaoNumeroJ5{
+	font-family: NewJuneBold !important;
+	font-size: 19px;
+	/*margin: -1.7em 0.87em 5em -5em !important;*/
+	float: right;
+}
+
+.faturadigital .h2customizado{
+	font-size: 1.1em;
+}
+.faturadigital .ui-block-aJ5{
+	width: 52.2%;
+}
+.faturadigital .ui-block-bJ5{
+	width: 47.8%;
+}
+
+.faturadigital .hrFaturaDigitalJ5 {
+	margin-left: 0;
+}

@@ -1,0 +1,67 @@
+<div data-role="footer" data-position="fixed" data-tap-toggle="false" class="footerShadow" id="footerMetaPremiada">
+	<div class="container-footer-meta-premiada">
+		<div class="fnt-book-small">
+			A&ccedil;&atilde;o "Pontos Premiados"
+		</div>
+		<div class="ui-btn-arrow-blue-seguranca">
+			<a class="btn-meta-atualizada" id="btnFooter" onclick="callViewPermissoes(); 
+				metaPremiadaTemplateUtils.hideFooter(); callHasFooterBeenSeen(); validarChamadaAnalytics();">Quero participar!</a>
+		</div>
+		<div id="btnFecharFooter">
+			<a class="iconeFechar" onclick="metaPremiadaTemplateUtils.hideFooter();populaAppsFlyerGa('HomeOptinPromo_Card_Fec');callHasFooterBeenSeen();"></a>
+		</div>
+	</div>
+</div>
+
+<script>
+	
+	var MetaPremiada = window.BradescoCartoesMobile.components.MetaPremiada;
+	var metaAtualizada = MetaPremiada.getCampaignData().metaAtualizada;
+	var statusOptIn = MetaPremiada.getCampaignData().statusOptin;
+	var $btnFooter = $('#btnFooter');
+	var $btnFechar = $('#btnFecharFooter');
+	$btnFechar.hide();
+
+	
+	function callHasFooterBeenSeen() {
+		if (metaAtualizada) MetaPremiada.setHasUpdateFooterBeenSeen();
+	}
+
+	if (metaAtualizada && statusOptIn) {
+		$btnFooter.text('Meta atualizada');
+		$btnFechar.show();
+	}
+
+	function validarChamadaAnalytics(){
+		if(metaAtualizada){
+			populaAppsFlyerGa('HomeOptinPromo_Card_MetAt');
+		} else {
+			populaAppsFlyerGa('HomeOptinPromo_Card_Quero');
+		}
+	}
+
+	function callViewPermissoes() {
+		
+		var MetaPremiada = window.BradescoCartoesMobile.components.MetaPremiada;
+
+		MetaPremiada.optInOutCampaign('S').then(function () {
+			metaPremiadaTemplateUtils.viewPermissoes();
+			MetaPremiada.setHasFooterBeenSeen();
+		}).fail(function (error) {
+			
+			metaPremiadaTemplateUtils.viewPermissoes().done(function () {
+				var texto = (error === 99 || error === 500)
+					? 'Sem conex&atilde;o. Verifique a rede e tente novamente.'
+					: 'Tente novamente mais tarde.';
+				var cabecalho = (error === 99 || error === 500)
+					? 'Erro de conex&atilde;o'
+					: 'Indispon&iacute;vel temporariamente'
+
+				return AWBE.Dialog.error({
+					texto: texto,
+					cabecalho: cabecalho
+				});
+			});
+		});
+	}
+</script>

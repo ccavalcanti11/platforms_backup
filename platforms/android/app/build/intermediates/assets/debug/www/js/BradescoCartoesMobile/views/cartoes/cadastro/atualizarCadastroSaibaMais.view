@@ -1,0 +1,65 @@
+<div id="header-hide-arrow" data-role="header" data-position="fixed" data-tap-toggle="false">
+	<a id="btnLeftPanel" href="#homeLogada" class="btn-back"></a>
+	<h1>Atualizar Cadastro</h1>
+</div>
+
+<div class="ui-content">
+
+	<p class="txt-12em fnt-book color-gray-darker">Ative o cadastro e tenha o controle de todos os seus cart&otilde;es e funcionalidades do aplicativo.</p>
+
+	<div class="ui-grid-a" id="botaoAtualizarCadastro">
+		<div class="ui-block-a" style="float: right;">
+			<div class="ui-btn-arrow-blue-arrow"></div>
+			<div class="ui-btn-arrow-blue" style="width:89%; margin-top: 1em;">
+				<a id="">Atualizar</a>
+			</div>
+		</div>
+		<div class="ui-block-b"></div>
+	</div>
+<!-- GAMBIARRA PARA SPRINT 2,  APAGAR ISSO -->
+	<br/>
+	<a href="#enviarCodigoAtivacaoEmail">Enviar email</a>
+	<br/>
+	<br/>
+	<a href="#enviarCodigoAtivacaoSMS">Enviar SMS</a>
+<!-- FIM GAMBIARRA -->
+
+</div>
+
+ <div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="popup-generico">
+	<p class="titulo-modal" id="titulo-modal-personalizado"></p>
+	<p class="texto-modal-normal" id="mensagem-personalizada"></p>
+ 	<div class="align-botoes">	
+ 		<a href="#" data-rel="back"  class="botao-modal-002">FECHAR</a>
+ 	</div>
+</div>	
+
+<!-- GAMBIARRA PARA SPRINT 2,  APAGAR ISSO -->
+<div data-awbe-component="popup" 
+	 data-awbe-component-option-theme="a"
+	 data-awbe-component-option-theme-modal="b"
+	 data-awbe-component-option-modal="true"
+	 data-awbe-component-popup-id="enviarEmailGambiarraPopUp">
+		<p class="texto-modal-normal">EMAIL ENVIADO.</p>
+ 		<div class="align-botoes">	
+ 			<a href="#" data-rel="back" class="botao-modal-002">Fechar</a>
+ 		</div>
+</div>
+
+<div data-awbe-component="popup" 
+	 data-awbe-component-option-theme="a"
+	 data-awbe-component-option-theme-modal="b"
+	 data-awbe-component-option-modal="true"
+	 data-awbe-component-popup-id="enviarSMSGambiarraPopUp">
+		<p class="texto-modal-normal">SMS ENVIADO.</p>
+ 		<div class="align-botoes">	
+ 			<a href="#" data-rel="back" class="botao-modal-002">Fechar</a>
+ 		</div>
+</div>
+<!-- FIM GAMBIARRA -->
+
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/cartoes/cadastro/atualizarCadastroSaibaMais.js"></script>

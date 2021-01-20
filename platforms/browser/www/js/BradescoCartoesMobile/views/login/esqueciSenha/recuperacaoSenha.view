@@ -1,0 +1,34 @@
+<div data-awbe-component="awbe-include" data-awbe-component-params="cabecalhoVoltarPagina"></div>
+
+<div data-role="content" class="ui-content">
+	<p class="fnt-book color-gray-darker txt-1em">Informe o c&oacute;digo de verifica&ccedil;&atilde;o enviado para seu e-mail cadastrado no aplicativo.</p>
+	<div class="divAlertas">
+		<hr class="hr-margin-error">
+		<div class="icon-20"></div>
+		<p class="txt-08em fnt-book color-gray-lighter margin-left-28em">O c&oacute;digo informado &eacute; inv&aacute;lido.</p>
+		<hr class="hr-margin-error">
+		<p class="txt-08em fnt-book color-gray-lighter">Informe o c&oacute;digo novamente.</p>
+	</div>
+	<div class="ui-grid-b">
+		<div class="ui-block-a">
+			<input id="codigoEmail" name="codigoEmail" data-awbe-bind="codigoEmail" data-awbe-for="senhaCompra" type="text"
+			 inputmode="verbatim" autocorrect="off" autocomplete="off" spellcheck="false" autocapitalize="off" maxlength="4" size="4"
+			 autofocus />
+		</div>
+		<div class="ui-block-b"></div>
+		<div class="ui-block-c"></div>
+	</div>
+	<hr class="hr-margin-tb" />
+	<div class="ui-grid-a">
+		<div class="ui-block-a"></div>
+		<div class="ui-block-b">
+			<div class="disabledButton" id="divbotaoDadosContaCorrente">
+				<div class="ui-btn-arrow-blue-arrow"></div>
+				<div class="ui-btn-arrow-blue">
+					<a id="botaoContinuarRecSenha">Continuar</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/login/esqueciSenha/recuperacaoSenha.js"></script>

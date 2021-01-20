@@ -1,0 +1,64 @@
+<%
+    var templateUtils = new NovoCadastroTemplateUtils();
+    templateUtils.renderTemplate('styleCardCadastroIdentificado');
+
+    var identificador = AWBE.sessionStorage.getItem('tempConta').identificador;
+%>
+
+<div class="container-card-identificado" id="cardCadastroIdentificado">
+  <div class="container-img-card" >
+    <div class="btnFecharCard" id="btnFecharCardCadastro" onclick="">
+      <img src="img/tutorial/home/botaofechar.svg"></img>
+    </div>
+
+    <img class='container-img' src="img/tutorial/cadIdentificado/imgCardCadastroIdentificado.svg">
+
+    <div class="container-txt-identificado">
+      <div class='container-card-titulo'>
+        <div class="color-blue-darker fnt-book">Ol&aacute;,</div>
+        <div class="fnt-bold color-blue-darker card-title"><%= identificador %></div>
+      </div>
+      <div class="container-card-texto">
+        <div class="color-gray-darker fnt-book">
+          Identificamos que voc&ecirc; j&aacute; <br>
+          realizou o cadastro conosco <br>
+          pelo site ou pelo aplicativo.
+        </div>
+
+        <div class="top-2em color-gray-darker fnt-book">
+          A seguir digite a sua <br>
+          senha de acesso.
+        </div>
+      </div>
+    </div>
+
+    <div id="btnEntendiCadastro" class="ui-btn-blue btn-entendi" onclick="">
+      <p class="botaoAzul pad-left-right">Entendi</p>
+    </div>
+  </div>
+
+
+</div>
+
+<script>
+  var novoCadastroUtils = new NovoCadastroUtils();
+  var templateUtils = new NovoCadastroTemplateUtils();
+  var account = UserAccount.getAccount();
+
+  $('#btnEntendiCadastro').on('click', function () {
+    novoCadastroUtils.logoutSession().then(function(){
+      AWBE.localStorage.setItem('isCadastroSimplificado_' + account.cpf, false);
+      BradescoCartoesMobile.meusCartoesController.addConta(account);
+      AWBE.Connector.showLoading();
+      
+      novoCadastroUtils.redirectLogin(novoCadastroUtils.getIndex()).then(function(){
+        templateUtils.hideCard('cardCadastroIdentificado');
+      });
+    })
+    
+  });
+
+  $('#btnFecharCardCadastro').on('click', function () {
+    templateUtils.returnRegisterSimpleCardPage();
+  });
+</script>

@@ -1,0 +1,5 @@
+<!-- DIV BOTAO CAPTURAR CHAVE MTOKEN -->
+<label onclick="BradescoCartoesMobile.components.validaBtnCapturarChave('btnCapturar');" class="capturarChaveLabel">
+    <span class="capturarChaveSpan icon-obterChave"></span>
+    <a class="ui-link">Capturar<br> chave</a>
+</label>

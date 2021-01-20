@@ -1,0 +1,137 @@
+<div style="padding-top: 1em">
+
+	<div class="border-complete-cartoesadicionais">
+		<span class="fnt-book color-gray-darker fontSaibaMaisCartoesAdicionais">Saiba mais sobre cart&otilde;es adicionais</span>
+		<span class="right" style="margin:-.12em">
+			<a class="icon-21" onclick="AWBE.util.openPopup('saibaMaisCartoesAdicionais')" title="Saiba mais sobre cart&atilde;o adicionais"></a>
+		</span>			
+	</div>	
+</div>
+<!-- mensagens de erro -->
+<div id="divMensagens" class="mensagens" style="display: none;">	
+	<hr class="separador">
+	<ul data-role="listview" id="ul-separador" class="ui-listview">
+		<li data-icon="false" id="li-separador" class="ui-li-static ui-body-inherit ui-first-child">
+			<div id="divQtdeAtingidaSub" style="display: none;">
+				<span class="fnt-book color-gray-darker fontSaibaMaisCartoesAdicionais">Quantidade m&aacute;xima de adicionais atingida.</span>		
+			</div>
+			<div id="limiteZero" style="display: none;">
+				<span class="fnt-book color-gray-darker fontSaibaMaisCartoesAdicionais">O cart&atilde;o n&atilde;o possui limite. 
+					Por favor escolha outro cart&atilde;o para solicitar um adicional.
+				</span>		
+			</div>
+		</li>
+	</ul>
+</div>
+
+<hr class="hr-margin-top-1em cust-hr-margin-bottom-15em" id="linhaSeparador">
+<div>	
+	<input type="hidden" id="editIndex">
+	<ul class="ui-listview cartoes-adicionais-list" data-role="listview" style="margin-bottom: auto;">
+
+		<%  
+			var temAdicionaisVisiveis = false;
+			habilitarCancelar = params.cancelarAdicional;
+			_.forEach(model.consultarCartoesAdicionais, function(item){  
+				if (item.mostrarAdicionalMatriz == true ){
+					temAdicionaisVisiveis = true;
+				}
+			})			
+
+			if (model.consultarCartoesAdicionais != undefined && model.consultarCartoesAdicionais.length > 0 && temAdicionaisVisiveis){
+
+				_.forEach(model.consultarCartoesAdicionais, function(item,index){  
+					if (item.mostrarAdicionalMatriz == true && item.indCartaoEspAdic != "S"){
+		
+			%>   
+			<!-- <li style="color: #636363;font-family: NewJuneBook;">
+				<div data-mergebtn>
+					<span>
+						<%=item.nomeEmbAdic%>
+						<br>
+						<span style="font-size: 0.6em">
+							Cart&atilde;o final: <%=item.numCartaoAdic.substring(item.numCartaoAdic.length - 4)%>
+							&nbsp;&nbsp;&nbsp;&nbsp;CPF: XXX.XXX.XXX-<%=item.nunCpfAdic.substring(9)%>
+						</span>
+					</span>
+					<% if(habilitarCancelar){%>
+						<a data-value="<%=index%>" onclick="abrirPopupCancelarAndroid(this)">Cancelar</a>
+					<%}%>
+				</div>
+			</li> -->
+			
+		<li data-icon="false" style="font-family: NewJuneBook; font-weight: normal; font-size: 1em; color: #636363; background-color: transparent; border-top: none !important; border-bottom-style: solid; border-width: 0px 0px 1px 0px;">
+			<div style="float:left;">
+				<span class="fnt-book txt-9em color-gray-darker"><%=item.nomeEmbAdic%></span>
+				<br>
+				<span style="font-size: 0.6em">Cart&atilde;o final: <%=item.numCartaoAdic.substring(item.numCartaoAdic.length - 4)%>&nbsp;&nbsp;&nbsp;&nbsp;CPF: XXX.XXX.XXX-<%=item.nunCpfAdic.substring(9)%></span>
+			</div>
+			<% if(habilitarCancelar){%>
+			<div onclick="openPopUpConfirmar(<%=index%>);" id="<%=index%>" class="ui-listview cust-ui-listview-adicional">
+					<a 	href="javascript:void(<%=index%>)" rel="modal"
+						style="cursor: pointer;">
+				<img src="css/icons/icon-08.svg" width="20px" style="vertical-align: -0.14em" title="clique para editar ou excluir cart&atilde;o adicional">
+				</a>
+				<div data-awbe-component="popup"
+					data-awbe-component-option-theme-modal="b"
+					data-awbe-component-option-modal="false"
+					data-awbe-component-option-theme="a"
+					data-awbe-component-popup-id="popupAcao" title="clique para 
+					excluir cart&atilde;o adicional" >
+					<a onclick="abrirPopupCancelar()" class="botao-modal-001" id="btnCancelarAdicional">Cancelar</a>
+				</div>
+			</div>
+			<%}%>		
+		</li>
+	
+
+		
+
+	<% } } ) %> 
+	<div data-role="footer" data-position="fixed" data-tap-toggle="false">
+		<a id="solicitarAdc" class="ui-btn-adicionar">Solicitar adicional</a>
+	</div>
+	</ul>
+	<% } else if(model.codigoRetorno != "0"){ 
+	%> 
+	</ul>
+	<div class="tentarNovamenteCartaoAdicional">
+        <span class="icon-icons_tentar_novamente"></span>
+        <p class="fnt-book color-gray-darker fontSaibaMaisCartoesAdicionais" style="margin:18px">Erro ao carregar os <br> cart&otilde;es adicionais.</p>
+        <a id="tentarNovamenteCartoesAdc" class="ui-btn-tentar-novamente ui-btn ui-shadow ui-corner-all">Tentar novamente</a>
+    </div>	
+
+	<% } else { %> 
+	</ul>
+	<p class="fnt-book color-gray-darker fontSaibaMaisCartoesAdicionais">
+	Este cart&atilde;o n&atilde;o possui adicionais.</p>
+
+	<div data-role="footer" data-position="fixed" data-tap-toggle="false">
+		<a id="solicitarAdc" class="ui-btn-adicionar">Solicitar adicional</a>
+	</div>
+	
+	<% } %>
+
+</div>
+
+<div data-awbe-component="popup" data-awbe-component-option-theme="a" data-awbe-component-option-theme-modal="b"
+ data-awbe-component-option-modal="true" data-awbe-component-popup-id="avisoCancelamentoCartaoAdicional">
+	<div class="cartao-adicional-popup-title fnt-medium-bold">
+		<p>Aviso</p>
+	</div>
+	<p style=" margin: 0; ">
+		Lembre-se que se possuir algum servi&ccedil;o associado a este cart&atilde;o, como Aviso de Viagem ou
+		Cart&atilde;o Virtual, eles tamb&eacute;m ser&atilde;o cancelados.
+		<br><br>
+		Deseja continuar?
+	</p>
+	<div class="align-botoes-2 align-botoes-popup txt-caixaalta" style="margin: 0;">	
+		<a href="#" data-rel="back" class="botao-modal-002" title="clique para voltar para tela de cart&otilde;es adicionais">N&Atilde;O</a>
+		<a href="#" data-rel="back" onclick="location.href='#cancelarCartaoAdicional'" class="botao-modal-003" title="clique para prosseguir o cancelamento">SIM</a>
+	</div>
+</div>
+
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/cartoesAdicionais/cartoesAdicionais.js"></script>
+<link rel="stylesheet" type="text/css" href="css/paginas/cartoesAdicionais.css">
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/cartoesAdicionais/layoutCartoesAdicionais.js"></script>
+<script type="text/javascript" src="js/BradescoCartoesMobile/mergeButton.js"></script>

@@ -1,0 +1,76 @@
+<div data-awbe-component="awbe-include" data-awbe-component-params="cabecalhoVoltarPagina"></div>
+<div class="ui-content" data-role="content">
+  <p>
+    Consulte as taxas e tarifas vigentes dos cart&otilde;es Bradesco.
+  </p>
+  <div>
+    <table class="table-taxas">
+      <thead>
+        <tr>
+          <th>M&ecirc;s (%)</th>
+          <th>Ano (%)</th>
+          <th class="cell-taxa">CET (% ano)</th>
+          <th class="cell-taxa">Máx. próx. período (%)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% _.each(params.taxas, function(taxa ){ %>
+        <tr>
+          <td colspan="4" class="line-title"><%= taxa.title %></td>
+        </tr>
+        <tr class="border-bottom">
+          <td class="cell"><%= taxa.mes %></td>
+          <td class="cell cell-taxa-ano"><%= taxa.ano %></td>
+          <td class="cell align-center cell-taxa-cet"><%= taxa.cet %></td>
+          <td class="cell align-center"><%= taxa.proxPeriodo %></td>
+        </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+  <div class="details">
+    <p>
+      Custo efetivo total (CET), para o rotativo
+      <span class="valor_rotativo">
+        <%= params.cetRotativo %>
+      </span>
+      ao ano. <br />
+    	V&aacute;lido para o vencimento desta fatura.
+    </p>
+    <p>
+      *Sobre as opera&ccedil;&otilde;es de cr&eacute;dito incidir&atilde;o o IOF Di&aacute;rio (0,0082%) e IOF Adicional
+      (0,38%, de acordo com a legisla&ccedil;&atilde;o vigente.<br/>V&aacute;lido para o vencimento dessa fatura.
+    </p>
+    <p>
+      A falta de pagamento ou pagamento abaixo do m&iacute;nimo da fatura acarretar&aacute; a cobran&ccedil;a de juros
+      remunerat&oacute;rios: (i) do Parcelamento de Fatura e/ou Parcelado F&aacute;cil aplicados sobre o valor das
+      parcelas vencidas, e/ou (ii) do Cr&eacute;dito Rotativo sobre os demais valores + IOF + juros de mora 1% a.m + multa
+      de 2%.
+    </p>
+    <p>
+      <b>Pagamento da fatura: </b>
+      Opte sempre pelo pagamento total da fatura. Em caso de imprevistos, voc&ecirc; poder&aacute; utilizar o
+      Cr&eacute;dito Rotativo. Dessa forma, se o pagamento for entre o m&iacute;nimo estipulado e inferior ao valor
+      total, haver&aacute; cobran&ccedil;a de juros remunerat&oacute;rios incidentes sobre a diferen&ccedil;a entre o
+      valor total e o pago at&eacute; R$ 114,07. Caso o pagamento realizado seja inferior ao m&iacute;nimo estipulado ou
+      n&atilde;o seja efetivado pagamento de qualquer valor, haver&aacute; adicionalmente incid&ecirc;ncia de juros de
+      mora e multa.
+    </p>
+    <p>
+      <b>Parcelado F&aacute;cil (autom&aacute;tico): </b>
+      Caso o cliente n&atilde;o realize pagamento ou se j&aacute; houve op&ccedil;&atilde;o 
+      pelo cr&eacute;dito rotativo no m&ecirc;s anterior e o pagamento desta fatura for inferior ao valor total, o 
+      saldo remanescente deste m&ecirc;s ser&aacute; parcelado em at&eacute; 24 vezes desde que o pagamento 
+      seja igual ou superior ao valor m&iacute;nimo, com parcela m&iacute;nima de R$ 10,00, podendo o cliente 
+      optar por outras condi&ccedil;&otilde;es de parcelamento por meio da Central de Atendimento ao Cliente 
+      ou no Internet Banking Correntistas Bradesco (www.bradesco.com.br). Opera&ccedil;&otilde;es 
+      financeiras geram cobran&ccedil;as de impostos (IOF).
+    </p>
+  </div>
+</div>
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/taxasTarifasFidelity/listagem.js"></script>
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="js/BradescoCartoesMobile/views/taxasTarifasFidelity/taxasTarifasFidelity.css"
+/>

@@ -1,0 +1,101 @@
+<div data-awbe-component="awbe-include" data-awbe-component-params="cabecalhoVoltarPagina"></div>
+<div data-awbe-component="awbe-include" data-awbe-component-params="menuOpcoesDeslogado"></div>
+
+<div class="page ui-content" data-role="content">
+	<form id="formAdicionarCartoes" action="#cadastroCartaoSimplificado">
+		<input type="hidden" value="opcaoCadastro" data-awbe-bind="view"/>
+		<h2>DADOS PESSOAIS</h2>
+
+		<div class="divAlertas">
+			<hr class="hr-margin-error">
+			<table class="ui-table-generico-semBorder">
+				<tr>
+					<th class="col-12 icon-20-table"></th>
+					<th class="col-88 fnt-book color-gray-lighter txt-08em">O CPF informado n&atilde;o &eacute; v&aacute;lido. Digite novamente.</th>
+				</tr>
+			</table>
+			<hr class="hr-margin-error">
+		</div>
+
+	    <p class="fnt-book color-gray-darker txt-1em margin-top-1em">Nome do perfil</p>
+		<input class="inputPlaceholder" type="text" data-awbe-bind="identificador" id="identificador" 
+		autocorrect = "off" autocomplete = "off" spellcheck = "false" autocapitalize="off"
+		maxlength="20" name="identificador" placeholder="Como gostaria de ser chamado"/>
+		<p class="fnt-book color-gray-darker txt-1em margin-top-1em">CPF</p>
+		<!-- removido id 'cpf' desse componente, deve ser verificado se algum controler inspeciona esse nome de id -->
+	 	<input id="cpf" data-awbe-component="cpf" data-awbe-bind="cpf" name="cpf"/>
+    	
+		<div class="ui-grid-a disabledButton margin-top-4em" id="divbotaoAdicionarCartoes">
+			<div class="ui-block-a" style="float: right">
+				<div class="ui-btn-arrow-blue-arrow " id="botaoContinuarAddCartoesArrow"></div>
+				<div class="ui-btn-arrow-blue " id="botaoContinuarAddCartoes" style="width:89%">
+			    	<a  id="inputAdicionarCartoes" onclick="adicionarPerfil();">Continuar</a>
+			    </div>
+			</div>
+			<div class="ui-block-b"></div>
+		</div>
+	</form>
+</div>
+
+<!-- POPUP DE MENSAGEM GENERICA -->
+ <div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="popup-generico">
+	<p class="titulo-modal" id="titulo-modal-personalizado"></p>
+	<p class="texto-modal-normal" id="mensagem-personalizada"></p>
+ 		<div class="align-botoes">	
+ 			<a href="#" data-rel="back"  class="botao-modal-002">FECHAR</a>
+ 		</div>
+</div>	
+
+<div data-awbe-component="popup" 
+ 	 data-awbe-component-option-theme="a"
+	 data-awbe-component-option-theme-modal="b"
+	 data-awbe-component-option-modal="true"
+	 data-awbe-component-popup-id="cpfInvalido">
+	<p class="titulo-modal" id="titulo-modal-personalizado"></p>
+	<p class="texto-modal-normal">Confira o CPF informado e digite novamente.</p>
+	<div class="align-botoes">	
+		<a href="#" data-rel="back" class="botao-modal-002" id="btnCpfInvalido">Fechar</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup" 
+ 	 data-awbe-component-option-theme="a"
+	 data-awbe-component-option-theme-modal="b"
+	 data-awbe-component-option-modal="true"
+	 data-awbe-component-popup-id="cpfCadastrado">
+	<p class="texto-modal-normal">CPF j&aacute; cadastrado.</p>
+	<p class="texto-modal-normal">Voc&ecirc; ser&aacute; redirecionado para fazer o login.</p>
+	<div class="align-botoes txt-caixaalta">	
+		<a href="#" data-rel="back" class="botao-modal-002" id="okCpfExistente">OK</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup" data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="badWordsPopUp">
+	<p class="titulo-modal">Nome inv&aacute;lido</p>
+	<p class="texto-modal-normal">Parece que h&aacute; um erro no nome utilizado. Verifique a digita&ccedil;&atilde;o e tente novamente.</p>
+	<p class="texto-modal-normal">Se por engano estamos bloqueando, por favor, ligue na Central de Atendimento para corre&ccedil;&atilde;o.</p>
+	<div class="align-botoes txt-caixaalta">
+		<a href="" data-rel="back" class="botao-modal-002">Fechar</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup" 
+			data-awbe-component-option-theme="a"
+			data-awbe-component-option-theme-modal="b"
+			data-awbe-component-option-modal="true"
+			data-awbe-component-popup-id="servicoIndisponivel">
+	<p class="titulo-modal"></p>
+	<p class="texto-modal-normal">Servi&ccedil;o Indispon&iacute;vel</p>
+	<div class="align-botoes txt-caixaalta">	
+		<a href="#" data-rel="back" class="botao-modal-002">Fechar</a>
+	</div>
+</div>
+
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/cartoes/adicionarCartoes.js"></script>

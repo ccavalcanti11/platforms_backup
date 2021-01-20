@@ -1,0 +1,17 @@
+<div class='calendar-component'>
+  <span class='txt-range'>De: </span>
+  <!-- calendar-component -->
+  <input type='date' id='cotacaoDateInicio' class='cotacao-date' value='' data-awbe-bind="cotacaoDateInicio"
+    data-role="none" data-date=''>
+</div>
+
+<hr class="hr-margin-input" style="height: 1px !important;">
+
+<div class='calendar-component dateEnd'>
+  <span class='txt-range'>At&eacute;: </span>
+  <!-- calendar-component -->
+  <input type='date' id='cotacaoDateFim' class='cotacao-date' value='' data-awbe-bind="cotacaoDateFim"
+    data-role="none" data-date=''>
+</div>
+
+<hr class="hr-margin-input" style="height: 1px !important;">

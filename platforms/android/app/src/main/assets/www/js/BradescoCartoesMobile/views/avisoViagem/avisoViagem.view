@@ -1,0 +1,68 @@
+<div data-awbe-component="awbe-include" data-awbe-component-params="cabecalho"></div>
+
+<% 
+	var user = AWBE.sessionStorage.getItem('user');
+	if(AWBE.localStorage.getItem('isNCLegado_' + user.cpf) == "true"){ %>
+	<div data-awbe-component="awbe-include" data-awbe-component-params="menuOpcoesLogadoNCLegado"></div>
+<% }else{ %>
+	<div data-awbe-component="awbe-include" data-awbe-component-params="menuOpcoesLogado"></div>
+<% }%>
+
+
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/avisoViagem/avisoViagem.js"></script>
+
+<div class="ui-content" id="marginAvisoViagem" data-role="content">
+	<% 	
+	 
+	/*Adicionado a chamada do mostrarFuncionalidadesAtivas antes do makeCarousel*/  	  
+		
+	BradescoCartoesMobile.controllers.mostrarFuncionalidadesAtivas(); 
+	
+	if(model.codigoRetorno == "00"){
+	
+		if(model.cartoes && model.cartoes.length>0){%>
+
+			<div data-awbe-component="carouselAvisoViagem"
+				 data-awbe-target-element="carouselTarget"
+                       data-awbe-target-view="avisoViagem/resumoAvisoViagem.view" style="padding-top: 0em;"></div>
+		
+			<div  id="carouselTarget">
+			</div>
+		<%
+		}else{%>
+			<div class="fnt-book color-gray-darker">Voc&ecirc; n&atilde;o possui cart&otilde;es associados a este serviço.</div>
+		<%}
+	}%>
+</div>
+
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="saibaMaisAvisoViagem">
+	<p class="titulo-modal" style="padding-bottom: 1em;" id="titulo-modal-personalizado">Entenda o Aviso de Viagem</p>
+	<p class="texto-modal-normal" style="padding-bottom: 1em;" >Informando o destino e per&iacute;odo da sua viagem ao exterior, voc&ecirc; agiliza o processo de aprova&ccedil;&atilde;o das transa&ccedil;&otilde;es sem precisar confirmar informa&ccedil;&otilde;es adicionais e evita que suas compras sejam negadas por suspeita de uso indevido.</p>
+	<p class="texto-modal-normal">Fa&ccedil;a a inclus&atilde;o do aviso para cada um dos cart&otilde;es que pretende utilizar em sua viagem.</p>
+	<div class="align-botoes">
+		<a href="#" class="botao-modal-002" data-rel="back" title="clique para voltar para tela de aviso de viagem">Fechar</a>
+	</div>
+</div>
+
+<!-- POP-UP CARTAO BLOQUEADO -->
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="cartaoBloqueadoAvisoViagem">
+	<div>
+		<p style="text-align: left;  margin: .5em .4375em; font-weight: bold;">Cart&atilde;o bloqueado</p>
+	</div>	
+	<br>
+		<p class="aviso-viagem-popup-text">Lembre-se de desbloquear seu cart&atilde;o para que as suas transa&ccedil;&otilde;es sejam autorizadas.</p>
+		<p class="aviso-viagem-popup-text">Deseja desbloquear agora?</p>
+	<div class="align-botoes-2 txt-caixaalta-android">
+		<a onclick="desbloquearDepois()" class="botao-modal-002">Depois</a>
+		<a href="#" data-rel="back" class="botao-modal-003">Desbloquear</a>
+	</div>
+</div>
+

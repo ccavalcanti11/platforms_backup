@@ -1,0 +1,78 @@
+.resumo-cancelamento-adicional {
+    padding: 1em;
+    background: #E7EAEF;
+}
+.resumo-cancelamento-adicional h2 {
+    font-weight: bold;
+}
+.resumo-cancelamento-adicional span,
+.resumo-cancelamento-adicional small{
+	position: relative;
+	display: block;
+	font-size: 12px;
+}
+.resumo-cancelamento-adicional span {
+    text-transform: uppercase;
+    font-weight: bold !important;
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+.icon-obterChave {
+    position: relative;
+}
+.divCapturarChave {
+    position: relative;
+    display: block;
+    float: left;
+}
+.divCapturarChave a {
+    width: 60px;
+    float: left;
+    padding-left: 40px;
+}
+span.icon-obterChave:before {
+    width: 32px;
+    height: 32px;
+    padding: 0 0;
+    margin: 3px 0;
+}
+
+#btnCancelarAdicional {
+    padding: 0.5em 0.5em; 
+    margin-right: 2em
+}
+
+#popupAcao {
+    transform: translate(15px,-40px);
+}
+
+.mensagens{
+    padding-bottom:1em;
+}
+
+.separador{
+    margin: 1em -1em 1em -1em;
+}
+
+#ul-separador{
+    margin-bottom: auto; 
+    background-color: #E9ECF0;
+}
+
+#li-separador{
+    background-color: transparent; 
+    border-top: none !important; 
+    border-right: none; 
+    border-width: 2px; 
+    padding-bottom:1em; 
+    padding-top:1em;
+}
+
+#limiteZero{
+    white-space: normal;
+}
+
+.largura-480-px {
+    width: 23px;
+}
+

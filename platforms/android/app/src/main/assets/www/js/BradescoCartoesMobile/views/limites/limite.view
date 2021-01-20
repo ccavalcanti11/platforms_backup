@@ -1,0 +1,36 @@
+<div data-awbe-component="awbe-include" data-awbe-component-params="cabecalho"></div>
+
+<% 
+	var user = AWBE.sessionStorage.getItem('user');
+	if(AWBE.localStorage.getItem('isNCLegado_' + user.cpf) == "true"){ %>
+	<div data-awbe-component="awbe-include" data-awbe-component-params="menuOpcoesLogadoNCLegado"></div>
+<% }else{ %>
+	<div data-awbe-component="awbe-include" data-awbe-component-params="menuOpcoesLogado"></div>
+<% }%>
+
+<div class="ui-content limite" data-role="content">
+	
+	<%  
+	var temCartoesElegiveis = AWBE.sessionStorage.getItem('temCartoesElegiveis');
+		
+	if(temCartoesElegiveis){%>
+		
+		<div data-awbe-component="carouselLimite"
+		     data-awbe-target-element="carouselTarget"
+		     data-awbe-target-view="extrato/fatura"></div>
+		     
+	    <div id="carouselTarget"></div>
+    
+   <% }else{%>
+    
+	   <div class="fnt-book color-gray-darker">Voc&ecirc; n&atilde;o possui cart&otilde;es associados a este serviço.</div>
+			
+	<% } %>
+    
+</div>
+<div data-role="footer" class="fnt-regular" data-position="fixed" data-tap-toggle="false" style="display:none;">
+    <p class="fnt-bold txt-08em" style="text-align: left; margin: 0em 1em 0.2em 1em;" id=infectAtualizacao></p>
+    <p class="txt-08em" style="text-align: left; margin: 0em 1em 0.2em 1em;">Informa&ccedil;&otilde;es sujeitas a altera&ccedil;&otilde;es.</p>
+</div>
+
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/limites/limite.js"></script>

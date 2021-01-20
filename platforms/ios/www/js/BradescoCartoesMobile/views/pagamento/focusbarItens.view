@@ -1,0 +1,131 @@
+<section class="envio_boleto">
+    <script>
+        $(".alterarEmailLink").on("click", function () {
+            FocusBarUtil.closeFocusBar();
+            setTimeout(function () {
+                var user = AWBE.sessionStorage.getItem('user');
+                var isCadastroSimplificado = AWBE.localStorage.getItem('isCadastroSimplificado_' + user.cpf) === 'true';
+                if (isCadastroSimplificado) {
+                    window.location.href = "#dadosPessoais";
+                } else {
+                    window.location.href = "#editarDadosPessoais";
+                }
+            }, 1000)
+
+        });  
+    </script>
+    <style>
+        .envio_boleto b{
+            color: #666;
+            font-family: NewJuneBold;
+            font-weight: 500;
+            font-size: 1.5em !important;
+        }
+        .envio_boleto p{
+            color: #95989a;
+            font-family: NewJuneMedium;
+            font-size: 0.8em;
+        }
+        .envio_boleto a,
+        .envio_boleto a:visited{
+            font-family: NewJuneMedium;
+            color: #0270e1;
+        }
+    </style>
+    <p><b>Boleto enviado para</b></p>
+    <p>
+        <%=params.email %>
+    </p>
+    <a class="alterarEmailLink" href="#">alterar e-mail</a>
+</section>
+
+<section class="codigo_copiado">
+    <style>
+        .codigo_copiado b{
+            color: #666;
+            font-family: NewJuneBold;
+            font-weight: 500;
+            font-size: 1.3em !important;
+        }
+        .codigo_copiado p{
+            color: #95989a;
+            font-family: NewJuneMedium;
+            font-size: 0.9em;
+        }
+    </style>
+    <p><b>C&oacute;digo copiado</b></p>
+    <p>Cole o c&oacute;digo no aplicativo do seu banco para pagar a fatura.</p>
+</section>
+
+<section class="escolha_app">
+    <style>
+        .texto-escolha {
+            font-family: NewJuneBook;
+            font-size: 0.9em;
+        }
+        .escolha_app{
+            font-family: NewJuneBold !important;
+        }
+        .escolha_app b{
+            color: #666;
+            font-family: NewJuneBold;
+            font-weight: 500;
+            font-size: 1.2em;
+        }
+        .escolha_app ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .escolha_app ul li {
+            padding: 1rem 0;
+        }
+
+        .escolha_app ul li>i {
+            padding: .5rem 1rem;
+            margin-right: 1rem;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        .escolha_app ul li>span {
+            color: #666;
+            font-family: NewJuneMedium;
+        }
+
+        .escolha_app ul li>.icon_Classic {
+            background-image: url("css/icons/ico-bradesco.svg");
+        }
+
+        .escolha_app ul li>.icon_Prime {
+            background-image: url("css/icons/ico-bradesco-prime.svg");
+        }
+
+        .escolha_app ul li>.icon_Exclusive {
+            background-image: url("css/icons/ico-bradesco-exclusive.svg");
+        }
+
+        .escolha_app ul li>.icon_Private {
+            background-image: url("css/icons/ico-bradesco-private.svg");
+        }
+    </style>
+    <div>
+        <p><b>C&oacute;digo copiado</b></p>
+        <p class="color-gray-darker texto-escolha">Escolha um aplicativo para pagar a fatura.</p>
+        <ul>
+            <% for(var i in params.appList){ %>
+            <li data-app-path="<%= params.appList[i].scheme %>">
+                <i class="icon_<%= params.appList[i].descricao %>"></i>
+                <span>
+                    <%= params.appList[i].nomeAplicativo %>
+                </span>
+            </li>
+            <% } %>
+        </ul>
+    </div>
+    <form class="pagarPeloAplicativoForm" action="#pagarPeloAplicativo">
+        <input type="hidden" value="teste" data-awbe-bind="variable">
+    </form>
+</section>

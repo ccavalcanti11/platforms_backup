@@ -1,0 +1,91 @@
+<div data-awbe-component="awbe-include" data-awbe-component-params="cabecalho"></div>
+<% 
+	var user = AWBE.sessionStorage.getItem('user');
+	if(AWBE.localStorage.getItem('isNCLegado_' + user.cpf) == "true"){ %>
+	<div data-awbe-component="awbe-include" data-awbe-component-params="menuOpcoesLogadoNCLegado"></div>
+<% }else{ %>
+	<div data-awbe-component="awbe-include" data-awbe-component-params="menuOpcoesLogado"></div>
+<% }
+	var tempConta = AWBE.sessionStorage.getItem('tempConta');
+	var cpf = tempConta.cpf; 
+	var tipoCadastro = tempConta.tipoCadastro; 
+
+	var isCadastroSimplificado = $.parseJSON(AWBE.localStorage.getItem('isCadastroSimplificado_' + cpf));
+
+	cartoes = model.cartoes;
+	cartoes.sort(function(a, b) { return a.ordem < b.ordem ? -1 : (a.ordem > b.ordem ? 1 : 0); });
+	index = 0;
+	var mostrar = false;
+	$.each(cartoes, function(index, value){
+		if (value.mostrar) {
+			mostrar = value.mostrar;
+		}
+	});
+%>
+
+<div class="page ui-content personalizar" data-role="content">
+	<p class="fnt-book color-gray-darker txt-08em">Escolha os cart&otilde;es que deseja gerenciar pelo aplicativo.</p>
+	<div class="ui-grid-solo">
+		<div class="ui-block-a">
+			<ul id="sortable" data-role="listview">
+				<% for (var i = 0; i < cartoes.length; i++) {
+					var item = cartoes[i];
+					item.index=i;
+					var digitos = ('0000' + item.parcialCartao).slice(-4);
+				%>
+				<li class="list-item listaPersonalizarCartoes listaPersonalizarCartoes-01 margin-top-1em <%=(item.bloqueado ? ' blocked' : ' ')%>" style="max-height: 97px;">
+					<div class="ui-grid-b">
+						<div class="ui-block-c">
+							<label>
+					            <input class="cartaoCheckbox" type="checkbox" name="mostrar-<%= item.index %>" id="mostrar-<%= item.index %>" data-cartao="<%= item.numeroCartao %>" <%= item.mostrar ? 'checked="true"' : '' %>>
+							</label>
+						</div>
+						<div class="ui-block-a">
+							<img src="data:image/jpg;base64,<%=item.imagemBase64%>"></img>
+							<% if (item.bloqueado) { %>
+								<span class="icon-icons_atencao2"></span>
+							<% } %>
+						</div>
+						<div class="ui-block-b">
+							<p class="fnt-book txt-08em color-gray-darker">
+								<strong><%=item.nomeEmbosso%></strong><br/>
+								<span>
+									Validade: <strong><%=item.validadePlastico%></strong><br/>
+									Cart&atilde;o final <strong><%=digitos%></strong>
+								</span>
+							</p>
+						</div>
+					</div>
+				</li>
+				<% } %>
+			</ul>
+		</div>
+	</div>
+	<div class="ui-grid-solo margin-bottom-1em">
+		<div class="ui-grid-a continue <%= (!mostrar)?'disabledButton':'' %>" style="margin:0 1em;">
+			<div class="ui-block-a"></div>
+			<div class="ui-block-b">
+				<div class="ui-btn-arrow-blue-arrow"></div>
+				<div class="ui-btn-arrow-blue">
+					<a href="#atualizarCartoesSelecionados" id="botaoSubmitLogin">Confirmar</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div data-awbe-component="popup"
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="erroListarCartao">
+	<p class="titulo-modal"></p>
+	<p class="texto-modal-normal">Problema ao listar cart&otilde;es</p>
+	<div class="align-botoes">
+		<a href="#fimSessao" class="botao-modal-002">Fechar</a>
+	</div>
+</div>
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/cartoes/personalizarCartoes.js"></script>
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/cartoes/CadastroController.js"></script>
+
+<!-- <script type="text/javascript" src="js/BradescoCartoesMobile/views/cartoes/cadastro/touchidCadastro.js"></script> -->

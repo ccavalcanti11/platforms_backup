@@ -1,0 +1,22 @@
+.ui-popup>div.align-botoes.sso_popup>a {
+    width: 49%;
+    padding: 1em 0 !important;
+    display: inline-block;
+}
+
+.ui-popup>div.align-botoes.sso_popup {
+    overflow: auto;
+    padding: 0;
+}
+
+.ui-popup>div.align-botoes.sso_popup a:nth-child(2) {
+    border-left: 1px solid #c6c6c6;
+}
+
+.titulo-dados-confirmar {
+    padding-bottom: 0;
+}
+
+#container_dispSeguranca #clearfix_mtoken {
+    padding-top: 0;
+}

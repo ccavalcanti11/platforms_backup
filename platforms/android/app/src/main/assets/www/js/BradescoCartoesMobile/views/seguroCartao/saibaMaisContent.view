@@ -1,0 +1,57 @@
+<%
+	AWBE.localStorage.setItem('title','Seguro');
+	var cartaoAtual = AWBE.sessionStorage.getItem('meusCartoesAtual');
+		
+	var seguroAtivo = cartaoAtual.flagSeguro == 'S' ? true : false;
+	
+%>
+
+<div data-awbe-component="awbe-include"	data-awbe-component-params="cabecalhoVoltarPagina"></div>
+
+<% 
+	var user = AWBE.sessionStorage.getItem('user');
+	if(AWBE.localStorage.getItem('isNCLegado_' + user.cpf) == "true"){ %>
+	<div data-awbe-component="awbe-include" data-awbe-component-params="menuOpcoesLogadoNCLegado"></div>
+<% }else{ %>
+	<div data-awbe-component="awbe-include" data-awbe-component-params="menuOpcoesLogado"></div>
+<% }%>
+
+<div class="ui-content" data-role="content">
+
+<h2>ENTENDA O SEGURO</h2>
+
+ <p class="fnt-regular txt-08em" style="text-align: justify;">
+ <%
+	if (!seguroAtivo) {
+ %>
+ Por apenas R$ <%= cartaoAtual.valorSeguroContratacao ? ((cartaoAtual.valorSeguroContratacao+'').replace('.', ',')) : '6,99' %> mensais, por cart&atilde;o, o 
+ <%
+	} else {
+ %>
+ O <% } %>
+ Seguro Superprotegido Premi&aacute;vel Bradesco cobre despesas indevidas em decorr&ecirc;ncia de perda, roubo ou furto do cart&atilde;o de cr&eacute;dito, ou coa&ccedil;&atilde;o sofrida pelo segurado.
+ </p>
+
+ <p class="fnt-regular txt-08em" style="text-align: justify;">
+ O seguro garante o valor do limite do cart&atilde;o com teto de R$ 50 mil para compras indevidas, o limite do cart&atilde;o com teto de R$ 50 mil para compras na Internet e o limite do saque na fun&ccedil;&atilde;o cr&eacute;dito com teto de R$ 5 mil para saques.
+ </p>
+
+ <p class="fnt-regular txt-08em" style="text-align: justify;">
+ Voc&ecirc; ainda concorre a sorteios semanais de pr&ecirc;mios em dinheiro no valor de R$ 12 Mil pela extra&ccedil;&atilde;o da Loteria Federal.
+ E ainda, Seguro de vida, em caso de falecimento do segurado, todos os gastos com o seu cart&atilde;o de cr&eacute;dito na fatura a vencer s&atilde;o automaticamente quitados at&eacute; o limite do cart&atilde;o, com teto de R$ 50 mil.
+ </p>
+
+ <p class="fnt-regular txt-08em" style="text-align: justify;">
+
+ Pr&ecirc;mio l&iacute;quido lastreado por T&iacute;tulo de Capitaliza&ccedil;&atilde;o e apurado atrav&eacute;s da extra&ccedil;&atilde;o da Loteria Federal. Seguro com vig&ecirc;ncia de 12 meses a partir das 24 horas da data do pagamento da primeira parcela mensal. Consulte o Manual do Segurado e o seu N&uacute;mero da Sorte para participar dos sorteios semanais bradescoprotecao.com.br. O n&uacute;mero fica dispon&iacute;vel em at&eacute; 30 dias ap&oacute;s o primeiro pagamento. Seguradora: Bradesco Vida e Previd&ecirc;ncia S.A. CNPJ: 51.990.695/0001-37. SUSEP 15414.003034/2006-65. Bradesco Auto/RE Companhia de Seguros S.A. CNPJ 92.682.038/0001-00. SUSEP 15414.004200/2012-99. Corretora: Bradescor Corretora de Seguros Ltda. CNPJ 43.338.235/0001-09. SUSEP 058.926.100.587-77. O registro deste plano na SUSEP n&atilde;o implica, por parte da Autarquia, incentivo ou recomenda&ccedil;&atilde;o a sua comercializa&ccedil;&atilde;o. Este folheto cont&eacute;m informa&ccedil;&otilde;es indicativas. O segurado poder&aacute; consultar a situa&ccedil;&atilde;o cadastral de seu corretor de seguros, no site www.susep.gov.br, por meio do n&uacute;mero de seu registro na SUSEP, nome completo, CNPJ ou CPF. A aceita&ccedil;&atilde;o do seguro estar&aacute; sujeita &agrave; an&aacute;lise do risco.
+ Restri&ccedil;&otilde;es &agrave;s coberturas encontram-se descritas nas Condi&ccedil;&otilde;es Gerais do seguro. Em atendimento &agrave; Lei n. 12.741/12, informamos os tributos incidentes sobre Pr&ecirc;mios de Seguros: PIS (0,65%) (*) COFINS: 4,00% (*) IOF: entre 0% e 7,38% (*) Apurados e recolhidos nos termos da legisla&ccedil;&atilde;o aplic&aacute;vel. SAC - Cart&otilde;es de Cr&eacute;dito 0800 727 9988. Defici&ecirc;ncia Auditiva ou de Fala 0800 722 0099. Atendimento 24 horas, 7 dias por semana. Reclama&ccedil;&otilde;es, Cancelamentos e Informa&ccedil;&otilde;es Gerais. Se n&atilde;o ficar satisfeito com a solu&ccedil;&atilde;o Apresentada contate a Ouvidoria. Ouvidoria 0800 727 9933. Atendimento de segunda a sexta-feira. Das 8h &agrave;s 18h, exceto feriados.
+ </p>
+
+</div>
+
+<script>
+	$(document).on("pageshow",function(){
+		window.scrollTo(0,0);
+	});
+</script>
+

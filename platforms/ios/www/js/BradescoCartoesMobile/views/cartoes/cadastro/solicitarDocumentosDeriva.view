@@ -1,0 +1,31 @@
+<div data-awbe-component="awbe-include" data-awbe-component-params="cabecalhoVoltarPagina"></div>
+
+<div class="ui-content faturadigital" data-role="content" id="solicitarDocumentosDeriva">	
+	<h2>DOCUMENTO</h2>
+	<p class="txt-12em fnt-book color-gray">Precisamos que nos envie sua <b>CNH ou RG.</b></p>	
+
+	<p class="txt-12em fnt-book color-gray">Tire 2 fotos, uma de cada lado do documento.</p>		
+    <div class="ui-grid-a" id="botaCapturarDocumentos">
+        <div class="ui-block-a" style="float: right;">
+	        <div class="ui-btn-arrow-blue-arrow"></div>
+	        <div class="ui-btn-arrow-blue" style="width:89%; margin-top: 1em;">
+	        	<a id="capturarFrente" class="capturarFrente">Continuar</a>
+	        </div>
+        </div>
+        <div class="ui-block-b"></div>
+	</div>
+</div>
+
+<div data-awbe-component="popup" data-awbe-component-option-theme="a" data-awbe-component-option-theme-modal="b" data-awbe-component-option-modal="true" data-awbe-component-popup-id="acessoCameraCelular">
+  <div class="popUpAjustesDeriva">
+    <p class="texto-modal-normal">Para utilizar a funcionalidade </br>
+      de captura de foto, habilite a permiss&atilde;o de acesso &agrave; c&acirc;mera e armazenamento para Bradesco Cart&otilde;es em Ajustes do seu celular.</p>
+  </div>
+  <div class="align-botoes txt-caixaalta">
+    <a onclick="popupActionCameraAjustes()" class="botao-modal-002" data-rel="back">Ajustes</a>
+    <a href="#"  class="botao-modal-003" data-rel="back">Agora n&atilde;o</a>
+  </div>
+</div>
+
+
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/cartoes/cadastro/solicitarDocumentosDeriva.js"></script>

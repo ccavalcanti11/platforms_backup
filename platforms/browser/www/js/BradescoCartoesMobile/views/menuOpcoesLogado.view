@@ -1,0 +1,127 @@
+<%
+perfil = AWBE.sessionStorage.getItem('user');
+var isCadastroSimplificado = AWBE.localStorage.getItem('isCadastroSimplificado_'+perfil.cpf);
+
+var mostrarMenuCadastroCompleto = BradescoCartoesMobile.components.verificarCadastroCompleto();
+var index = perfil.cpf.toString().length-2;
+%>
+
+<div id="left-panel" style="background-color: white; overflow-y: scroll;" class="ui-panel">
+	<ul data-role="listview" id="menuContent">
+		<li data-icon="false">
+			<a href="#perfilEditar" data-rel="close" onmousedown="setTitle('')" class="icon-listview-editarperfil">
+				<span class="perfil-title">MEUS DADOS</span>
+				<span><%=perfil.identificador%></span><br/>
+				<span>CPF: XXX.XXX.XXX-<%=perfil.cpf.toString().substring(index)%></span>
+			</a>
+		</li>
+		<%if(isCadastroSimplificado === "true" && mostrarMenuCadastroCompleto){%>
+			<li data-icon="false" class="botaoAtualizarCadastroMenu header-box-dados-cadastrais">
+				<div class="header-box-dados-cadastrais">
+					<h2 class="h2-blue-no-padding" style="margin-top: 0px; padding-top: 0px;">MAIS FUNCIONALIDADES</h2>
+					<p class="fulltext">
+						Falta pouco. Finalize o cadastro e tenha todas as funcionalidades do aplicativo.
+					</p>
+					<div class="ui-btn-blue" onclick="atualizarCadastro(); mnu.doAction();" >
+						<p class="botaoAzul">Finalizar cadastro</p>
+					</div>
+				</div>
+			</li>
+		<%}%>
+	</ul>
+</div>
+
+<script type="text/javascript">
+function createMenuItem(type) {
+	if (type == 'single') {
+		return new createSingleMenuItem();
+	} else if (type = 'group') {
+		return new createGroupMenuItem();
+	}
+
+	function createSimpleMenuItem() {
+		var item = {
+				key : '',
+				data_icon : false,
+				id : '',
+				a : {
+					data_rel : '',
+					href : '#',
+					onClick : 'mnu.doAction()',
+					class : '',
+					text : ''
+				},
+				type : 'single'
+			};
+		return item;
+	}
+
+	function createGroupMenuItem() {
+		return {};
+	}
+}
+
+function loadMenu(arr) {
+
+	var menuContent = '';
+
+	for (var i = 0; i < arr.length; i++) {
+		var item = arr[i];
+		if(item.type == 'single'){
+			menuContent += prepareSingleItem(item);
+		}else if(item.type == 'group'){
+			menuContent += prepareGroupItem(item);
+		}
+	}
+
+	function prepareSingleItem(item) {
+		var html = '<li data-icon="' + item.data_icon + '" '
+				+ (item.id ? 'id="'+item.id+'">' : '>')
+				+ '<a href="' + item.a.href + '" onclick="' + item.a.onClick + '" class="' + item.a.class + '">' + item.a.text + '</a>'
+				+ '</li>';
+		return html;
+	}
+	
+	function prepareGroupItem(item){
+		var html = '<li data-icon="' + item.data_icon + '">' +
+					'<div data-role="collapsible"  data-iconpos="false" data-inset="false">' +
+						'<h4>' +
+							'<span class="collapsible-icon-right"></span>' +			
+							'<label class="'+ item.header.class +'">' + item.header.text + '</label>' +										
+						'</h4>' +
+						'<ul data-role="listview">';
+						for(var i=0;i<item.list.length;i++){
+							html += '<li data-icon="false">' +
+								'<a href="' + item.list[i].href + '" onclick="' + item.list[i].onClick + '">' + item.list[i].text + '</a>' +
+							'</li>'
+						}
+							
+    			html += '</ul>' +
+    				'</div>' +
+				'</li>';
+				
+		return html;
+	}
+	
+	$("#menuContent").append(menuContent);
+}
+
+	mnu = new Bra300Menu("left-panel");
+	mnu.process({
+		width : '85%', // Largura do menu
+		height : '100%', // Altura do menu
+		zIndex : 10000, // Zindex do menu
+		block : $('.ui-page-active'), // Em qual objeto ele vai criar um div
+		// preto
+		bindObj : $('.ui-page-active')
+	});
+	
+	loadMenu(BradescoCartoesMobile.menuLogado);
+	
+	// Reconfigura o menu lateral de acordo com as funcionalidades ativas.
+	BradescoCartoesMobile.controllers.mostrarFuncionalidadesAtivas();
+	function atualizarCadastro(){
+		window.location.href = '#maquinaEstado';
+	};
+
+	</script>

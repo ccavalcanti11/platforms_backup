@@ -1,0 +1,198 @@
+<div data-awbe-component="awbe-include"
+	data-awbe-component-params="cabecalhoVoltarPagina"></div>
+
+<div class="page ui-content informacoes-cartao cadastro"
+	data-role="content">
+
+	<div class="divAlertas">
+		<hr class="hr-margin-error">
+		<table class="ui-table-generico-semBorder">
+			<tr>
+				<th class="col-12 icon-20-table"></th>
+				<th class="col-88 fnt-book color-gray-lighter txt-08em">Verifique os campos destacados</th>
+			</tr>
+		</table>
+		<hr class="hr-margin-error">
+	</div>
+
+	<form action="#informacoesCartaoValidationEsqueciSenha">
+		<input type="hidden" value="<%=model.tipo%>" id="tipo"
+			data-awbe-bind="tipo" /> <input type="hidden" value="perguntasPid"
+			id="view" data-awbe-bind="view" /> <input type="hidden"
+			value="<%=params.cpf%>" id="cpf" data-awbe-bind="cpf" />
+		<p class="fnt-book txt-12em color-gray-darker">Para recuperar o acesso &eacute; preciso confirmar alguns dados.</p>
+
+		<div class="ui-grid-solo">
+			<div class="ui-block-a clearfix">
+				<label class="label-title fnt-book color-gray-darker txt-1em margin-top-1em">N&uacute;mero do cart&atilde;o</label>
+				<i class="icon-content">
+					<a class="icon-21-centralizado ui-link" onclick="AWBE.util.openPopup('popupInformacaoScanCard')"></a>
+				</i>
+				<i class="icon-content">
+					<img src="css/lib/images/icons-svg/photo-camera.svg" width="25px" style="padding: 2.5px;" onclick="scanCard()"/>
+				</i>
+			</div>
+			<input type="tel" name="numeroCartao" id="numeroCartao" data-awbe-bind="numeroCartao" data-awbe-for="informacoesCartaoValidation" maxlength="16" value="<%=params.numeroCartao%>"/>
+		</div>
+		<div class="ui-grid-solo" style="margin-top: 1em;">
+			<div class="ui-block-a clearfix">
+				<label class="label-title fnt-book color-gray-darker txt-1em margin-top-1em">
+					Senha do cart&atilde;o
+				</label>
+				<i class="icon-content">
+					<a class="icon-21-centralizado ui-link" onclick="AWBE.util.openPopup('popupInformacaoSenha')"></a>
+				</i>
+			</div>
+			<small class="fnt-book txt-075em color-gray-darker">De compra e saque</small>
+			<div class="ui-grid-b margin-bottom-17">
+				<div class="ui-block-a width-7em">
+					<input type="tel" class="input-password-numeric input-pass width-7em" pattern="[0-9]*" inputmode="numeric" name="senha" id="senhaInformacaoCartao"
+						data-awbe-bind="senhaInformacaoCartao" maxlength="6" data-awbe-for="*" oncopy="return false" oncut="return false" onpaste="return false" />
+				</div>
+			</div>
+		</div>
+		
+		<div class="ui-grid-a">
+			<div class="ui-block-a" style="float:right">
+				<div class="disabledButton" id="divbotaoAdicionarCartoes">
+					<div class="ui-btn-arrow-blue-arrow"></div>
+					<div class="ui-btn-arrow-blue" style="float:right">
+						<a id="botaoSubmitInformacoesCartao">Continuar</a>
+					</div>
+				</div>
+				<div class="ui-block-b"></div>
+			</div>
+		</div>
+	</form>
+</div>
+
+<div data-awbe-component="popup" data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="esqueciSenhaCorrentista">
+	<p class="texto-modal-normal">Seu acesso &eacute; feito com a senha
+		de 4 d&iacute;gitos, a mesma usada no Bradesco Internet Banking.</p>
+	<p class="texto-modal-normal">Voc&ecirc; poder&aacute; definir uma
+		nova senha pelo Internet Banking, Fone F&aacute;cil ou na sua
+		ag&ecirc;ncia.</p>
+	<div class="align-botoes">
+		<a href="#meusCartoes" data-rel="back" class="botao-modal-002">FECHAR</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup" data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="tentarRedefinirSenha">	
+	<p class="texto-modal-normal">Sua senha de acesso &eacute; a senha
+		de 4 d&iacute;gitos, a mesma usada para acessar sua conta pelo
+		Bradesco Internet Banking.</p>
+	<p class="texto-modal-normal">Voc&ecirc; pode definir uma nova
+		senha pelo Internet Banking, Fone F&aacute;cil ou na sua
+		ag&ecirc;ncia.</p>
+	<div class="align-botoes">
+		<a href="#" data-rel="back" class="botao-modal-002">Tentar
+			novamente</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup" data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="senhaIncorreta">
+	<p class="titulo-modal">Sua senha est&aacute; incorreta.</p>
+	<p class="texto-modal-normal">
+		Voc&ecirc; tem mais <span class="texto-negrito-modal" id="tent"></span>
+		de acesso. Ao atingir esse limite, sua senha ser&aacute; bloqueada
+	</p>
+	<div class="align-botoes">
+		<a href="#" data-rel="back" class="botao-modal-002">Tentar
+			novamente</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup" data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="senhaBloqueada">
+	<p class="titulo-modal">Senha bloqueada</p>
+	<p class="texto-modal-normal">Voc&ecirc; excedeu o n&uacute;mero
+		m&aacute;ximo de tentativas, por favor entrar em contato com a Central
+		de Atendimento.</p>
+	<div class="align-botoes">
+		<a href="#meusCartoes" data-rel="back" class="botao-modal-002">FECHAR</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup" data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="dadosNConferem">
+	<p class="texto-modal-normal">Os dados informados n&atilde;o
+		conferem. Entre em contato com a Central de Atendimento.</p>
+	<div class="align-botoes txt-caixaalta">
+		<a href="#" data-rel="back" class="botao-modal-002">Fechar</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup" data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="falhaCadastro">
+	<p class="texto-modal-normal">N&atilde;o foi poss&iacute;vel
+		finalizar o seu cadastro. Favor entrar em contato com a Central de
+		Atendimento.</p>
+	<div class="align-botoes txt-caixaalta">
+		<a href="#" data-rel="back" class="botao-modal-002">Fechar</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="dadosNConferemCPF">
+	<p class="texto-modal-normal">Verifique os dados informados e digite novamente ou insira um n&uacute;mero de cart&atilde;o eleg&iacute;vel.</p>
+	<div class="align-botoes txt-caixaalta">	
+		<a href="#" data-rel="back" class="botao-modal-002">Fechar</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="popupInformacaoScanCard">
+	<p class="texto-modal-normal">Clique no &iacute;cone de c&acirc;mera para capturar o n&uacute;mero do cart&atilde;o.</p>
+	<div class="align-botoes txt-caixaalta">	
+		<a href="#" data-rel="back" class="botao-modal-002">Fechar</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="popupInformacaoSenha">
+	<p class="texto-modal-normal">Por seguran&ccedil;a solicitamos a senha do cart&atilde;o apenas em momentos importantes.</p>
+	<p class="texto-modal-normal">Caso n&atilde;o se lembre, entre em contato com a Central de Atendimento.</p>
+	<div class="align-botoes txt-caixaalta">	
+		<a href="#" data-rel="back" class="botao-modal-002">Fechar</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="alertaInformacao">
+	<p class="titulo-modal">Acesso bloqueado</p>
+	<p class="texto-modal-normal">A situa&ccedil;&atilde;o atual do cart&atilde;o n&atilde;o permite o acesso ao aplicativo.</p>
+	<p class="texto-modal-normal">Acesse com outro cart&atilde;o ou entre em contato com a Central de Atendimento.</p>
+	<div class="align-botoes">	
+		<a href="#" data-rel="back" class="botao-modal-002" id="hrefAlerInfo">OK</a>
+	</div>
+</div>
+
+
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/login/esqueciSenha/informacoesCartaoEsqueciSenha.js"></script>

@@ -1,0 +1,24 @@
+<div data-awbe-component="awbe-include" data-awbe-component-params="cabecalhoVoltarPagina"></div>
+
+<div class="ui-content faturadigital" data-role="content" id="apresentarVersoDocumentosDeriva">
+	<p class="txt-12em fnt-book color-gray" style="margin-top: 0">Se a foto estiver boa continue para enviar.</p>		
+
+	<div class="DivImagemDeriva" id="divImagemDerivaVerso" >
+		<img id="docVerso" src="<%='data:image/jpeg;base64,'+model.imagem2%>" class="imagemDocDeriva"/>
+	</div>
+	<input type="hidden" value="<%=model.imagem1%>" id="imagem1" data-awbe-bind="imagem1"/>
+	<div class="ui-grid-a" id="solicitarEnviarDocs" style="width: 100%;">
+		<div class="capturarVerso divCameraDeriva">
+			<img src="css/lib/images/icons-svg/photo-camera.svg" width="25px" class="cameraDeriva"/>		
+			<label class="labelCameraDeriva">Fotografar<br>novamente</label>
+		</div>
+        <div class="divContinuarDeriva">	        
+	        <div class="ui-btn-arrow-blue arrowContinuarDeriva">
+	        	<a id="enviarDocumentos">Continuar</a>
+	        </div>
+        </div>
+	</div>
+
+</div>
+
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/cartoes/cadastro/apresentarDocumentosDerivaVerso.js"></script>

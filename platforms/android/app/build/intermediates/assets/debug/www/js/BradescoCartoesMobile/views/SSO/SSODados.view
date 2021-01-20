@@ -1,0 +1,151 @@
+<div id="header-hide-arrow" data-role="header" data-position="fixed" data-tap-toggle="false">
+	<a id="btnLeftPanel" href="#homeLogada" class="btn-back"></a>
+	<h1>Dados de Contato</h1>
+</div>
+
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/SSO/SSODados.js"></script>
+
+<div class="page dados-contato cadastro ui-content" data-role="content" style="width: 90%">
+	<form action="#dadosSSOConfirmacao" id="form">
+		
+		<!-- Mensagem de erro após validação -->
+		<div class="divAlertas">
+			<hr class="hr-margin-error">
+			<table class="ui-table-generico-semBorder">
+				<tr>
+					<th class="col-12 icon-20-table"></th>
+					<th class="col-88 fnt-book color-gray-lighter txt-08em" id="mensagemDivAlertas"></th>
+				</tr>
+			</table>
+			<hr class="hr-margin-error">
+		</div>
+		
+		
+		<label class="forms">E-mail</label>
+		<input class="inputPlaceholder" type="email" placeholder="cliente@email.com.br" name="confirma_dado1" id="email" data-awbe-bind="emailCadastro"  data-awbe-for="dadosContatoValidation"  autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+		<div class="ui-grid-b">
+			<label class="forms">Celular</label>
+			<div class="ui-block-a width-31em">
+				<input class="inputPlaceholder" class="inputPlaceholder" type="tel" name="dddCelular" data-awbe-for="*" id="ddd-celular" data-awbe-bind="dddCelular" maxlength="2" pattern="[0-9]*" data-awbe-component="ddd"  />
+			</div>
+			<div class="ui-block-b margin-left-16">
+				<div class="ui-block-c width-93em">
+					<input class="inputDadosCorrentista inputPlaceholder" data-awbe-component="telefone" type="tel" name="numeroCelular" id="numero-celular" data-awbe-bind="numeroCelular" data-awbe-for="personalizarCartoes" maxlength="10" />
+				</div>
+			</div>
+		</div>
+	
+	</form>
+		<div class="ui-grid-a" style="margin-top: 2em;">
+			<div class="ui-block-a" style="float: right; margin-right: 0.5em;">
+				<div class="disabledButton" id="botao-submit-contato">
+					<div class="ui-btn-arrow-blue-arrow"></div>
+					<div class="ui-btn-arrow-blue" style="width:90%; padding: .59em 0em .59em 1em;">
+				    	<a id="botaoSubmit">Continuar</a>
+				    </div>
+				</div>
+			</div>
+			<div class="ui-block-b"></div>
+		</div>	
+</div>
+
+
+<div data-awbe-component="awbe-include" data-awbe-component-params="dialogErroCadastro"></div>
+
+<div data-awbe-component="popup"
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="alertaInformacao">
+	<p class="texto-modal-normal" id="alerta-mensagem"></p>
+	<div class="align-botoes">
+		<a href="#" data-rel="back" class="botao-modal-002" id="hrefAlerInfo">FECHAR</a>
+	</div>
+</div>
+
+<!-- POPUP DE MENSAGEM GENERICA -->
+ <div data-awbe-component="popup"
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="popup-generico">
+	<p class="titulo-modal" id="titulo-modal-personalizado"></p>
+	<p class="texto-modal-normal" id="mensagem-personalizada"></p>
+ 		<div class="align-botoes">
+ 			<a href="#" data-rel="back"  class="botao-modal-002">FECHAR</a>
+ 		</div>
+</div>
+
+<div data-awbe-component="popup"
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="alertaNumeroDDD">
+	<p  class="titulo-modal"></p>
+	<p class="texto-modal-normal">Insira um DDD e n&uacute;mero de telefone v&aacute;lido.</p>
+	<div class="align-botoes">
+		<a href="#" data-rel="back" class="botao-modal-002">Fechar</a>
+	</div>
+</div>
+
+
+<div data-awbe-component="popup"
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="alertaEmail">
+	<p  class="titulo-modal">E-mail Incompleto</p>
+	<p class="texto-modal-normal">O endere&ccedil;o de e-mail precisa ter um &ldquo;nome&rdquo;, um &ldquo;@&rdquo; e um complemento, por exemplo <span>&quot;cliente@email.com.br&quot;</span>.</p>
+	<div class="align-botoes">
+		<a href="#" data-rel="back" onclick='$("#alertaEmail").unbind("touchmove");$("#alertaEmail-screen").unbind("touchmove");' class="botao-modal-002">Fechar</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup"
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="ConfirmacaoEmail">
+	<p  class="titulo-modal">E-mails Incorretos</p>
+	<p class="texto-modal-normal">Os e-mails informados est&atilde;o diferentes. Digite novamente.</p>
+	<div class="align-botoes">
+		<a href="#" data-rel="back" class="botao-modal-002">Fechar</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup"
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="loginDesabilitado">
+	<p class="texto-modal-normal">O acesso ao aplicativo est&aacute; temporariamente indispon&iacute;vel.<br>Tente mais tarde.</p>
+	<div class="align-botoes">
+		<a href="#meusCartoes" data-rel="back" class="botao-modal-002">OK</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup"
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="popupEmailEmUso">
+	<p class="titulo-modal">E-mail em uso</p>
+	<p class="texto-modal-normal">O e-mail informado j&aacute; est&aacute; sendo utilizado em outro perfil.</p>
+	<p class="texto-modal-normal">Por favor, utilize outro.</p>
+	<div class="align-botoes">
+		<a href="#" data-rel="back" class="botao-modal-002">FECHAR</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup"
+    data-awbe-component-option-theme="a"
+    data-awbe-component-option-theme-modal="b"
+    data-awbe-component-option-modal="true"
+    data-awbe-component-popup-id="alertaTelefone">
+	<p  class="titulo-modal"></p>
+	<p class="texto-modal-normal">Erro ao cadastrar o celular.</p>
+	<p class="texto-modal-normal">Tente novamente.</p>
+	<div class="align-botoes">
+		<a href="#" data-rel="back" class="botao-modal-002">OK</a>
+    </div>
+</div>

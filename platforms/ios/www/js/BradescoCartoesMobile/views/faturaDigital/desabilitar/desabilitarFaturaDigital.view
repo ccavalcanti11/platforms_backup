@@ -1,0 +1,51 @@
+<div data-awbe-component="awbe-include" data-awbe-component-params="cabecalhoVoltarPagina"></div>
+
+<div class="ui-content faturadigital" data-role="content">
+	<h2>DESABILITAR FATURA DIGITAL</h2>
+	<p> Desabilitando a <b>Fatura Digital,</b> voc&ecirc; passa a receber a vers&atilde;o impressa das pr&oacute;ximas faturas do cart&atilde;o final <b><%=completeLeft(model.cartao.parcialCartao, 4)%>.</b>
+	</p>
+	<p>Sua pr&oacute;xima fatura chegar&aacute; em at&eacute; 30 dias &uacute;teis.</p>
+	<hr>
+	<div class="icone20 txt-08em"></div>
+	<div class="txt-08em alertatexto">Aten&ccedil;&atilde;o: certifique-se de que seu endere&ccedil;o para o recebimento de correspond&ecirc;ncias est&aacute; atualizado. Em caso de d&uacute;vidas, ligue para a
+		<a class="linkred" onclick="setTimeout(function(){location.href='#canaisAtendimentoLogado'},200);">Central de Atendimento</a>.</div>
+	<hr>
+	<div class="ui-grid-a">
+		<div class="ui-block-a">
+		</div>
+		<div class="ui-block-b margin-top-1em">
+			<div class="ui-btn-arrow-blue" id="botaoContinuarListarMotivos">
+				<a onclick="setTimeout(function(){location.href='#listarMotivos'},200);">Continuar</a>
+			</div>
+		</div>
+	</div>
+
+<div id="divDispositivoSeguranca" style="display: none;">
+	<form action="#concluirDesabilitarFaturaDigital" id="formDispositivoSeguranca">
+		<div id="dispositivoSegurancaTarget"></div>
+		<hr/>
+	</form>
+	<div class="ui-grid-a margin-top-2em">
+		<div class="ui-block-a">
+			<div data-awbe-component="mToken" data-component="BtnCapturarChave" id="botaoCapturarChave" style="display: none"></div>
+		</div>
+		<div class="ui-block-b">
+			<div id="divBotaoConfirmaDispositivo" class="ui-grid-b disabledButton">
+				<div id="botaoConfirmaDispositivo">
+					<div class="ui-btn-arrow-blue">
+				    	<a id='blockButton'>Confirmar</a>
+				    </div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- POPUP - importa popup para a escolha app integrador -->
+<div data-awbe-component="mToken" data-component="EscolhaAppIntegrador"></div>
+<!-- POPUP - importa popup de excecoes default  -->
+<div data-awbe-component="mToken" data-component="TratamentoExcecoes"></div>
+<!-- POPUP - importa popup do tutorial  -->
+<div data-awbe-component="mToken" data-component="MsgTutorial"></div>
+
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/faturaDigital/desabilitar/desabilitarFaturaDigital.js"></script>

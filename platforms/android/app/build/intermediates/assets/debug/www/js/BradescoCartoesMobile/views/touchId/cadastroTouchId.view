@@ -1,0 +1,31 @@
+<div data-awbe-component="awbe-include" data-awbe-component-params="cabecalhoVoltarPagina"></div>
+
+<div class="ui-content" data-role="content">
+	<p>
+		Cadastrar Touch ID
+	</p>
+	
+	<p>
+		Toque no sensor
+		para acessar sua conta usando
+		apenas a digital. Para desabilitar
+		essa funcionalidade futuramente,
+		acesse as configurações
+		do aplicativo.
+	</p>
+	
+	<a class="touch-button" data-role="button" href="#login">DIGITE SUA SENHA</a>
+	<a href="#" data-rel="back" class="touch-canc-color">CANCELAR</a>
+</div>
+
+<div data-awbe-component="popup" 
+	 data-awbe-component-option-theme="b"
+	 data-awbe-component-option-theme-modal="b"
+	 data-awbe-component-option-modal="true"
+	 data-awbe-component-popup-id="erroCadastroTouchId">
+	<p>
+		Erro de Autenticação
+		Recurso disponível apenas para autenticação biometrica.
+	</p>
+	<a href="#" data-rel="back">OK</a>
+</div>

@@ -1,0 +1,30 @@
+<style>
+
+    <%
+    var runningIOS = AWBE.Platforms.runningOnIOS();
+    var deviceHeight = window.innerHeight;
+
+    if (deviceHeight >= 800 && !runningIOS) {%>
+
+        #divSeguroCartao .ui-checkbox .ui-btn.ui-checkbox-off:after {
+            height: 1.6em;
+            width: 1.6em;
+            border: .2em solid #0071e5;
+            top: -17%;
+        }
+
+        .ui-checkbox .ui-checkbox-geral {
+            margin-top: 1em;
+        }
+
+        .ui-checkbox .fnt-medium {
+            position: relative;
+            bottom: 0.7em;
+        }
+
+        .ui-checkbox .txt-contrato{
+            bottom: 0;
+        }
+
+<%}%>
+</style>

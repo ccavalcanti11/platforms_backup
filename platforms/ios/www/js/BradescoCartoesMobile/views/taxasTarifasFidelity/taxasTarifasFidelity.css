@@ -1,0 +1,100 @@
+* {
+  font-family: NewJuneRegular;
+  color: #666666;
+}
+
+.table-taxas {
+  font-family: NewJuneBook;
+}
+
+.table-taxas th {
+  font-size: 0.75em;
+  color: #2166a1;
+  font-family: NewJuneBold;
+  padding: 0.1em;
+  text-align: left;
+}
+
+td.line-title {
+  font-family: newJuneBold;
+  font-size: 0.75em;
+  padding-top: 1em;
+}
+
+td.cell {
+  font-size: 0.75em;
+  padding-bottom: 1em;
+  padding-top: 0.4em;
+}
+
+th.cell-taxa{
+  text-align: right;
+}
+
+td.cell-taxa-ano{
+  padding-left: 0.3em;
+}
+
+td.cell-taxa-cet{
+  padding-left: 0.7em;
+}
+
+.border-bottom {
+  border-bottom: 1px solid #cdcccd;
+}
+
+.align-center {
+  text-align: center;
+}
+
+.details {
+  font-size: 0.75em;
+}
+
+.details b {
+  font-family: NewJuneBold;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-decoration-none {
+  text-decoration: none;
+}
+
+.icon-error:before {
+  content: '';
+  padding: 1.3em;
+  background: url('../../../../css/icons/icon-20.svg') no-repeat center;
+  background-size: contain;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-top: -2.5em;
+}
+
+.error-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.ui-btn.error,
+.ui-btn.error:hover,
+.ui-btn.error:active {
+  color: #3388cc;
+  border-radius: 5px;
+  font-weight: normal;
+}
+
+@media (max-width: 375px) {
+    table.table-taxas th, table.table-taxas td {
+        font-size: 0.65em;
+    }
+}

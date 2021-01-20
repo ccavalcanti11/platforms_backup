@@ -1,0 +1,34 @@
+<div data-awbe-component="awbe-include" data-awbe-component-params="cabecalho"></div>
+
+<% 
+	var user = AWBE.sessionStorage.getItem('user');
+	if(AWBE.localStorage.getItem('isNCLegado_' + user.cpf) == "true"){ %>
+	<div data-awbe-component="awbe-include" data-awbe-component-params="menuOpcoesLogadoNCLegado"></div>
+<% }else{ %>
+	<div data-awbe-component="awbe-include" data-awbe-component-params="menuOpcoesLogado"></div>
+<% }%>
+
+
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/bloqueioCartao/bloqueioCartao.js"></script>
+
+<div class="ui-content page" data-role="content">
+
+<%
+
+	/*Adicionado a chamada do mostrarFuncionalidadesAtivas antes do makeCarousel*/  	  
+		
+	BradescoCartoesMobile.controllers.mostrarFuncionalidadesAtivas();  
+
+	if ( model.cartoesBloqueioCartao.length != 0 ){%>
+		<div data-awbe-component="carouselBloqueioCartoes"
+			 data-awbe-target-element="carouselTarget"
+		     data-awbe-target-view="bloqueioCartao/selecaoBloqueioCartao.view"></div>
+		<div id="carouselTarget"></div>
+  <%}else{%>
+	<dl>
+		<dt class="txt-1em color-gray-darker">Voc&ecirc; n&atilde;o possui cart&otilde;es associados a este servi&ccedil;o.</dt>  			
+	</dl>
+  <%}%>
+  
+</div>
+

@@ -1,0 +1,97 @@
+<div data-awbe-component="awbe-include" data-awbe-component-params="cabecalhoVoltarPagina"></div>
+
+<% 
+	var user = AWBE.sessionStorage.getItem('user');
+	if(AWBE.localStorage.getItem('isNCLegado_' + user.cpf) == "true"){ %>
+	<div data-awbe-component="awbe-include" data-awbe-component-params="menuOpcoesLogadoNCLegado"></div>
+<% }else{ %>
+	<div data-awbe-component="awbe-include" data-awbe-component-params="menuOpcoesLogado"></div>
+<% }
+	var titular = BradescoCartoesMobile.modelTitular = model.titular;
+	var agregado = BradescoCartoesMobile.modelAgregado = model.agregado;
+	var flagAdicionais = model.flagAdicionais;
+	var cartaoAtual = AWBE.sessionStorage.getItem('meusCartoesAtual');
+
+	console.log('titular: ' + JSON.stringify(titular));
+	console.log('model: ' + JSON.stringify(model));
+%>
+
+<div class="ui-content" data-role="content">
+	
+	<div class="titulo-resumo-gastos">Detalhamento de gastos</div>
+
+	<div class="ui-grid-solo fnt-regular" id="ExtratoGastosSlider">
+		<% if ((cartaoAtual.titularAdicional == "T") && (flagAdicionais == true)) { %>
+			<p class="rc-title" id="titleSlide0">Cart&atilde;o Titular</p>
+			<p class="rc-title" id="titleSlide1">Cart&otilde;es: Titular + Adicionais</p>
+			<div class="carouselDetalheExtrato" style="margin-bottom: 2em;">
+				<div id="graficoResumoGastos0" class="grafico-detalhe-extrato"></div>
+				<div id="graficoResumoGastos1" class="grafico-detalhe-extrato"></div>
+			</div>
+		<% } else if (cartaoAtual.titularAdicional == "T") { %>
+			<p class="rc-title" id="titleSlide0">Cart&atilde;o Titular</p>
+			<div class="carouselDetalheExtrato" style="margin-bottom: 2em; background: transparent;">
+				<div id="graficoResumoGastos0" class="grafico-detalhe-extrato"></div>
+			</div>
+		<% } else if (cartaoAtual.titularAdicional == "A") { %>
+			<p class="rc-title" id="titleSlide0">Cart&atilde;o Adicional</p>
+			<div class="carouselDetalheExtrato" style="margin-bottom: 2em; background: transparent;">	
+				<div id="graficoResumoGastos0" class="grafico-detalhe-extrato"></div>
+			</div>
+		<% } %>
+	</div>
+	
+	<% if ((cartaoAtual.titularAdicional == "T") && (flagAdicionais == true)) { %>
+		<div id="resumoSlide1" class="ui-grid-c extrato-lancamentos" style="display: none">
+			<table class="ui-table-lancamento gastos">
+			<tbody>
+				<%_.forEach(agregado.resumoConsumos, function(item) {
+					if (item.codigoCategoria > 0) {
+						var graficoObj = BradescoCartoesMobile.grafico[item.codigoCategoria] || BradescoCartoesMobile.grafico[0]; %>
+						<tr>
+							<th class="bloco-1">
+								<div class="<%=graficoObj.classe%>">&nbsp;</div>
+								<% if (item.quantidadeTransacao > 1) {%> 
+									<label><span><%=item.nomeCategoria%></span><%=item.quantidadeTransacao%> Transa&ccedil;&otilde;es</label>
+								<%} else {%>
+									<label><span><%=item.nomeCategoria%></span><%=item.quantidadeTransacao%> Transa&ccedil;&atilde;o</label>
+								<%}%>								
+							</th>
+							<th class="align-valor bloco-23"><%=item.sinalExtrato%><%=currency(item.valorTotal, false)%></th>
+							<th class="align-valor bloco-23"><%=currency(item.percentualGasto, false)%>%</th>
+						</tr>
+					<% } %>
+				<% }) %>
+			</tbody>
+		</table>
+		</div>
+	<% } %>
+	<% if (cartaoAtual.titularAdicional == "T" || cartaoAtual.titularAdicional == "A") { %>
+	<div id="resumoSlide0" class="ui-grid-c extrato-lancamentos">
+		<table class="ui-table-lancamento gastos">
+			<tbody>
+				<%_.forEach(titular.resumoConsumos, function(item) {
+					if (item.codigoCategoria > 0) {
+						var graficoObj = BradescoCartoesMobile.grafico[item.codigoCategoria] || BradescoCartoesMobile.grafico[0]; %>
+						<tr>
+							<th class="bloco-1">
+								<div class="<%=graficoObj.classe%>">&nbsp;</div>
+								<% if (item.quantidadeTransacao > 1) {%> 
+									<label><span><%=item.nomeCategoria%></span><%=item.quantidadeTransacao%> Transa&ccedil;&otilde;es</label>
+								<%} else {%>
+									<label><span><%=item.nomeCategoria%></span><%=item.quantidadeTransacao%> Transa&ccedil;&atilde;o</label>
+								<%}%>	
+							</th>
+							<th class="align-valor bloco-23"><%=item.sinalExtrato%><%=currency(item.valorTotal, false)%></th>
+							<th class="align-valor bloco-23"><%=currency(item.percentualGasto, false)%>%</th>
+						</tr>
+					<% } %>
+				<% }) %>
+			</tbody>
+		</table>
+	</div>
+	
+	<% } %>
+</div>
+
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/extrato/resumoGastos.js"></script>

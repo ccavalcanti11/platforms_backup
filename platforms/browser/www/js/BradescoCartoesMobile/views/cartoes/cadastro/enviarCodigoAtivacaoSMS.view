@@ -1,0 +1,159 @@
+<div data-awbe-component="awbe-include" data-awbe-component-params="cabecalhoVoltarPagina"></div>
+
+<%
+	var tempConta = AWBE.sessionStorage.getItem('tempConta');
+	//CHAMADA PARA A MAQUINA DE ESTADOS
+	setTimeout(BradescoCartoesMobile.components.atualizaMaquinaEstado(
+		""+tempConta.cpf, 															//CPF
+		BradescoCartoesMobile.components.passoMaquinaEstado.PERFIL_SIMPLIFICADO,	//PASSO
+		BradescoCartoesMobile.components.tipoCadastro.SIMPLIFICADO,				//TIPO CADASTRO
+		false,																	//IDENTIFICADOR LEGADO
+		BradescoCartoesMobile.components.etapaMaquinaEstado.VALIDACAO_SMS,		//CODIGO ETAPA
+		BradescoCartoesMobile.components.resultadoMaquinaEstado.PENDENTE			//RESULTADO PROCESSAMENTO
+	),500);
+	if(AWBE.localStorage.getItem('progressoCadastro_'+tempConta.cpf) < 80){
+    	AWBE.localStorage.setItem('progressoCadastro_'+tempConta.cpf, "80");
+    }
+	//FIM CHAMADA PARA A MAQUINA DE ESTADOS
+
+
+%>
+
+<div class="ui-content">
+
+	<p class="txt-12em fnt-book color-gray-darker">Digite o c&oacute;digo enviado por SMS.</p>
+	<p class="txt-1em fnt-book color-gray-darker">C&oacute;digo de verifica&ccedil;&atilde;o</p>
+
+	<form action="#">
+		<input class="inputPlaceholder" type="text" data-awbe-bind="identificador" id="codigoAtivacaoSMS" 
+		autocorrect = "off" autocomplete = "off" spellcheck = "false" autocapitalize="off"
+		maxlength="6" name="codigoAtivacaoSMS" placeholder=""/>
+ 	</form>
+ 	<div class="ui-grid-solo margin-bottom-1em" style="margin-top: 2em">
+		<div class="ui-grid-a containerFlexCenter">
+			<div class="ui-block-a">
+				<div class="ui-block-a esqueciSenha">
+					<a class="esqueci-senha">
+	                    <div class="esqueci-senha" style="padding-left: 0em !important; padding-top: 0.6em; font-weight: bold !important; font-size: 1em !important;" id="linkReenviarSMS">Reenviar SMS</div>
+	                </a>
+				</div>
+			</div>
+			<div class="ui-block-b disabledButton"  style="float: right; width: 50%;" id="divBotaoValidarCodigoSMS">
+		        <div class="ui-btn-arrow-blue" id="">
+		            <div><a onclick="continuaValidacaoCodigoSMS();" id="">Continuar</a></div>
+		        </div>
+		    </div>
+		</div>
+
+</div>
+
+<div data-awbe-component="popup" 
+	 data-awbe-component-option-theme="a"
+	 data-awbe-component-option-theme-modal="b"
+	 data-awbe-component-option-modal="true"
+	 data-awbe-component-popup-id="SMSReenviadoPopUp">
+		<p class="texto-modal-normal">SMS enviado.</p>
+ 		<div class="align-botoes">	
+ 			<a href="#" data-rel="back" class="botao-modal-002">Fechar</a>
+ 		</div>
+</div>
+
+<div data-awbe-component="popup" 
+	 data-awbe-component-option-theme="a"
+	 data-awbe-component-option-theme-modal="b"
+	 data-awbe-component-option-modal="true"
+	 data-awbe-component-popup-id="popoUpCodigoInvalido">
+	 	<p class="titulo-modal">C&oacute;digo inv&aacute;lido</p>
+		<p class="texto-modal-normal">Insira o c&oacute;digo respeitando as letras mai&uacute;sculas e min&uacute;sculas.</p>
+ 		<div class="align-botoes">	
+ 			<a href="#" data-rel="back" class="botao-modal-002">Fechar</a>
+ 		</div>
+</div>
+
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="popUpConfirmacaoSMS">
+	<p class="titulo-modal">C&oacute;digo expirado</p>
+	<p class="texto-modal-normal">Para completar o cadastro &eacute; necess&aacute;rio gerar um novo c&oacute;digo de ativa&ccedil;&atilde;o.</p>
+	<div class="align-botoes-2 txt-caixaalta">
+		<a onclick="" class="botao-modal-002" data-rel="back">Fechar</a>
+		<a href="#enviarCodigoAtivacaoEmail" onclick="gerarNovoCodigo()" class="botao-modal-003" style="width: 50% !important;" data-rel="back">Gerar c&oacute;digo</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup" 
+	 data-awbe-component-option-theme="a"
+	 data-awbe-component-option-theme-modal="b"
+	 data-awbe-component-option-modal="true"
+	 data-awbe-component-popup-id="">
+		<p class="texto-modal-normal">C&oacute;digo enviado por e-mail.</p>
+ 		<div class="align-botoes">	
+ 			<a href="#" data-rel="back" class="botao-modal-002">Fechar</a>
+ 		</div>
+</div>
+
+<div data-awbe-component="popup" 
+	 data-awbe-component-option-theme="a"
+	 data-awbe-component-option-theme-modal="b"
+	 data-awbe-component-option-modal="true"
+	 data-awbe-component-popup-id="cadastroFinalizadoPopUp">
+		<p class="titulo-modal">Cadastro finalizado</p>
+		<p class="texto-modal-normal">Todas as funcionalidades est&atilde;o dispon&iacute;veis para voc&ecirc;.</p>
+ 		<div class="align-botoes">	
+ 			<a href="#personalizarCartoes" data-rel="back" class="botao-modal-002" onclick="setExecFingerPrintFalse();">OK</a>
+ 		</div>
+</div>
+
+<!-- POPOUP CONFIRMACAO DE SMS -->
+<!-- A MENSAGEM DESTE POPUP E DEFINIDA DINAMICANTE NO JS  -->
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="popUpConfirmacaoNumeroSMS">
+	<p class="titulo-modal"></p>
+	<p class="texto-modal-normal"></p>
+	<div class="align-botoes-2 txt-caixaalta">
+		<a href="#dadosContato" class="botao-modal-002" data-rel="back" onclick="BradescoCartoesMobile.components.popularAppsFlyerGa('ALTERAENVIOSMSATV');">Alterar</a>
+		<a onclick="BradescoCartoesMobile.components.popularAppsFlyerGa('REENVIOSMSATVPOP'); jQuery('#linkReenviarSMS').trigger('click');" class="botao-modal-003" style="width: 50% !important;" data-rel="back">Enviar</a>
+	</div>
+</div>
+
+<!-- POPOUP GENERICO DE EXIBICAO DE MENSAGENS -->
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="popUpGenerico">
+	<p class="titulo-modal"></p>
+	<p class="texto-modal-normal"></p>
+	<div class="align-botoes">
+		<a href="#" data-rel="back" class="botao-modal-002">Fechar</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup" 
+	 data-awbe-component-option-theme="a"
+	 data-awbe-component-option-theme-modal="b"
+	 data-awbe-component-option-modal="true"
+	 data-awbe-component-popup-id="popupClientePossuiSenhaCadastradaBami">
+		<p class="titulo-modal">Senha existente</p>
+		<p class="texto-modal-normal">Este perfil j&aacute; possui uma senha de acesso.</p>
+		<p class="texto-modal-normal"><b>Deseja alterar a senha?</b></p>
+ 		<div class="align-botoes-2">	
+ 			<a href="#" id="botaoConcluirCadastro" onclick="BradescoCartoesMobile.components.popularAppsFlyerGa('ALTERASENHADEACESSOCADN'); completarCadastro();" data-rel="back" class="botao-modal-002">N&atilde;o</a>
+ 			<a href="#definirSenhaNaoCorrentista" data-rel="back" class="botao-modal-003" onclick="BradescoCartoesMobile.components.popularAppsFlyerGa('ALTERASENHADEACESSOCAD');">Sim</a>
+ 		</div>
+</div>
+
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/cartoes/cadastro/enviarCodigoAtivacaoSMS.js"></script>
+
+<script>
+	function setExecFingerPrintFalse() {
+		if (AWBE.device.platform.toUpperCase() === 'ANDROID') {
+			window.executouFingerPrint = false;
+		}
+	}
+</script>

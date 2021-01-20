@@ -1,0 +1,18 @@
+<style>
+    .flex-start {
+        display: flex;
+        justify-content: start;
+    }
+
+    .flex-start .two-line-atendimento {
+        width: 45%;
+    }
+
+    .flex-start .single-line-atendimento {
+        width: 45%;
+    }
+
+    .flex-start .floating-box {
+        flex-grow: 1;
+    }
+</style>

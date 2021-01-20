@@ -1,0 +1,538 @@
+<!-- Dados para o gr?fico -->
+<%
+	var mesesDisponiveis = model.mesesDisponiveis;
+	var extrato = model;
+	var isFirstLoad = true;
+	var cartaoAtual = AWBE.sessionStorage.getItem('meusCartoesAtual');
+	
+	//injeta styleExtrato na view para corrigir layout iPhone10
+	var viewStyleRender = AWBE.Views.getView('extrato/styleExtrato');
+	viewStyleRender.render();
+%>
+<% if (model.codigoRetorno == "00" || model.codigoRetorno == "0") { %>
+		<div id="ovelayPopup"></div>
+		<div class="ui-grid-a border-complete-bottom" id='fatura'>
+			<div class="ui-block-a">
+				<p class="fnt-medium txt-08em color-gray-darker">Escolha o m&ecirc;s que deseja consultar:</p>
+			</div>
+
+			<div class="ui-block-b" id="monthColumn">
+				<select class="needsclick" id="mesSelec" data-native-menu="true" data-icon="false">
+					<%
+					if (mesesDisponiveis && mesesDisponiveis.length > 0) {
+						var selected;
+						var description = '';
+						var dv = '';
+						var dvSelecionada = '';
+						var pagEnable;
+                        var hasSelected = false;
+                        var cartaoSelecionado = $(".slick-current .content-carroussel span").html();
+                                            
+                        if(window.cartaoAtual != cartaoSelecionado){
+                            window.isFirstLoad = true;
+                            window.cartaoAtual = $(".slick-current .content-carroussel span").html();
+                        }
+
+						
+						for (var i = 0; i < mesesDisponiveis.length; i++) {
+							var item = mesesDisponiveis[i];
+							if (cartaoAtual.bradescard) {
+								dv = ('00' + item.diaFechamento).slice(-2) + '' + ('00' + item.mesFechamento).slice(-2) + '' + ('00' + item.anoFechamento).slice(-4);
+							} else {
+								dv = ('00' + item.dia).slice(-2) + '' + ('00' + item.mes).slice(-2) + '' + ('00' + item.ano).slice(-4);
+							}
+
+							if (cartaoAtual.bradescard) {
+				        		if (!hasSelected && parseInt(item.mes) == parseInt(extrato.mesExtrato) && parseInt(item.anoFechamento) == parseInt(extrato.anoExtrato) || window.isFirstLoad) {
+                                            hasSelected = true;
+					            		
+					            			selected = 'selected="selected"';
+											dvSelecionada = dv;
+											if (i == 1) {
+												pagEnable = 'block';
+											} else {
+												pagEnable = 'none';
+											}
+					            } else {
+					                        selected = '';
+					            }
+							} else {
+					            if (parseInt(item.mes) == parseInt(extrato.mesExtrato) && parseInt(item.ano) == parseInt(extrato.anoExtrato)) {
+					            			selected = 'selected="selected"';
+											dvSelecionada = dv;
+											if (i == 1) {
+												pagEnable = 'block';
+											} else {
+												pagEnable = 'none';
+											}
+					            } else {
+					                        selected = '';
+					            }
+							}
+							
+                            // variavel responsavel por deixar o select "em aberto" quando pagina carrega
+                            window.isFirstLoad = false;
+
+							if (item.descricao == 'Em aberto') {
+								if(cartaoAtual.titularAdicional == 'T'){
+									description = item.descricao + '&nbsp;&nbsp;&nbsp;&nbsp;' + currency(item.value, false);
+								}else{
+									description = item.descricao + '&nbsp;&nbsp;&nbsp;&nbsp;';								
+								}
+							} else {
+								if(cartaoAtual.titularAdicional == 'T'){
+									description = BradescoCartoesMobile.mes[item.mes - 1].short + '/' + item.ano + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + currency(item.value, false);
+								} else{
+									description = BradescoCartoesMobile.mes[item.mes - 1].short + '/' + item.ano + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';			
+								}
+							}
+					%>
+                        	<option data-mes="<%=item.mes%>" value="<%=dv%>" <%= selected %>><%=description%></option>
+							
+						<% } %>
+					<% } %>
+				</select>
+			</div>
+
+			<form id="formMes" actionfn="BradescoCartoesMobile.mes.atualizaMes">
+				<input type="hidden" name="cartao" data-awbe-bind="cartao" value="<%=cartaoAtual.numeroCartao%>" />
+				<input type="hidden" name="diaProximoRotativo" data-awbe-bind="diaProximoRotativo" value="<%=cartaoAtual.diaProximoRotativo%>" />
+				<input type="hidden" name="mesProximoRotativo" data-awbe-bind="mesProximoRotativo" value="<%=cartaoAtual.mesProximoRotativo%>" />
+				<input type="hidden" name="anoProximoRotativo" data-awbe-bind="anoProximoRotativo" value="<%=cartaoAtual.anoProximoRotativo%>" />
+				<input type="hidden" name="melhorDiaCompra" data-awbe-bind="melhorDiaCompra" value="<%=cartaoAtual.melhorDiaCompra%>" />
+				<input type="hidden" name="mes" id="mes" data-awbe-bind="mesano" />
+                <input type="hidden" name="mesNumber" id="mesNumber" data-awbe-bind="mesNumber" />
+				<input type="hidden" name="dataVencimento" id="dataVencimento" data-awbe-bind="dataVencimento" value="<%=dvSelecionada%>" />
+				<input type="hidden" name="dataVencimentoAtual" id="dataVencimentoAtual" data-awbe-bind="dataVencimentoAtual" value="<%=(cartaoAtual.bradescard ? cartaoAtual.dataExtrato : cartaoAtual.dataProximoVencimento)%>" />
+				<input type="hidden" name="sessao" id="sessao" data-awbe-bind="sessao" value="<%=params.sessao%>" />
+				<input type="hidden" name="contaCartao" id="contaCartao" data-awbe-bind="contaCartao" value="<%=cartaoAtual.contaCartao%>" />
+				<input type="hidden" name="bcard" id="bcard" data-awbe-bind="bcard" value="<%=cartaoAtual.bradescard%>" />
+				<input type="hidden" name="tipo" id="tipo" data-awbe-bind="tipo" value="S" />
+				<input type="hidden" name="titularidade" id="titularidade" data-awbe-bind="titularidade" value="<%=cartaoAtual.titularAdicional%>" />
+				<input type="hidden" name="rebindEvents" data-awbe-bind="rebindEvents" value="true" />
+				<input type="hidden" name="targetID" data-awbe-bind="targetID" value="carouselTarget" />
+				<input type="hidden" name="viewID" data-awbe-bind="viewID" value="extrato/fatura" />
+				<input type="hidden" name="viewFaturaID" data-awbe-bind="viewFaturaID" value="home/faturaFechadaMes" />
+				<input type="hidden" name="targetFaturaID" data-awbe-bind="targetFaturaID" value="fatura" />
+				<input type="hidden" name="adapterID" data-awbe-bind="adapterID" value="extratoCartao" />
+				<input type="hidden" name="flagAdicionais" data-awbe-bind="flagAdicionais" value="<%=extrato.flagAdicionais%>" />
+				<input type="hidden" name="statusAberto" data-awbe-bind="statusAberto" value="<%=extrato.statusAberto%>" />
+			</form>
+		</div>
+
+	<% if (model.statusAberto == 'A') { %>
+		<div class="ui-grid-a extrato-group border-complete-extrato">
+			<div class="ui-grid-a">
+				<div class="ui-block-a extrato-status-aberto">
+					<dl>
+						<% if (model.valorTotal.length >= 8) { %>
+						<dt style="font-size: 0.8em !important"><%=model.dataVencimento%></dt>
+						<% } 
+						else { %>
+						<dt><%=model.dataVencimento%></dt>
+						<% } %>
+						<dd>Vencimento da fatura</dd>
+					</dl>
+				</div>
+				<% if(cartaoAtual.titularAdicional == 'T'){ %>
+				<div class="ui-block-b extrato-status-valor">
+					<dl>
+						<% if (model.valorTotal.length >= 8) { %>
+						<dt style="font-size: 0.8em !important">R$ <%=model.sinalExtrato%><%=currency(model.valorTotal, false)%></dt>
+						<% } 
+						else { %>
+						<dt>R$ <%=model.sinalExtrato%><%=currency(model.valorTotal, false)%></dt>
+						<% } %>
+						<dd>Total at&eacute; o momento</dd>
+					</dl>
+				</div>
+				 <% }%>
+			</div>
+		</div>
+	<% } else { %>
+		<div class="ui-grid-a extrato-group">
+			<div class="ui-grid-a">
+			<% if(cartaoAtual.titularAdicional == 'T'){ %>
+				<div class="ui-block-a extrato-status-fechado">
+					<dl>
+						<dd>Total a pagar:</dd>
+						<dt>R$ <%=model.sinalExtrato%><%=currency(model.valorTotal, false)%></dt>
+						<dd>Vencimento: <span><%=model.dataVencimento%></span></dd>
+					</dl>
+				</div>
+				<div class="ui-block-b extrato-status-valor">
+					<dl>
+						<dd>Pagamento m&iacute;nimo:</dd>
+						<dt>R$ <%=currency(model.valorPagamentoMinimo, false)%></dt>
+					</dl>
+				</div>
+				<% } %>
+			</div>
+		</div>
+	<% } %>
+	<%
+		var graficoKey = cartaoAtual.numeroCartao + extrato.mesExtrato + extrato.anoExtrato;
+		
+		if(extrato.statusAberto == 'F') {
+			//busca dados de fatura fechada do localStorage
+			var resumoConsumosJson = AWBE.localStorage.getItem(graficoKey);
+			
+			if(resumoConsumosJson != undefined) {
+				var resumoConsumosObj = JSON.parse(resumoConsumosJson);
+				extrato.resumoConsumos = resumoConsumosObj;
+				model.resumoConsumos = resumoConsumosObj;
+			}
+		}
+	%>
+	<% if (extrato.resumoConsumos && cartaoAtual.bradescard) { %>
+	<div id="extrato-collapsible-extr" data-role="collapsible" data-iconpos="false" data-inset="false" data-collapsed="false">
+		<h4>
+			<span class="colapsible-icon"></span>
+			<label class="colapsible-text">Gr&aacute;fico de gastos</label>
+		</h4>
+		<div class="ui-grid-solo fnt-regular">
+			<% if (cartaoAtual.titularAdicional == "T" && extrato.flagAdicionais == true) {%>
+				<p>Cart&atilde;o Titular + Adicionais</p>
+			<% } else if (cartaoAtual.titularAdicional == "T") { %>
+				<p>Cart&atilde;o Titular</p>
+			<% } else { %>
+				<p>Cart&atilde;o adicional</p>
+			<% } %>
+		</div>
+		<div class="ui-grid-a content-grafico" onclick="location.hash = '#resumoGastos';">
+			<div class="ui-block-a" id="myChartPie"></div>
+			<div class="ui-block-b">
+				<%
+				if (model.resumoConsumos.length > 0) {
+					for (var i = 0; i < extrato.resumoConsumos.length; i++) {
+						var resumo = extrato.resumoConsumos[i];
+						var graficoObj = BradescoCartoesMobile.grafico[resumo.codigoCategoria] || BradescoCartoesMobile.grafico[0];
+				%>
+					<div class="margin-tb flex-container">
+						<div class="txt-071em color-gray-darker fnt-bold percentualGasto">
+							<%=currency(resumo.percentualGasto, false)%>%
+						</div>
+						<div class="<%=graficoObj.classe%>" style="color: <%=graficoObj.cor%>;"></div>
+						<span class="txt-071em color-gray-darker texto-icon-grafico"><%=resumo.nomeCategoria%></span>
+					</div>
+				<% 	}
+				} else { %>
+					<div class="margin-left-16" style="margin-top:20%">
+						<span class="fnt-regular font-small-ex ui-block-c grafico-width-c txt-08em">Nenhuma compra at&eacute; o momento.</span><br/>
+						<span class="fnt-bold font-small-ex ui-block-c grafico-width-c txt-08em"><b>Comece a usar seu cart&atilde;o agora mesmo!</b></span>
+					</div>
+				<% } %>
+			</div>
+			<% if (model.resumoConsumos.length > 0) { %>
+				<div class="extrato-line" style="float: left">
+					<label class="extrato-taxas-label">Valores referente somente a compras efetuadas.</label>
+				</div>
+			<% } %>
+		</div>
+	</div>
+	<% }
+		var previousPage = AWBE.Controller.pageHistory.pop();
+		var lastView = AWBE.Controller.lastView;
+
+		if ((previousPage != undefined && (previousPage.id == 'contestacao/listarContestacaoPage' || previousPage.id == 'extrato/extratoPage' || previousPage.id == 'contestacao/listarRespostaContestacaoPage')) && (lastView != 'extrato/parcelasFuturas')) {  %>
+			<div id="lancamentos-collapsible-extr" data-role="collapsible" data-collapsed="false" data-iconpos="false" data-inset="false">
+         <%} else {%>
+             <div id="lancamentos-collapsible-extr" data-role="collapsible" data-collapsed="true" data-iconpos="false" data-inset="false">
+         <%}%>    
+		<h4>
+			<span class="colapsible-icon"></span>
+			<label class="colapsible-text">Lan&ccedil;amentos</label>
+		</h4>
+	<% if (model.lancamentosTitular.length > 0 || model.lancamentosAdicional.length > 0) {
+		var valorTotalLancamentosDependentes = 0;
+	%>
+				<!-- Lancamentos do titular -->
+				<%
+				if (model.lancamentosTitular.length > 0) {
+					for (var i = 0; i < model.lancamentosTitular.length; i++) {
+						var itemLancamentos = model.lancamentosTitular[i];
+						var valorTotalLancamentos = 0;
+				%>
+					<div class="dependentes">
+						<dl class="destaque-area">
+							<dt class="fnt-bold txt-1em color-white destaque-area"><%= itemLancamentos.nome %></dt>
+							<dd class="fnt-regular txt-09em color-white destaque-area">
+								<%=cartaoAtual.produtoPrincipal%> -
+								<span style=" white-space: nowrap;"><%=parseInt(itemLancamentos.cartao).toString().slice(0, 4) + ' XXXX XXXX ' + itemLancamentos.cartao.slice(-4) %></span>
+							</dd>
+						</dl>
+					</div>
+
+					<table class="ui-table-lancamento">
+						<thead>
+							<tr>
+								<th class="bloco-23"></th>
+								<th class="bloco-1"></th>
+								<th class="bloco-23"></th>
+								<th class="bloco-23">US$</th>
+								<th class="bloco-23">R$</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+						<%
+							var cartaoElegivelBloqueio = AWBE.sessionStorage.getItem('meusCartoesAtual');
+							
+							var paramsFuncionalidadeCache = BradescoCartoesMobile.controllers.getParamsFuncionalidades(cartaoElegivelBloqueio);
+							
+							var funcionalidade = AWBE.sessionStorage.getItem(BradescoCartoesMobile.controllers.getFuncionalidadeKey(paramsFuncionalidadeCache));  
+
+
+
+							for(var j = 0; j < itemLancamentos.lancamentos.length; j++) {
+								var item = itemLancamentos.lancamentos[j];
+									var graficoObj = BradescoCartoesMobile.grafico[item.categoria] || BradescoCartoesMobile.grafico[0];
+									valorTotalLancamentos += parseFloat(item.valorReal);
+
+								var parcelaParam = item.parcelas;
+
+								if(!parcelaParam){
+									parcelaParam = '0';
+								}
+
+								var descLancamento;
+								if (item.dataLancamento == '-') {
+									descLancamento = item.descricaoLancamento;
+								} else {
+									descLancamento = ' '+item.dataLancamento+'<br>'+item.descricaoLancamento;
+								}
+							%>
+								<tr>
+									<th class="bloco-23" style="padding-top: 1em; text-align: center">
+										<span class="<%=graficoObj.classe2%>"></span>
+									</th>
+									<th class="bloco-1" style="padding-top: 1em; text-align: left">
+										<span class="txtHyphens"><%=descLancamento%></span>
+									</th>
+									<th class="align-valor bloco-23" style="padding-top: 1em; text-align: center"><span style=" white-space: nowrap;"><%=item.parcelas%></span></th>
+									<th class="align-valor bloco-23" style="padding-top: 0.8em"><span style=" white-space: nowrap;"><%=currency(item.valorDolar, false)%></span></th>
+									<th class="align-valor bloco-23" style="padding-top: 0.8em"><span style=" white-space: nowrap;"><%=currency(item.valorReal, false)%></span></th>
+
+									<%
+										if (funcionalidade.contestacao ==true && item.descricaoLancamento!='SALDO ANTERIOR'){
+									%>	
+
+									<th onclick="openPopUpContestar('item<%=i%>_<%=j%>','<%=item.dataLancamento%>','<%=item.descricaoLancamento%>','<%=parcelaParam%>','<%=item.valorDolar%>','<%=item.valorReal%>')" class="align-valor bloco-23" href="javascript:void(0)" id="item<%=i%>_<%=j%>">
+										<span class="icone-contestacao-lista"></span>
+									</th>
+
+									<% } else { %>
+
+									<th class="align-valor bloco-23">
+									</th>
+
+
+									<% } %>
+								</tr>
+							<% } %>
+						</tbody>
+						<tfoot>
+							<tr>
+								<th class="footer-texto">Total</th>
+								<th colspan="4" class="footer-valor">R$ <%=currency(valorTotalLancamentos, false)%></th>
+							</tr>
+						</tfoot>
+					</table>
+				<%
+						valorTotalLancamentosDependentes += valorTotalLancamentos;
+					}
+				}
+				%>
+				<!-- Lancamentos dos adicionais -->
+				<%
+				if (model.lancamentosAdicional.length > 0) {
+					for (var i = 0; i < model.lancamentosAdicional.length; i++) {
+						var itemLancamentos = model.lancamentosAdicional[i];
+						var valorTotalLancamentos = 0;
+				%>
+				<div class="dependentes">
+					<dl class="destaque-area">
+							<dt class="fnt-bold txt-1em color-white destaque-area"><%= itemLancamentos.nome %></dt>
+						<dd class="fnt-regular txt-09em color-white destaque-area">
+							<span style=" white-space: nowrap;"><%=parseInt(itemLancamentos.cartao).toString().slice(0, 4) + ' XXXX XXXX ' + itemLancamentos.cartao.slice(-4) %></span>
+						</dd>
+					</dl>
+				</div>
+				<table class="ui-table-lancamento">
+					<thead>
+						<tr>
+							<th class="bloco-23"></th>
+							<th class="bloco-1"></th>
+							<th class="bloco-23"></th>
+							<th class="bloco-23">US$</th>
+							<th class="bloco-23">R$</th>
+						</tr>
+					</thead>
+					<tbody>
+						<%
+							var cartaoElegivelBloqueio = AWBE.sessionStorage.getItem('meusCartoesAtual');
+							
+							var paramsFuncionalidadeCache = BradescoCartoesMobile.controllers.getParamsFuncionalidadesAdicional(cartaoElegivelBloqueio);
+							
+							var funcionalidadeAdicional = AWBE.sessionStorage.getItem(BradescoCartoesMobile.controllers.getFuncionalidadeKey(paramsFuncionalidadeCache));
+
+
+							for(var j = 0; j < itemLancamentos.lancamentos.length; j++) {
+								var item = itemLancamentos.lancamentos[j];
+								var graficoObj = BradescoCartoesMobile.grafico[item.categoria] || BradescoCartoesMobile.grafico[0];
+								valorTotalLancamentos += parseFloat(item.valorReal);
+
+								var descLancamento;
+								if (item.dataLancamento == '-') {
+									descLancamento = item.descricaoLancamento;
+								} else {
+									descLancamento = ' '+item.dataLancamento+'<br>'+item.descricaoLancamento;
+								}
+							%>
+							<tr>
+								<th class="bloco-23" style="padding-top: 1em; text-align: center">
+									<span class="<%=graficoObj.classe2%>"></span>
+								</th>
+								<th class="bloco-1" style="padding-top: 1em; text-align: left">
+									<span class="txtHyphens"><%=descLancamento%></span>
+								</th>
+								<th class="align-valor bloco-23" style="padding-top: 1em; text-align: center"><span style=" white-space: nowrap;"><%=item.parcelas%></span></th>
+								<th class="align-valor bloco-23" style="padding-top: 0.8em"><span style=" white-space: nowrap;"><%=currency(item.valorDolar, false)%></span></th>
+								<th class="align-valor bloco-23" style="padding-top: 0.8em"><span style=" white-space: nowrap;"><%=currency(item.valorReal, false)%></span></th>
+								<%
+									if (funcionalidadeAdicional.contestacao ==true && item.descricaoLancamento!='SALDO ANTERIOR'){
+								%>	
+									<th onclick="openPopUpContestar('itemAdicional<%=i%>_<%=j%>','<%=item.dataLancamento%>','<%=item.descricaoLancamento%>','<%=parcelaParam%>','<%=item.valorDolar%>','<%=item.valorReal%>')" class="align-valor bloco-23" href="javascript:void(0)" id="itemAdicional<%=i%>_<%=j%>">
+										<span class="icone-contestacao-lista"></span>
+									</th>
+
+								<% } else { %>
+									<th class="align-valor bloco-23">
+									</th>
+								<% } %>
+								</tr>
+							<% } %>
+					</tbody>
+					<tfoot>
+						<tr>
+								<th class="footer-texto">Total</th>
+							<th colspan="4" class="footer-valor">R$ <%=currency(valorTotalLancamentos, false)%></th>
+						</tr>
+					</tfoot>
+				</table>
+				<%
+						valorTotalLancamentosDependentes += valorTotalLancamentos;
+					}
+				}
+				%>
+			<div class="dependentes">
+				<dl class="destaque-area2">
+						<dt class="lancamento-total"><span>TOTAL</span> <% if (model.lancamentosTitular.length > 0 && model.lancamentosAdicional.length > 0) { %> TITULAR + ADICIONAL<% } %></dt>
+					<dd class="lancamento-total"><b>R$ <%=currency(valorTotalLancamentosDependentes, false)%></b></dd>
+			</dl>
+		</div>
+	<% } else { %>
+		<div class="fnt-regular" style="margin-top: 1%;">N&atilde;o h&aacute; lan&ccedil;amentos para este cart&atilde;o</div>
+	<% } %>
+	</div>
+	<% if(cartaoAtual.titularAdicional == 'T'){ %>
+	<div id="resumo-collapsible-extr" data-role="collapsible" data-iconpos="false" data-inset="false">
+		<h4>
+			<span class="colapsible-icon"></span>
+			<label class="colapsible-text">Resumo das despesas</label>
+		</h4>
+		<table class="ui-table-despesas">
+			<thead>
+				<tr>
+					<th class="bloco-1"></th>
+					<th class="bloco-23"></th>
+					<th class="bloco-23" style="width: 50px;">R$</th>
+				</tr>
+			</thead>
+			<tbody>
+					<%
+					for (var i = 0; i < model.resumoDespesas.length; i++) {
+						var item = model.resumoDespesas[i];
+					%>
+				<tr>
+					<th class="bloco-1"><%=item.descricao%></th>
+					<th class="bloco-23"></th>
+					<th class="align-valor"><%=currency(item.valor, false)%></th>
+				</tr>
+					<% } %>
+			</tbody>
+		</table>
+	</div>
+	<% } %>
+	
+	<!-- Mais op��es  -->
+	
+	<%
+		var paramsFuncionalidadeCache = BradescoCartoesMobile.controllers.getParamsFuncionalidades(cartaoAtual);
+		var funcionalidade = AWBE.sessionStorage.getItem(BradescoCartoesMobile.controllers.getFuncionalidadeKey(paramsFuncionalidadeCache));
+	%>
+
+	<div class="ui-content-maisopcoes">
+		<div>
+			<p class="maisopcoes-title">Outras op&ccedil;&otilde;es </p>
+		</div>
+		
+		<% if (funcionalidade.parcelasFuturas){ %>
+				<div>
+					<p class="colapsible-text">
+						<a href="#parcelasFuturas"  class="color-gray-darker"style="text-decoration: none; font-weight:normal;">
+							Confira as parcelas futuras
+						<span class="directaction-icon-extrato"></span></a>
+					</p>
+				</div>
+		<% } %>
+		
+		<div>
+			<p class="colapsible-text">
+				<a onclick="enviarExtratoPorEmail();" class="color-gray-darker" style="text-decoration: none; font-weight:normal;">Enviar lan&ccedil;amentos por e-mail
+				<span class="directaction-icon-extrato"></span></a>
+			</p>
+		</div>
+		<%
+			var taxasCartao = {};
+			taxasCartao.taxas = model.taxas;
+			taxasCartao.cetAnual = model.cetAnual;
+
+			AWBE.sessionStorage.setItem('taxasCartao', taxasCartao);
+		%>
+		<div>
+			<p class="colapsible-text">
+				<a href="#taxaseTarifas" class="color-gray-darker"  style="text-decoration: none; font-weight:normal;">
+					Taxas e tarifas
+				<span class="directaction-icon-extrato"></span></a>
+			</p>
+		</div>
+
+
+		<% if (model.statusAberto != 'A') { %>
+			<%	if (cartaoAtual.titularAdicional == 'T' && funcionalidade.pagamento && cartaoAtual.formaPagamento == 'F') { %>
+				<%= console.log(cartaoAtual)  %>
+					<div id="btn-pgto" style="display: <%=pagEnable%>">
+						<p class="colapsible-text">
+							<a href="#pagamento" class="color-gray-darker" style="text-decoration: none; font-weight:normal;">Ir para tela de pagamentos<span class="directaction-icon2"></span></a>
+						</p>
+					</div>
+			<% } %>
+		<% } %>
+	</div>
+	
+	<!-- volta ao topo -->
+	
+	<div class="voltar-topo">
+		<a class="voltar-topo" id="topo" href="#" onclick="$('#topo').scrollTop()">
+			<div style="overflow: hidden; margin-bottom: -1em;">
+				<div class="ui-block-a icone-voltar-topo"></div>
+				<div class="ui-block-b label-voltar-topo">Voltar ao topo</div>
+			</div>
+		</a>
+	</div>
+<%
+}
+%>
+
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/extrato/extrato.js"></script>

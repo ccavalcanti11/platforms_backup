@@ -1,0 +1,349 @@
+<div data-awbe-component="awbe-include" data-awbe-component-params="cabecalho"></div>
+<div data-awbe-component="awbe-include" data-awbe-component-params="menuOpcoesDeslogado"></div>
+
+<div class="page ui-content informacoes-cartao cadastro" data-role="content">
+	<form action="#informacoesCartaoValidation">
+		<input type="hidden" value="<%=model.tipo%>" id="tipo" data-awbe-bind="tipo"/>
+		<input type="hidden" value="perguntasPid" id="view" data-awbe-bind="view"/>
+		<input type="hidden" value="<%=params.cpf%>" id="cpf" data-awbe-bind="cpf"/>
+		<p class="fnt-book txt-1em color-gray-darker">Informe os dados do seu Cart&atilde;o de Cr&eacute;dito Bradesco para ter acesso a todos os servi&ccedil;os. O Aplicativo oferece alto n&iacute;vel de seguran&ccedil;a com criptografia.</p>
+		<div class="divAlertas">
+			<hr class="hr-margin-error">
+			<div class="icon-20"></div>
+			<p class="txt-08em fnt-book color-gray-lighter margin-left-28em">Verifique os campos destacados</p>
+	 	</div>
+		<hr class="hr-margin-error">
+
+		<label class="forms">N&uacute;mero <span id="labelFoto">ou foto</span> do Cart&atilde;o de Cr&eacute;dito</label>
+
+		<div class="ui-grid-a" style="width: 90%">
+			<div class="ui-block-a" style="width: 90%">
+				<input type="tel" name="numeroCartao" id="numeroCartao" data-awbe-bind="numeroCartao" data-awbe-for="informacoesCartaoValidation" maxlength="16" value="<%=params.numeroCartao%>"/>
+			</div>
+	   		<div class="ui-block-b" style="text-align: right; width: 10%;" id="cameraDiv">
+	   			<img src="css/lib/images/icons-svg/camera-cinza.svg" width="25px" style="vertical-align:-1.3em;" onclick="scanCard()" />
+	   		</div>
+		</div>
+		
+		<label class="forms">Validade do Cart&atilde;o</label>
+		
+		<div class="ui-grid-b">
+			<div class="ui-block-a">
+				<input type="tel" name="mes" id="mes" data-awbe-bind="mes" placeholder="M&ecirc;s (MM)" maxlength="2"  data-awbe-for="informacoesCartaoValidation" value="<%=params.mes%>"/>
+			</div>
+			<div class="ui-block-b margin-left-25em">
+				<div class="ui-block-c">
+					<input type="tel" name="ano" id="ano" data-awbe-bind="ano" placeholder="Ano (AA)"  maxlength="2" data-awbe-for="informacoesCartaoValidation" value="<%=params.ano%>"/>
+				</div>
+			</div>
+		</div>
+
+		<p class="fnt-book txt-1em color-gray-darker" style="line-height: 2em !important; vertical-align: middle; margin-bottom: 0;">
+			<span style="display: block; float: left;">C&oacute;digo Verificador (CVV).</span> 
+			<a class="icon-21" onclick="AWBE.util.openPopup('cvvInvalido')"></a>
+		</p>
+
+		<div class="ui-grid-b" style="clear:both">
+			<div class="ui-block-a">
+				<input type="tel" name="text_digitoCvv" id="digitoCvv" data-awbe-bind="digitoCvv"  data-awbe-for="informacoesCartaoValidation" maxlength="4" value="<%=params.digitoCvv%>"/>
+			</div>
+			<div class="ui-block-b"></div>
+			<div class="ui-block-c"></div>
+		</div>
+		
+		<input type="checkbox" id="checkCvv" data-awbe-bind="no_cvv" />
+       	<label for="checkCvv" class="ui-checkbox-geral">Meu cart&atilde;o n&atilde;o possui cvv</label>
+		
+		<label class="forms">Senha do cart&atilde;o</label>
+		<div class="ui-grid-b margin-bottom-17">
+			<div class="ui-block-a">
+				<input type="tel" class="input-password-numeric input-pass width-7em" pattern="[0-9]*" inputmode="numeric" name="senha" id="senhaInformacaoCartao"  data-awbe-bind="senhaInformacaoCartao" maxlength="6" data-awbe-for="*" oncopy="return false" oncut="return false" onpaste="return false"/>
+			</div>
+			<div class="ui-block-b"></div>
+			<div class="ui-block-c"></div>
+		</div>
+		<hr class="hr-margin-tb"/>
+		<div class="ui-grid-a">
+			<div class="ui-block-a">
+				<div class="disabledButton" id="divbotaoAdicionarCartoes">
+					<div class="ui-btn-arrow-blue-arrow"></div>
+					<div class="ui-btn-arrow-blue">
+		    			<a id="botaoSubmitInformacoesCartao">Continuar</a>
+		    		</div>
+		    	</div>
+		   		<div class="ui-block-b"></div>
+			</div>
+		</div>
+	</form>
+</div>
+
+
+<div data-awbe-component="popup" 
+ 	 data-awbe-component-option-theme="a"
+	 data-awbe-component-option-theme-modal="b"
+	 data-awbe-component-option-modal="true"
+	 data-awbe-component-popup-id="iniciarPerguntasPID">
+	<p class="texto-modal-normal">Para continuar, responda as perguntas de seguran&ccedil;a a seguir. Tenha em m&atilde;os seu RG e as informa&ccedil;&otilde;es do seu cart&atilde;o.</p>
+	<p class="texto-modal-normal">As perguntas t&ecirc;m como refer&ecirc;ncia o cart&atilde;o informado.</p>
+	<div class="align-botoes txt-caixaalta">	
+		<a href="#perguntasPid" data-rel="back" class="botao-modal-002">Continuar</a>
+	</div>
+</div>
+
+
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="cvvInvalido">
+	<p class="texto-modal-normal">Cart&otilde;es Visa, Master ou Elo.</p>
+	<img src="img/cartoes/cvv/cvv_invalido1.png"></img>
+	<p class="texto-modal-normal">Cart&otilde;es American Express</p>
+	<img src="img/cartoes/cvv/cvv_invalido2.png"></img>
+	<div class="align-botoes txt-caixaalta">	
+		<a href="#" data-rel="back" class="botao-modal-002">Fechar</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="tentarRedefinirSenha">
+	<p class="texto-modal-normal">Sua senha de acesso &eacute; a senha de 4 d&iacute;gitos, a mesma usada para acessar sua conta pelo Bradesco Internet Banking.</p>
+	<p class="texto-modal-normal">Voc&ecirc; pode definir uma nova senha pelo Internet Banking, Fone F&aacute;cil ou na sua ag&ecirc;ncia.</p>
+	<div class="align-botoes txt-caixaalta">	
+		<a href="#" data-rel="back" class="botao-modal-002">Tentar novamente</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="senhaIncorreta">
+	<p class="titulo-modal">Sua senha est&aacute; incorreta.</p>
+	<p class="texto-modal-normal">Voc&ecirc; tem mais <span class="texto-negrito-modal" id="tent"></span> de acesso. Ao atingir esse limite, seu acesso ser&aacute; bloqueado.</p>
+	<div class="align-botoes txt-caixaalta">	
+		<a href="#" data-rel="back" class="botao-modal-002">Tentar novamente</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="senhaBloqueada">
+	<p class="titulo-modal">Acesso Bloqueado</p>
+	<p class="texto-modal-normal">Por favor entre em contato com a Central de Relacionamento.</p>
+	<div class="align-botoes txt-caixaalta">	
+		<a href="#meusCartoes" data-rel="back" class="botao-modal-002">Fechar</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="dadosNEncontrados">
+	<p class="texto-modal-normal">Verifique o n&uacute;mero do cart&atilde;o informado e digite novamente.</p>
+	<div class="align-botoes txt-caixaalta">	
+		<a href="#" data-rel="back" class="botao-modal-002">Fechar</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="dadosNConferemValidation">
+	<p class="texto-modal-normal">Os dados informados n&atilde;o conferem.</p>
+	<div class="align-botoes txt-caixaalta">	
+		<a href="#" data-rel="back" class="botao-modal-002">Fechar</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="numeroCartaoRepetido">
+	<p class="texto-modal-normal">Os dados informados n&atilde;o conferem.</p>
+	<div class="align-botoes txt-caixaalta">	
+		<a href="#" data-rel="back" class="botao-modal-002">Fechar</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="numeroCartaoRepetidoCadastro">
+	<p class="texto-modal-normal">Verifique o n&uacute;mero do cart&atilde;o informado e digite novamente.</p>
+	<div class="align-botoes txt-caixaalta">	
+		<a href="#" data-rel="back" class="botao-modal-002">Fechar</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="dadosNConferem">
+	<p class="texto-modal-normal">Verifique os dados informados e digite novamente ou insira um n&uacute;mero de cart&atilde;o eleg&iacute;vel.</p>
+	<div class="align-botoes txt-caixaalta">	
+		<a href="#" data-rel="back" class="botao-modal-002">Fechar</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="dadosNConferemValidade">
+	<p class="texto-modal-normal">Verifique os dados informados e digite novamente ou insira um n&uacute;mero de cart&atilde;o eleg&iacute;vel.</p>
+	<div class="align-botoes txt-caixaalta">	
+		<a href="#" data-rel="back" class="botao-modal-002">Fechar</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="falhaCadastro">
+	<p class="texto-modal-normal">N&atilde;o foi poss&iacute;vel finalizar o seu cadastro. Favor entrar em contato com a Central de Relacionamento.</p>
+	<div class="align-botoes txt-caixaalta">	
+		<a href="#" data-rel="back" class="botao-modal-002">Fechar</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="alertaInformacao">
+	<p class="texto-modal-normal" id="alerta-mensagem"></p>
+	<div class="align-botoes txt-caixaalta">	
+		<a href="#" data-rel="back" class="botao-modal-002" id="hrefAlerInfo">Fechar</a>
+	</div>
+</div>
+<!-- POPUP DE MENSAGEM GENERICA -->
+ <div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="popup-generico">
+	<p class="titulo-modal" id="titulo-modal-personalizado"></p>
+	<p class="texto-modal-normal" id="mensagem-personalizada"></p>
+ 		<div class="align-botoes">	
+ 			<a href="#" data-rel="back"  class="botao-modal-002">FECHAR</a>
+ 		</div>
+</div>
+
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="cartaoBloqueado">
+	<p class="titulo-modal">Acesso Bloqueado</p>
+    <p class="texto-modal-normal">A situa&ccedil;&atilde;o desse cart&atilde;o n&atilde;o permite o cadastro no aplicativo. Digite outro n&uacute;mero de cart&atilde;o ou entre em contato com a Central de Relacionamento.</p>
+	<div class="align-botoes">	
+		<a href="#meusCartoes" data-rel="back" class="botao-modal-002">Fechar</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup"
+	 data-awbe-component-option-theme="a"
+	 data-awbe-component-option-theme-modal="b"
+	 data-awbe-component-option-modal="true"
+	 data-awbe-component-popup-id="cpfCadastrado">
+	<p class="texto-modal-normal">CPF j&aacute; cadastrado.</p>
+	<p class="texto-modal-normal">Voc&ecirc; ser&aacute; redirecionado para fazer o login.</p>
+	<div class="align-botoes txt-caixaalta">
+		<a href="#" class="botao-modal-002" id="okCpfExistente">OK</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="cadastroBloquado">
+	<p class="texto-modal-normal">O cadastro ao aplicativo est&aacute; temporariamente  indispon&iacute;vel. Tente mais tarde.</p>
+	<div class="align-botoes txt-caixaalta">	
+		<a href="#meusCartoes" data-rel="back" class="botao-modal-002">Ok</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="bloqueioE">
+	<p class="titulo-modal">Acesso Bloqueado</p>
+    <p class="texto-modal-normal">A situa&ccedil;&atilde;o desse cart&atilde;o n&atilde;o permite o cadastro no aplicativo. Digite outro n&uacute;mero de cart&atilde;o ou entre em contato com a Central de Relacionamento.</p>
+	<div class="align-botoes txt-caixaalta">	
+		<a href="#" data-rel="back" class="botao-modal-002">Fechar</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="bloqueioTodos">
+	<p class="titulo-modal">Acesso Bloqueado</p>
+	<p class="texto-modal-normal">A situa&ccedil;&atilde;o dos seus cart&otilde;es n&atilde;o permite o cadastro ou login no aplicativo. Por favor, entre em contato com a Central de Atendimento.</p>
+	<div class="align-botoes txt-caixaalta">	
+		<a href="#" data-rel="back" class="botao-modal-002">Fechar</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="bloqueioTodos">
+	<p class="titulo-modal">Acesso Bloqueado</p>
+	<p class="texto-modal-normal">A situa&ccedil;&atilde;o dos seus cart&otilde;es n&atilde;o permite o cadastro ou login no aplicativo. Por favor, entre em contato com a Central de Atendimento.</p>
+	<div class="align-botoes txt-caixaalta">	
+		<a href="#" data-rel="back" class="botao-modal-002">Fechar</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+    data-awbe-component-popup-id="bloqueioTodos">
+    <p class="titulo-modal">Acesso Bloqueado</p>
+	<p class="texto-modal-normal">A situa&ccedil;&atilde;o dos seus cart&otilde;es n&atilde;o permite o cadastro ou login no aplicativo. Por favor, entre em contato com a Central de Atendimento.</p>
+    <div class="align-botoes ">    
+        <a href="#" data-rel="back" class="botao-modal-002">Fechar</a>
+    </div>
+</div>
+
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="informacaoSeguranca">
+	<p class="texto-modal-normal" style="text-align: left;">Nos passos a seguir solicitaremos dados para garantir que somente voc&ecirc; tenha acesso &agrave;s informa&ccedil;&otilde;es do(s) seu(s) cart&atilde;o(&otilde;es). O App possui alto n&iacute;vel de seguran&ccedil;a, seus dados e suas informa&ccedil;&otilde;es est&atilde;o protegidos.</p>
+	<div class="align-botoes txt-caixaalta">	
+		<a href="#" data-rel="back" class="botao-modal-002">OK</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="popupNegouCamera">
+	<p class="texto-modal-normal" style="text-align: center;">Para possibilitar a digitaliza&ccedil;&atilde;o de seu cart&atilde;o futuramente acesse no seu celular as op&ccedil;&otilde;es Configura&ccedil;&otilde;es - Aplicativos - Bradesco Cart&otilde;es - Permiss&otilde;es e permita o acesso &agrave; c&acirc;mera.</p>
+	<div class="align-botoes txt-caixaalta">	
+		<a href="#" data-rel="back" class="botao-modal-002">OK</a>
+	</div>
+</div>
+
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/cartoes/cadastro/informacoesCartao.js"></script>

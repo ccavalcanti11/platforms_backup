@@ -1,0 +1,23 @@
+<div id="header-hide-arrow" data-role="header" data-position="fixed" data-tap-toggle="false">
+	<a id="btnLeftPanel" href="#permissoes" class="btn-back"></a>
+	<h1>Notificações</h1>
+</div>
+
+<% 
+	var user = AWBE.sessionStorage.getItem('user');
+	if(AWBE.localStorage.getItem('isNCLegado_' + user.cpf) == "true"){ %>
+	<div data-awbe-component="awbe-include" data-awbe-component-params="menuOpcoesLogadoNCLegado"></div>
+<% }else{ %>
+	<div data-awbe-component="awbe-include" data-awbe-component-params="menuOpcoesLogado"></div>
+<% }%>
+
+<div class="ui-content page" data-role="content">
+
+	<% if (AWBE.sessionStorage.getItem("hasCartoesCarrosselFauturaDigital") == true){ %>
+		<div data-awbe-component="carouselNotificacoes" data-awbe-target-element="carouselTarget" data-awbe-target-view="notificacoes/personalizarNotificacoes"></div>
+        <div id="carouselTarget"></div>
+        <div id="carouselTarget-popup"></div>
+	<% } else { %>
+		<p class="txt-1em color-gray-darker" style="margin: 0;">Voc&ecirc; n&atilde;o possui cart&otilde;es associados a este servi&ccedil;o.</p>
+	<% } %>
+</div>

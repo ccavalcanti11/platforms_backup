@@ -1,0 +1,56 @@
+[data-mergebtn] {
+    position: relative;
+    width: 100%;
+}
+.mergebtn-icon:after {
+    content: "";
+    background-image: url("../icons/icon-08.svg");
+    background-repeat: no-repeat;
+    background-size: contain;
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    top: 10px;
+    right: 10px;
+}
+.mergebtn-icon.mergebtn-android:after {
+    right: 0;
+    top: 0;
+}
+.mergebtn-icon.mergebtn-android {
+    transform: translateY(-50%);
+    position: absolute;
+    height: 25px;
+    width: 25px;
+    right: 0;
+    top: 50%;
+}
+.mergebtn-icon.open:after {
+    transform: scaleX(-1);
+}
+[data-mergebtn] a {
+    display: none;
+}
+[data-mergebtn] .buttons a {
+    display: block;
+}
+[data-mergebtn] .buttons {
+    position: absolute;
+    right: 0;
+}
+[data-mergebtn] .buttons a {
+    background: #d9dce0;
+    padding: 15px 23px;
+    position: relative;
+    float: left;
+    font-weight: normal;
+    color: #fff;
+    font-family: NewJuneBook;
+}
+[data-mergebtn] .item-swipe {
+    transform: translate3d(0px, 0px, 0px);
+    background: #f3f6fb;
+    padding: 15px 0;
+    height: 100%;
+    z-index: 1;
+}

@@ -1,0 +1,95 @@
+<div data-awbe-component="awbe-include" data-awbe-component-params="cabecalhoVoltarPagina"></div>
+
+
+<div data-role="content">
+    <div class="ui-content aviso-viagem cartao-adicional-bg color-gray-darker">
+        <h2>RESUMO</h2>
+        <div class="fnt-regular">Cart&atilde;o adicional:</div>
+        <div class="fnt-medium mb-cartao-adicional "><%=params.tipoCartaoAdd %></div>
+
+        <div class="fnt-regular">Anuidade</div>
+        <div class="fnt-medium mb-cartao-adicional ">
+            <%=params.anuid %><br />
+            <%=params.infoDescAnuid %>
+        </div>
+
+        <div class="fnt-regular">Limite compartilhado:</div>
+        <div class="fnt-medium mb-cartao-adicional">R$ <%=params.limComp %>,00</div>
+    
+        <hr class="line">
+    
+        <div class="fnt-regular">Nome completo:</div>
+        <div class="fnt-medium mb-cartao-adicional"><%=params.nomeCompleto %></div>
+    
+        <div class="fnt-regular ">CPF:</div>
+        <div class="fnt-medium mb-cartao-adicional"><%=params.cpf %></div>
+    
+        <div class="fnt-regular">Data de nascimento:</div>
+        <div class="fnt-medium mb-cartao-adicional"><%=params.dataNasc %></div>
+    
+        <div class="fnt-regular">Sexo:</div>
+        <div class="fnt-medium mb-cartao-adicional"><%=params.sexo %></div>
+    
+        <div class="fnt-regular">Nome impresso no cartão:</div>
+        <div class="fnt-medium mb-cartao-adicional"><%=params.nomeImpresso %></div>
+    
+        <hr class="line">
+        
+        <h2>OBSERVA&Ccedil;&Atilde;O</h2>
+        <div class="smalltxt">O cart&atilde;o ser&aacute; entregue no endere&ccedil;o do titular.</div>
+        <br>
+        <div class="fnt-regular">O valor da anuidade apresentado corresponde a data desta solicita&ccedil;&atilde;o.</div>
+    </div>
+</div>
+
+<div id="solicitarAdicionais"></div>
+<script>
+    window.injecaoActionName = '#dispositivoSegurancaValidationSolicitarCartaoAdicional';
+    window.injecaoTargetElement = 'solicitarAdicionais';
+</script>
+    
+<div data-awbe-component="popup" 
+            data-awbe-component-option-theme="a"
+            data-awbe-component-option-theme-modal="b"
+            data-awbe-component-option-modal="true"
+            data-awbe-component-popup-id="popupSucessoSolicitarCartaoAdc">
+    <p class="titulo-modal">Solicita&ccedil;&atilde;o realizada com sucesso</p>
+    <p class="texto-modal-normal">O seu cart&atilde;o ser&aacute; enviado em at&eacute; 15 dias.</p>
+    <div class="align-botoes txt-caixaalta">    
+        <a href="#cartoesAdicionais" data-rel="back" class="botao-modal-002" >OK</a>
+    </div>
+</div>
+
+<div data-awbe-component="popup" 
+            data-awbe-component-option-theme="a"
+            data-awbe-component-option-theme-modal="b"
+            data-awbe-component-option-modal="true"
+            data-awbe-component-popup-id="popupErrorServicoIndisponivel">
+    <p class="titulo-modal">Indispon&iacute;vel temporariamente</p>
+    <p class="texto-modal-normal">Tente novamente mais tarde.</p>
+    <div class="align-botoes txt-caixaalta">    
+        <a href="#cartoesAdicionais" data-rel="back" class="botao-modal-002">Fechar</a>
+    </div>
+</div>
+
+<div data-awbe-component="popup" 
+            data-awbe-component-option-theme="a"
+            data-awbe-component-option-theme-modal="b"
+            data-awbe-component-option-modal="true"
+            data-awbe-component-popup-id="popupErrorEnvioSolicitarCartaoAdc">
+    <p class="titulo-modal">Erro no envio</p>
+    <p class="texto-modal-normal">N&atilde;o foi poss&iacute;vel concluir. Por favor, entrar em contato com a Central de Atendimento.</p>
+    <div class="align-botoes txt-caixaalta">    
+        <a href="#cartoesAdicionais" data-rel="back" class="botao-modal-002">Fechar</a>
+    </div>
+</div>
+
+<script type="text/javascript">
+    document.addEventListener("deviceready", function() {
+        EventAppsFlyerGA('SolicCartaoAdicional_Resumo');
+    }, false);
+</script>
+
+<link rel="stylesheet" type="text/css" href="css/paginas/cartoesAdicionais.css" />
+<script type="text/javascript" src="js/util/KeyboardIOS.js" />
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/smic/injecaoDispSeguranca.js"></script>

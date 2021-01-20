@@ -1,0 +1,200 @@
+#escolhaAppIntegrador .icon-bradesco-img {
+    background-image: url("../../../../css/icons/ico-bradesco.svg");
+}
+
+#escolhaAppIntegrador .icon-bradesco-prime-img {
+    background-image: url("../../../../css/icons/ico-bradesco-prime.svg");
+}
+
+#escolhaAppIntegrador .icon-bradesco-private-img {
+    background-image: url("../../../../css/icons/ico-bradesco-private.svg");
+}
+
+#escolhaAppIntegrador .icon-bradesco-exclusive-img {
+    background-image: url("../../../../css/icons/ico-bradesco-exclusive.svg");
+}
+
+#escolhaAppIntegrador .icon-alterar-smic {
+    background-image: url("../../../../css/icons/icon-174.svg");
+    float: right;
+    height: 0.9em;
+    margin-left: 0.5em;
+    margin-right: 1em;
+    width: 0.9em;
+}
+
+#escolhaAppIntegrador .itemAppsInstalados-img {
+    text-align: center;
+    margin: 0 -1em -0.5em;
+    border-top: 1px solid #c6c6c6;
+    display: flex;
+    margin-bottom: 0 !important;
+}
+
+#escolhaAppIntegrador .itemAppsInstalados-img {
+    border-top: 1px solid #c6c6c6;
+    display: flex;
+    margin-bottom: 0px !important;
+    margin: 0em -1em -.5em;
+    text-align: center;
+}
+
+#escolhaAppIntegrador .icon-bradesco-appsSmic {
+    background-repeat: no-repeat;
+    float: left;
+    margin-bottom: 0.5em;
+    margin-left: 1em;
+    margin-top: 0.5em;
+    padding: 1em;
+}
+
+#escolhaAppIntegrador .icon-bradesco-text {
+    float: right;
+    font-family: NewJuneBook;
+    margin-left: 1em;
+    margin-top: 0.9em;
+}
+
+#escolhaAppIntegrador .selecao-smic {
+    background-image: url("../../../../css/icons/icon-23.svg");
+    background-repeat: no-repeat;
+    position: absolute;
+    background-size: 1em;
+    margin-top: 1em;
+    padding: 0.8em;
+    right: 10px;
+}
+
+#escolhaAppIntegrador .selecao-smic-cartaoVirtual {
+    margin-top: -11.2em;
+}
+
+#botaoCapturarChave .capturarChaveLabel {
+    display: block;
+    float: left;
+    font-family: NewJuneMedium;
+    line-height: 1.15em;
+    margin-top: 0.1em;
+}
+
+#botaoCapturarChave .capturarChaveLabel a {
+    color: #2165A1;
+    font-weight: normal;
+}
+
+#botaoCapturarChave .capturarChaveSpan {
+    display: block;
+    position: static;
+    float: left;
+    height: 2em;
+    margin-right: 2.3em;
+    margin-top: -0.1em;
+}
+
+.btnTutorial{
+    bottom: 31.6%;
+    left: 35vw;
+    position: absolute;
+}
+
+.btnTutorialEntendi{
+    bottom: 35%;
+    left: 35vw;
+    position: absolute;
+}
+
+.btnTutorialAbrir{
+    bottom: 13.5em; 
+    left: 7.5em; 
+    position: absolute;
+}
+
+.tutorial-mtoken{
+    display: none; 
+    z-index: 999999; 
+    position: fixed;
+}
+
+.img-dispositivo-seguranca{
+    margin: 0 !important; 
+    width: 100%; 
+    height: 100%;
+}
+
+.tutorial-container img {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    margin-left: 2%;
+    margin-right: 2%;
+}
+
+div.tutorial-container {
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    z-index: 1200;
+}
+
+.tutorial-container-content{
+    width: 100%; 
+    height: 100%;
+}
+
+.btnFecharCarrossel{
+    left: 80%;
+    width: 2.5em;
+}
+
+.btnConfirmacaoMtoken {
+	color:#FFF;
+	margin: -1px !important;
+	font-family: NewJuneBook;
+	font-size: 0.8em;
+	font-weight: normal;
+	text-decoration: none;
+    text-shadow: none;
+    padding-left: 2.5em; 
+    padding-right: 2.5em;
+}
+
+.btnConfirmacaoMtokenAbrir {
+	color:#FFF;
+	margin: -1px !important;
+	font-family: NewJuneBook;
+	font-size: 0.8em;
+	font-weight: normal;
+	text-decoration: none;
+    text-shadow: none;
+    padding-left: 3em; 
+    padding-right: 3em;
+}
+#container_dispSeguranca #botaoAlterarApp{
+    width: 64px;
+    float: right;
+    line-height: 12px;
+    margin: 19px 0 0 0;
+}
+#container_dispSeguranca #botaoAlterarApp > span{
+    font-family: NewJuneBook;
+    font-size: .8rem;
+}
+#container_dispSeguranca .capturarChaveLabel{
+    margin: 0;
+    padding: 0;
+}
+#container_dispSeguranca .capturarChaveSpan{
+    margin: 4px 5px 0 0 !important;
+    padding: 0;
+    position: relative;
+    width: 30px;
+}
+#container_dispSeguranca  span.icon-obterChave:before{
+    padding: 0px;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+}

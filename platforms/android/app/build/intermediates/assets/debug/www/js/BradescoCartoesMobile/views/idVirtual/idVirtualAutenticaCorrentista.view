@@ -1,0 +1,68 @@
+<div data-awbe-component="awbe-include" data-awbe-component-params="cabecalhoVoltarPagina"></div>
+
+<% 
+	var user = AWBE.sessionStorage.getItem('user');
+	if(AWBE.localStorage.getItem('isNCLegado_' + user.cpf) == "true"){ %>
+	<div data-awbe-component="awbe-include" data-awbe-component-params="menuOpcoesLogadoNCLegado"></div>
+<% }else{ %>
+	<div data-awbe-component="awbe-include" data-awbe-component-params="menuOpcoesLogado"></div>
+<% }
+		var usuarCorrente = AWBE.sessionStorage.getItem('user');
+	%>
+	<div  class = "ui-content idVirtual">
+	<p class="texto-modal-normal">Ag&ecirc;ncia: <b><%=usuarCorrente.agencia%></b></p>
+	<p class="texto-modal-normal">Conta Corrente: <b><%=usuarCorrente.contaEDigito%></b></p>
+	<p class="fnt-regular color-gray-darker">Digite abaixo a chave num&eacute;rica para cadastrar este dispositivo como aparelho de acesso.</p>
+
+	<div>
+		<form action="#idVirtualDispositivoSegurancaValidation"
+			id="formDispositivoSeguranca">
+			<div data-awbe-component="dispositivoSeguranca"
+				data-awbe-target-element="dispositivoSegurancaTarget"
+				data-awbe-target-view="dispositivoSeguranca/dispositivoSeguranca" />
+			<div id="dispositivoSegurancaTarget" />
+			<div class="ui-grid-a">
+				<div id="divBotaoVoltarDispositivo" class="ui-block-a"></div>
+				<div id="divBotaoConfirmaDispositivo"
+					class="ui-block-b disabledButton">
+					<div>
+						<div class="ui-btn-arrow-blue">
+							<a id='blockButton'>Confirmar</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+
+</div>
+
+<div data-awbe-component="popup"
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="vinculoComSucesso">
+	<p class="texto-modal-normal">Pronto! V&iacute;nculo realizado com sucesso.</p>
+	<div class="align-botoes">
+		<a id="btnOK" data-rel="back" class="botao-modal-002">OK</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup" data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="dispositivoInexistente">
+	<p class="titulo-modal">Dispositivo Inexistente</p>
+	<p class="texto-modal-normal">Ser&aacute; necess&aacute;rio
+		atualizar seu dispositivo de seguran&ccedil;a para acessar esse
+		aplicativo.</p>
+	<p class="texto-modal-normal">Por favor, entre em contato com sua
+		ag&ecirc;ncia ou Central de Relacionamento.</p>
+	<div class="align-botoes txt-caixaalta">
+		<a id="dispositivoInexistenteClose" data-rel="back"
+			class="botao-modal-002">Voltar</a> <a href="#meusCartoes"
+			data-rel="back" class="botao-modal-002">Ok</a>
+	</div>
+</div>
+
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/idVirtual/idVirtual.js" />

@@ -1,0 +1,27 @@
+<div class="listview-swipe-senhaCartao">
+	<%
+		var senha = responseSenhas.senhaCartao ? responseSenhas.senhaCartao : responseSenhas.senha;
+	%>
+	<ul data-role="listview">
+		<li data-icon="false">
+			<div class="buttons" id="pass-wrapper">
+				<% if(isTitular){%>
+					<a href="javascript:void(0)" id="pass" contextmenu="false"><%=senha%></a>
+				<%} else{%>
+					<a href="javascript:void(0)" id="pass" contextmenu="false"><%=responseSenhas.senhaCartaoAdicionalList[i].senhaCartao%></a>
+				<% }%> 
+			</div>
+
+			<div class="view" id="senhaCartaoSwipe">
+					<% if(isTitular){%>
+						<a href="javascript:void(0)" id="0"> Visualizar senha </a>
+					<%} else{%>
+						<a href="javascript:void(0)" id="0"><%=responseSenhas.senhaCartaoAdicionalList[i].nmEmbossoCartao%></a>
+					<% }%>								
+				<a href="javascript:void(0)" id="1"
+					class="icon-listview-comum swipe-arrows" title="toque duas vezes para exibir a senha"></a>
+			</div>
+		</li>
+	</ul>
+</div>
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/senhaCartao/senhaCartaoSlider.js" ></script>

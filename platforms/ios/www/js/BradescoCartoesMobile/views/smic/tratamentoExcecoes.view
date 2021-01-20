@@ -1,0 +1,34 @@
+<!-- POP-UP ERRO AO CAPTURAR CHAVE-->
+<div data-awbe-component="popup" data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="popupErroCapturarChave">
+	<p class="titulo-modal">Erro ao Capturar Chave.</p>
+	<div class="align-botoes txt-caixaalta">
+		<a class="botao-modal-002" data-rel="back">OK</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup" data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="popupErroDeComunicacao">
+	<p class="titulo-modal">Erro</p>
+	<p class="texto-modal-normal">Houve uma falha na
+		comunica&ccedil;&atilde;o entre os aplicativos. Por favor, tente
+		novamente.</p>
+	<div class="align-botoes">
+		<a class="botao-modal-002" data-rel="back">Fechar</a>
+	</div>
+</div>
+
+<!-- POP-UP NOVA CHAVE DE SEGURANCA-->
+<div data-awbe-component="popup" data-awbe-component-option-theme="a" data-awbe-component-option-theme-modal="b"
+    data-awbe-component-option-modal="true" data-awbe-component-popup-id="popupNovaChaveSeguranca">
+    <p class="titulo-modal">Nova chave de seguran&ccedil;a</p>
+    <p class="texto-modal-normal">&Eacute; preciso autorizar a nova
+        chave de seguran&ccedil;a no aplicativo do Bradesco Cart&otilde;es.</p>
+    <div class="align-botoes">
+        <a class="botao-modal-002" data-rel="back">OK</a>
+    </div>
+</div>

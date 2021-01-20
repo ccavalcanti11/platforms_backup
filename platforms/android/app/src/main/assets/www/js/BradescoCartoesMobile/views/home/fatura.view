@@ -1,0 +1,404 @@
+<link rel="stylesheet" type="text/css" href="js/BradescoCartoesMobile/views/cartoes/cadastro/cadastro.css"/>
+<!-- BLOCO COM LIMITE E EXTRATO DA HOME -->
+<%
+   /* Adicionado a chamada do mostrarFuncionalidadesAtivas antes do makeCarousel */
+   BradescoCartoesMobile.controllers.mostrarFuncionalidadesAtivas();
+   if(model.cartao.mostrarExtrato || model.cartao.mostrarFaturaDigital || model.cartao.mostrarLimite){
+   		if (!model.cartao.bloqueado) { %>
+  <!-- BLOCO COM POPUP SE FATURA FECHADA  -->
+
+  	<div id="targetFaturaFechada"></div>
+  	<div id="targetDerivaAprovado" class="ui-box-card-deriva">
+  		<div id="popupDerivaAprovado">
+  			<span class="btn-fechar-fatura" onclick="BradescoCartoesMobile.components.popularAppsFlyerGa('FECHACARDFINALCAD'); javascript:closeDivDerivaAprovado()"></span>
+				<p class="fnt-book color-gray-darker" style="margin-bottom: 18px;margin-top: 0;">An&aacute;lise de cadastro realizada!</p>
+				<p class="txt-08em fnt-book color-gray-darker">Est&aacute; tudo certo com os seus dados. Finalize o cadastro e tenha um aplicativo completo. Falta pouco.</p>
+				<div class="ui-grid-a" >
+					<div class="ui-block-a" style="float: right; padding-right: 7px;">
+						<!-- <div class="disabledButton" id="botao-submit-contato"> -->
+							<div class="ui-btn-arrow-blue-arrow"></div>
+							<div class="ui-btn-arrow-blue" style="width:93%; padding: .59em 0em .59em 1em;" onclick="BradescoCartoesMobile.components.popularAppsFlyerGa('FINALIZACADCARD'); atualizarCadastro();">
+						    	<a id="botaoSubmit">Continuar</a>
+						    </div>
+						<!-- </div> -->
+					</div>
+					<div class="ui-block-b"></div>
+				</div>
+		</div>
+  	</div>
+  	<div id="targetDerivaRecusado" class="ui-box-card-deriva">
+  		<div id="popupDerivaRecusado">
+  			<span class="btn-fechar-fatura" onclick="BradescoCartoesMobile.components.popularAppsFlyerGa('FECHACARDFINALCAD'); javascript:closeDivDerivaRecusado()"></span>
+				<p class="txt-10em fnt-book color-gray-darker" style="margin-bottom: 18px;margin-top: 0;">An&aacute;lise de cadastro realizada!</p>
+				<div class="ui-grid-a" >
+					<div class="ui-block-a" style="float: right; padding-right: 7px;">
+						<!-- <div class="disabledButton" id="botao-submit-contato"> -->
+							<div class="ui-btn-arrow-blue-arrow"></div>
+							<div class="ui-btn-arrow-blue" style="width:93%; padding: .59em 0em .59em 1em;" onclick="atualizarCadastroFechar();">
+						    	<a id="botaoSubmit">Saiba mais</a>
+						    </div>
+						<!-- </div> -->
+					</div>
+					<div class="ui-block-b"></div>
+				</div>
+		</div>
+  	</div>
+  	<div id="targetCadastroPendente" style="display:none" class="ui-box-card-deriva">
+  		<div id="popupCadastroPendente">
+  			<span class="btn-fechar-fatura" onclick="BradescoCartoesMobile.components.popularAppsFlyerGa('FECHACARDFINALCAD'); javascript:closeDivCadastroPendente()"></span>
+				<p class="fnt-book color-gray-darker" style="margin-bottom: 18px;margin-top: 0;">Cadastro pendente</p>
+				<div class="barraProgressoFundo">
+					<div class="barraProgresso"></div>
+				</div>
+				<p class="txt-08em fnt-book color-gray-darker">Tenha um aplicativo completo. Adicione seus dados pessoais e finalize o cadastro.</p>
+				<div class="ui-grid-a" >
+					<div class="ui-block-a" style="float: right; padding-right: 7px;">
+						<!-- <div class="disabledButton" id="botao-submit-contato"> -->
+							<div class="ui-btn-arrow-blue-arrow"></div>
+							<div class="ui-btn-arrow-blue" style="width:93%; padding: .59em 0em .59em 1em;" onclick="BradescoCartoesMobile.components.popularAppsFlyerGa('FINALIZACADCARD'); atualizarCadastro();">
+						    	<a id="botaoSubmit">Finalizar</a>
+						    </div>
+						<!-- </div> -->
+					</div>
+					<div class="ui-block-b"></div>
+				</div>
+		</div>
+  	</div>	
+<% 
+	if(model.cartao.formaPagamento == undefined || model.cartao.formaPagamento != "D"){
+%>  
+  <!-- BLOCO COM POPUP PROMOCIONAL FATURA DIGITAL -->
+  <div data-awbe-component="cardFaturaDigital" data-awbe-target-element="targetFaturaDigtal"></div>
+  <div id="targetFaturaDigtal"></div>
+  <div id="targetHabilitarFaturaDigital"></div>
+<% 
+	}
+%>
+
+  	<div id=corpoFatura>
+	  	<div data-role="collapsible" data-iconpos="true" data-inset="false" id="limite-collapsible">
+		    <h4>
+		      <span class="colapsible-icon"></span>
+		      <div id="goLimites" class="go-limite-extrato">
+		        <span class="ver-mais-icon"></span>
+		      </div>
+		      <label class="colapsible-text">Limites</label>
+		    </h4>
+	    <!--BLOCO INFORMACOES DE LIMITE -->
+		    <div id="limiteTarget">
+			      <div class="ui-noload">
+			        <!-- <img src="img/loader.gif" /> -->
+			      </div>
+		    </div>
+		</div>
+	
+
+	<div data-awbe-component="popup"
+		 data-awbe-component-option-theme="a"
+		 data-awbe-component-option-theme-modal="b"
+		 data-awbe-component-option-modal="true"
+		 data-awbe-component-popup-id="popupErroConexao">
+		 <p class="titulo-normal">ERRO</p>
+		 <p class="texto-modal-normal">Sem conex&atilde;o. Verifique a rede.</p>
+		 <div class="align-botoes-2">
+			<a id="erroBloqueioClose" data-rel="back" class="botao-modal-003" style="width: 100%">Fechar</a>
+		 </div>
+	</div>
+
+    <% 
+	   		var cartaoElegivelBloqueio = AWBE.sessionStorage.getItem('meusCartoesAtual');
+			var paramsFuncionalidadeCache = BradescoCartoesMobile.controllers.getParamsFuncionalidades(cartaoElegivelBloqueio);
+			var funcionalidadeAdicional = AWBE.sessionStorage.getItem(BradescoCartoesMobile.controllers.getFuncionalidadeKey(paramsFuncionalidadeCache));
+			if (funcionalidadeAdicional.comprasRealTime == true){
+	   	%>
+    <div data-role="collapsible" data-iconpos="true" data-inset="false" id="extrato-collapsible">
+	    <h4>
+	      
+	      <span class="colapsible-icon"></span>
+	    
+	      <div id="goExtrato" class="go-limite-extrato">
+	        <span class="ver-mais-icon"></span>
+	      </div>
+	      <label class="colapsible-text">Extrato</label>
+	    </h4>
+	    <!--BLOCO INFORMACOES DE EXTRATO -->
+	    <div id="extratoTarget">
+	      <div class="ui-noload">
+	        <!-- <img src="img/loader.gif" /> -->
+	      </div>
+	    </div>
+	 </div>	  
+	 <% }  else {%>
+	<div  class="ui-collapsible ui-collapsible-themed-content ui-collapsible-collapsed" id="extrato-collapsible">
+		<h4 class="ui-collapsible-heading ui-collapsible-heading-collapsed">
+			<a class="ui-collapsible-heading-toggle ui-btn ui-icon-plus ui-btn-icon-true ui-btn-inherit">
+		       <div id="goExtrato" class="go-limite-extrato">
+	        		<span class="ver-mais-icon"></span>
+	      		</div>
+		      <label class="colapsible-text" style="margin-left: 2.15em;">Extrato</label>
+		    </a>
+		</h4>
+	</div>
+	<% }
+	} else {
+		var paramsFuncionalidadeCache = BradescoCartoesMobile.controllers.getParamsFuncionalidades(model.cartao);
+		var funcionalidade = AWBE.sessionStorage.getItem(BradescoCartoesMobile.controllers.getFuncionalidadeKey(paramsFuncionalidadeCache));
+		var mostrarMenuCadastroCompleto = BradescoCartoesMobile.components.verificarCadastroCompleto();
+		var isTargetDerivaClosed = AWBE.sessionStorage.getItem('isTargetDerivaClosed'); 
+		var cpf = AWBE.sessionStorage.getItem('user').cpf;
+		var isCadastroSimplificado = AWBE.localStorage.getItem('isCadastroSimplificado_'+cpf);
+		 if(model.cartao.codigoSituacaoCartao == "XW" && mostrarMenuCadastroCompleto && isTargetDerivaClosed != "true" && isCadastroSimplificado == "true"){ %>
+			 	  	<div id="targetCadastroPendente" style="display:none" class="ui-box-card-deriva">
+  						<div id="popupCadastroPendente">
+  							<span class="btn-fechar-fatura" onclick="javascript:closeDivCadastroPendente()"></span>
+							<p class="fnt-book color-gray-darker" style="margin-bottom: 18px;margin-top: 0;">Cadastro pendente</p>
+							<div class="barraProgressoFundo">
+								<div class="barraProgresso"></div>
+							</div>
+							<p class="txt-08em fnt-book color-gray-darker">Tenha um aplicativo completo. Adicione seus dados pessoais e finalize o cadastro.</p>
+							<div class="ui-grid-a" >
+								<div class="ui-block-a" style="float: right; padding-right: 7px;">
+									<!-- <div class="disabledButton" id="botao-submit-contato"> -->
+									<div class="ui-btn-arrow-blue-arrow"></div>
+										<div class="ui-btn-arrow-blue" style="width:93%; padding: .59em 0em .59em 1em;" onclick="atualizarCadastro();">
+						    				<a id="botaoSubmit">Finalizar</a>
+						    			</div>
+									<!-- </div> -->
+								</div>
+								<div class="ui-block-b"></div>
+							</div>
+						</div>
+  					</div>
+  					<div class="ui-blocked-card">
+				<div class="ui-blocked-card-titulo">Este cart&atilde;o est&aacute; bloqueado</div>
+				<p>
+					Todos os cart&otilde;es de cr&eacute;dito novos s&atilde;o emitidos bloqueados, por seguran&ccedil;a.<br/>
+					Ap&oacute;s receber seu cart&atilde;o, voc&ecirc; poder&aacute; desbloque&aacute;-lo nos canais indicados e passar&aacute; a ter acesso aos servi&ccedil;os disponibilizados em seu aplicativo.
+				</p>
+				<p class="ui-blocked-card-mensagem">
+	      			Caso tenha d&uacute;vidas, entre em contato com a Central de Atendimento.
+				</p>
+			</div>
+		 <% } else if (!model.cartao.mostrarDesbloqueio || model.cartao.codigoSituacaoCartao != "XW" || !funcionalidade.desbloqueio) {  %>
+			<div class="ui-blocked-card">
+				<div class="ui-blocked-card-titulo">Este cart&atilde;o est&aacute; bloqueado</div>
+				<p>
+					Todos os cart&otilde;es de cr&eacute;dito novos s&atilde;o emitidos bloqueados, por seguran&ccedil;a.<br/>
+					Ap&oacute;s receber seu cart&atilde;o, voc&ecirc; poder&aacute; desbloque&aacute;-lo nos canais indicados e passar&aacute; a ter acesso aos servi&ccedil;os disponibilizados em seu aplicativo.
+				</p>
+				<p class="ui-blocked-card-mensagem">
+	      			Caso tenha d&uacute;vidas, entre em contato com a Central de Atendimento.
+				</p>
+			</div>
+			<% } else if (model.cartao.codigoSituacaoCartao == "XW" && isCadastroSimplificado == "false"){ %>
+				<h2>CART&Atilde;O BLOQUEADO</h2>
+
+						<dl>
+							<dt class="fnt-book txt-1em color-gray-darker">Para fazer o desbloqueio, tenha<br/>certeza de que j&aacute; recebeu o seu<br/>cart&atilde;o.</dt>
+						</dl>
+						<hr/>
+						<br />
+						<div class="ui-grid-a">
+							<div id="divBotaoNaoPossuoSenha" class="ui-block-a">
+								<a id="botaoNaoPossuoSenha" class="naoPossuiSenha">
+									<div class="naoPossuiSenha" style="font-weight: normal;">N&atilde;o possuo a senha<br/>ou n&atilde;o recebi meu<br/>cart&atilde;o</div>
+								</a>
+							</div>
+
+							<div id="divBotaoDesbloquearDispositivo" class="ui-block-b">
+								<div>
+									<div class="ui-btn-arrow-gray-arrow"></div>
+									<div class="ui-btn-arrow-gray">
+										<a id="blockButtonDesbloquear" onclick="showDipositivoSeguranca('blockButtonDesbloquear', 'dispositivoSegurancaTarget');">
+											Desbloquear
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+						<br />
+						<div>
+							<!-- BEGIN DIV SEGURO CARTAO -->
+							<div id="divSeguroCartao" class="checkboxSeguroCartao checkboxSeguroCartaoBox" style="display: none;">
+								
+								<div class="ui-grid-a" style="margin:5px -10px 0 5px; position: relative;">
+									<div class="ui-block-a" style="margin-top: 0.5em; margin-bottom: 0.5em; width:100%;margin-left:0.6em">
+										<span class="fnt-regular txt-08em color-gray-darker" style="font-family: NewJuneBold, Regular; font-size: 14px;">SEGURO DO CART&Atilde;O
+										</span>
+										<span class="fnt-regular txt-08em color-gray-darker" style="margin-left: 15px; font-size: 12px;">opcional
+										</span>
+									</div>
+								</div>
+
+								<div class="ui-grid-a" style="margin:0 -10px 0 5px; position: relative;">
+									<div class="ui-block-a" style="margin-top: 0.5em; margin-bottom: 0.5em; width:92%;margin-left:0.6em">
+										<span class="fnt-regular txt-08em color-gray-darker">Proteja seu cart&atilde;o contra perda, roubo, furto e fraude por apenas R$ <span id="valorSeguroDesb" /> por m&ecirc;s. Saiba mais <a href="#saibaMaisSeguro"  id='btnSaibaMaisSeguro' class="icon-21 margin-none" style="display:inline-block;background-position: center; position: absolute; background-position-x: 4px; background-position-y: 2px;" /></span>										
+									</div>
+								</div>
+					 			
+								<div class="ui-grid-a" style="margin:-5px 0 0 15px; position: relative;">
+									<label for="contratoCheckbox" class="" data-iconpos="right">
+				 						<div style="margin: 5px 0 0 0;">
+											<span class="fnt-regular txt-08em color-gray-darker" style="font-size: 14px;">Eu quero contratar o Seguro</span>
+										</div>
+				 					</label>
+									<input type="checkbox" style="display: none;" id="contratoCheckbox" name="contratoCheckbox" data-awbe-bind="contratoCheckbox" />
+								</div>
+
+								<div class="ui-grid-a" style="margin:-5px 25px 0 5px; position: relative;">
+									<div class="ui-block-a" style="margin-top: 0.5em; margin-bottom: 0.5em; width:95%;margin-left:0.6em">
+										<span class="fnt-regular txt-08em color-gray-darker" style="font-size: 10px;">Ao contratar voc&ecirc; est&aacute; aceitando os <span id="termoSeguro" style="text-decoration: underline; color: #2592ea;">Termos e Condi&ccedil;&otilde;es</span> Gerais do Seguro Superprotegido Premi&aacute;vel.</span>            
+									</div>
+								</div>
+
+								<div 	data-awbe-component="popup"
+								  	data-awbe-component-option-theme="a"
+									data-awbe-component-option-theme-modal="b"
+									data-awbe-component-option-modal="true"
+									data-awbe-component-popup-id="popupSaibaMais">
+									<p class="fnt-bold">Entenda  o Seguro</p>
+									<iframe id="saibaMaisFrame" style="border:none; overflow:hidden; width:100%; height:19em;" ></iframe>
+
+									<div class="align-botoes">
+										<a href="#" data-rel="back"  class="botao-modal-002">Fechar</a>
+									</div>
+								</div>
+							</div>
+							<!-- END DIV SEGURO CARTAO -->
+							<div id="divDispositivoSeguranca" class="disp-seg-desbloqueio" style="display: none;">
+								<script>
+									window.injecaoActionName = '#dispositivoSegurancaValidationDesbloquearCartao';
+									window.injecaoTargetElement = 'divDispositivoSeguranca';
+
+									function showDipositivoSeguranca(idBotao, target) {
+										var seguroCartao = new SeguroCartaoUtils();
+										seguroCartao.showDispositivoSeguranca(idBotao, target);
+									}
+								</script>
+								<script type="text/javascript" src="js/BradescoCartoesMobile/views/smic/injecaoDispSeguranca.js"></script>
+							</div>
+
+
+							<div data-awbe-component="popup"
+								data-awbe-component-option-theme="a"
+					          	data-awbe-component-option-theme-modal="b"
+					          	data-awbe-component-option-modal="true"
+					          	data-awbe-component-popup-id="desbloqueioCartaoSucesso">
+								<p class="titulo-modal">Cart&atilde;o desbloqueado com sucesso!</p>
+								<p class="texto-modal-normal">N&atilde;o perca mais tempo, comece agora mesmo a utilizar seu cart&atilde;o de cr&eacute;dito Bradesco e aproveite os benef&iacute;cios.</p>
+								<div class="align-botoes">
+									<a href="#homeLogada" data-rel="back"  class="botao-modal-002">OK</a>
+								</div>
+							</div>
+							<div data-awbe-component="popup"
+								data-awbe-component-option-theme="a"
+								data-awbe-component-option-theme-modal="b"
+								data-awbe-component-option-modal="true"
+								data-awbe-component-popup-id="desbloqueioCartaoSucessoComSeguro">
+								<p class="titulo-modal">Cart&atilde;o desbloqueado e Seguro contratado com sucesso!</p>
+								<p class="texto-modal-normal">O Seguro ter&aacute; validade a partir de 24 horas da data de ades&atilde;o.</p>
+								<div class="align-botoes">
+									<a href="#homeLogada" data-rel="back"  class="botao-modal-002">OK</a>
+								</div>
+							</div>
+							<div data-awbe-component="popup"
+								data-awbe-component-option-theme="a"
+								data-awbe-component-option-theme-modal="b"
+								data-awbe-component-option-modal="true"
+								data-awbe-component-popup-id="desbloqueioCartaoSucessoComSeguroFalha">
+								<p class="titulo-modal">Cart&atilde;o desbloqueado com sucesso!</p>
+								<p class="texto-modal-normal">N&atilde;o foi poss&iacute;vel efetuar a contrata&ccedil;&atilde;o do Seguro. Acesse "Seguros" no menu lateral e tente novamente.</p>
+								<div class="align-botoes">
+									<a href="#homeLogada" data-rel="back"  class="botao-modal-002">OK</a>
+								</div>
+							</div>
+							<div data-awbe-component="popup"
+								data-awbe-component-option-theme="a"
+								data-awbe-component-option-theme-modal="b"
+								data-awbe-component-option-modal="true"
+								data-awbe-component-popup-id="desbloqueioCartaoFalhaSeguroFalha">
+								<p class="texto-modal-normal">N&atilde;o foi poss&iacute;vel desbloquear e contratar o Seguro do seu cart&atilde;o. Tente mais tarde ou entre em contato com a Central de Atendimento.</p>
+								<div class="align-botoes">
+									<a href="#homeLogada" data-rel="back"  class="botao-modal-002">OK</a>
+								</div>
+							</div>
+						</div>
+					</div>
+			<% } %>
+	<% } %>
+	<% } else{ %>
+	<dl>
+	<dt class="txt-1em color-gray-darker" style="margin-top: 0.5em">Voc&ecirc; n&atilde;o possui servi&ccedil;os dispon&iacute;veis para este cart&atilde;o.</dt>
+	</dl>
+	<% } %>
+</div>
+
+<!-- FOOTER COM BOTAO PARA LINK FUNCIONALIDADE DE SEGURANCA -->
+		<% 
+var cartaoElegivelSeg = AWBE.sessionStorage.getItem('meusCartoesAtual');
+			var popupsFechadas = JSON.parse(AWBE.localStorage.getItem('popupsFechadas'));
+			var menuSeg = AWBE.sessionStorage.getItem('mostrarMenuLateralSeguranca');
+
+			var fecharPopUp = 'false';
+			if(popupsFechadas != null){
+				var chave = cartaoElegivelSeg.numeroCartao + cartaoElegivelSeg.binCartao;
+				for(var i=0; i < popupsFechadas.length; i++){
+					if(chave == popupsFechadas[i].chave){
+						 fecharPopUp = popupsFechadas[i].fecharPopUp; 
+					}
+				}
+			}
+			if (menuSeg && fecharPopUp == 'false' && (cartaoElegivelSeg.bloqTemp == 'A' || cartaoElegivelSeg.bloqTemp == 'T' || cartaoElegivelSeg.bloqEcom == 'T' || cartaoElegivelSeg.bloqEcom == 'A')){
+		%>
+		<div data-role="footer" data-position="fixed" data-tap-toggle="false" class="footerShadow" id="divFooterSeguranca">
+			<div class="footerSeguranca">
+				<div class="footerSegurancaLabel">
+					Cart&atilde;o bloqueado
+				</div>
+				
+				<div class="iconeFecharSegurancaBox">
+					<a class="iconeFechar" onclick="fecharFooter(<%= cartaoElegivelSeg.numeroCartao %>,<%= cartaoElegivelSeg.binCartao %>);"></a>
+				</div>
+
+				<div class="ui-btn-arrow-gray-seguranca" onclick="direcionaSeguranca();">
+					<div>
+						
+						<div class="labelDesbloquearSegurancaBox">
+							<a class="labelDesbloquearSeguranca">Desbloquear</a>
+						</div>
+						<div class="iconeDesbloquearSegurancaBox">
+							<span class="iconeDesbloquearSeguranca"></span>
+						</div>
+					</div>
+				</div>
+			</div>	
+		</div>
+
+		<% } %>
+
+		<div data-awbe-component="popup" data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="cadastroEmail">
+	<p class="titulo-modal">Dados de contato</p>
+	<p class="texto-modal-normal">Para enviar essa informação, atualize seus dados com e-mail e celular.</p>
+	<div class="align-botoes-2 txt-caixaalta">
+		<a href="#homeLogada" id="atualizarContatoClose" data-rel="back" class="botao-modal-003">Cancelar</a> 
+        <a onclick="popupActionAtualizarEmail()" class="botao-modal-003">Atualizar</a>
+	</div>
+</div>
+
+<script type="text/javascript">
+	$("#valorSeguro").ready(function(){
+		$("#valorSeguro").html(AWBE.sessionStorage.getItem('meusCartoesAtual').valorSeguroContratacao,false);
+	});
+
+	$("#botaoNaoPossuoSenha").on('click', function() {
+		window.location = "#naoPossuoSenha";
+	});
+</script>
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/home/homeLogada.js"></script>
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/home/fatura.js"></script>
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/seguroCartao/seguroCartao.js"></script>
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/faturaDigital/faturaDigital.js"></script>
+

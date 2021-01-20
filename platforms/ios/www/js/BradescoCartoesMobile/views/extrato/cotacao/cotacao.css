@@ -1,0 +1,101 @@
+.ui-btn-arrow-blue {
+  width: 50%;
+  float: right;
+  margin-top: 1em;
+}
+
+.btn-buscar {
+  width: 50%;
+  align-self: flex-end;
+  margin-top: 1em;
+  text-align: center;
+  border-radius: 4px;
+  border: 1px solid lightgrey;
+  padding: 0.6em 0;
+  color: rgb(0, 113, 229);
+  background-color: white;
+}
+
+.cotacao-container {
+  display: flex;
+  flex-flow: column;
+}
+
+.calendar-component {
+  margin-top: 1em;
+  display: flex;
+  align-items: center;
+  height: 2em;
+  border-radius: 0.3em;
+}
+
+.result-container {
+  margin-top: 0.5em;
+  padding-top: 0.5em;
+  border-top: 1px solid lightgray;
+  display: flex;
+  justify-content: space-between;
+  font-size: small;
+}
+
+.date-container {
+  display: flex;
+}
+
+.month {
+  margin: 0 1em;
+}
+
+.calendar-container input[type="date"] {
+  font-family: NewJuneBook;
+  color: transparent;
+  background-color: transparent;
+  border: none;
+  flex-grow: 1;
+}
+
+.calendar-container .cotacao-date:before {
+  content: attr(data-date);
+  color: #636363;
+  white-space: nowrap;
+  border: none;
+  background-color: unset;
+  background-color: transparent !important;
+  border: none;
+}
+
+.txt-range {
+  width: 15%;
+  text-shadow: none;
+}
+
+.cotacao-date {
+  height: 100%;
+}
+
+.ui-error {
+  background-color: #f3c8c6 !important;
+  border: 1px solid #d51e31 !important;
+  border-radius: 0.2em;
+}
+
+#targetError {
+  text-align: center;
+  margin-top: 1em;
+}
+
+/* ------ cotacaoInformativo.view ------ */
+
+.top-1em {
+  margin-top: 1em;
+}
+
+.font-small {
+  font-size: small;
+}
+
+.info-txt span {
+  font-family: NewJuneBold;
+}
+
+/* ------ fim cotacaoInformativo.view ------ */

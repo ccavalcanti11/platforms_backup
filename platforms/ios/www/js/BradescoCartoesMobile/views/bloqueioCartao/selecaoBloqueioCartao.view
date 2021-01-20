@@ -1,0 +1,112 @@
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/bloqueioCartao/selecaoBloqueioCartao.js"></script>
+
+<div class="ui-content-bloqueio border-complete-bottom" data-role="content">
+	<pre class="fnt-book color-gray-darker" style="margin-bottom: 1em;">Dados do bloqueio do cart&atilde;o por
+perda ou roubo.</pre>
+
+
+	<div class="fnt-book color-gray-darker">Selecione o motivo:</div>
+	
+	<div class="bloqueioCombo">
+
+		<%
+		var cartaoAtual = AWBE.sessionStorage.getItem('meusCartoesAtual');
+		var processadora = ((!cartaoAtual.bradescard) ? "F" : "B");
+
+
+		var motivosBloqueio = model.motivosBloqueio;
+		var descricaoMotivo;
+
+		_.forEach(motivosBloqueio, function(motivoBloqueio, index) {
+			if(motivoBloqueio.motivoCancelamento == "SS" &&
+				motivoBloqueio.processadora == processadora){
+			descricaoMotivo = motivoBloqueio.descricaoMotivoCancelamento;
+			descricaoMotivo = descricaoMotivo.toLowerCase().split('/');
+
+     	for(var i = 0; i < descricaoMotivo.length; i++) {
+          var letters = descricaoMotivo[i].split('');
+          letters[0] = letters[0].toUpperCase();
+          descricaoMotivo[i] = letters.join('');
+     	}
+      	var res = descricaoMotivo.join('/');
+		%>
+			<input type="radio" name="motivoBloqueio" id="motivo<%=index%>" value="<%=motivoBloqueio.codReasonCode%>" data-awbe-bind="motivoBloqueio">
+				<label class="radioButtonLabel ui-label" for="motivo<%=index%>"><%=res%></label>
+		<%  }
+		}) %>
+
+	</div>
+	<% if (processadora == "F") { %>
+	<div class="fnt-book color-gray-darker" style="margin-bottom: 0.5em">Selecione o local:</div>
+
+	<div class="ui-grid-a border-complete-bottom" style="margin-bottom: 1em">
+		<div id="localColumn">
+			<select class="needsclick" id="localSelec" data-native-menu="true" data-icon="false" data-awbe-bind="regiaoBloqueio">
+
+				<%
+				var regioesBloqueio = model.regioesBloqueio;
+
+				_.forEach(regioesBloqueio, function(regiao, index) {
+					if(regiao.descricaoRegiao == "Brasil" &&
+						 regiao.processadora == processadora){
+				%>
+						<option class = "notbold" value="<%=regiao.codigoRegiao%>" selected><%=regiao.descricaoRegiao%></option>
+				<%	}else{
+						if(regiao.processadora == processadora){ %>
+							<option class = "notbold" value="<%=regiao.codigoRegiao%>"><%=regiao.descricaoRegiao%></option>
+					<%	}
+					} %>
+			<%	}) %>
+
+			</select>
+		</div>
+	</div>
+	<% } else if (processadora == "B"){
+
+	} %>
+
+	<div id="divBotaoBloquearDispositivo" class="ui-block-b ui-state-disabled" style="margin-right: 35%; margin-left: 32%; margin-top: 1em; margin-bottom: 1em">
+		<div>
+		  <div class="ui-btn-arrow-gray-arrow"></div>
+		  <div class="ui-btn-arrow-gray">
+		    <a id='blockButtonDesbloquear' >Bloquear</a>
+		  </div>
+		</div>
+	</div>
+</div>
+
+<div id="divDispositivoSeguranca" style="display: none;">
+	<div id="bloqueioCartao" style="margin:0 -1em;"></div>
+</div>
+
+<script>
+    window.injecaoActionName = '#dispositivoSegurancaValidationBloqueioCartao';
+    window.injecaoTargetElement = 'bloqueioCartao';
+</script>
+
+<!--ID 2144 TH - Adicionando popup para retorno F0202 -->
+<div data-awbe-component="popup"
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="dadosNConferemValidade">
+	<p class="titulo-modal">Aten&ccedil;&atilde;o</p>
+	<p class="texto-modal-normal">N&atilde;o foi poss&iacute;vel Bloquear seu cart&atilde;o. Por favor, entre em contato com a Central de Atendimento.</p>
+	<div class="align-botoes txt-caixaalta">
+		<a href="#bloqueioCartao" data-rel="back" class="botao-modal-002">Fechar</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup"
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="senhaBloqueada">
+	<p class="titulo-modal">N&atilde;o foi poss&iacute;vel bloquear.</p>
+	<p class="texto-modal-normal">Por favor, entre em contato com a Central de Atendimento.</p>
+	<div class="align-botoes txt-caixaalta">
+		<a href="#meusCartoes" data-rel="back" class="botao-modal-002">Fechar</a>
+	</div>
+</div>
+<script type="text/javascript" src="js/util/KeyboardIOS.js" />
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/smic/injecaoDispSeguranca.js"></script>

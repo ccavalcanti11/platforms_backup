@@ -1,0 +1,68 @@
+<%
+var cartaoElegivelSeg = AWBE.sessionStorage.getItem('meusCartoesAtual')
+var paramsFuncionalidadeCache = BradescoCartoesMobile.controllers.getParamsFuncionalidades(cartaoElegivelSeg);
+var funcionalidade = AWBE.sessionStorage.getItem(BradescoCartoesMobile.controllers.getFuncionalidadeKey(paramsFuncionalidadeCache));
+var permiteBlqTemporario = funcionalidade.bloqueioTemporario && cartaoElegivelSeg.mostrarBloqueioTemporario;
+var permiteBlqEcommerce = funcionalidade.bloqueioEcommerce && cartaoElegivelSeg.mostrarBloqueioEcommerce;
+listaAdicionais = model;
+var bloqueioTemporario = false ;
+var bloqueioEcommerce = false ;
+for(i=0;i<listaAdicionais.length;i++){
+	bloqueioTemporario = false ;
+	if (listaAdicionais[i].bloqTemp != 'N' && listaAdicionais[i].bloqTemp != ""){
+		bloqueioTemporario = true;
+	}
+
+	bloqueioEcommerce = false ;
+	if (listaAdicionais[i].bloqEcom != 'N' && listaAdicionais[i].bloqEcom != ""){
+		bloqueioEcommerce = true ;
+	}
+
+%>
+	<div id="opcoes-seguranca-ad-collapsible" class="segurancaBody" data-role="collapsible" data-iconpos="false" data-inset="false"  data-content-theme="segurancaBloco">			
+			<h4 class="segurancaNomeBenef">
+			  <span class="colapsible-icon" style=""></span>
+			  <div class="go-limite-extrato">
+			  </div>
+			  <label class="colapsible-text" style=""><%=listaAdicionais[i].nomeEmbosso%></label>
+			</h4>
+
+			<div id="titularTarget" class="benefContent" style=" margin: 0 -1em; ">
+			 	<div class="benefCartao destaque-area">
+				<div class="numCartaoSeg fnt-regular txt-1em color-white"><%=formataCartao(listaAdicionais[i].numeroCartao)%></div>
+				<div class="titAdCartaoSeg fnt-regular txt-1em color-white">ADICIONAL</div>
+				</div>
+				<%if(permiteBlqTemporario){ %>
+				<div class="segurancaFuncionalidade">
+					<div class="segurancaFuncionalidade-content" <% if(permiteBlqEcommerce){ %> style="border-bottom: 1px solid #ccc;" <% } %>>
+						<div class="seguranca-toggle-btn toggle-btn-right">
+							<input type="checkbox" data-role="flipswitch" name="tempAdcional" id="bloqueioTemporarioTitularParaAdicionalFlipSwitch<%=i%>" onchange="efetuarBloqueio(this.name, <%=i%>, this.id)"
+								data-current-value="<%= bloqueioTemporario %>" data-on-text="" data-off-text="" <%=bloqueioTemporario ? 'checked' : '' %>/>
+						</div>
+						<div class="seguranca-func-titulo fnt-medium txt-1em divtitle"> Bloquear temporariamente</div>
+						<div class="seguranca-func-desc smalltxt">N&atilde;o ser&atilde;o autorizadas as compras presenciais ou realizadas pela internet.
+							<div class="seguranca-info-icon"></div>
+						</div>
+					    <input type="hidden" data-awbe-bind="numParcialCartao" id="numParcialCartao" value=""/>
+					</div>
+				</div>
+				<%}if(permiteBlqEcommerce){ %>
+				<div class="segurancaFuncionalidade">
+					<div class="segurancaFuncionalidade-content">
+						<div class="seguranca-toggle-btn toggle-btn-right">
+							<input type="checkbox" data-role="flipswitch" name="ecommAdicional" id="bloqueioEcommerceTitularParaAdicionalFlipSwitch<%=i%>" 
+							onchange="efetuarBloqueio(this.name, <%=i%>, this.id)" data-current-value="<%= bloqueioEcommerce %>" data-on-text="" data-off-text="" <%=bloqueioEcommerce ? 'checked' : '' %> <%=bloqueioTemporario ? 'disabled' : '' %>/>
+						</div>
+						<div class="seguranca-func-titulo fnt-medium txt-1em divtitle"> Bloquear compras pela internet</div>
+						<div class="seguranca-func-desc smalltxt">N&atilde;o ser&atilde;o autorizadas as compras realizadas pela internet.
+							<div class="seguranca-info-icon"></div>
+						</div>
+					    <input type="hidden" data-awbe-bind="numParcialCartao" id="numParcialCartao" value=""/>
+					</div>
+				</div>
+				<%}%>
+			</div>
+		</div>
+
+	<%}%>
+	<script type="text/javascript" src="js/BradescoCartoesMobile/views/seguranca/seguranca.js"></script>

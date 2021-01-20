@@ -1,0 +1,166 @@
+<div data-awbe-component="awbe-include" data-awbe-component-params="cabecalhoVoltarPagina"></div>
+
+<article class="resumo-container">
+    <% if (params.isRenderDescricaoPagamentoParcelamento && params.descricaoPagamentoParcelamento) { %>
+      <div class='container-corona'>
+          <p><%= params.descricaoPagamentoParcelamento %></p>
+          <span class="botaoFecharCorona btn-fechar-white" ></span>
+      </div>
+    <% } %>
+    <section class="ui-content">
+        <header>
+            <div class='flex-container-header'>
+                <h2 class="txt-center">
+                    <%=params.subTitle%>
+                </h2>
+                <div class='sub-header'><%=params.textoDescricaoValor%></div>
+                <div class='entrada-val'><%=params.valorEntrada %></div>
+                <div>mais <%=params.quantidadeParcelasOfertaContratada%>x de <%= params.valorParcela %></div>
+                <% if (params.isRenderDescricaoResumo) { %>
+                  <p>
+                    <%=params.descricaoResumo %>
+                  </p>
+                <% } %>
+            </div>
+
+        </header>
+        <div class="dadosGeraisCartoes">
+            <div>
+                <label>
+                    Cartão:
+                </label>
+                <label>
+                    <%=params.produtoPrincipal%>
+                </label>
+            </div>
+            <div>
+                <label>
+                    Número do cartão:
+                </label>
+                <label>
+                    <%=params.numeroCartaoMascarado%>
+                </label>
+            </div>
+        </div>
+        <table class="resumo-contrato">
+            <tbody>
+                <% _.each(params.itensResumo, function(item) { %>
+                  <% if (!item.value) { %>
+                    <tr>
+                      <td colspan="2" class="iof-bradescard">
+                        <%=item.description%>
+                      </td>
+                    </tr>
+                  <% } else { %>
+                    <tr>
+                        <td>
+                            <%=item.description%>
+                        </td>
+                        <td>
+                            <%=item.value%>
+                        </td>
+                    </tr>
+                  <% } %>
+                <% }) %>
+            </tbody>
+        </table>
+
+        <form action="#contratarParcelamento">
+            <input type="hidden" data-awbe-bind="valorParcela" name="valorParcela" value="<%= params.valorAdesao %>">
+            <input type="hidden" data-awbe-bind="statusSimulacao" name="statusSimulacao" value="<%= params.statusSimulacao %>">
+            <input type="hidden" data-awbe-bind="quantidadeParcelas" name="quantidadeParcelas" value="<%= params.quantidadeParcelas %>">
+            <input type="hidden" data-awbe-bind="possuiEntrada" name="possuiEntrada" value="<%= params.possuiEntrada %>">
+            <input type="hidden" data-awbe-bind="valorEntradaContratada" name="valorEntradaContratada" value="<%= params.valorEntradaContratada %>">
+            <input type="hidden" data-awbe-bind="isParceladoFacil" name="isParceladoFacil" value="<%= params.isParceladoFacil %>">
+
+            <% if (params.currentView === 'sugestaoParcelamento') {%>
+                <div>
+                    <% if (params.bradescard) { %>
+                        <button id="btnContratar" data-parcelado-facil="<%= params.isParceladoFacil %>" type="submit" class="btn-contratar ui-btn ui-shadow ui-corner-all">
+                            Selecionar esta opção
+                        </button>
+                    <% } else { %>
+                        <button id="btnContratar" data-parcelado-facil="<%= params.isParceladoFacil %>" type="submit" class="btn-contratar ui-btn ui-shadow ui-corner-all">
+                            Contratar
+                        </button>
+                    <% } %>
+                    <span class="invisible-space" />
+                    <button id="btnOutrasOpcoes" class="btn-outras-opcoes ui-btn ui-shadow ui-corner-all">
+                        Confira outras opções
+                    </button>
+                </div>
+            <%} else if (params.currentView === 'resumo') { %>
+                  <% if (params.bradescard) { %>
+                    <button id="btnContratar" data-parcelado-facil="<%= params.isParceladoFacil %>" type="submit" class="btn-contratar ui-btn ui-shadow ui-corner-all">
+                        Selecionar esta opção
+                    </button>
+                  <% } else { %>
+                    <button id="btnContratar" data-parcelado-facil="<%= params.isParceladoFacil %>" type="submit" class="btn-contratar ui-btn ui-shadow ui-corner-all">
+                        Contratar
+                    </button>
+                  <% } %>
+            <% } else if (params.currentView === 'resumoParcelamento' && params.isParcelamentoAtivo) { %>
+                <button class="alterarParcelamento exibirPopup" data-possui-entrada="<%= params.possuiEntrada %>">
+                <% if (params.bradescard) { %>
+                    <a>Escolher outra opção</a>
+                <% } else { %>
+                    <a>Alterar valores</a>
+                <% } %>
+                </button>
+            <% } %>
+        </form>
+    </section>
+</article>
+
+<div data-awbe-component="popup" data-awbe-component-option-theme="a" data-awbe-component-option-theme-modal="b"
+    data-awbe-component-option-modal="true" data-awbe-component-popup-id="popupParcelaFatura">
+    <p class="titulo-modal">Parcelando a Fatura</p>
+    <p class="texto-modal-normal">Voc&ecirc; poder&aacute; alterar a quantidade de parcelas e o valor de entrada,
+        quantas
+        vezes desejar at&eacute; as 16 horas do dia do vencimento da fatura.</p>
+    <p class="texto-modal-normal">N&atilde;o esque&ccedil;a que &eacute; preciso pagar o valor exato da entrada
+        informada, para ativar o parcelamento.</p>
+    <p class="texto-modal-normal">Saiba mais no site do <a class="popup-link underline" data-event>Cr&eacute;dito
+            Rotativo Bradesco.</a></p>
+    <div class="align-botoes-2 txt-caixaalta" data-device="<%= AWBE.device.platform %>">
+        <a data-rel="back" class="botao-modal-002 border-right">Fechar</a>
+        <a class="submitForm botao-modal-003">Alterar</a>
+    </div>
+</div>
+
+<div data-awbe-component="popup" data-awbe-component-option-theme="a" data-awbe-component-option-theme-modal="b"
+    data-awbe-component-option-modal="true" data-awbe-component-popup-id="popupParcelaFaturaP2">
+    <p class="titulo-modal">Parcelando a Fatura</p>
+    <p class="texto-modal-normal">Voc&ecirc; poder&aacute; selecionar outra op&ccedil;&atilde;o de parcelamento 
+        quantas
+        vezes desejar at&eacute; as 23 horas do dia do vencimento da fatura.</p>
+    <p class="texto-modal-normal">N&atilde;o esque&ccedil;a que &eacute; preciso pagar o valor exato da primeira
+         parcela para ativar o parcelamento.</p>
+    <div class="align-botoes-2 txt-caixaalta" data-device="<%= AWBE.device.platform %>">
+        <a data-rel="back" class="botao-modal-002 border-right">Fechar</a>
+        <a class="submitForm botao-modal-003">Alterar</a>
+    </div>
+</div>
+
+<div data-awbe-component="popup" data-awbe-component-option-theme="a" data-awbe-component-option-theme-modal="b"
+    data-awbe-component-option-modal="true" data-awbe-component-popup-id="popupEntradaParcelaFaturaP2">
+    <p class="titulo-modal">Parcelando a Fatura</p>
+    <p class="texto-modal-normal">Voc&ecirc; poder&aacute; selecionar outra op&ccedil;&atilde;o de parcelamento 
+        quantas
+        vezes desejar at&eacute; as 23 horas do dia do vencimento da fatura.</p>
+    <p class="texto-modal-normal">N&atilde;o esque&ccedil;a que &eacute; preciso pagar o valor exato da entrada
+         informada, para ativar o parcelamento.</p>
+    <div class="align-botoes-2 txt-caixaalta" data-device="<%= AWBE.device.platform %>">
+        <a data-rel="back" class="botao-modal-002 border-right">Fechar</a>
+        <a class="submitForm botao-modal-003">Alterar</a>
+    </div>
+</div>
+
+<div style="display: none">
+    <div id="dispositivoSegurancaTarget"></div>
+</div>
+
+
+<link rel="stylesheet" type="text/css"
+    href="js/BradescoCartoesMobile/views/parcelamentofatura/parcelamentoFatura.css" />
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/parcelamentofatura/resumoContrato.js"></script>

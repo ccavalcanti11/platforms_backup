@@ -1,0 +1,32 @@
+<% 
+	var cartao = AWBE.sessionStorage.getItem('meusCartoesAtual');
+	if(cartao.numeroCartao){ %>
+	<div data-awbe-component="awbe-include" data-awbe-component-params="menuOpcoesLogado"></div>
+<% }else{ %>
+	<div data-awbe-component="awbe-include" data-awbe-component-params="menuOpcoesDeslogado"></div>	
+<% }%>
+<div data-awbe-component="awbe-include" data-awbe-component-params="cabecalho"></div>
+
+<article id="cadastro-negado" class="ui-content">
+	<header>
+		<h2>Cadastro inv&aacute;lido</h2>
+	</header>
+
+	<section>
+		<p class="txt-12em fnt-book color-gray-darker">No momento n&atilde;o &eacute; poss&iacute;vel cadastrar com os dados informados.</p>
+		<p class="txt-12em fnt-book color-gray-darker">Para mais informa&ccedil;&otilde;es ligue na Central de Atendimento.</p>
+	</section>
+	<div class="border-complete-bottom margin-top-3em">
+			<h2 class="subtitle">OUTRAS OP&Ccedil;&Otilde;ES</h2>
+	</div>
+	<div class="border-complete-bottom" onclick="location.hash='#canaisAtendimento';">
+		<p class="colapsible-text">
+			<a href="#canaisAtendimento" class="color-gray-darker txt-11em fnt-book" style="text-decoration: none;" onclick="BradescoCartoesMobile.components.popularAppsFlyerGa('MEUSCARTOESANALISE');">Visualizar telefones &uacute;teis<span class="directaction-icon"></span></a>
+		</p>
+	</div>
+			
+
+</article>
+
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/cartoes/cadastro/cadastroNegado.js"></script>
+

@@ -1,0 +1,6 @@
+<div id="header-end-session" data-role="header" data-position="fixed" data-tap-toggle="false">
+	<!-- <button id="btnLeftPanel" data-role="button" class="btn-back"></button> -->
+	<a id="btnLeftPanel" href="#" class="btn-back"></a>
+	<h1><%=AWBE.localStorage.getItem('title')%></h1>
+</div>
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/cabecalhoFimSessao.js"></script>

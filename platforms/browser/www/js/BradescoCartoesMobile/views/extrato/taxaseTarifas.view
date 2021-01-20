@@ -1,0 +1,91 @@
+<% 
+    var cartaoAtualtaxas = AWBE.sessionStorage.getItem('meusCartoesAtual');
+    var taxasCartao = AWBE.sessionStorage.getItem('taxasCartao');
+    var links = AWBE.sessionStorage.getItem('links');
+%>
+
+<div data-awbe-component="awbe-include" data-awbe-component-params="cabecalhoVoltarPagina"></div>
+
+<div  class="ui-content" data-role="content">
+
+<% if(cartaoAtualtaxas.bradescard){ %>
+
+    <p class="fnt-book txt-1em color-gray-darker">Disponibilizamos o PDF detalhado das taxas e tarifas para cada cart&atilde;o Bradescard.</p>    
+    <span class="fnt-book txt-1em color-gray-darker">Clique no parceiro para visualizar o arquivo.</span>    
+    
+    <div id="listaLinks" class="margin-tb-13em">
+    <%
+    for (var i = 0; i < links.length; i++) {
+        var item = links[i];
+
+        //Ignorando cartões P1. Filtro pode ser removido no futuro
+        if (item.title != "Casas Bahia" && item.title != "CENCOSUD" && item.title != "LEADER"){
+    %>  
+        <hr/>   
+        <div>            
+            <span class="right" onclick="openPopUp('<%=item.valor %>')">
+                <a class="fnt-bold txt-08em color-blue-ligher">Abrir</a>
+                <span class="icon-link-externo"></span>
+            </span>
+            <span class="fnt-medium-bold txt-08em color-gray-darker"><%=item.title %></span>            
+        </div>       
+    <% }
+    } %>
+        <hr/> 
+    </div>
+    
+    <label class="fnt-book txt-1em color-gray-darker">N&atilde;o encontrou seu cart&atilde;o?</label>
+    <label class="fnt-book txt-1em color-gray-darker">Visite o site <a style="text-decoration: underline;" onclick="openPopUp('https://www.bradescard.com.br/conteudo/ContratoSumarioEncerradas/index.shtm', '_system')">Bradescard.com.br</a>.</label>
+
+<% } else { %>
+
+    <p class="fnt-book txt-1em color-gray-darker">Consulte as taxas e tarifas vigentes dos cartões Bradesco.</p>
+
+    <table class="ui-table-taxas">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Atual</th>
+                <th class="nowrap" style="text-align: right;">M&aacute;x. para o <br/> pr&oacute;x. per&iacute;odo</th>
+            </tr>
+        </thead>
+        <tbody>
+            <%
+            for (var i = 0; i < taxasCartao.taxas.length; i++) {
+                var item = taxasCartao.taxas[i];
+            %>
+            <tr>
+                <th><%=item.descricao%></th>
+                <th class="align-valor nowrap"><%=item.valorAtual%> %</th>
+                <th class="align-valor nowrap"><%=item.valorMaximo%> %</th>
+            </tr>
+            <% } %>
+        </tbody>
+    </table>
+    <div class="extrato-line">
+        <label class="extrato-taxas-label">
+            Custo Efetivo Total (CET), para o rotativo <%=currency(taxasCartao.cetAnual, false)%>% ao ano.
+            <br/> Aos encargos de atraso ser&atilde;o acrescidos juros de mora de 1% a.m.
+            <br/> V&aacute;lido para o vencimento desta fatura.
+        </label>
+    </div>
+
+<% } %>
+
+</div>
+
+<div data-awbe-component="popup" 
+     data-awbe-component-option-theme="a"
+	 data-awbe-component-option-theme-modal="b"
+	 data-awbe-component-option-modal="true"
+	 data-awbe-component-popup-id="confirmacaoAbrirLink">
+	<p class="titulo-modal">Sair do aplicativo</p>
+	<p class="texto-modal-normal">Voc&ecirc; ser&aacute; direcionado para um conte&uacute;do que est&aacute; fora do aplicativo.</p>
+	<p class="texto-modal-normal">Deseja continuar?</p>
+	<div class="align-botoes-2 txt-caixaalta">
+        <a onclick="unlockScroll();" data-rel="back" class="botao-modal-002">N&atilde;o</a>
+		<a onclick="openUrl();" class="botao-modal-003">Sim</a> 
+	</div>
+</div>
+
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/extrato/taxaseTarifas.js"></script>

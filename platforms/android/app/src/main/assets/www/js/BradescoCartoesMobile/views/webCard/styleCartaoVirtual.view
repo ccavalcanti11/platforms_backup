@@ -1,0 +1,309 @@
+<style>
+    <%
+    var devicePlatform = window.device.platform;
+    var deviceModel = window.device.model;
+    var iosDeviceModel = iosUtils.getIphone(iosUtils.getDeviceModel());
+
+    if (devicePlatform.contains('iOS')) {%>
+        .webCard .container-flex-center {
+	        display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        #informativoAtivarWebCard .webCardSwitch-habilitado {
+            width: fit-content;
+            padding-left: 0;
+            float:right;
+        }
+
+        .container-flex-column {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #boxWebCardHabilitado {
+            margin-left: 0;
+            margin-right: 0;
+        }
+
+        #informativoAtivarWebCard .ui-flipswitch {
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+
+        #informativoAtivarWebCard .webCardSwitch-desabilitado {
+            width: auto;
+        }
+
+        .container-flex-column .limiteDuracaoCartao {
+            margin-top: 0.5em;
+            text-align: center;
+        }
+
+        .flex-center-between {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+        }
+
+        .margin-top-1em {
+            margin-top: 1em;
+        }
+        
+        .flex-center-between .boxValidadeWebCard {
+            margin-top: 0;
+        }
+
+        #informativoAtivarWebCard2{
+            flex-basis: 74%;
+            margin-top: 1em;
+	        order: 1;
+        }
+
+        <%
+        if (deviceModel) {%>
+            <%
+            if (deviceModel.contains('iPhone9,2')) {%>
+                .txt-validade-webcard {
+                    margin-top: 1em;
+                    font-size: 0.7em;
+                    width: 66%;
+                }
+            <%} else if (deviceModel.contains('iPhone10,3') || deviceModel.contains('iPhone10,6')) {%>
+                .txt-validade-webcard {
+                    margin-top: 1em;
+                    font-size: 0.7em;
+                    width: 96%;
+                }
+
+                .box-webCard .boxMascaraWebCardGerado {
+                    margin-right: 1em;
+                    margin-left: 1em;
+                    width: auto;
+                }
+            <%} else {%>
+                .txt-validade-webcard {
+                    margin-top: 1em;
+                    font-size: 0.7em;
+		            margin-left: 2em;
+		            margin-right: 2em;
+		            text-align: center;
+		            width: auto;
+                }
+
+                .box-webCard .margin-top {
+                    margin-top: 1.1em;
+                }
+
+                .box-webCard .boxMascaraWebCardNaoGerado {
+                    padding-top: 0.1em;
+                }
+
+                #carouselTarget .webCard {
+                    padding-left: 1em;
+                    padding-right: 1em;
+                }
+
+                .ui-page-active .ui-page-webCard {
+                    padding-left: 0;
+                    padding-right: 0;
+                }
+
+                .ui-page .ui-page-webCard {
+                    padding-left: 0;
+                    padding-right: 0;
+                }
+
+                .ui-page-webCard .slick-initialized {
+                    padding-left: 0.8em;
+                }
+                <% if (iosDeviceModel === "IPHONE6" || iosDeviceModel === "IPHONE6S" || iosDeviceModel === "IPHONE7" || iosDeviceModel === "IPHONE8") {%>
+                    #boxWebCard .box-webCard {
+                        height: 120pt;
+                    }
+                <%}%>
+                <% if (iosDeviceModel === "IPHONE5S") {%>
+                    .box-webCard .boxMascaraWebCardGerado {
+                        padding-top: 1em;
+                    }
+                <%}%>
+            <%}%>
+        <%}%>
+    <%} else if (devicePlatform.toUpperCase().contains('ANDROID')){%>
+            .icon-21-webCard .icon-21 {
+	            height: 1.3em;
+	            width: 1.4em;
+	            margin: 0;
+                padding-left: 0;
+                float: none;
+            }
+
+            .webCard .flex-center-between {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+
+            .webCard .container-flex-wrap{
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 1em;
+            }
+
+            .container-flex-wrap .informativo-flex-item {
+                order: 2;
+                flex-basis: 75%;
+            }
+
+            .flex-center-between {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+
+            .margin-top-1em {
+                margin-top: 1em;
+            }
+
+            .flex-center-between .boxValidadeWebCard {
+                margin-top: 0;
+            }
+
+            .box-webCard .margin-top {
+                margin-top: 1.5em;
+            }
+
+            .box-webCard .margin-top-1em {
+                margin-top: 1em;
+            }
+
+            <% if (deviceModel) {%>
+                
+                <% if (deviceModel.toUpperCase().contains('SM-N950F')) {%>
+                    #boxWebCard .box-webCard {
+                        width: 238pt;
+                        height: 126pt;
+                    }
+
+                    .box-webCard .boxMascaraWebCardNaoGerado {
+                        width: 226pt;
+                    }
+
+                    #boxWebCardHabilitado .boxMascaraWebCardGerado {
+                        width: 229pt;
+                    }
+                <%}%>
+            <%}%>
+        /* adicionado para pegar propriedades no ripple também */
+        <%} else if (devicePlatform.toUpperCase().contains('SYMBIANOS')) {%>
+                .icon-21-webCard .icon-21 {
+	                height: 1.3em;
+	                width: 1.4em;
+	                margin: 0;
+                    padding-left: 0;
+                    float: none;
+                }
+            
+                .webCard .flex-center-between {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                }
+
+                .flex-center-between {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                }
+            
+                .webCard .container-flex-wrap{
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: space-between;
+                    align-items: center;
+                    margin-bottom: 1em;
+                }
+            
+                .container-flex-wrap .informativo-flex-item {
+                    order: 2;
+                    flex-basis: 75%;
+                }
+
+                .flex-center-between .boxValidadeWebCard {
+                    margin-top: 0;
+                }
+                .box-webCard .margin-top {
+                    margin-top: 1.5em;
+                }
+
+                .box-webCard .margin-top-1em {
+                    margin-top: 1em;
+                }
+            <%}%>
+
+.cartao-virtual {
+    background-color: rgba(248,249,250);
+    padding: .5em 1em 1em 1em;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    font-family: NewJuneBook;
+    color: rgb(51,51,51);
+    font-size: .85em;
+    margin-bottom: 1em;
+}
+.cartao-virtual b {
+    color: rgb(99,99,99);
+    font-family: NewJuneBold;
+    font-weight: 500;
+}
+.numero-cartao {
+    margin: 0;
+    padding: .45em 0;
+    font-size: 1.2em;
+    text-align: center;
+    border-radius: 3px;
+    background-color: whitesmoke;
+}
+.flex {
+    display: flex;
+}
+.flex-item {
+    flex: 1;
+}
+.cartao-virtual > div {
+    padding: .75em 0;
+    text-align: center;
+}
+.container-btn{
+    text-align: center;
+}
+.container-btn > div {
+    display: inline-block;
+    padding: .5em 2em !important;
+}
+.sem-numero{
+    font-size: 1.8em; 
+    word-spacing: 6px;
+}
+.com-numero{
+    word-spacing: 3px;
+}
+.validade-card-ncc{
+    padding-left: 1em;
+}
+.btn-padding-top{
+    padding-top: 0.5em;
+}
+.ui-flipswitch {
+    margin: 0;
+}
+
+#informativoAtivarWebCard {
+  margin-bottom: 1em;
+}
+</style>

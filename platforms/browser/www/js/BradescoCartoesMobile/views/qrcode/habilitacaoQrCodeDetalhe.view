@@ -1,0 +1,156 @@
+<% var qrCodeAtivo = model.cartao.statusOptin == 'S';
+var pagtoAtivo = AWBE.sessionStorage.getItem('mostrarPagamentoQrCode');
+%>
+
+<div>
+	<div id="saiba-mais" style=" padding: 0 1em;">
+		<span class="fnt-book color-gray-darker">Saiba mais sobre o QR Code</span>
+		<span class="right">
+			<a class="icon-21 saiba-mais-qrcode margin-none ui-link" onclick="AWBE.util.openPopup('saibaMaisQrCode')" title="Saiba mais sobre o QR Code"></a>
+		</span>
+	</div>
+</div>
+
+<hr>
+
+<div class="ui-content" data-role="content" style="padding: 0 1em">
+	<div class="fnt-medium txt-1em divtitle">
+		
+	 	<div id="opt-in-container" class="ui-table-columntoggle-btn" style="margin-top:-0.35em">
+			<input type="checkbox" data-role="flipswitch" id="QrCodeSwitch" data-current-value="1" data-on-text="" data-off-text="" value="<%=qrCodeAtivo ? 'on' : 'off' %>" <%=qrCodeAtivo ? 'checked' : '' %>/>
+	 	</div>
+	 	<div class="seguranca-func-titulo fnt-medium txt-1em divtitle">Habilitar QR Code</div>
+	</div>
+
+</div>
+
+<div id="dispSegurancaQrCode" style="display: none;"></div>
+
+<!-- POPUP - importa popup para a escolha app integrador -->
+<div data-awbe-component="mToken" data-component="EscolhaAppIntegrador"></div>
+<!-- POPUP - importa popup de excecoes default  -->
+<div data-awbe-component="mToken" data-component="TratamentoExcecoes"></div>
+<!-- POPUP - importa popup do tutorial  -->
+<div data-awbe-component="mToken" data-component="MsgTutorial"></div>
+
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="saibaMaisQrCode">
+	<p class="titulo-modal">
+		Saiba mais sobre o QR Code
+	</p>	
+	<p class="texto-modal-normal">
+		Com a funcionalidade QR Code Bradesco, voc&ecirc; poder&aacute; pagar suas compras sem utilizar o cart&atilde;o f&iacute;sico.
+	</p>
+	<p class="texto-modal-normal">
+		Tudo de forma descomplicada, r&aacute;pida e segura.
+	</p>
+	<p>&Eacute; s&oacute; logar no aplicativo e direcionar o celular para a m&aacute;quina de cart&atilde;o.</p>
+	<div class="align-botoes align-botoes-popup txt-caixaalta">	
+		<a href="#" data-rel="back" class="botao-modal-002" title="Fechar">Fechar</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="desabilitarQrCode">
+	<p class="titulo-modal">
+		Desabilitar QR Code
+	</p>	
+	<p class="texto-modal-normal">
+		Ao desabilitar esta funcionalidade voc&ecirc; n&atilde;o poder&aacute; efetuar o pagamento
+		de suas compras utilizando o QR Code.
+	</p>
+	<p class="texto-modal-normal">
+		Deseja desabilitar?
+	</p>
+	<div class="align-botoes align-botoes-popup" data-device="<%=AWBE.device.platform%>">	
+		<a data-rel="back" class="botao-modal-002" title="Nao" onclick="cancelarDesabilitarQrCode()">N&atilde;o</a>
+		<a data-rel="back" class="botao-modal-002" title="Sim" onclick="showFormSeguranca()">Sim</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="confirmacaoQrCodeHabilitado">
+	<p class="titulo-modal">
+		QR Code habilitado com sucesso
+	</p>	
+	<p class="texto-modal-normal">
+		Agora voc&ecirc; pode efetuar pagamentos com mais facilidade.
+	</p>
+	<p class="texto-modal-normal" style="<%=!pagtoAtivo ? 'display: none' : '' %> " >
+		Deseja efetuar um pagamento agora?
+	</p>
+	<div class="align-botoes align-botoes-popup"  data-device="<%=AWBE.device.platform%>" style="<%=!pagtoAtivo ? 'display: none' : '' %> ">	
+		<a data-rel="back" class="botao-modal-002" title="Nao" onclick="AWBE.util.closePopup('confirmacaoQrCodeHabilitado');">N&atilde;o</a>
+		<a data-rel="back" class="botao-modal-002" title="Sim" href="#qrCode">Sim</a>
+	</div>
+
+	<div class="align-botoes align-botoes-popup" style="<%=!pagtoAtivo ? 'display: block' : 'display: none' %> " >
+		<a data-rel="back" class="botao-modal-002" title="fechar">Fechar</a>
+	</div>
+
+</div>
+
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="confirmacaoQrCodeDesabilitado">
+	<p class="titulo-modal">
+		QR Code desabilitado com sucesso.
+	</p>	
+	<div class="align-botoes align-botoes-popup txt-caixaalta" style="margin-top: 0px;">	
+		<a data-rel="back" class="botao-modal-002" title="ok">ok</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="erroDesabilitarQrCode">
+	<p>N&atilde;o foi poss&iacute;vel desabilitar
+	o QR Code. Por favor, tente novamente mais tarde.</p>
+	<div class="align-botoes align-botoes-popup">	
+		<a data-rel="back" class="botao-modal-002" title="fechar">Fechar</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="erroHabilitarQrCode">
+	<p>N&atilde;o foi poss&iacute;vel habilitar
+		o QR Code. Por favor, tente novamente mais tarde.</p>
+	<div class="align-botoes align-botoes-popup">	
+		<a data-rel="back" class="botao-modal-002" title="fechar">Fechar</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="erroPermissaoCamera">
+	<p class="titulo-modal">Permiss&atilde;o</p>
+	<p class="texto-modal-normal">Para fazer um pagamento via QR Code, precisamos do acesso a sua câmera.</p>
+	<div class="align-botoes align-botoes">	
+		<a onclick="fecharPopupCameraQR()" data-rel="back" class="botao-modal-002">fechar</a>
+	</div>
+</div>
+<script>
+	window.injecaoActionName = "qrCodeDispositivoSeguranca";
+	window.injecaoTargetElement = "dispSegurancaQrCode";
+</script>
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/smic/injecaoDispSeguranca.js"></script>
+<!-- <script type="text/javascript" src="js/BradescoCartoesMobile/views/dispositivoSeguranca/dispositivoSegurancaView.js"></script> -->
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/qrcode/qrcode.js"></script>

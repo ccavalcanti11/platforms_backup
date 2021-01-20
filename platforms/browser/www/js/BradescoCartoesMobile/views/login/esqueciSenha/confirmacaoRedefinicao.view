@@ -1,0 +1,14 @@
+<div data-awbe-component="awbe-include" data-awbe-component-params="cabecalhoVoltarPagina"></div>
+
+<div class="page ui-content" data-role="content">
+	<p class="fnt-bold color-gray-darker txt-1em">Pronto!</p>
+	<p class="fnt-book color-gray-darker txt-1em"><br>Sua nova senha foi cadastrada com sucesso.</p>
+	<hr class="hr-margin-tb" />
+	
+	<div class="btn-acesso-home">
+		<div class="ui-btn-arrow-blue-arrow"></div>
+		<div class="ui-btn-arrow-blue">
+			<a href="#homeLogada">Acessar minha conta</a>	
+		</div>	
+	</div>
+</div>

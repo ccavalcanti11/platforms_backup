@@ -1,0 +1,33 @@
+
+<!-- POPUP - importa popup para a escolha app integrador -->
+<div data-awbe-component="mToken" data-component="EscolhaAppIntegrador"></div>
+<!-- POPUP - importa popup de excecoes default  -->
+<div data-awbe-component="mToken" data-component="TratamentoExcecoes"></div>
+<!-- POPUP - importa popup do tutorial  -->
+<div data-awbe-component="mToken" data-component="MsgTutorial"></div>
+
+<div class="ui-content" id="clearfix_mtoken" style="padding-top: 0;">
+    <div id="botaoAlterarApp" onclick="BradescoCartoesMobile.components.abrirPopupAppsSmic('btnAlterar')" style="display: none">
+        <span>Alterar</span>
+        <i class="icon-alterar-smic"></i>
+    </div>
+
+    <form id="formDispositivoSeguranca">
+        <div data-awbe-component="dispositivoSeguranca" 
+             data-awbe-target-element="dispositivoSegurancaTarget"
+             data-awbe-target-view="dispositivoSeguranca/dispositivoSeguranca" />
+        <div id="dispositivoSegurancaTarget"></div>
+        <div class="ui-grid-a">
+            <div class="ui-block-a">
+                <div data-awbe-component="mToken" data-component="BtnCapturarChave" id="botaoCapturarChave" style="display: none"></div>
+            </div>
+            <div id="divBotaoConfirmaDispositivo" class="ui-block-b disabledButton">
+                <div>
+                    <div class="ui-btn-arrow-blue">
+                        <a id="blockButton">Confirmar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

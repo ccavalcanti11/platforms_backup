@@ -1,0 +1,158 @@
+<div data-awbe-component="awbe-include" data-awbe-component-params="cabecalho"></div>
+<div data-awbe-component="awbe-include" data-awbe-component-params="menuOpcoesDeslogado"></div>
+
+<div class="ui-content termoUso" data-role="content" style="word-wrap: break-word"><hr>
+	<div class="border-complete">
+	
+		<h3 class="fnt-medium color-gray-darker">Vers&atilde;o - <%=model.buscarTermoUso.versao.toFixed(1)%></h3>
+	
+	</div><hr>
+	<div class="removeTextShadow">
+		<p class="fnt-book color-gray-lighter" ><%=model.buscarTermoUso.texto%></p>
+	</div>
+	
+	<div class="ui-footer-termo-uso bg-gray-darker" data-role="footer" data-position="fixed" data-tap-toggle="false">
+	<form id="efetivarfrm" action="#efetivarEdicaoDadosBancarios">		
+			<p class="updateTitle">Os termos de uso do aplicativo foram atualizados.</p>
+					<% 
+						if (!model.buscarTermoUso.aceiteObrigatorio) {
+					%>
+					<div class="ui-content">
+						<div class="ui-grid-a">
+							<div class="ui-block-b btnContinuarTermos">
+								<div class="ui-btn-arrow-blue-arrow"></div>
+								<div class="ui-btn-arrow-blue btnContinuarTermosBtn" >
+									<a id="botaoSubmitLogin" onclick="goAtualizarTermoDeUso();">Continuar</a>
+					    		</div>
+							</div>
+						</div>
+					</div>
+					<%}else{ %>
+					<p class="updateMessage">Para continuar, voc&ecirc; precisa ler e aceitar as altera&ccedil;&otilde;es.</p>	
+						<div class="ui-content">
+							<div class="ui-grid-a">
+								<div class="ui-block-a">
+									<div class="ui-btn-arrow-red-arrow"></div>
+									<div class="ui-btn-arrow-red" style="width: 85%;">
+					    				<a onclick="backTermoDeUso();">N&atilde;o aceito</a>
+					    			</div>
+								</div>
+								<div class="ui-block-b">
+									<div class="ui-btn-arrow-blue-arrow"></div>
+									<div class="ui-btn-arrow-blue" style="width: 85%;">
+										<a id="botaoSubmitLogin" onclick="goAtualizarTermoDeUso();">Aceito</a>
+					    			</div>
+								</div>
+							</div>
+						</div>
+					<%}%>
+			<% if (model.buscarTermoUso.dtAceite != '' && model.buscarTermoUso.versaoAceite == model.buscarTermoUso.versao) { %>
+			<p>Termos de uso aceito em: <%=model.buscarTermoUso.dtAceite%></p>
+			<% } %>		
+		</form>
+	</div>
+</div>
+
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="loginDesabilitado">
+	<p class="texto-modal-normal">O acesso ao aplicativo est&aacute; temporariamente indispon&iacute;vel.<br>Tente mais tarde.</p>
+	<div class="align-botoes">
+		<a href="#meusCartoes" data-rel="back" class="botao-modal-002">OK</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="nenhumCartao">
+	<p class="texto-modal-normal">A situa&ccedil;&atilde;o desse cart&atilde;o n&atilde;o permite o cadastro no app. Digite outro n&uacute;mero de cart&atilde;o ou entre em contato com a Central de Relacionamento.</p>
+	<div class="align-botoes">
+		<a href="#meusCartoes" data-rel="back" class="botao-modal-002">OK</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="sistemaIndisponivel">
+	<p class="titulo-modal">Sistema indispon&iacute;vel</p>
+	<p class="texto-modal-normal">Sistema indispon&iacute;vel no momento, tente novamente mais tarde. Caso o erro persista, entre em contato com a Central de Relacionamento.</p>
+	<div class="align-botoes">
+		<a href="#meusCartoes" data-rel="back" class="botao-modal-002">FECHAR</a>
+	</div>
+</div>
+
+<!-- POPUPs para o ID Virtual -->
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="vinculoMenor24horas"
+	id="vinculoMenor24horas">
+	<p class="titulo-modal">V&iacute;nculo n&atilde;o realizado.</p>
+	<p class="texto-modal-normal">J&aacute; existe um dispositivo vinculado ao seu CPF. Tente novamente ap&oacute;s 24 horas do cadastro anterior.</p>
+	<div class="align-botoes">	
+		<a onclick='$("#vinculoMenor24horas").unbind("touchmove");$("#vinculoMenor24horas-screen").unbind("touchmove");' href="#meusCartoes" class="botao-modal-002">OK</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="vinculoNovoAparelho"
+	id="vinculoNovoAparelho">
+	<p class="titulo-modal">Este CPF j&aacute; est&aacute; vinculado a outro celular.</p>
+	<p class="texto-modal-normal">Para cadastrar este celular como seu aparelho de acesso clique em vincular e fa&#231;a novo v&iacute;nculo.</p>
+	<div class="align-botoes-2">	
+		<a onclick='$("#vinculoNovoAparelho").unbind("touchmove");$("#vinculoNovoAparelho-screen").unbind("touchmove");' id="btnCancelar" data-rel="back" class="botao-modal-002">Cancelar</a>
+		<a onclick='$("#vinculoNovoAparelho").unbind("touchmove");$("#vinculoNovoAparelho-screen").unbind("touchmove");' id="btnVincular" data-rel="back" class="botao-modal-003">Vincular</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="vinculoReativarAparelho"
+	id="vinculoReativarAparelho">
+	<p class="titulo-modal">Este celular esteve vinculado ao seu CPF.</p>
+	<p class="texto-modal-normal">Para reativar este celular como seu aparelho de acesso clique em vincular e fa&#231;a novo v&iacute;nculo.</p>
+	<div class="align-botoes-2">	
+		<a onclick='$("#vinculoReativarAparelho").unbind("touchmove");$("#vinculoReativarAparelho-screen").unbind("touchmove");' id="btnCancelarReativacao" data-rel="back" class="botao-modal-002">Cancelar</a>
+		<a onclick='$("#vinculoReativarAparelho").unbind("touchmove");$("#vinculoReativarAparelho-screen").unbind("touchmove");' id="btnVincularReativacao" data-rel="back" class="botao-modal-003">Vincular</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="vinculoNovoAparelhoNaoRealizado"
+	id="vinculoNovoAparelhoNaoRealizado">
+	<p class="titulo-modal">V&iacute;nculo n&atilde;o realizado.</p>
+	<p class="texto-modal-normal">Seu cadastro continua ativo no outro aparelho.</p>
+	<div class="align-botoes">	
+		<a onclick='$("#vinculoNovoAparelhoNaoRealizado").unbind("touchmove");$("#vinculoNovoAparelhoNaoRealizado-screen").unbind("touchmove");' href="#meusCartoes" class="botao-modal-002">OK</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="vinculoComSucesso"
+	id="vinculoComSucesso">
+	<p class="titulo-modal"></p>
+	<p class="texto-modal-normal">Pronto! V&iacute;nculo realizado com sucesso.</p>
+	<div class="align-botoes">	
+		<a onclick='$("#vinculoComSucesso").unbind("touchmove");$("#vinculoComSucesso-screen").unbind("touchmove");' id="btnOK" data-rel="back" class="botao-modal-002">OK</a>
+	</div>
+</div>
+
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/termosUso/termosUsoDeslogado.js"></script>

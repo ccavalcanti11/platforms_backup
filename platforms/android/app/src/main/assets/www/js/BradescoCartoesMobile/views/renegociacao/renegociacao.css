@@ -1,0 +1,30 @@
+article {
+    margin-top: 2rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+p {
+    color: #636363;
+    margin-top: 1rem;
+    font-family: NewJuneBook;
+}
+
+p b {
+    font-family: sans-serif;
+}
+
+button {
+    box-shadow: none;
+    font-weight: normal;
+    font-family: NewJuneBook;
+    color: white !important;
+    text-shadow: none !important;
+    background-color: #66737C !important;
+}
+
+button a, a:hover, a:active {
+    text-decoration: none;
+    color: inherit !important;
+    font-weight: normal !important;
+}

@@ -1,0 +1,39 @@
+span.botaoVencimentoFatura {
+	content: "";
+    border: none;
+    padding: 0.7em;
+    background-image: url(../../../../css/icons/icon-30.svg);
+    margin: -1.3em 0em 0px 0.25em;
+    background-repeat: no-repeat;
+    background-color: transparent !important;
+    background-size: contain;
+    float: right;
+}
+
+.notificacoes-content {
+	border-bottom: 1px solid #CCC;
+	border-top: 1px solid #CCC; 
+	margin: 0 -1em;
+}
+
+.textoBotaoVencimentoFatura {
+	text-decoration: none; 
+	font-weight: normal !important; 
+	font-size: 1.1em;
+}
+
+.switchAumentoLimite {
+    width: 25%;
+    float: right;
+    margin-right: -2.0em;
+    margin-top: -0.5em;
+}
+
+.tituloPermissoes {
+    padding: 0;
+    font-weight: bold !important;
+}
+
+.textoAumentoLimite {
+    font-family: NewJuneBook;
+}

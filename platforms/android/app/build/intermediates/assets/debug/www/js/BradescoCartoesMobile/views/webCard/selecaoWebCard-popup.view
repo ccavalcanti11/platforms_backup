@@ -1,0 +1,13 @@
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="desabilitarWebCardPop"
+	id="desabilitarWebCardPop">
+	<p class="ui-block-a" style="padding-bottom: 1em;">Tem certeza que deseja desabilitar o seu Cart&atilde;o Virtual?</p>
+	<div class="align-botoes align-botoes-popup txt-caixaalta">
+		<a onclick="naoDesabilitarWebCard()" class="botao-modal-002" data-rel="back">Não</a>
+		<a href="#desabilitarWebCard" data-rel="back" class="botao-modal-002" title="Sim">Sim</a>
+	</div>
+</div>
+

@@ -1,0 +1,43 @@
+<div data-awbe-component="awbe-include" data-awbe-component-params="cabecalho"></div>
+<div data-awbe-component="awbe-include" data-awbe-component-params="menuOpcoesLogado"></div>
+
+<div class="ui-content page cartoes-adicionais-content" data-role="content">
+
+    <%
+	/*Adicionado a chamada do mostrarFuncionalidadesAtivas antes do makeCarousel*/  	  
+		
+	BradescoCartoesMobile.controllers.mostrarFuncionalidadesAtivas();  
+	if (model.cartoesAdicionais.length > 0 ){
+
+	%>
+    <div data-awbe-component="carouselCartoesAdicionais" data-awbe-target-element="carouselTarget"></div>
+    <div id="carouselTarget"></div>
+    <div data-awbe-target-view="cartoesAdicionais/cartoesAdicionaisDetalhe.view"></div>
+    <%}else{%>
+    <dl>
+        <dt class="txt-1em color-gray-darker">Voc&ecirc; n&atilde;o possui cart&otilde;es associados a este
+            servi&ccedil;o.</dt>
+    </dl>
+    <%}%>
+
+    <div data-awbe-component="popup" data-awbe-component-option-theme="a" data-awbe-component-option-theme-modal="b"
+        data-awbe-component-option-modal="true" data-awbe-component-popup-id="saibaMaisCartoesAdicionais">
+        <p class="titulo-modal">Cart&otilde;es adicionais</p>
+        <p class="texto-modal-normal "> Para solicitar &eacute; preciso:</p>
+        <ul class="texto-modal-normal ">
+            <li>Ser maior de 16 anos;</li>
+            <li>Ter CPF;</li>
+            <li>Ser um CPF diferente do titular;</li>
+            <li>Ter limite dispon&iacute;vel.</li>
+        </ul>
+        <p class="texto-modal-normal "> O cart&atilde;o adicional pode ter valor de anuidade e o limite escolhido
+            &eacute; compartilhado com o cart&atilde;o do titular. </p>
+        <p class="texto-modal-normal "> S&atilde;o exibidos apenas os cart&otilde;es que
+            possuem essa funcionalidade.</p>
+        <div class="align-botoes align-botoes-popup txt-caixaalta">
+            <a href="#" data-rel="back" class="botao-modal-002" title="clique para voltar para tela de cart&otilde;es adicionais">Fechar</a>
+        </div>
+    </div>
+</div>
+
+<link rel="stylesheet" type="text/css" href="css/paginas/cartoesAdicionais.css">

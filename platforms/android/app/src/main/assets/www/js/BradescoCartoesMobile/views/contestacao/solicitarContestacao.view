@@ -1,0 +1,134 @@
+<div data-awbe-component="awbe-include" data-awbe-component-params="cabecalhoVoltarPagina"></div>
+
+<div class="ui-content contestacao" data-role="content">
+	<h2>CONTESTAR UMA COMPRA</h2>
+	<table class="divCompra">
+		<tbody>
+			<tr>
+				<th class="bloco-23"><%=model.dataCompra%></th>
+				<th class="bloco-1"><%=model.local%></th>
+				<% if (model.parcela != 0) { %>
+				<th class="bloco-23"><%=model.parcela%></th>
+				<%}%>
+				<th class="bloco-23"><%=currency(model.valor, false)%></th>
+			</tr>
+		</tbody>
+	</table>
+	<div>
+		<textarea class="textareaContestacao" id="textarea" autocorrect = "off" autocomplete = "off" spellcheck = "false" autocapitalize="off"
+		placeholder="Conte aqui o que aconteceu (qual o produto/serviço contratado, data prevista de entrega, tentativa de contato com o estabelecimento)."></textarea>
+	</div>
+	<p class="pCaracteres">M&aacute;ximo 500 caracteres</p>
+	<div class="boxAnexo">
+		<div class="divAddAnexo">Adicione a evid&ecirc;ncia da contesta&ccedil;&atilde;o</div>
+		<div onclick="selecionaImagemGaleria()" class="icone-adicionar-imagem"></div>
+	</div>
+	<div id="anexo" class="divAddAnexo">
+		<span class="icone-anexo"></span>
+		<span id="nomeImagem"></span>
+		<a onclick="AWBE.util.openPopup('popupRemoverAnexo');" style="padding-left: 8%;color: #d51e31;">Remover</a>
+	</div>
+	<div class="ui-grid-a" style="margin-top: 4em;">
+		<div class="ui-block-a" />
+		<div id="divBotaoConfirma" class="ui-block-b disabledButton">
+			<div class="ui-btn-arrow-blue">
+				<a id="blockButton">Confirmar</a>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/contestacao/contestacao.js"></script>
+
+<!-- POP-UP REMOVER ANEXO -->
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a" 
+	data-awbe-component-option-theme-modal="b" 
+	data-awbe-component-option-modal="true" 
+	data-awbe-component-popup-id="popupRemoverAnexo">
+  <p class="texto-modal-normal">Deseja realmente</br>
+      remover o arquivo</br>
+      em anexo?
+  </p>
+  <div class="align-botoes-2 txt-caixaalta">
+    <a onclick="AWBE.Analytics.eventClick('NaoRemoveArquivoAnexo')" class="botao-modal-002" data-rel="back">N&atilde;o</a>
+    <a onclick="AWBE.Analytics.eventClick('RemoveArquivoAnexo');removerImagemAnexada()" class="botao-modal-003" style="width: 50% !important;" data-rel="back">Sim</a>
+  </div>
+</div>
+
+<!-- POP-UP JA POSSUI ANEXO-->
+<div data-awbe-component="popup" data-awbe-component-option-theme="a" data-awbe-component-option-theme-modal="b" data-awbe-component-option-modal="true" data-awbe-component-popup-id="popupArquivoJaAnexado">
+  <p class="texto-modal-normal">Voc&ecirc; j&aacute; anexou um arquivo para esta contesta&ccedil;&atilde;o.
+  </p>
+  <div class="align-botoes">
+    <a class="botao-modal-002 txt-caixaalta" data-rel="back">OK</a>
+  </div>
+</div>
+
+<!-- POP-UP FORMATO INVALIDO-->
+<div data-awbe-component="popup" data-awbe-component-option-theme="a" data-awbe-component-option-theme-modal="b" data-awbe-component-option-modal="true" data-awbe-component-popup-id="popupFormatoInvalido">
+  <p class="titulo-modal">
+  	O arquivo que voc&ecirc; selecionou possui um formato inv&aacute;lido para o aplicativo.
+  </p>
+  <p class="texto-modal-normal">
+  	Por favor, selecione um arquivo com formato .jpg, .jpeg ou .png.
+  </p>
+  <div class="align-botoes txt-caixaalta">
+    <a class="botao-modal-002" data-rel="back">OK</a>
+  </div>
+</div>
+
+<!-- POP-UP TAMANHO INVALIDO-->
+<div data-awbe-component="popup" data-awbe-component-option-theme="a" data-awbe-component-option-theme-modal="b" data-awbe-component-option-modal="true" data-awbe-component-popup-id="popupTamanhoInvalido">
+  <p class="titulo-modal">
+  	O arquivo que voc&ecirc; selecionou possui um tamanho maior que o permitido pelo aplicativo.
+  </p>
+  <p class="texto-modal-normal">
+  	Por favor, selecione um arquivo com tamanho m&aacute;ximo de 10MB.
+  </p>
+  <div class="align-botoes txt-caixaalta">
+    <a class="botao-modal-002" data-rel="back">OK</a>
+  </div>
+</div>
+
+<!-- POP-UP SUCESSO-->
+<div data-awbe-component="popup" data-awbe-component-option-theme="a" data-awbe-component-option-theme-modal="b" data-awbe-component-option-modal="true" data-awbe-component-popup-id="popupSucesso">
+  <p class="titulo-modal">Contesta&ccedil;&atilde;o enviada com sucesso!</p>
+  <p class="texto-modal-normal">Voc&ecirc; receber&aacute; retorno por</br>
+      e-mail ou telefone em at&eacute; 5 dias &uacute;teis.
+  </p>
+  <div class="align-botoes txt-caixaalta">
+    <a class="botao-modal-002" onclick="concluirContestacao()" data-rel="back">OK</a>
+  </div>
+</div>
+
+<!-- POP-UP TEXTO EXCEDIDO-->
+<div data-awbe-component="popup" data-awbe-component-option-theme="a" data-awbe-component-option-theme-modal="b" data-awbe-component-option-modal="true" data-awbe-component-popup-id="popupTextoLivreExcedido">
+  <p class="texto-modal-normal">Limite de 500 caracteres excedido.
+  </p>
+  <div class="align-botoes txt-caixaalta">
+    <a class="botao-modal-002" data-rel="back">OK</a>
+  </div>
+</div>
+
+<!-- POP-UP AJUSTES-->
+<div data-awbe-component="popup" data-awbe-component-option-theme="a" data-awbe-component-option-theme-modal="b" data-awbe-component-option-modal="true" data-awbe-component-popup-id="avisoAcessoAjustes">
+	<div style=" font-weight: bold; text-align: left;">
+		<p class="texto-modal-normal">Para adicionar um arquivo na<br>
+		contesta&ccedil;&atilde;o &eacute; preciso que o<br>
+		aplicativo tenha permiss&atilde;o de acesso
+		nas configura&ccedil;&otilde;es do seu aparelho.<br><br>
+		Deseja alterar as permiss&otilde;es?</p>
+	</div>
+	<div class="align-botoes-2 txt-caixaalta">
+		<a onclick="popupActionAjustesOpen()" class="botao-modal-002" data-rel="back">Alterar</a>
+		<a class="botao-modal-003" style="width: 50% !important;" data-rel="back">Agora N&atilde;o</a>
+	</div>
+</div>
+
+<!-- POP-UP ERRO-->
+<div data-awbe-component="popup" data-awbe-component-option-theme="a" data-awbe-component-option-theme-modal="b" data-awbe-component-option-modal="true" data-awbe-component-popup-id="falhaSolicitarContestacao">
+	<p class="texto-modal-normal">N&atilde;o foi poss&iacute;vel solicitar a contesta&ccedil;&atilde;o. Por favor, tente novamente.</p>
+	<div class="align-botoes">
+		<a onclick="erroContestacao()" data-rel="back" class="botao-modal-002">OK</a>
+	</div>
+</div>

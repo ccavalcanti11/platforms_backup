@@ -1,0 +1,251 @@
+<style>
+    .text-right {
+        text-align: right;
+    }
+
+    .text-gray {
+        color: #7d7a7a;
+    }
+
+    .mt-1 {
+        margin-top: 1rem;
+    }
+
+    .bg-white {
+        background-color: #fff;
+    }
+
+    .fatura-fechada {
+        color: #d51f32;
+        text-transform: uppercase;
+        font-weight: bold;
+        font-size: 0.8em;
+        font-family: NewJuneBold;
+    }
+
+    .vencimento>b {
+        color: #636363;
+        font-family: NewJuneBold;
+    }
+
+    .flex {
+        display: flex;
+    }
+
+    .flex-item {
+        flex-grow: 1;
+        align-self: flex-end;
+    }
+
+    .father-itens {
+        position: relative;
+        min-height: 15px;
+    }
+
+    .left-item {
+        position: absolute;
+        top: 1px;
+    }
+
+    .right-item {
+        position: absolute;
+        right: 0;
+    }
+
+    .total-fatura .flex .flex-item {
+        color: #666;
+    }
+
+    .total-fatura>.flex>small.flex-item {
+        color: #95989a;
+        font-family: NewJuneRegular;
+    }
+
+    .total-fatura .label {
+        font-family: NewJuneMedium;
+        font-weight: bold;
+    }
+
+    .lista-botoes button.btn {
+        font-family: NewJuneBook;
+    }
+
+    section.parcelar-fatura .btn,
+    section.parcelar-fatura .btn:hover,
+    .parcelamentoRealizado {
+        color: #fff;
+        font-weight: normal;
+        border-radius: 5px;
+        font-family: NewJuneBook;
+    }
+
+    section.parcelar-fatura .btn.btn-blue {
+        background-color: #0057b1;
+        text-shadow: none;
+        margin-top: 1.5rem;
+    }
+
+    span.check-icon:before {
+        content: " ";
+        background: url(./css/icons/check-vermelho.svg) no-repeat center;
+        margin-right: 5px;
+        padding: 10px;
+        float: left;
+    }
+
+    .resumo-fatura .vencimento {
+        font-size: .75em;
+        font-family: NewJuneBook;
+    }
+
+    .resumo-itens {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        font-family: NewJuneRegular;
+        color: #666666;
+    }
+
+    .resumo-itens>span:first-child {
+        font-size: .85rem;
+    }
+
+    .resumo-itens>div>div {
+        padding-left: 1.5em;
+        font-size: 0.9em;
+    }
+
+    .resumo-itens>div {
+        padding: 10px 0;
+    }
+
+    .lista-botoes {
+        display: flex;
+        margin: 0 -1em;
+    }
+
+    .resumo-itens>div:last-child button {
+        color: #0071e5;
+        font-weight: normal;
+        margin-left: 1em;
+        margin-right: .5em;
+        box-shadow: none;
+        text-shadow: none;
+        padding: .7em 0;
+        background-color: #fff;
+    }
+
+    .resumo-itens>div:last-child button:last-child {
+        margin-left: .5em;
+        margin-right: 1em;
+    }
+
+    .resumo-itens>div>span {
+        word-wrap: break-word;
+    }
+
+    .codigo-barras {
+        font-size: 1.25rem;
+    }
+
+    section.resumo-fatura .btn.parcelamentoRealizado {
+        text-align: left;
+        background-color: #fff;
+        color: #666;
+        font-family: NewJuneRegular;
+        padding-left: 2rem;
+    }
+
+    .parcelamentoRealizado:before {
+        content: "Mais detalhes";
+        position: absolute;
+        right: 1rem;
+        color: #3e93eb;
+        font-weight: bold;
+        margin-right: 1rem;
+    }
+
+    .fatura-parcelada {
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .fatura-parcelada > small {
+      color: #666;
+      font-family: NewJuneRegular;
+    }
+    
+    .aguardandoPagamento {
+        position: relative;
+        margin-bottom: 1.5em;
+    }
+
+    .aguardandoPagamento:after {
+        content: "Pague o valor da entrada para confirmar o parcelamento";
+        position: absolute;
+        font-size: .7em;
+        bottom: -1.5rem;
+        left: 0;
+        text-align: center;
+        width: 100%;
+        color: #9d9fa1;
+    }
+
+    .resumo-fatura {
+        margin: 0 -1rem;
+        padding: 1rem 1rem .5rem 1rem;
+        background: white;
+    }
+
+    .parcelar-fatura {
+      margin-top: 1rem;
+    }
+
+    .total-fatura>div {
+        margin-bottom: .5rem;
+    }
+
+    .resumo-itens .descricao-codbarras {
+        font-size: .8em;
+        font-family: NewJuneBold;
+    }
+
+    @media only screen and (max-device-width : 667px) {
+        .resumo-itens .codigo-barras {
+            font-size: 1em;
+        }
+
+        .resumo-fatura .btn.parcelamentoRealizado {
+            font-size: .8em;
+        }
+    }
+
+    .card-parcelar-fatura {
+      padding: 0.1em 1em 1em 1em;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-family: NewJuneBook;
+      color: rgb(51,51,51);
+      font-size: .85em;
+      margin-bottom: 1em;
+    }
+
+    .descricao-fechamento-fatura {
+        font-family: NewJuneBook;
+        font-size: x-small;
+        display: block;
+        margin-top: 1em;
+    }
+    
+    .card-parcelar-fatura div b {
+        color: #0057b1;
+    }
+
+    .card-parcelar-fatura p {
+      font-family: NewJuneBold;
+      font-weight: normal;
+      font-size: 1.2rem;
+      color: #666666;
+    }
+
+</style>

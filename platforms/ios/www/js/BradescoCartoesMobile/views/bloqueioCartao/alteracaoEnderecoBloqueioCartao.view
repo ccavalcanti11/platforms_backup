@@ -1,0 +1,185 @@
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/dispositivoSeguranca/dispositivoSegurancaView.js"></script>
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/bloqueioCartao/cartaoBloqueado.js"></script>
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/bloqueioCartao/alteracaoEnderecoBloqueioCartao.js"></script>
+
+
+<div id="header-hide-arrow" class="fullWidth" data-role="header" data-position="fixed"
+	data-tap-toggle="false" style="position:absolute;">
+	<a id="btnLeftPanel" href="#cartaoBloqueado" class="btn-back"></a>
+	<h1>Altera&ccedil;&atilde;o de endere&ccedil;o</h1>
+</div>
+
+<div class="ui-content" data-role="content" id="alteracaoEnd">
+
+	<form action="#dispositivoSegurancaValidationAlteracaoEndereco" id="formDispositivoSeguranca">
+		<input type="hidden" value="<%=model.processadora%>" id="processadora" data-awbe-bind="processadora"/>
+		<div class="fnt-book color-gray-darker">Seu novo cart&atilde;o
+			ser&aacute; enviado para o endere&ccedil;o abaixo. Confira os dados e,
+			se necess&aacute;rio, fa&ccedil;a altera&ccedil;&otilde;es.</div>
+		<br />
+
+		<dl class="color-gray-darker">
+			<dd class= "fnt-medium txt-14em">Dados do endere&ccedil;o</dd>
+
+			<p class="fnt-book txt-1em color-gray-darker">CEP:</p>
+			<input data-awbe-component="cep" type="text" name="cep" id="cep" data-awbe-bind="cep"
+				style="width: 15em;" maxlength="9"
+				pattern="[0-9]*" value="<%=model.enderecoBloqueio.cep%>"/>
+
+			<p class="fnt-book txt-1em color-gray-darker">Endere&ccedil;o:</p>
+			<input type="text" name="endereco" id="endereco" data-awbe-bind="endereco" maxlength="40"
+			value="<%=model.enderecoBloqueio.endereco%>"/>
+
+			<div class="ui-grid-b">
+				<div class="ui-block-a">
+					<p class="fnt-book txt-1em color-gray-darker">N&uacute;mero:</p>
+					<input type="text" name="numero" id="numero" data-awbe-bind="numero" maxlength="5"
+					value="<%=model.enderecoBloqueio.numero%>"/>
+				</div>
+				<div class="ui-block-b margin-left-16">
+					<div class="ui-block-c ">
+						<p class="fnt-book txt-1em color-gray-darker">Complemento:</p>
+						<div class="ui-block-a width-9em">
+							<input type="text" name="complemento" id="complemento" data-awbe-bind="complemento" maxlength="15"
+							value="<%=model.enderecoBloqueio.complemento%>"/>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<p class="fnt-book txt-1em color-gray-darker">Bairro:</p>
+			<input type="text" name="bairro" id="bairro" data-awbe-bind="bairro" maxlength="20"
+				value="<%=model.enderecoBloqueio.bairro%>"/>
+
+			<div class="ui-grid-b">
+				<div class="ui-block-a width-9em">
+					<p class="fnt-book txt-1em color-gray-darker">Munic&iacute;pio:</p>
+					<div class="ui-block-a width-9em">
+						<input type="text" name="municipio" id="municipio" data-awbe-bind="municipio" maxlength="30"
+							value="<%=model.enderecoBloqueio.municipio%>"/>
+					</div>
+				</div>
+				<div class="ui-block-b margin-left-16">
+					<div class="ui-block-c">
+						<p class="fnt-book txt-1em color-gray-darker">Estado:</p>
+						<input type="text" name="estado" id="estado" data-awbe-bind="estado"
+							style="text-transform: uppercase;" pattern="[a-z]*" maxlength="2"
+							value="<%=model.enderecoBloqueio.estado%>"/>
+					</div>
+				</div>
+			</div>
+
+			<br />
+			<hr class="hr-margin-tb" />
+
+			<p class="fnt-book txt-12em color-gray-darker">Telefones</p>
+			<p class="fnt-book txt-1em color-gray-darker">Residencial:</p>
+			<div class="ui-grid-b">
+				<div class="ui-block-a width-31em">
+					<input type="tel" name="ddd-residencial" data-awbe-for="*" data-awbe-bind="ddd-residencial"
+						id="ddd-residencial" maxlength="2"
+						placeholder="99" pattern="[0-9]*" value="<%=model.enderecoBloqueio.telResidencialDDD%>"/>
+				</div>
+				<div class="ui-block-b margin-left-16">
+					<div class="ui-block-c width-11em">
+						<input data-awbe-component="telefone" type="tel" data-awbe-bind="numero-residencial"
+							name="numero-residencial" id="numero-residencial" maxlength="10"
+							pattern="[0-9]*" value="<%=model.enderecoBloqueio.telResidencialNumero%>"/>
+					</div>
+				</div>
+			</div>
+			<p class="fnt-book txt-1em color-gray-darker">Celular:</p>
+			<div class="ui-grid-b">
+				<div class="ui-block-a width-31em">
+					<input type="tel" name="ddd_celular" data-awbe-for="*" data-awbe-bind="ddd-celular"
+						id="ddd-celular" maxlength="2" 	placeholder="99" pattern="[0-9]*"
+						value="<%=model.enderecoBloqueio.telCelularDDD%>"/>
+				</div>
+				<div class="ui-block-b margin-left-16">
+					<div class="ui-block-c width-11em">
+						<input data-awbe-component="telefone" type="tel" data-awbe-bind="numero-celular"
+							name="numero-celular" id="numero-celular" maxlength="10"
+							pattern="[0-9]*" value="<%=model.enderecoBloqueio.telCelularNumero%>"/>
+					</div>
+				</div>
+			</div>
+			<p class="fnt-book txt-1em color-gray-darker">Comercial:</p>
+			<div class="ui-grid-b">
+				<div class="ui-block-a width-31em">
+					<input type="tel" name="ddd-comercial" data-awbe-for="*" data-awbe-bind="ddd-comercial"
+						id="ddd-comercial"  maxlength="2"
+						placeholder="99" pattern="[0-9]*" value="<%=model.enderecoBloqueio.telComercialDDD%>"/>
+				</div>
+				<div class="ui-block-b margin-left-16">
+					<div class="ui-block-c width-11em">
+						<input data-awbe-component="telefone" type="tel" data-awbe-bind="numero-comercial"
+							name="numero-comercial" id="numero-comercial" maxlength="10"
+							pattern="[0-9]*" value="<%=model.enderecoBloqueio.telComercialNumero%>"/>
+					</div>
+				</div>
+			</div>
+			<hr class="hr-margin-tb" />
+		</dl>
+
+		<div id="divDispositivoSeguranca">
+			<div id="bloqueio-collapsible">
+			<div id="dispositivoSegurancaTarget"/>
+				<div class="ui-grid-a" >
+					<!-- CAPTURAR CHAVE MTOKEN -->
+					<div id="botaoCapturarChave" class="ui-block-a" style="display:none">
+						<label onclick="BradescoCartoesMobile.components.validaBtnCapturarChave();">
+							<span  class="icon-obterChave icon-btnCapturarChave"></span>
+							<a>Capturar<br/> chave</a>
+						</label>
+					</div>								
+					<div id="divBotaoConfirmaDispositivo" style="float: right;" class="ui-block-b">
+						<div id="divBotaoAlterarEndereco">
+							<div>
+								<div class="ui-btn-arrow-blue">
+									<a id='blockButton'>Confirmar</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>
+
+<div data-awbe-component="popup" data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="enderecoAlterado">
+	<p class="texto-modal-normal">Endere&ccedil;o alterado com sucesso.</p>
+	<div class="align-botoes">
+		<a href="#homeLogada" data-rel="back" class="botao-modal-002">OK</a>
+	</div>
+</div>
+
+<style>
+	#dispositivoIncorreto-screen,#dispositivoIncorreto2-screen, #enderecoAlterado-screen{
+    	position: absolute;
+	}
+</style> 
+
+<!-- target que carrega os pop ups e tutoriais do mtken -->
+<div data-awbe-component="mTokenPopUp" data-awbe-target-element="mTokenPopUpTarget" data-awbe-target-view="smic/popUpMToken" />
+<div id="mTokenPopUpTarget" /> 
+
+<script>
+
+function showDispSeguranca() {
+	BradescoCartoesMobile.components.dispositivoSeguranca(null,null,{},{showTarget:true, targetElement:'dispositivoSegurancaTarget'});
+	$("#divDispositivoSeguranca").css("display", "block");
+}
+
+$('document').ready(function(){
+	showDispSeguranca();
+});
+
+initPadraoMToken(true);	
+
+</script>
+
+<script type="text/javascript" src="js/util/KeyboardIOS.js" />

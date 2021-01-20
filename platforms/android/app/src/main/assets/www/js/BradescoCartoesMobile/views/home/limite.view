@@ -1,0 +1,92 @@
+<% if (model.status == "0") { %>
+	<%
+		var limite  = model.limite;
+  %>
+
+
+  <!-- Informacoes do limite -->
+  <% if (limite.codigoRetorno == '00' || limite.codigoRetorno == '0') {  %>
+  
+  <% if (limite.categoriaLimite == "SEM LIMITE PRE ESTABELECIDO") { %>
+
+		<div class="ui-grid-a">
+			<table>
+				<tr>
+					<td><span class="fnt-book color-gray-darker">Este cart&atilde;o n&atilde;o possui limite preestabelecido.</span></td>
+					<td><a class="icon-21 margin-none" style="background-position:right;" onclick="AWBE.util.openPopup('saibaMaisLimiteAmex')"/></td>
+				</tr>
+			</table>
+		</div>
+  
+	<% } else { %>
+	    <%
+	  		var percent = 0;
+	  		var limiteCreditoCompra = 0;
+	  		var limiteCompraUtilizado = 0;
+	  		var limiteDisponivelCompra = 0;
+	  		try {
+	  			limiteCreditoCompra = parseFloat(limite.limiteCreditoCompra);
+	  		} catch(e) {}
+	  		try {
+	  			limiteCompraUtilizado = parseFloat(limite.limiteCompraUtilizado);
+	  		} catch(e) {}
+	  		try {
+	  			limiteDisponivelCompra = parseFloat(limite.limiteDisponivelCompra);
+	  		} catch(e) {}
+	  		if(limiteCreditoCompra < limiteCompraUtilizado) {
+	  			percent = 100;
+	  		} else {
+	  			percent = limiteCreditoCompra > 0 ? (limiteCreditoCompra - limiteDisponivelCompra) * 100 / limiteCreditoCompra : 0;
+	  		}
+	  	%>
+
+	      <div class="ui-grid-solo limites">
+	        <dl class="ui-block-a">
+	          <dt style="margin-top: 3%;">Limite total:</dt>
+	          <!-- TODO: Limite total -->
+	          <dd>R$ <%=currency(limite.limiteCreditoCompra, false)%></dd>
+	        </dl>
+	      </div>
+	
+	      <div class="ui-grid-solo">
+	        <progress class="ui-block-a" value="<%= percent %>" max="100"></progress>
+	      </div>
+	
+	      <div class="ui-grid-a limites">
+	        <dl class="ui-block-a">
+	          <dt style="margin-top: 3%;">Utilizado:</dt>
+	          <dd>R$ <%=currency(limite.limiteCompraUtilizado, false)%></dd>
+	        </dl>
+	        <dl class="ui-block-b">
+	          <dt style="margin-top: 3%;">Dispon&iacute;vel:</dt>
+	          <dd>R$ <%=currency(limite.limiteDisponivelCompra, false)%></dd>
+	        </dl>
+	      </div>
+	      <p class="margin-top-2em fnt-bold txt-075em" style="color: #636363">Atualizado em <%= limite.dataAtualizacao %></p>
+	  <!--CODIGO DE RETORNO PARA LIMITES DIFERENTE DE 0 OU 00 -->
+	  
+	  <% }  %>
+	  
+  <% } else { %>
+      <div class="ui-noload">
+        <p class="ui-noload-bold">N&atilde;o foi poss&iacute;vel carregar suas informa&ccedil;&otilde;es.</p>
+        <p class="ui-noload">Aguarde alguns minutos e tente novamente.</p>
+        <a href="#homeLogada" class="ui-btn-atualizar">Atualizar</a>
+      </div>
+  <% } %>
+<% } %>
+
+
+
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="saibaMaisLimiteAmex">
+	<p class="texto-modal-small" style="text-align: left">Para que voc&ecirc; compre com liberdade, mas sem abrir m&atilde;o da seguran&ccedil;a, seu limite de despesas ser&aacute; flex&iacute;vel de acordo com diversos fatores, como comportamento de gastos, hist&oacute;rico de pagamentos e fontes de recursos financeiros.</p>
+	<br>
+	<p class="texto-modal-small" style="text-align: left">Para sempre assegurar a aprova&ccedil;&atilde;o de suas despesas, em caso de gastos acima dos habituais, &eacute; conveniente informar nossa central de atendimento com anteced&ecirc;ncia.</p>
+	<div class="align-botoes txt-caixaalta">	
+		<a href="#" data-rel="back" class="botao-modal-002">FECHAR</a>
+	</div>
+</div>

@@ -1,0 +1,34 @@
+/**
+ *	This element is created inside your target element
+ *	It is used so that your own element will not need to be altered
+ **/
+ .time_circles {
+     position: relative;
+     width: 100%;
+     height: 100%;
+ }
+ .time_circles > div {
+     position: absolute;
+     text-align: center;
+ }
+ .time_circles > div > span {
+     font-family: NewJuneMedium;
+     font-weight:normal;
+     color: #FFF;
+     display: block;
+     width: 100%;
+     text-align: center;
+     font-size: 100%;
+     margin-top: 0.7em;
+ }
+ div#CountDownTimer{
+     // position: fixed;
+     background-image:url(../img/bkg-countdown.png);
+     background-repeat:no-repeat;
+     background-size:contain;
+     left: 0px;
+     right: 0px;
+     top: 45%;
+     bottom: 0px;
+     z-index: 1000;
+ }

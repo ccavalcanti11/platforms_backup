@@ -1,0 +1,33 @@
+<div data-awbe-component="awbe-include" data-awbe-component-params="cabecalho"></div>
+
+<% 
+	var user = AWBE.sessionStorage.getItem('user');
+	if(AWBE.localStorage.getItem('isNCLegado_' + user.cpf) == "true"){ %>
+	<div data-awbe-component="awbe-include" data-awbe-component-params="menuOpcoesLogadoNCLegado"></div>
+<% }else{ %>
+	<div data-awbe-component="awbe-include" data-awbe-component-params="menuOpcoesLogado"></div>
+<% }
+var user = AWBE.sessionStorage.getItem('user');
+
+
+//FIXME: Nao foi encontraod CSS na classe ajustes que mostra-se um checkbox.
+//Foi alterado para usar o CSS da telas de cadastro contato
+%>
+
+<div class="page dados-contato cadastro ui-content" data-role="content">
+	<hr/>
+	<p class="fnt-book txt-1em color-gray-darker">Vers&atilde;o do aplicativo: <span class="fnt-bold"><%=AWBE.versaoApp%></span></p>
+	<hr/>
+
+	<%
+	//inicialmente so temos iOS
+	if(AWBE.Platforms.runningOnIOS() && AWBE.Components.TouchID.disponivel() && 1==2) {
+	%>
+		<input class="ui-checkbox-cadastro" type="checkbox" name="touchid" id="touchid" <%if(user.touchID){%>checked<%}%>/>
+		<label for="touchid" class="ui-checkbox-geral">Habilitar TouchID</label>
+	<%}%>
+	</h2>
+</div>
+
+
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/login/ajustes.js"></script>

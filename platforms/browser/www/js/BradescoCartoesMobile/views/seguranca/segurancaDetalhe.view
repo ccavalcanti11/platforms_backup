@@ -1,0 +1,235 @@
+
+<%		
+
+	//inserir style na view para corrigir layout iPhone10
+	var viewRender = AWBE.Views.getView('seguranca/styleSeguranca');
+	viewRender.render();
+	
+	cartaoElegivelSeg = sessionTitular(model.cartao.numeroCartao);		
+	
+	var paramsFuncionalidadeCache = BradescoCartoesMobile.controllers.getParamsFuncionalidades(cartaoElegivelSeg);
+	var funcionalidade = AWBE.sessionStorage.getItem(BradescoCartoesMobile.controllers.getFuncionalidadeKey(paramsFuncionalidadeCache));
+
+	var permiteBlqPerdaERoubo = funcionalidade.bloqueio && cartaoElegivelSeg.mostrarBloqueioCartao;
+	var permiteBlqTemporario = funcionalidade.bloqueioTemporario && cartaoElegivelSeg.mostrarBloqueioTemporario;
+	var permiteBlqEcommerce = funcionalidade.bloqueioEcommerce && cartaoElegivelSeg.mostrarBloqueioEcommerce;
+	var permiteSeguro = funcionalidade.seguro && cartaoElegivelSeg.mostrarSeguroCartao;
+	var permiteMostrarOutrasOpcoes = (permiteBlqPerdaERoubo || permiteSeguro);
+	var permiteMostrarAdicional = permiteBlqTemporario || permiteBlqEcommerce;	
+					
+	if(model.cartao.titularAdicional != "A")
+	{
+		listarAdicionais(model.cartao.numeroCartao);
+	}			
+
+	var bloqueioTemporario = false ;
+	if (cartaoElegivelSeg.bloqTemp != 'N' && cartaoElegivelSeg.bloqTemp != "")
+	{
+		bloqueioTemporario = true ;
+	}
+
+	var bloqueioEcommerce = false ;
+	if (cartaoElegivelSeg.bloqEcom != 'N' && cartaoElegivelSeg.bloqEcom != "")
+	{
+		bloqueioEcommerce = true ;
+	}
+
+	var viewStyleRender = AWBE.Views.getView('seguranca/styleSeguranca');
+    viewStyleRender.render();
+		
+	if(model.cartao.titularAdicional!="A"){%>
+		<% if(permiteBlqEcommerce || permiteBlqTemporario) {%>
+			<div id="opcoes-seguranca-collapsible" class="segurancaBody" data-role="collapsible" data-collapsed="true" data-iconpos="false" data-inset="false" data-content-theme="segurancaBloco">
+				<h4 class="segurancaNomeBenef">
+				  <span class="colapsible-icon" style=""></span>
+				  <div class="go-limite-extrato">
+				  </div>
+				  <label class="colapsible-text" style=""><%=model.cartao.nomeEmbosso%></label>
+				</h4>
+
+				<div id="titularTargetSeguranca" class="benefContent">
+				 	<div class="benefCartao destaque-area">
+					<div class="numCartaoSeg destaque-area fnt-regular txt-1em color-white"><%=formataCartao(model.cartao.numeroCartao)%></div>
+					<div class="titAdCartaoSeg fnt-regular txt-1em color-white" >TITULAR</div>
+					</div>
+					
+					<%if(permiteBlqTemporario){ %>
+					<div class="segurancaFuncionalidade">
+						<div class="segurancaFuncionalidade-content" <% if(permiteBlqEcommerce){ %> style="border-bottom: 1px solid #ccc;" <% } %> >
+							<div class="seguranca-toggle-btn toggle-btn-right">
+								<input type="checkbox" name="temporarioTitular" data-role="flipswitch" id="bloqueioTemporarioTitularFlipSwitch" data-current-value="<%= bloqueioTemporario %>" data-on-text="" data-off-text="" style="background-color: #ccc" onchange="efetuarBloqueio(this.name, null, this.id);" data-off-text=""  <%=bloqueioTemporario ? 'checked' : '' %>  />
+							</div>
+							<div class="seguranca-func-titulo fnt-medium txt-1em divtitle"> Bloquear temporariamente</div>
+							<div class="seguranca-func-desc smalltxt">N&atilde;o ser&atilde;o autorizadas as compras presenciais ou realizadas pela internet.
+								<div class="seguranca-info-icon"></div>
+							</div>
+						    <input type="hidden" data-awbe-bind="numParcialCartao" id="numParcialCartao" value=""/>
+						</div>
+					</div>
+					<%} if(permiteBlqEcommerce){%>
+					<div class="segurancaFuncionalidade">
+						<div class="segurancaFuncionalidade-content" style="border-bottom: 0px">
+							<div class="seguranca-toggle-btn toggle-btn-right">
+								<input type="checkbox" name="ecommTitular" data-role="flipswitch" id="bloqueioEcommerceTitularFlipSwitch" data-current-value="<%= bloqueioEcommerce %>" data-on-text="" onchange="efetuarBloqueio(this.name, null, this.id);" data-off-text="" <%=bloqueioEcommerce ? 'checked' : '' %> <%=bloqueioTemporario ? 'disabled' : '' %>/>
+							</div>
+							<div class="seguranca-func-titulo fnt-medium txt-1em divtitle"> Bloquear compras pela internet</div>
+							<div class="seguranca-func-desc smalltxt">N&atilde;o ser&atilde;o autorizadas as compras realizadas pela 
+								<div class="permissoes-icon-break">
+									internet.
+									<div class="permissoes-info-icon seguranca-info-icon"></div>
+								</div>
+							</div>
+						    <input type="hidden" data-awbe-bind="numParcialCartao" id="numParcialCartao" value=""/>
+						</div>
+					</div>
+
+					<%}%>
+				</div>
+			</div>
+		<% } %>
+<%}else{%>
+	<% if(permiteBlqEcommerce || permiteBlqTemporario) {%>
+		<div id="opcoes-seguranca-ad-collapsible" class="segurancaBody" data-role="collapsible" data-collapsed="false" data-iconpos="false" data-inset="false" data-content-theme="segurancaBloco">
+			
+			<h4 class="segurancaNomeBenef">
+			  <span class="colapsible-icon" style=""></span>
+			  <div class="go-limite-extrato">
+			  </div>
+			  <label class="colapsible-text" style=""><%=model.cartao.nomeEmbosso%></label>
+			</h4>
+
+			<div id="titularTargetSeguranca" class="benefContent">
+			<form method="post" action="#bloquearCartao" id="formBloqueioTempEcomm">
+			 	<div class="benefCartao destaque-area">
+				<div class="numCartaoSeg fnt-regular txt-1em color-white" ><%=formataCartao(model.cartao.numeroCartao)%></div>
+				<div class="titAdCartaoSeg fnt-regular txt-1em color-white">ADICIONAL</div>
+				</div>
+				<%if(permiteBlqTemporario){ %>
+				<div class="segurancaFuncionalidade">
+					<div class="segurancaFuncionalidade-content">
+						<div class="seguranca-toggle-btn toggle-btn-right">
+							<input type="checkbox" data-role="flipswitch" id="bloqueioTemporarioAdicionalFlipSwitch" data-current-value="1" data-on-text="" data-off-text="" onchange="efetuarBloqueio(this.name, null, this.id);" />
+						</div>
+						<div class="seguranca-func-titulo fnt-medium txt-1em divtitle"> Bloquear temporariamente</div>
+						<div class="seguranca-func-desc smalltxt">N&atilde;o ser&atilde;o autorizadas as compras realizadas pela 
+							<div class="permissoes-icon-break">
+								internet.
+								<div class="permissoes-info-icon seguranca-info-icon"></div>
+							</div>
+						</div>
+					    <input type="hidden" data-awbe-bind="numParcialCartao" id="numParcialCartao" value=""/>
+					</div>
+				</div>
+				<%}if(permiteBlqEcommerce){ %>
+				<div class="segurancaFuncionalidade">
+					<div class="segurancaFuncionalidade-content">
+						<div class="seguranca-toggle-btn toggle-btn-right">
+							<input type="checkbox" data-role="flipswitch" name="tempEcommAdicional" id="bloqueioEcommerceAdicionalFlipSwitch" data-current-value="1" data-on-text="" data-off-text="" onchange="efetuarBloqueio(this.name, null, this.id);" />
+						</div>
+						<div class="seguranca-func-titulo fnt-medium txt-1em divtitle"> Bloquear compras pela internet</div>
+						<div class="seguranca-func-desc smalltxt">N&atilde;o ser&atilde;o autorizadas as compras realizadas pela internet.
+							<div class="seguranca-info-icon"></div>
+						</div>
+					    <input type="hidden" data-awbe-bind="numParcialCartao" id="numParcialCartao" value=""/>
+					</div>
+				</div>
+				<%}%>
+			</form>
+			</div>
+		</div>
+	<% } %>
+<%}%>
+
+<%
+	if(permiteMostrarAdicional){ 
+%>
+		<div id="targetAdicionais"></div>		
+<%
+	}
+%>
+
+<%if(permiteMostrarOutrasOpcoes){%>
+	<div class="ui-content-maisopcoes">
+		<% if(permiteBlqEcommerce || permiteBlqTemporario) {%>
+		<div>
+			<p class="maisopcoes-title">Mais op&ccedil;&otilde;es </p>
+		</div>
+		<%} if(permiteBlqPerdaERoubo){ %>
+			<div>
+			<% if(!permiteSeguro){%>
+				<p class="bloqueioCartao seguranca-func-opcao colapsible-text containerFlexCenter" style="border-bottom: 0px">
+			<%}else{%>
+				<p class="bloqueioCartao seguranca-func-opcao colapsible-text containerFlexCenter" style="border-bottom: 0px">
+			<%}%>
+					<a class="color-gray-darker ui-link txt-09em" style="text-decoration: none; font-weight:normal;">
+						Bloquear cart&atilde;o perdido ou roubado
+					</a>
+					<span class="directaction-icon-seguranca" style="margin:0 !important; right: 1em"></span>
+
+				</p>
+			</div>
+		<%} if(permiteSeguro){%>
+			<div>
+				<p class="seguroCartao seguranca-func-opcao colapsible-text containerFlexCenter" style="border-bottom: 0px">
+				 	<a class="ui-link color-gray-darker txt-09em" style="text-decoration: none; font-weight:normal;">
+							Seguro de cart&atilde;o
+						
+					</a>
+					<span class="directaction-icon-seguranca" style="margin:0 !important; right: 1em"></span>
+				</p>
+			</div>
+		<%} %>
+	</div>
+<%} %>
+
+<div data-awbe-component="popup"
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="bloqueioCartaoInfo">
+	<p class="titulo-modal">Bloqueio de cart&atilde;o</p>
+	<p class="texto-modal-normal">Compras parceladas j&aacute; realizadas continuar&atilde;o sendo lan&ccedil;adas na fatura.</p>
+	<p class="texto-modal-normal">Al&eacute;m disso, despesas recorrentes n&atilde;o ser&atilde;o bloqueadas, por exemplo: assinaturas de servi&ccedil;os de v&iacute;deo, m&uacute;sicas e revistas.</p>
+	<div class="align-botoes-2">
+		<a id="bloqueioCartaoInfoClose" data-rel="back" class="botao-modal-003" style="width: 100%">Fechar</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup"
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="erroOffline">
+	<p class="titulo-normal">ERRO</p>
+	<p class="texto-modal-normal">Sem conexão. Verifique a rede.</p>
+	<div class="align-botoes-2">
+		<a id="erroBloqueioClose" data-rel="back" class="botao-modal-003" style="width: 100%">FECHAR</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup"
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="erroBloqueio">
+	<p class="texto-modal-normal">N&atilde;o foi poss&iacute;vel bloquear o seu cart&atilde;o.</p>
+	<p class="texto-modal-normal">Tente novamente mais tarde.</p>
+	<div class="align-botoes-2">
+		<a id="erroBloqueioClose" data-rel="back" class="botao-modal-003" style="width: 100%">OK</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup"
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="erroDesbloqueio">
+	<p class="texto-modal-normal">N&atilde;o foi poss&iacute;vel desbloquear o seu cart&atilde;o.</p>
+	<p class="texto-modal-normal">Tente novamente mais tarde.</p>
+	<div class="align-botoes-2">
+		<a id="erroDesbloqueioClose" data-rel="back" class="botao-modal-003" style="width: 100%">OK</a>
+	</div>
+</div>
+
+
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/seguranca/seguranca.js"></script>

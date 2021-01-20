@@ -1,0 +1,54 @@
+<div data-awbe-component="awbe-include" data-awbe-component-params="cabecalhoVoltarPagina"></div>
+
+<div class="page ui-content" data-role="content">
+	<div class="divAlertas">
+		<hr class="hr-margin-error">
+		<div class="icon-20"></div>
+		<p class="txt-08em fnt-book color-gray-lighter margin-left-28em">As senhas devem ser iguais nos 2 campos.</p>
+		<hr class="hr-margin-error">
+ 	</div>
+	<form action="#confirmacaoRedefinicao" id="formNovaSenha">
+		<p class="fnt-book color-gray-darker txt-1em">Nova senha</p>
+		<input type="tel" class="input-password-numeric only-pass input-pass" pattern="[0-9]*" inputmode="numeric" name="novaSenha" id="novaSenha" data-awbe-bind="novaSenha" data-awbe-for="confirmacaoRedefinicao" data-awbe-validation="validarCodigo" value="<%=params.novaSenha%>" autocomplete="off" maxlength="4" oncopy="return false" oncut="return false" onpaste="return false"/>
+		<p class="fnt-book color-gray-darker txt-075em">Informe uma senha num&eacute;rica de 4 d&iacute;gitos.</p>
+		<p class="fnt-book color-gray-darker txt-1em">Confirme sua nova senha</p>
+		<input type="tel" class="input-password-numeric only-pass input-pass" pattern="[0-9]*" inputmode="numeric" name="confirmarNovaSenha" id="confirmarNovaSenha" data-awbe-bind="confirmarNovaSenha" data-awbe-for="confirmacaoRedefinicao" data-awbe-validation="validarCodigo" value="<%=params.confirmarNovaSenha%>" autocomplete="off" maxlength="4" oncopy="return false" oncut="return false" onpaste="return false"/>
+		<hr class="hr-margin-tb" />
+		<div class="ui-grid-a">
+			<div class="ui-block-a">
+				<div class="enable-buttom disabledButton">
+					<div class="ui-btn-arrow-blue-arrow"></div>
+					<div class="ui-btn-arrow-blue">
+		    			<a id="submitNovaSenha" class="ui-link">Continuar</a>
+	    			</div>
+				</div>
+			</div>
+			<div class="ui-block-b"></div>
+		</div>
+	</form>
+</div>
+
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="dadosAlterado">
+	<p class="texto-modal-normal">Senha criada com sucesso!</p>
+	<div class="align-botoes">
+		<a href="#homeLogada" data-rel="back" class="botao-modal-002" id="btnOkSenhaRedefinida">OK</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="alertaInformacao">
+	<p class="texto-modal-normal" id="alerta-mensagem"></p>
+	<div class="align-botoes">	
+		<a href="#" data-rel="back" class="botao-modal-002" id="hrefAlerInfo">Fechar</a>
+	</div>
+</div>
+
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/login/esqueciSenha/recuperacaoSenha.js"/>
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/login/esqueciSenha/redefinicaoSenha.js"></script>

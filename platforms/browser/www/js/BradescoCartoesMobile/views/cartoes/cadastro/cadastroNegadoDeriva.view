@@ -1,0 +1,48 @@
+<div data-awbe-component="awbe-include" data-awbe-component-params="cabecalho"></div>
+<% 
+	var user = AWBE.sessionStorage.getItem('user');
+	var cpf = user.cpf.toString();
+	//CHAMADA PARA A MAQUINA DE ESTADOS
+	BradescoCartoesMobile.components.atualizaMaquinaEstado(
+			cpf, 												//CPF
+			BradescoCartoesMobile.components.passoMaquinaEstado.PERFIL_SIMPLIFICADO,//PASSO
+			BradescoCartoesMobile.components.tipoCadastro.SIMPLIFICADO,				//TIPO CADASTRO
+			false,																	//IDENTIFICADOR LEGADO
+			BradescoCartoesMobile.components.etapaMaquinaEstado.ATUALIZAR_CADASTRO,//CODIGO ETAPA
+			BradescoCartoesMobile.components.resultadoMaquinaEstado.PENDENTE		//RESULTADO PROCESSAMENTO 
+	);
+	//FIM CHAMADA PARA A MAQUINA DE ESTADOS
+	AWBE.localStorage.removeItem('derivaRecusadoFechado_'+ cpf);
+	
+	if(AWBE.localStorage.getItem('isNCLegado_' + user.cpf) == "true"){ %>
+	<div data-awbe-component="awbe-include" data-awbe-component-params="menuOpcoesLogadoNCLegado"></div>
+<% }else{ %>
+	<div data-awbe-component="awbe-include" data-awbe-component-params="menuOpcoesLogado"></div>
+<% }%>
+
+<article id="cadastro-negado-dereiva" class="ui-content">
+	<header>
+		<h2>SOLICITA&Ccedil;&Atilde;O ENCERRADA</h2>
+	</header>
+	<section>
+	   	<p class="fnt-book color-gray-darker txt-12em">
+	   		Nesse momento n&atilde;o foi poss&iacute;vel liberar todas as funcionalidades.
+   		</p>
+	   	<p class="fnt-book color-gray-darker txt-12em">
+   			Para mais informa&ccedil;&otilde;es ligue na Central de Atendimento.
+   		</p>
+	   	<p class="fnt-book color-gray-darker txt-12em">
+   			N&atilde;o se preocupe, voc&ecirc; pode continuar usando o aplicativo com as funcionalidades atuais.
+   		</p>
+	</section>
+	
+	<div class="border-complete-bottom margin-top-3em">
+			<h2 class="subtitle">OUTRAS OP&Ccedil;&Otilde;ES</h2>
+	</div>
+	<div class="border-complete-bottom" onclick="location.hash='#canaisAtendimentoLogado';">
+		<p class="colapsible-text">
+			<a href="#canaisAtendimentoLogado" class="color-gray-darker txt-11em fnt-book" style="text-decoration: none;">Visualizar telefones &uacute;teis<span class="directaction-icon"></span></a>
+		</p>
+	</div>
+	</section>
+</article>

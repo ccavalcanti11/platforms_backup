@@ -1,0 +1,374 @@
+-- Merging decision tree log ---
+provider#android.support.v4.content.FileProvider
+INJECTED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:36:9-38:20
+	android:grantUriPermissions
+		ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:36:92-126
+	android:authorities
+		INJECTED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:36:19-66
+	android:exported
+		ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:36:67-91
+	android:name
+		ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:36:127-181
+manifest
+ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:2:1-55:12
+INJECTED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:2:1-55:12
+INJECTED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:2:1-55:12
+MERGED from [io.card:android-sdk:5.5.0] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\android-sdk-5.5.0.aar\546721040b4e54dbd110ae51b1a835d5\AndroidManifest.xml:2:1-26:12
+MERGED from [com.github.scottyab:rootbeer:0.0.4] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\rootbeer-0.0.4.aar\d67401a24dc1fb2cebf5a7124207d2d1\AndroidManifest.xml:2:1-13:12
+MERGED from [:scopus-idvirtual-1.1.0:] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\scopus-idvirtual-1.1.0.aar\c7cae71da386b624ee5af7bbb947d9fa\AndroidManifest.xml:2:1-13:12
+MERGED from [com.android.support:appcompat-v7:23.4.0] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\appcompat-v7-23.4.0.aar\804906a7fcf57147016af7e4e6b85e8a\AndroidManifest.xml:17:1-27:12
+MERGED from [com.android.support:animated-vector-drawable:23.4.0] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-23.4.0.aar\f731408eda2ae8927d1c6f2bd11baa71\AndroidManifest.xml:2:1-9:12
+MERGED from [com.android.support:support-vector-drawable:23.4.0] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-23.4.0.aar\c81c98bb94aa2d42f4916696b6864b4c\AndroidManifest.xml:2:1-9:12
+MERGED from [com.android.support:support-v4:26.1.0] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\3f18142236bd82101c41091a7d837356\AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-media-compat:26.1.0] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.1.0.aar\fff859fbb148f85269ccd3e42317ef96\AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-fragment:26.1.0] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\support-fragment-26.1.0.aar\e383adc1717dc4dd52cbcf90d30a5e9b\AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-core-utils:26.1.0] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\support-core-utils-26.1.0.aar\4c96f344995d0962fbcdbbd6c201b783\AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-core-ui:26.1.0] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.1.0.aar\b932dc4bb19fcb7204a169e7f5e85eb1\AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-compat:26.1.0] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\support-compat-26.1.0.aar\91b5ae4cfed303cf3a52b6e0aee4030e\AndroidManifest.xml:17:1-31:12
+MERGED from [:scopus-pinning-1.1.0:] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\scopus-pinning-1.1.0.aar\f00ed324ec712cd1baae3db20470e246\AndroidManifest.xml:2:1-20:12
+MERGED from [:smiclib-2.0.5-dev:] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\smiclib-2.0.5-dev.aar\908fa5d2178d66d3f1028bf86a0e7b3a\AndroidManifest.xml:2:1-21:12
+MERGED from [:CordovaLib] C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\CordovaLib\build\intermediates\manifests\full\debug\AndroidManifest.xml:20:1-27:12
+MERGED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\151f9234e0cc6e29f34c5b7bddd1c42c\AndroidManifest.xml:17:1-30:12
+INJECTED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:2:1-55:12
+INJECTED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:2:1-55:12
+	package
+		ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:2:110-143
+		INJECTED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml
+	android:versionName
+		ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:2:70-109
+		INJECTED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml
+	android:hardwareAccelerated
+		ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:2:11-45
+	xmlns:android
+		ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:2:144-202
+	android:versionCode
+		ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:2:46-69
+supports-screens
+ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:3:5-191
+	android:largeScreens
+		ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:3:49-76
+	android:smallScreens
+		ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:3:132-159
+	android:normalScreens
+		ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:3:77-105
+	android:xlargeScreens
+		ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:3:160-188
+	android:resizeable
+		ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:3:106-131
+	android:anyDensity
+		ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:3:23-48
+uses-permission#android.permission.INTERNET
+ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:4:5-67
+MERGED from [:scopus-pinning-1.1.0:] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\scopus-pinning-1.1.0.aar\f00ed324ec712cd1baae3db20470e246\AndroidManifest.xml:12:5-67
+MERGED from [:scopus-pinning-1.1.0:] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\scopus-pinning-1.1.0.aar\f00ed324ec712cd1baae3db20470e246\AndroidManifest.xml:12:5-67
+MERGED from [:smiclib-2.0.5-dev:] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\smiclib-2.0.5-dev.aar\908fa5d2178d66d3f1028bf86a0e7b3a\AndroidManifest.xml:11:5-67
+MERGED from [:smiclib-2.0.5-dev:] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\smiclib-2.0.5-dev.aar\908fa5d2178d66d3f1028bf86a0e7b3a\AndroidManifest.xml:11:5-67
+	android:name
+		ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:4:22-64
+application
+ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:5:5-39:19
+MERGED from [io.card:android-sdk:5.5.0] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\android-sdk-5.5.0.aar\546721040b4e54dbd110ae51b1a835d5\AndroidManifest.xml:19:5-24:19
+MERGED from [io.card:android-sdk:5.5.0] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\android-sdk-5.5.0.aar\546721040b4e54dbd110ae51b1a835d5\AndroidManifest.xml:19:5-24:19
+MERGED from [com.github.scottyab:rootbeer:0.0.4] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\rootbeer-0.0.4.aar\d67401a24dc1fb2cebf5a7124207d2d1\AndroidManifest.xml:11:5-20
+MERGED from [com.github.scottyab:rootbeer:0.0.4] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\rootbeer-0.0.4.aar\d67401a24dc1fb2cebf5a7124207d2d1\AndroidManifest.xml:11:5-20
+MERGED from [com.android.support:appcompat-v7:23.4.0] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\appcompat-v7-23.4.0.aar\804906a7fcf57147016af7e4e6b85e8a\AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:appcompat-v7:23.4.0] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\appcompat-v7-23.4.0.aar\804906a7fcf57147016af7e4e6b85e8a\AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:animated-vector-drawable:23.4.0] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-23.4.0.aar\f731408eda2ae8927d1c6f2bd11baa71\AndroidManifest.xml:7:5-20
+MERGED from [com.android.support:animated-vector-drawable:23.4.0] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-23.4.0.aar\f731408eda2ae8927d1c6f2bd11baa71\AndroidManifest.xml:7:5-20
+MERGED from [com.android.support:support-vector-drawable:23.4.0] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-23.4.0.aar\c81c98bb94aa2d42f4916696b6864b4c\AndroidManifest.xml:7:5-20
+MERGED from [com.android.support:support-vector-drawable:23.4.0] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-23.4.0.aar\c81c98bb94aa2d42f4916696b6864b4c\AndroidManifest.xml:7:5-20
+MERGED from [com.android.support:support-v4:26.1.0] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\3f18142236bd82101c41091a7d837356\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-v4:26.1.0] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\3f18142236bd82101c41091a7d837356\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-media-compat:26.1.0] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.1.0.aar\fff859fbb148f85269ccd3e42317ef96\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-media-compat:26.1.0] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.1.0.aar\fff859fbb148f85269ccd3e42317ef96\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-fragment:26.1.0] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\support-fragment-26.1.0.aar\e383adc1717dc4dd52cbcf90d30a5e9b\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-fragment:26.1.0] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\support-fragment-26.1.0.aar\e383adc1717dc4dd52cbcf90d30a5e9b\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-core-utils:26.1.0] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\support-core-utils-26.1.0.aar\4c96f344995d0962fbcdbbd6c201b783\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-core-utils:26.1.0] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\support-core-utils-26.1.0.aar\4c96f344995d0962fbcdbbd6c201b783\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-core-ui:26.1.0] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.1.0.aar\b932dc4bb19fcb7204a169e7f5e85eb1\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-core-ui:26.1.0] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.1.0.aar\b932dc4bb19fcb7204a169e7f5e85eb1\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-compat:26.1.0] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\support-compat-26.1.0.aar\91b5ae4cfed303cf3a52b6e0aee4030e\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-compat:26.1.0] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\support-compat-26.1.0.aar\91b5ae4cfed303cf3a52b6e0aee4030e\AndroidManifest.xml:25:5-29:19
+MERGED from [:scopus-pinning-1.1.0:] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\scopus-pinning-1.1.0.aar\f00ed324ec712cd1baae3db20470e246\AndroidManifest.xml:14:5-18:19
+MERGED from [:scopus-pinning-1.1.0:] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\scopus-pinning-1.1.0.aar\f00ed324ec712cd1baae3db20470e246\AndroidManifest.xml:14:5-18:19
+MERGED from [:smiclib-2.0.5-dev:] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\smiclib-2.0.5-dev.aar\908fa5d2178d66d3f1028bf86a0e7b3a\AndroidManifest.xml:15:5-19:19
+MERGED from [:smiclib-2.0.5-dev:] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\smiclib-2.0.5-dev.aar\908fa5d2178d66d3f1028bf86a0e7b3a\AndroidManifest.xml:15:5-19:19
+MERGED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\151f9234e0cc6e29f34c5b7bddd1c42c\AndroidManifest.xml:24:5-28:19
+MERGED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\151f9234e0cc6e29f34c5b7bddd1c42c\AndroidManifest.xml:24:5-28:19
+	android:supportsRtl
+		ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:5:114-140
+	android:label
+		ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:5:81-113
+	android:hardwareAccelerated
+		ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:5:18-52
+	android:allowBackup
+		ADDED from [:scopus-pinning-1.1.0:] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\scopus-pinning-1.1.0.aar\f00ed324ec712cd1baae3db20470e246\AndroidManifest.xml:15:9-35
+	android:icon
+		ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:5:53-80
+	android:usesCleartextTraffic
+		ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:5:141-176
+activity#br.com.bradesco.cartoes.MainActivity
+ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:6:9-11:20
+	android:screenOrientation
+		ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:6:194-230
+	android:label
+		ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:6:97-134
+	android:launchMode
+		ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:6:135-165
+	android:windowSoftInputMode
+		ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:6:294-336
+	android:configChanges
+		ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:6:19-96
+	android:theme
+		ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:6:231-293
+	android:name
+		ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:6:166-193
+intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
+ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:7:13-10:29
+	android:label
+		ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:7:28-65
+action#android.intent.action.MAIN
+ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:8:17-69
+	android:name
+		ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:8:25-66
+category#android.intent.category.LAUNCHER
+ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:9:17-77
+	android:name
+		ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:9:27-74
+receiver#com.appsflyer.MultipleInstallBroadcastReceiver
+ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:12:9-16:20
+	android:exported
+		ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:12:19-42
+	android:name
+		ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:12:43-104
+intent-filter#com.android.vending.INSTALL_REFERRER
+ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:13:13-15:29
+action#com.android.vending.INSTALL_REFERRER
+ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:14:17-79
+	android:name
+		ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:14:25-76
+activity#com.google.zxing.client.android.CaptureActivity
+ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:17:9-22:20
+	android:screenOrientation
+		ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:17:191-228
+	android:clearTaskOnLaunch
+		ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:17:19-51
+	android:windowSoftInputMode
+		ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:17:288-335
+	android:exported
+		ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:17:103-127
+	android:configChanges
+		ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:17:52-102
+	android:theme
+		ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:17:229-287
+	android:name
+		ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:17:128-190
+intent-filter#android.intent.category.DEFAULT+com.phonegap.plugins.barcodescanner.SCAN
+ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:18:13-21:29
+action#com.phonegap.plugins.barcodescanner.SCAN
+ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:19:17-83
+	android:name
+		ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:19:25-80
+category#android.intent.category.DEFAULT
+ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:20:17-76
+	android:name
+		ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:20:27-73
+activity#com.google.zxing.client.android.encode.EncodeActivity
+ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:23:9-28:20
+	android:label
+		ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:23:19-53
+	android:name
+		ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:23:54-122
+intent-filter#android.intent.category.DEFAULT+com.phonegap.plugins.barcodescanner.ENCODE
+ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:24:13-27:29
+action#com.phonegap.plugins.barcodescanner.ENCODE
+ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:25:17-85
+	android:name
+		ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:25:25-82
+activity#com.google.zxing.client.android.HelpActivity
+ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:29:9-34:20
+	android:label
+		ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:29:19-53
+	android:name
+		ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:29:54-113
+intent-filter#android.intent.action.VIEW+android.intent.category.DEFAULT
+ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:30:13-33:29
+action#android.intent.action.VIEW
+ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:31:17-69
+	android:name
+		ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:31:25-66
+activity#com.synconset.MultiImageChooserActivity
+ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:35:9-163
+	android:label
+		ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:35:19-57
+	android:theme
+		ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:35:113-160
+	android:name
+		ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:35:58-112
+uses-sdk
+ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:40:5-74
+INJECTED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:40:5-74
+MERGED from [io.card:android-sdk:5.5.0] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\android-sdk-5.5.0.aar\546721040b4e54dbd110ae51b1a835d5\AndroidManifest.xml:5:5-7:41
+MERGED from [io.card:android-sdk:5.5.0] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\android-sdk-5.5.0.aar\546721040b4e54dbd110ae51b1a835d5\AndroidManifest.xml:5:5-7:41
+MERGED from [com.github.scottyab:rootbeer:0.0.4] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\rootbeer-0.0.4.aar\d67401a24dc1fb2cebf5a7124207d2d1\AndroidManifest.xml:7:5-9:41
+MERGED from [com.github.scottyab:rootbeer:0.0.4] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\rootbeer-0.0.4.aar\d67401a24dc1fb2cebf5a7124207d2d1\AndroidManifest.xml:7:5-9:41
+MERGED from [:scopus-idvirtual-1.1.0:] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\scopus-idvirtual-1.1.0.aar\c7cae71da386b624ee5af7bbb947d9fa\AndroidManifest.xml:7:5-9:41
+MERGED from [:scopus-idvirtual-1.1.0:] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\scopus-idvirtual-1.1.0.aar\c7cae71da386b624ee5af7bbb947d9fa\AndroidManifest.xml:7:5-9:41
+MERGED from [com.android.support:appcompat-v7:23.4.0] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\appcompat-v7-23.4.0.aar\804906a7fcf57147016af7e4e6b85e8a\AndroidManifest.xml:21:5-23:78
+MERGED from [com.android.support:appcompat-v7:23.4.0] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\appcompat-v7-23.4.0.aar\804906a7fcf57147016af7e4e6b85e8a\AndroidManifest.xml:21:5-23:78
+MERGED from [com.android.support:animated-vector-drawable:23.4.0] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-23.4.0.aar\f731408eda2ae8927d1c6f2bd11baa71\AndroidManifest.xml:5:5-44
+MERGED from [com.android.support:animated-vector-drawable:23.4.0] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-23.4.0.aar\f731408eda2ae8927d1c6f2bd11baa71\AndroidManifest.xml:5:5-44
+MERGED from [com.android.support:support-vector-drawable:23.4.0] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-23.4.0.aar\c81c98bb94aa2d42f4916696b6864b4c\AndroidManifest.xml:5:5-43
+MERGED from [com.android.support:support-vector-drawable:23.4.0] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-23.4.0.aar\c81c98bb94aa2d42f4916696b6864b4c\AndroidManifest.xml:5:5-43
+MERGED from [com.android.support:support-v4:26.1.0] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\3f18142236bd82101c41091a7d837356\AndroidManifest.xml:21:5-23:54
+MERGED from [com.android.support:support-v4:26.1.0] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\3f18142236bd82101c41091a7d837356\AndroidManifest.xml:21:5-23:54
+MERGED from [com.android.support:support-media-compat:26.1.0] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.1.0.aar\fff859fbb148f85269ccd3e42317ef96\AndroidManifest.xml:21:5-23:63
+MERGED from [com.android.support:support-media-compat:26.1.0] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.1.0.aar\fff859fbb148f85269ccd3e42317ef96\AndroidManifest.xml:21:5-23:63
+MERGED from [com.android.support:support-fragment:26.1.0] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\support-fragment-26.1.0.aar\e383adc1717dc4dd52cbcf90d30a5e9b\AndroidManifest.xml:21:5-23:60
+MERGED from [com.android.support:support-fragment:26.1.0] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\support-fragment-26.1.0.aar\e383adc1717dc4dd52cbcf90d30a5e9b\AndroidManifest.xml:21:5-23:60
+MERGED from [com.android.support:support-core-utils:26.1.0] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\support-core-utils-26.1.0.aar\4c96f344995d0962fbcdbbd6c201b783\AndroidManifest.xml:21:5-23:61
+MERGED from [com.android.support:support-core-utils:26.1.0] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\support-core-utils-26.1.0.aar\4c96f344995d0962fbcdbbd6c201b783\AndroidManifest.xml:21:5-23:61
+MERGED from [com.android.support:support-core-ui:26.1.0] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.1.0.aar\b932dc4bb19fcb7204a169e7f5e85eb1\AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-core-ui:26.1.0] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.1.0.aar\b932dc4bb19fcb7204a169e7f5e85eb1\AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-compat:26.1.0] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\support-compat-26.1.0.aar\91b5ae4cfed303cf3a52b6e0aee4030e\AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-compat:26.1.0] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\support-compat-26.1.0.aar\91b5ae4cfed303cf3a52b6e0aee4030e\AndroidManifest.xml:21:5-23:58
+MERGED from [:scopus-pinning-1.1.0:] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\scopus-pinning-1.1.0.aar\f00ed324ec712cd1baae3db20470e246\AndroidManifest.xml:7:5-9:41
+MERGED from [:scopus-pinning-1.1.0:] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\scopus-pinning-1.1.0.aar\f00ed324ec712cd1baae3db20470e246\AndroidManifest.xml:7:5-9:41
+MERGED from [:smiclib-2.0.5-dev:] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\smiclib-2.0.5-dev.aar\908fa5d2178d66d3f1028bf86a0e7b3a\AndroidManifest.xml:7:5-9:41
+MERGED from [:smiclib-2.0.5-dev:] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\smiclib-2.0.5-dev.aar\908fa5d2178d66d3f1028bf86a0e7b3a\AndroidManifest.xml:7:5-9:41
+MERGED from [:CordovaLib] C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\CordovaLib\build\intermediates\manifests\full\debug\AndroidManifest.xml:25:5-44
+MERGED from [:CordovaLib] C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\CordovaLib\build\intermediates\manifests\full\debug\AndroidManifest.xml:25:5-44
+MERGED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\151f9234e0cc6e29f34c5b7bddd1c42c\AndroidManifest.xml:20:5-22:41
+MERGED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\151f9234e0cc6e29f34c5b7bddd1c42c\AndroidManifest.xml:20:5-22:41
+INJECTED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:40:5-74
+	tools:overrideLibrary
+		ADDED from [com.android.support:appcompat-v7:23.4.0] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\appcompat-v7-23.4.0.aar\804906a7fcf57147016af7e4e6b85e8a\AndroidManifest.xml:23:9-75
+	android:targetSdkVersion
+		ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:40:42-71
+	android:minSdkVersion
+		ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:40:15-41
+		INJECTED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml
+uses-permission#android.permission.ACCESS_WIFI_STATE
+ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:41:5-76
+MERGED from [:scopus-idvirtual-1.1.0:] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\scopus-idvirtual-1.1.0.aar\c7cae71da386b624ee5af7bbb947d9fa\AndroidManifest.xml:11:5-76
+MERGED from [:scopus-idvirtual-1.1.0:] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\scopus-idvirtual-1.1.0.aar\c7cae71da386b624ee5af7bbb947d9fa\AndroidManifest.xml:11:5-76
+	android:name
+		ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:41:22-73
+uses-permission#android.permission.CHANGE_WIFI_STATE
+ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:42:5-76
+	android:name
+		ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:42:22-73
+uses-permission#android.permission.ACCESS_COARSE_LOCATION
+ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:43:5-81
+	android:name
+		ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:43:22-78
+uses-permission#android.permission.USE_FINGERPRINT
+ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:44:5-74
+	android:name
+		ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:44:22-71
+uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
+ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:45:5-81
+	android:name
+		ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:45:22-78
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:46:5-79
+MERGED from [:scopus-pinning-1.1.0:] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\scopus-pinning-1.1.0.aar\f00ed324ec712cd1baae3db20470e246\AndroidManifest.xml:11:5-79
+MERGED from [:scopus-pinning-1.1.0:] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\scopus-pinning-1.1.0.aar\f00ed324ec712cd1baae3db20470e246\AndroidManifest.xml:11:5-79
+	android:name
+		ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:46:22-76
+uses-permission#android.permission.CAMERA
+ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:47:5-65
+MERGED from [io.card:android-sdk:5.5.0] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\android-sdk-5.5.0.aar\546721040b4e54dbd110ae51b1a835d5\AndroidManifest.xml:9:5-65
+MERGED from [io.card:android-sdk:5.5.0] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\android-sdk-5.5.0.aar\546721040b4e54dbd110ae51b1a835d5\AndroidManifest.xml:9:5-65
+	android:name
+		ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:47:22-62
+uses-permission#android.permission.FLASHLIGHT
+ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:48:5-69
+	android:name
+		ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:48:22-66
+uses-feature#android.hardware.camera
+ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:49:5-85
+MERGED from [io.card:android-sdk:5.5.0] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\android-sdk-5.5.0.aar\546721040b4e54dbd110ae51b1a835d5\AndroidManifest.xml:12:5-14:36
+MERGED from [io.card:android-sdk:5.5.0] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\android-sdk-5.5.0.aar\546721040b4e54dbd110ae51b1a835d5\AndroidManifest.xml:12:5-14:36
+	android:required
+		ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:49:58-82
+	android:name
+		ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:49:19-57
+uses-permission#android.permission.ACCESS_FINE_LOCATION
+ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:50:5-79
+	android:name
+		ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:50:22-76
+uses-feature#android.hardware.location.gps
+ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:51:5-66
+	android:name
+		ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:51:19-63
+uses-permission#android.permission.READ_PHONE_STATE
+ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:52:5-75
+MERGED from [:smiclib-2.0.5-dev:] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\smiclib-2.0.5-dev.aar\908fa5d2178d66d3f1028bf86a0e7b3a\AndroidManifest.xml:12:5-75
+MERGED from [:smiclib-2.0.5-dev:] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\smiclib-2.0.5-dev.aar\908fa5d2178d66d3f1028bf86a0e7b3a\AndroidManifest.xml:12:5-75
+	android:name
+		ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:52:22-72
+uses-permission#android.permission.READ_CALENDAR
+ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:53:5-72
+	android:name
+		ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:53:22-69
+uses-permission#android.permission.WRITE_CALENDAR
+ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:54:5-73
+	android:name
+		ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:54:22-70
+meta-data#android.support.FILE_PROVIDER_PATHS
+ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:37:13-116
+	android:resource
+		ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:37:75-113
+	android:name
+		ADDED from C:\Users\ccavalcanti\Documents\res\Mobile_AppCartoes\bcmp_mobile\platforms\android\app\src\main\AndroidManifest.xml:37:24-74
+uses-permission#android.permission.VIBRATE
+ADDED from [io.card:android-sdk:5.5.0] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\android-sdk-5.5.0.aar\546721040b4e54dbd110ae51b1a835d5\AndroidManifest.xml:10:5-66
+	android:name
+		ADDED from [io.card:android-sdk:5.5.0] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\android-sdk-5.5.0.aar\546721040b4e54dbd110ae51b1a835d5\AndroidManifest.xml:10:22-63
+uses-feature#android.hardware.camera.autofocus
+ADDED from [io.card:android-sdk:5.5.0] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\android-sdk-5.5.0.aar\546721040b4e54dbd110ae51b1a835d5\AndroidManifest.xml:15:5-17:36
+	android:required
+		ADDED from [io.card:android-sdk:5.5.0] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\android-sdk-5.5.0.aar\546721040b4e54dbd110ae51b1a835d5\AndroidManifest.xml:17:9-33
+	android:name
+		ADDED from [io.card:android-sdk:5.5.0] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\android-sdk-5.5.0.aar\546721040b4e54dbd110ae51b1a835d5\AndroidManifest.xml:16:9-57
+activity#io.card.payment.CardIOActivity
+ADDED from [io.card:android-sdk:5.5.0] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\android-sdk-5.5.0.aar\546721040b4e54dbd110ae51b1a835d5\AndroidManifest.xml:20:9-22:66
+	android:configChanges
+		ADDED from [io.card:android-sdk:5.5.0] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\android-sdk-5.5.0.aar\546721040b4e54dbd110ae51b1a835d5\AndroidManifest.xml:22:13-63
+	android:name
+		ADDED from [io.card:android-sdk:5.5.0] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\android-sdk-5.5.0.aar\546721040b4e54dbd110ae51b1a835d5\AndroidManifest.xml:21:13-58
+activity#io.card.payment.DataEntryActivity
+ADDED from [io.card:android-sdk:5.5.0] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\android-sdk-5.5.0.aar\546721040b4e54dbd110ae51b1a835d5\AndroidManifest.xml:23:9-70
+	android:name
+		ADDED from [io.card:android-sdk:5.5.0] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\android-sdk-5.5.0.aar\546721040b4e54dbd110ae51b1a835d5\AndroidManifest.xml:23:19-67
+meta-data#android.support.VERSION
+ADDED from [com.android.support:support-v4:26.1.0] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\3f18142236bd82101c41091a7d837356\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-media-compat:26.1.0] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.1.0.aar\fff859fbb148f85269ccd3e42317ef96\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-media-compat:26.1.0] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.1.0.aar\fff859fbb148f85269ccd3e42317ef96\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-fragment:26.1.0] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\support-fragment-26.1.0.aar\e383adc1717dc4dd52cbcf90d30a5e9b\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-fragment:26.1.0] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\support-fragment-26.1.0.aar\e383adc1717dc4dd52cbcf90d30a5e9b\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-core-utils:26.1.0] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\support-core-utils-26.1.0.aar\4c96f344995d0962fbcdbbd6c201b783\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-core-utils:26.1.0] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\support-core-utils-26.1.0.aar\4c96f344995d0962fbcdbbd6c201b783\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-core-ui:26.1.0] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.1.0.aar\b932dc4bb19fcb7204a169e7f5e85eb1\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-core-ui:26.1.0] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.1.0.aar\b932dc4bb19fcb7204a169e7f5e85eb1\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-compat:26.1.0] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\support-compat-26.1.0.aar\91b5ae4cfed303cf3a52b6e0aee4030e\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-compat:26.1.0] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\support-compat-26.1.0.aar\91b5ae4cfed303cf3a52b6e0aee4030e\AndroidManifest.xml:26:9-28:38
+	android:value
+		ADDED from [com.android.support:support-v4:26.1.0] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\3f18142236bd82101c41091a7d837356\AndroidManifest.xml:28:13-35
+	android:name
+		ADDED from [com.android.support:support-v4:26.1.0] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\3f18142236bd82101c41091a7d837356\AndroidManifest.xml:27:13-51
+uses-permission#br.com.scopus.permission.SMIC_PERMISSION
+ADDED from [:smiclib-2.0.5-dev:] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\smiclib-2.0.5-dev.aar\908fa5d2178d66d3f1028bf86a0e7b3a\AndroidManifest.xml:13:5-80
+	android:name
+		ADDED from [:smiclib-2.0.5-dev:] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\smiclib-2.0.5-dev.aar\908fa5d2178d66d3f1028bf86a0e7b3a\AndroidManifest.xml:13:22-77
+meta-data#android.arch.lifecycle.VERSION
+ADDED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\151f9234e0cc6e29f34c5b7bddd1c42c\AndroidManifest.xml:25:9-27:47
+	android:value
+		ADDED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\151f9234e0cc6e29f34c5b7bddd1c42c\AndroidManifest.xml:27:13-44
+	android:name
+		ADDED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\ccavalcanti\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\151f9234e0cc6e29f34c5b7bddd1c42c\AndroidManifest.xml:26:13-58

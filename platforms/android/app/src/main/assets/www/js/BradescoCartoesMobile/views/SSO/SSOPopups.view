@@ -1,0 +1,62 @@
+<% if(AWBE.device.platform.toUpperCase() == 'IOS'){%>
+	<link rel="stylesheet" type="text/css" href="js/BradescoCartoesMobile/views/SSO/sso_ios.css">
+<%}%>
+
+<div data-awbe-component="popup"
+	 data-awbe-component-option-theme="a"
+	 data-awbe-component-option-theme-modal="b"
+	 data-awbe-component-option-modal="true"
+	 data-awbe-component-popup-id="sso_dados_contato">
+	<p class="titulo-modal texto-negrito-modal">Dados de contato</p>
+	<p class="texto-modal-small">
+		Para utilizar algumas funcionalidades &eacute; preciso ter e-mail e celular cadastrado.
+	</p>
+	<br>
+	<p class="texto-modal-small texto-negrito-modal">
+		Deseja informar agora?
+	</p>
+	<div data-device="<%=AWBE.device.platform%>" class="sso_popup align-botoes">
+		<a data-rel="back" class="botao-modal-002">N&atilde;o</a>
+		<a href="#dadosSSO" class="botao-modal-002">Sim</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup"
+	 data-awbe-component-option-theme="a"
+	 data-awbe-component-option-theme-modal="b"
+	 data-awbe-component-option-modal="true"
+	 data-awbe-component-popup-id="sso_sucesso_alterar">
+	<p class="titulo-modal">Cadastro alterado</p>
+	<p class="texto-modal-small">
+		Agora todas as funcionalidades est&atilde;o dispon&iacute;veis para voc&ecirc;.
+	</p>
+	<p class="texto-modal-small">
+		Para sua seguran&ccedil;a, o acesso ao aplicativo ser&aacute; 
+		feito com a senha de 4 d&iacute;gitos, a mesma do site Bradesco Internet Banking e Fone F&aacute;cil.
+	</p>
+	<div class="sso_popup align-botoes">
+		<a data-rel="back" class="botao-modal-002">OK</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup"
+	 data-awbe-component-option-theme="a"
+	 data-awbe-component-option-theme-modal="b"
+	 data-awbe-component-option-modal="true"
+	 data-awbe-component-popup-id="sso_sem_cartoes_elegiveis">
+	<p class="titulo-modal">Cart&otilde;es Eleg&iacute;veis</p>
+	<p class="texto-modal-small">
+		Voc&ecirc; n&atilde;o possui cart&otilde;es eleg&iacute;veis/ativo para acessar o Aplicativo Bradesco Cart&otilde;es.
+	</p>
+	<div data-device="<%=AWBE.device.platform%>" class="sso_popup align-botoes">
+		<a data-rel="back" class="botao-modal-002">fechar</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup" data-awbe-component-option-theme="a" data-awbe-component-option-theme-modal="b" data-awbe-component-option-modal="true" data-awbe-component-popup-id="novoCartao">
+	<p class="texto-modal-normal" id="mensagem-novoCartao"></p>
+	<div class="align-botoes-2">
+		<a href="#personalizarCartoes" id="btnNo" class="botao-modal-002">Agora n&atilde;o</a>
+		<a id="btnYes" data-rel="back" class="botao-modal-003">Sim</a>
+	</div>
+</div>

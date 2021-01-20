@@ -1,0 +1,11 @@
+<div data-role="popup" 
+	data-overlay-theme="b"
+	data-theme="b"
+	data-dismissible="false"
+	id="erroCadastro">
+	<p class="texto-modal-normal">N&atildeo foi poss&aacutevel finalizar seu cadastro.</p>
+	<p class="texto-modal-normal">Em caso de d&iacutevida, contate a Central de Atendimento: <span>0800 570 0020</p>
+	<div class="align-botoes">
+		<a href="#" data-rel="back" class="botao-modal-002">FECHAR</a>
+	</div>
+</div>

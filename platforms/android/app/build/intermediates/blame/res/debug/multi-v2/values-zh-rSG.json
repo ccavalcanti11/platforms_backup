@@ -1,0 +1,26 @@
+{
+    "logs": [
+        {
+            "outputFile": "C:\\Users\\ccavalcanti\\Documents\\res\\Mobile_AppCartoes\\bcmp_mobile\\platforms\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-zh-rSG\\values-zh-rSG.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\ccavalcanti\\Documents\\res\\Mobile_AppCartoes\\bcmp_mobile\\platforms\\android\\app\\src\\main\\res\\values-zh-rSG\\fpauth-strings.xml",
+                    "from": {
+                        "startLines": "17,19,21,22,23,24,27,25,20,26,18",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "708,792,891,952,1003,1073,1280,1129,856,1215,747",
+                        "endColumns": "37,62,59,49,68,54,71,84,33,63,43",
+                        "endOffsets": "741,850,946,997,1067,1123,1347,1209,885,1274,786"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,93,156,216,266,335,390,462,547,581,645",
+                        "endColumns": "37,62,59,49,68,54,71,84,33,63,43",
+                        "endOffsets": "88,151,211,261,330,385,457,542,576,640,684"
+                    }
+                }
+            ]
+        }
+    ]
+}

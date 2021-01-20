@@ -1,0 +1,203 @@
+<% 
+	var user = AWBE.sessionStorage.getItem('user');
+	if(AWBE.localStorage.getItem('isNCLegado_' + user.cpf) == "true"){
+%>
+	<div data-awbe-component="awbe-include" data-awbe-component-params="menuOpcoesLogadoNCLegado"></div>
+<% }else{ 
+%>
+	<div data-awbe-component="awbe-include" data-awbe-component-params="menuOpcoesLogado"></div>
+<% }%>
+<div data-awbe-component="awbe-include" data-awbe-component-params="cabecalho"></div>
+
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/webCard/webCard.js"></script>
+<div data-role="content" class="ui-content" id="webCard">
+	<% 	
+	BradescoCartoesMobile.controllers.mostrarFuncionalidadesAtivas(); 
+	if(model.codigoRetorno == "00"){
+		if(model.cartoes && model.cartoes.length > 0){
+		imageNoScrollHabilitar(false);
+	%>
+			<div data-awbe-component="carouselWebCard"
+					 data-awbe-target-element="carouselTarget"
+				     data-awbe-target-view="webCard/selecaoWebCard.view"></div>
+			<div id="carouselTarget"></div>
+			<div id="carouselTarget-popup"></div>
+		<%}else{%>
+			<div class="fnt-regular color-gray-darker" style="padding:1em 0.8em 0em 0.8em;">Voc&ecirc; n&atilde;o possui cart&otilde;es eleg&iacute;veis a este servi&ccedil;o.</div>
+		<%}
+	}%>
+</div>
+
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="desabilitarWebCardPop"
+	id="desabilitarWebCardPop">
+	<p class="ui-block-a" style="padding-bottom: 1em;">Tem certeza que deseja desabilitar o seu Cart&atilde;o Virtual?</p>
+	<div class="align-botoes align-botoes-popup txt-caixaalta">
+		<a href="#" data-rel="back" onClick='naoDesabilitarWebCard()' id="naoDesabilitarWebCard" class="botao-modal-002" title="Nao">N&atilde;o</a>
+		<a href="#desabilitarWebCard" onclick="fixPopupIssue(false)" data-rel="back" class="botao-modal-002" title="Sim">Sim</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup"
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="saibaMaisWebCard">
+	<h5 class="titulo-modal">Entenda o Cart&atilde;o Virtual</h5>
+	<br />
+	<p class="texto-modal-normal">Com o Cart&atilde;o Virtual, o Aplicativo Bradesco Cart&otilde;es gera um n&uacute;mero diferente para cada compra que voc&ecirc; desejar efetuar pela internet, e as compras efetuadas s&atilde;o listadas na mesma fatura do cart&atilde;o de cr&eacute;dito selecionado.</p>
+	<br />
+	<p class="texto-modal-normal">O Cart&atilde;o Virtual n&atilde;o &eacute; v&aacute;lido para compras recorrentes (ex.: assinatura de TV), ap&oacute;lices de seguros e transa&ccedil;&otilde;es que solicitem a apresenta&ccedil;&atilde;o do cart&atilde;o f&iacute;sico para retirada da compra (ex.: ingresso).</p>
+	<div class="align-botoes txt-caixaalta">
+		<a onclick="imageNoScrollSaibaMais(false); fixPopupIssue(false);" data-rel="back" class="botao-modal-002" title="clique para voltar para tela de cart&atilde;o virtual">Fechar</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="sistemaIndisponivel">
+	<p class="titulo-modal">Sistema indispon&iacute;vel</p>
+	<p class="texto-modal-normal">Sistema indispon&iacute;vel no momento, tente novamente mais tarde. Caso o erro persista, entre em contato com a Central de Atendimento.</p>
+	<div class="align-botoes">
+		<a href="#meusCartoes" onclick="fixPopupIssue(false);imageNoScroll('sistemaIndisponivel',false);" class="botao-modal-002">FECHAR</a>
+	</div>
+</div>
+
+<!-- selecaoWebCard -->
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="sucessoWebCard">
+	<p id="mensagemSucessoWebCard" class="ui-block-a" style="padding-bottom: 1em;"></p>
+	<div class="align-botoes align-botoes-popup txt-caixaalta">	
+		<a href="#webCard" data-rel="back" onclick="fixPopupIssue(false)" class="botao-modal-002" title="OK">OK</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="webCardErroSenhaParaGerarPopUp">
+	<p class="aviso-viagem-popup-text" text-align="center">N&atilde;o foi poss&iacute;vel exibir o n&uacute;mero<br>do Cart&atilde;o Virtual. Por favor, entre<br>
+	em contato com a Central de<br>Atendimento.</p>
+	<br>
+	<div class="align-botoes align-botoes-popup txt-caixaalta">	
+		<a href="#" data-rel="back" class="botao-modal-002" title="OK">OK</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="webCardErroMostrarNumeroPopUp">
+	<p class="aviso-viagem-popup-text" text-align="center">N&atilde;o foi poss&iacute;vel exibir o n&uacute;mero<br>do Cart&atilde;o Virtual. Por favor, tente<br>
+	novamente.</p>
+	<br>
+	<p text-align="center">C&oacute;d: 123456</p>
+	<br>
+	<div class="align-botoes align-botoes-popup txt-caixaalta">	
+		<a href="#" data-rel="back" class="botao-modal-002" title="OK">OK</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="webCardErroHabilitarPopUp">
+	<p class="aviso-viagem-popup-text" text-align="center">N&atilde;o foi poss&iacute;vel habilitar o Cart&atilde;o Virtual. Por favor, tente<br>
+	novamente.</p>
+	<br>
+	<p text-align="center">C&oacute;d: 123456</p>
+	<br>
+	<div class="align-botoes align-botoes-popup txt-caixaalta">	
+		<a href="#" data-rel="back" class="botao-modal-002" title="OK">OK</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="exedeuCartoesGerados">
+	<p class="aviso-viagem-popup-text" >Voc&ecirc; gerou muitos cart&otilde;es em um curto per&iacute;odo de tempo.</p>
+	<p class="aviso-viagem-popup-text" >Para seguir com a transa&ccedil;&atilde;o solicitamos que insira sua <b>Chave de Seguran&ccedil;a.</b></p>
+	<div class="align-botoes align-botoes-popup txt-caixaalta">	
+		<a data-rel="back" class="botao-modal-002" title="OK" onClick="okButtonExcedeu();">OK</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="senhaBloqueada">
+	<p  class="titulo-modal">Acesso Bloqueado</p>
+	<p class="texto-modal-normal fnt-regular">Por favor, entre em contato com a Central de Atendimento.</p>
+	<div class="align-botoes">
+		<a href="#meusCartoes" onclick="fixPopupIssue(false)" class="botao-modal-002" style="text-transform: capitalize;">Fechar</a>
+	</div>	
+</div>
+
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="sistemaIndisponivel">
+	<p class="titulo-modal">Sistema indispon&iacute;vel</p>
+	<p class="texto-modal-normal">Sistema indispon&iacute;vel no momento, tente novamente mais tarde. Caso o erro persista, entre em contato com a Central de Atendimento.</p>
+	<div class="align-botoes">
+		<a href="#meusCartoes" onclick="fixPopupIssue(false)" class="botao-modal-002">FECHAR</a>
+	</div>
+</div>
+
+<!-- webCardGerado -->
+
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="webCardGerarNegadoPopUp">
+	<p class="titulo-modal">Acesso Bloqueado</p>
+	<p class="texto-modal-normal">N&atilde;o foi poss&iacute;vel gerar o n&uacute;mero do Cart&atilde;o Virtual. Por favor, entre em contato com a Central de Atendimento.</p>
+	<div class="align-botoes txt-caixaalta">	
+		<a href="#meusCartoes" onclick="fixPopupIssue(false);unlockScroll();" data-rel="back" class="botao-modal-002">Ok</a>
+	</div>
+</div>
+<!-- POP-UP CARTAO BLOQUEADO -->
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="cartaoBloqueadoWebCard">
+	<div>
+		<p style="text-align: left;  margin: .5em .4375em; font-weight: bold;">Cart&atilde;o bloqueado</p>
+	</div>	
+	<br>
+		<p class="aviso-viagem-popup-text">Lembre-se de desbloquear seu cart&atilde;o para que as suas transa&ccedil;&otilde;es sejam autorizadas.</p>
+		<p class="aviso-viagem-popup-text">Deseja desbloquear agora?</p>
+	<div class="align-botoes-2 txt-caixaalta-android">
+		<a onclick="desbloquearDepois()" class="botao-modal-002">Depois</a>
+		<a href="#" data-rel="back" class="botao-modal-003">Desbloquear</a>
+	</div>
+</div>
+
+<div data-awbe-component="popup" 
+	data-awbe-component-option-theme="a"
+	data-awbe-component-option-theme-modal="b"
+	data-awbe-component-option-modal="true"
+	data-awbe-component-popup-id="webCardGeradoComSucesso">
+	<p class="titulo-modal">Cartão virtual gerado com sucesso!</p>
+	<p id="mensagemWebCardGerado" class="texto-modal-normal fnt-regular"></p>
+	<div class="align-botoes">
+		<a data-rel="back" class="botao-modal-002" title="Fechar" onClick="unlockScroll();return;">FECHAR</a>
+	</div>	
+</div>

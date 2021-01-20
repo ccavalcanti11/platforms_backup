@@ -1,0 +1,51 @@
+<%
+var cartoesEDispositivo = AWBE.sessionStorage.getItem('cartoesEDispositivo');
+var cartaoAtualSelecionado = AWBE.sessionStorage.getItem('meusCartoesAtual');
+
+
+%>
+<div class="ui-content faturadigital" data-role="content" style="margin: 0 -1em; margin-top: -1em;">
+    <h2>DISPOSITIVOS</h2>
+
+    <div class="margin-top-m05em">
+        <ul data-role="listview">
+            <% _.each(cartoesEDispositivo, function(dispositivo){
+                    if(dispositivo.numeroCartao == cartaoAtualSelecionado.numeroCartao){
+                        if(dispositivo.estadoDeAtivacao == 1){
+            %>
+                            <li data-icon="false" class="li-applePay-pendente" onclick="habilitarDispositivo(<%=dispositivo.codigoAtivacao%>);">
+                                <div class="div-texto-dispositivo">
+                                    <p class="fnt-book txt-1em" style="margin-left:.35em;"><%=dispositivo.origemProvisionamento%></p>             
+                                </div>
+                                <div class="div-dispositivo-situacao">
+                                    <p class="fnt-bold p-list-applePay-texto-pendente">pendente</p>
+                                </div>
+                                <div class="icon-listview-applepay div-dispositivo-icone">
+                                </div>
+                            </li>
+<%                      } else{ %>
+                            <li data-icon="false" class="li-applePay-ativado">
+                                <div class="div-texto-dispositivo">
+                                    <p class="fnt-book txt-1em color-gray-lighter" style="font-weight: bolder !important; margin-left:.35em;"><%=dispositivo.origemProvisionamento%></p>           
+                                </div>
+                                <div class="div-dispositivo-situacao">
+                                    <p class="fnt-bold color-gray-lighter p-list-applePay-texto-ativado">ativado</p>
+                                </div>
+                                <div class="icon-listview-applePay-ativado div-dispositivo-icone">
+                                </div>
+                            </li>
+<%                      }
+                    }
+
+            }) %>
+        </ul>
+    </div>
+    <div class="footerfix ui-footer ui-footer-fixed" data-position="fixed" data-role="footer" style="z-index:999; bottom:0px; position:fixed; margin-bottom: 1em;">
+        <button id="botaoAbrirWallet" data-role="button" onclick="abrirWallet();populaAppsFlyerGaEwa('VoltarCarteira');" class="ui-btn ui-shadow ui-corner-all"
+        style="font-family: NewJuneBold !important;">Abrir Cartão no Apple Wallet</button>
+    </div>
+</div>
+
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/permissoes/permissoesController.js"></script>
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/home/permissaoOptin.js"></script>
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/ewa/ewa.js"></script>

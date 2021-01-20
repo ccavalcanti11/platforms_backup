@@ -1,0 +1,22 @@
+<div data-awbe-component="awbe-include" data-awbe-component-params="cabecalhoVoltarPagina"></div>
+<div class="ui-content" data-role="content">
+  <div class="error-container">
+    <div>
+      <i class="icon-error"></i>
+      <p class="text-center">
+        Erro ao carregar<br />
+        os valores.
+      </p>
+      <a class="text-decoration-none" href="#taxasTarifasFidelity">
+        <buton class="btn error ui-btn">
+          Tentar novamente
+        </buton>
+      </a>
+    </div>
+  </div>
+</div>
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="js/BradescoCartoesMobile/views/taxasTarifasFidelity/taxasTarifasFidelity.css"
+/>

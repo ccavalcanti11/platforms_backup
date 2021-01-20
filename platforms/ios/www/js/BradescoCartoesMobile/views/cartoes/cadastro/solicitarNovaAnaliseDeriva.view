@@ -1,0 +1,26 @@
+<div data-awbe-component="awbe-include" data-awbe-component-params="cabecalho"></div>
+<% 
+	var user = AWBE.sessionStorage.getItem('user');
+	if(AWBE.localStorage.getItem('isNCLegado_' + user.cpf) == "true"){ %>
+	<div data-awbe-component="awbe-include" data-awbe-component-params="menuOpcoesLogadoNCLegado"></div>
+<% }else{ %>
+	<div data-awbe-component="awbe-include" data-awbe-component-params="menuOpcoesLogado"></div>
+<% }%>
+
+<div class="ui-content faturadigital" data-role="content" id="solicitarNovaAnaliseDeriva">	
+	<h2>NOVA ANÁLISE</h2>
+	<p class="txt-12em fnt-book color-gray">Infelizmente a foto enviada n&atilde;o estava boa o suficiente para realizarmos a an&aacute;lise.</b></p>	
+
+	<p class="txt-12em fnt-book color-gray">Por favor, fotografe novamente.</p>		
+    <div class="ui-grid-a" id="botaCapturarDocumentos">
+        <div class="ui-block-a" style="float: right;">
+	        <div class="ui-btn-arrow-blue-arrow"></div>
+	        <div class="ui-btn-arrow-blue" style="width:89%; margin-top: 1em;">
+	        	<a id="solicitarDocumentos" class="capturarFrente">Continuar</a>
+	        </div>
+        </div>
+        <div class="ui-block-b"></div>
+	</div>
+</div>
+
+<script type="text/javascript" src="js/BradescoCartoesMobile/views/cartoes/cadastro/solicitarNovaAnaliseDeriva.js"></script>

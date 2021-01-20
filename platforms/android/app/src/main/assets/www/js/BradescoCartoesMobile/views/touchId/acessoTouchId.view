@@ -1,0 +1,29 @@
+<div data-awbe-component="awbe-include" data-awbe-component-params="cabecalhoVoltarPagina"></div>
+
+<div class="ui-content" data-role="content">
+	<img src="img/digital.png"/> 		
+	<p>
+		Touch ID
+	</p>
+	
+	<p>
+		Use a digital para acessar sua conta.
+		Caso tenha trocado sua senha, cancele o acesso e digite a nova senha.
+	</p>
+	<a data-role="button" href="#login">Digite a senha</a>
+	<a data-role="button" href="#login">Cancelar</a>
+</div>
+	
+<div data-awbe-component="popup"
+	 data-awbe-component-option-theme-modal="false"
+	 data-awbe-component-option-modal="a"
+	 data-awbe-component-option-theme="a"
+	 data-awbe-component-popup-id="erroAcessoTouchId">
+ 	<img src="img/digital.png"></img>
+	<p>
+		Tente Novamente
+		Sua digital nao confere com a digital cadastrada no aplicativo. 
+		Por favor, faça uma nova tentativa.
+	</p>
+	<a data-role="button" data-rel='back'>OK</a>
+</div>

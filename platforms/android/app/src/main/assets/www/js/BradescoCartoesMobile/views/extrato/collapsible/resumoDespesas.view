@@ -1,0 +1,24 @@
+<div id="resumo-collapsible" data-role="collapsible" data-iconpos="false" data-inset="false">
+    <h4>
+        <span class="colapsible-icon"></span>
+        <label class="colapsible-text">Resumo das despesas</label>
+    </h4>
+    <table class="ui-table-despesas">
+        <thead>
+            <tr>
+                <th class="bloco-1"></th>
+                <th class="bloco-23"></th>
+                <th class="bloco-23" style="width: 50px;">R$</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% $.each(model.resumoDespesas, function(index, item){ %>
+            <tr>
+                <th class="bloco-1"><%=item.descricao%></th>
+                <th class="bloco-23"></th>
+                <th class="align-valor"><%=currency(item.valor, false)%></th>
+            </tr>
+            <% }) %>
+        </tbody>
+    </table>
+</div>
